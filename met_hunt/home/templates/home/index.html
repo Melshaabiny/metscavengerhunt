@@ -16,7 +16,7 @@
 			<nav class="top-bar" data-topbar>
 				<ul class="title-area">
 					<li class="name">
-						<h1><a href="#">Scavenger Hunt</a></h1>
+						<h1><a href="/">Scavenger Hunt</a></h1>
 					</li>
 					<li class="toggle-topbar menu-icon"><a href="#">
 						<!-- Hamberger menu bar -->
@@ -36,6 +36,9 @@
 								<li><a href="#">View Hunts</a></li>
 								<li><a href="#">Make Hunts</a></li>
 							</ul>
+						</li>
+						<li>
+							<a href={% url 'user_auth.views.register' %}>Register</a>
 						</li>
 					</ul>
 				</section>

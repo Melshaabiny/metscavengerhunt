@@ -1,6 +1,9 @@
 Team Member
 ===========
 
+- Made some changes
+
+
 :Project\ Title:
 	MetMuseum Scavenger Hunt
 
