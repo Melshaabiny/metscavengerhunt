@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 	'home',
     'user_auth',
+	'tutorial_hunt',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -85,6 +86,7 @@ USE_TZ = True
 TEMPLATE_DIRS = (
     'met_hunt/templates/',
     'user_auth/templates/',
+    'tutorial_hunt/templates',
     )
 
 STATIC_URL = '/static/'
