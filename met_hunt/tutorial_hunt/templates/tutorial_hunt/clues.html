@@ -1,0 +1,16 @@
+{% extends "home/index.html" %}
+{% block body %}
+<div  class ="row">
+	<div class="small-6 medium-6 large-6 large-centered columns panel">
+	<p class="text-center">{{clue_text}}</p>
+	</div>
+</div>
+
+<div class="row">
+	<div class="small-12 medium-12 large-12 large-centered columns">
+	<a href={% url "tutorial_hunt.views.verf_clue" %}>Found it</a>
+	</div>
+</div>
+
+{% endblock%}
+

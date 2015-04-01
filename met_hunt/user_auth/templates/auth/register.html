@@ -1,0 +1,14 @@
+{% extends "home/index.html" %}
+{% block body %}
+<div class="row">
+	<h2>{{ title }}</h2>
+	<div class="small-12 medium-12 large-12 columns panel">
+	<form action={% url 'user_auth.views.register' %} method="POST">
+		{% csrf_token %}
+		{{ form.as_table }}
+		<input type="submit" class="button expand" value="Register">
+	</form>
+	</div>
+	
+</div>
+{% endblock %}
