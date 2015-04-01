@@ -1,7 +1,7 @@
 Team Member
 ===========
 
-- Made some changes
+- Made some more changes
 
 
 :Project\ Title:
