@@ -14,7 +14,7 @@ Documentation
    :maxdepth: 2
 
    TeamInformation
-
+   UserAuthentication
 
 Indices and tables
 ==================

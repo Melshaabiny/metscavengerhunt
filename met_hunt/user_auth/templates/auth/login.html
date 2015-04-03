@@ -1,25 +1,12 @@
-{% extends "index.html" %}
+{% extends "met_hunt/index.html" %}
 {% block body %}
 	<div class="row">
-		<div class="large-4 small-4 columns small-centered large-centered panel">
-		<h1>Login</h1>
-		<form action="" class="custom">
-			<div class="row ">
-				<div class="small-12 large-12 columns">
-					<input type="text" placeholder="Username">
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="small-12 large-12 columns">
-					<input type="password" placeholder="Password">
-				</div>
-			</div>
-			<div class="row">
-				<div class="small-12 large-12 columns">
-					<input type="submit" class="button expand" value="Log In" />
-				</div>
-			</div>
+		<div class="large-4 small-4 columns small-centered large-centered small-centered panel">
+		<h1>{{ title }}</h1>
+		<form action={% url 'user_auth.views.login' %} method="POST">
+			{% csrf_token %}
+			{{ form.as_table }}
+			<input type="submit" class="button expand" value="LogIn">
 		</form>
 		</div>
 	</div>
