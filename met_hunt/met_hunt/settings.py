@@ -39,6 +39,7 @@ INSTALLED_APPS = (
 	'home',
     'user_auth',
 	'tutorial_hunt',
+    'hunts',
 )
 
 MIDDLEWARE_CLASSES = (
