@@ -51,7 +51,6 @@ def register(request):
 		# it means that we received inputs from the user.
 		# Then, fill them out.
 		form = RegisterForm(request.POST)
-
 		# check if all inputs are valid.
 		if form.is_valid():
 			# Use form.cleaned_data to save the user information.
