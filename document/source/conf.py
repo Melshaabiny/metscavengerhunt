@@ -1,3 +1,10 @@
+import sys
+import os
+
+sys.path.append(os.path.join(os.path.dirname(__file__), './../../met_hunt/'))
+os.environ['DJANGO_SETTINGS_MODULE'] = 'met_hunt.settings'
+from django.conf import settings
+
 # -*- coding: utf-8 -*-
 #
 # MetDoc documentation build configuration file, created by
