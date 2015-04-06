@@ -12,6 +12,15 @@ from django.core.context_processors import csrf # for Cross Site Request Forgery
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 
+
+def profile(request):
+	user = None
+	if request.user.is_authenticated():
+		user = request.user
+
+	args = {'user':user}
+	return render_to_response('user_auth/profile.html', args)
+
 # Create your views here.
 def login(request):
 	"""
@@ -36,7 +45,7 @@ def login(request):
 
 	args = {'form':form, 'title':title}
 	args.update(csrf(request))
-	return render_to_response('auth/login.html', args)
+	return render_to_response('user_auth/login.html', args)
 
 @login_required
 def logout_user(request):
@@ -67,4 +76,4 @@ def register(request):
 	args = {'form' : form, 
 			'title' : title,}
 	args.update(csrf(request)) # Guess passing csrf token to the template.
-	return render_to_response('auth/register.html', args)
+	return render_to_response('user_auth/register.html', args)
