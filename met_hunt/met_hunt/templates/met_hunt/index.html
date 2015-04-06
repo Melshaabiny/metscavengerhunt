@@ -39,7 +39,7 @@
 						<li class="has-dropdown not-click">
 							<a href="#">Welcome {{ user.username }}!</a>
 							<ul class="dropdown">
-								<li><a href="#">Profile</a></li>
+								<li><a href="{% url 'user_auth.views.profile' %}">Profile</a></li>
 								<li><a href="#">Account Setting</a></li>
 								<li>
 									<a href={% url 'user_auth.views.logout_user' %}>LogOut</a>

@@ -87,7 +87,7 @@ USE_TZ = True
 TEMPLATE_DIRS = (
     'met_hunt/templates/',
     'user_auth/templates/',
-    'tutorial_hunt/templates',
+    'tutorial_hunt/templates/',
     )
 
 STATIC_URL = '/static/'
