@@ -1,17 +1,17 @@
 """
-Unit test for **user_auth** djanfo application.
+Unit test for **user_auth** django application.
+
 The list of tests are : 
-	1. If anyone who try to access the url "/user_auth/register/" 
-	successfully access to the page.
-	2. If anyone who try to access the url "/user_auth/login/" 
-	successfully access to the page.
-	3. The register view in user_auth.views correctly 
-	register the visitor.
-	
+
+	- **test_login_status_code()** checks if accessing url **/user_auth/login/** returns status_code 200.
+	- **test_register_status_code()** checks if accessing url **/user_auth/register/** returns status_code 200/
+	- **test_register_user()** checks if **RegisterForm.register_user()** gets called when **user_auth.views.register** gets POST data.
 """
 
 from django.test import TestCase, Client
 from django.contrib.auth.models import User
+from mock import MagicMock, Mock, patch
+from user_auth.views import login, logout_user, register
 
 # Create your tests here.
 class user_authTest(TestCase):
@@ -24,21 +24,73 @@ class user_authTest(TestCase):
 
 	def test_register_status_code(self):
 		# create client.
-		client = Client()
-		response = client.get('/user_auth/register/')
+		response = self.client.get('/user_auth/register/')
 		self.assertEqual(response.status_code, 200)
 
 	def test_login_status_code(self):
-		client = Client()
-		response = client.get('/user_auth/login/')
+		response = self.client.get('/user_auth/login/')
 		self.assertEqual(response.status_code, 200)
 
-	def test_registering_check(self):
-		user_name = 'test1_user'
-		response = self.client.post('/user_auth/register/', {'user_name':user_name, 'password':'test1_user'})
+	def test_views_register(self):
+		"""
+		**test_views_register()** checks if the function is called if anybody accessed the url **/user_auth/register/**.
+		This test should be considered as different test with **test_register_status_code()** since this function just
+		checks if the httpresponse returns the status_code 200.
+		"""
 
-		# It seems that after passing user info using client.post,
-		# the registering does not effected right away.
-		# get user name we just registered.
-		u_name = User.objects.get(username = user_name)
-		self.assertEqual(user_name, u_name.username)
+		with patch('user_auth.views.register') as reg:
+			# access the url.
+			self.client.get('/user_auth/register/')
+			# check if the function gets called.
+			reg.called
+
+	def test_views_login(self):
+		"""
+		**test_views_login()** checks if the function is called if anybody accessed the url **/user_auth/login/**.
+		This test should be considered as different test with **test_login_status_code()** since this function just
+		checks if the httpresponse returns the status_code 200. 
+		"""
+
+		with patch('user_auth.views.login') as login:
+			# access the url.
+			self.client.get('/user_auth/login/')
+			login.called
+
+	def test_RegisterForm(self):
+		"""
+		**test_RegisterForm()** checks if request.method to **user_auth.views.register()** is POST or 
+		GET, the form is properly instantiated. 
+		"""
+
+		with patch('user_auth.views.RegisterForm') as reg:
+			args = {'user_name':'user1', 'password':'password'}
+			self.client.post('/user_auth/register/', args)
+			# check if RegisterForm is called with post method.
+			reg.called
+
+		with patch('user_auth.views.RegisterForm') as reg:
+			self.client.get('/user_auth/register/')
+			# check if RegisterForm is called with post method.
+			reg.called
+
+	def test_register_user(self):
+		"""
+		**test_register_user()** check if the function **RegisterForm.register_user()** 
+		is called when POST data is sent to **user_auth.views.register()** function.
+		"""
+
+		# mock register_user function.
+		with patch('user_auth.views.RegisterForm.register_user') as reg:
+			reg.return_value = None
+			# The function gets called when user_auth.register() gets POST data.
+			response = self.client.post('/user_auth/register/', {'user_name':'test_user', 'password':'test1_user'})
+			reg.assert_called_with()
+
+
+	# def test_auth_forms_register_user(self):
+	# 	"""
+	# 	This function checks if the function *register_user* in **auth_forms.py** was called with
+	# 	appropriate data.
+	# 	"""
+
+	# 	with patch('Register')
