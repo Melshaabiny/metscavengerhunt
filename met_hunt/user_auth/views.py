@@ -53,6 +53,8 @@ def logout_user(request):
 	return render_to_response('home/home.html', {})
 
 def register(request):
+	user = None
+	
 	# handles registering.
 	title = 'Register'
 	args = {}

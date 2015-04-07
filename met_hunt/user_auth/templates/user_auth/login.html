@@ -1,7 +1,7 @@
 {% extends "met_hunt/index.html" %}
 {% block body %}
 	<div class="row">
-		<div class="large-4 small-4 columns small-centered large-centered small-centered panel">
+		<div class="large-6 medium-6 small-12 columns small-centered medium-centered large-centered small-centered panel">
 		<h1>{{ title }}</h1>
 		<form action={% url 'user_auth.views.login' %} method="POST">
 			{% csrf_token %}

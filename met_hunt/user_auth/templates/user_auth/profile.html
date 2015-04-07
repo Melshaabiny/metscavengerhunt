@@ -1,12 +1,39 @@
 {% extends "met_hunt/index.html" %}
 {% block body %}
 <div class="row">
-	<div class="columns small-12 medium-4 large-4">
-		<img src="http://placehold.it/350x150">
+
+	<div class="columns small-12 medium-4 large-4" >
+		<span>
+			{% if user.userinfo.picture %}
+			{% load staticfiles %}
+			<img src={% static user.userinfo.picture %} alt="">
+			{% else %}
+			<img src="http://placehold.it/350x150">
+			{% endif %}
+		</span>
 	</div>
+
 	<div class="columns small-12 medium-4 large-4">
-		<img src="http://placehold.it/350x150">
+		<h4>User Information</h4>
+		<table>
+			<tr>
+				<td>Name</td>
+				<td>:</td>
+				<td>{{ user.get_full_name }}</td>
+			</tr>
+			<tr>
+				<td>Expert Area</td>
+				<td>:</td>
+				<td>{{ user.userinfo.area_of_expertise }}</td>
+			</tr>
+			<tr>
+				<td>Expert Level</td>
+				<td>:</td>
+				<td>{{ user.userinfo.expert_level }}</td>
+			</tr>
+		</table>
 	</div>
+
 	<div class="columns small-12 medium-4 large-4">
 		<img src="http://placehold.it/350x150">
 	</div>

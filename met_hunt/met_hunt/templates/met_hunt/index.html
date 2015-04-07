@@ -34,7 +34,6 @@
 								<li><a href="#">Make Hunts</a></li>
 							</ul>
 						</li>
-						<li><a href={% url 'user_auth.views.register' %}>Register</a></li>
 						{% if user.is_authenticated %}
 						<li class="has-dropdown not-click">
 							<a href="#">Welcome {{ user.username }}!</a>
@@ -47,6 +46,7 @@
 							</ul>
 						</li>
 						{% else %}
+						<li><a href={% url 'user_auth.views.register' %}>Register</a></li>
 						<li><a href={% url 'user_auth.views.login' %}>LogIn</a></li>
 						{% endif %}
 					</ul>

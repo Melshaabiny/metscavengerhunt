@@ -44,8 +44,12 @@ class RegisterForm(forms.Form):
 										last_name = user_last_name,
 										email = user_email)
 
-		# save it
+		# create empty user info.
+		user_info = UserInfo.create(user=user)
+
+		# save.
 		user.save()
+		user_info.save()
 		return
 
 class LogInForm(forms.Form):
