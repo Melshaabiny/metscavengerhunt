@@ -1,0 +1,188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>user_auth.tests &mdash; MetDoc 0.0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="MetDoc 0.0.1 documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">MetDoc 0.0.1 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for user_auth.tests</h1><div class="highlight"><pre>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Unit test for **user_auth** django application.</span>
+
+<span class="sd">The list of tests are : </span>
+
+<span class="sd">	- **test_login_status_code()** checks if accessing url **/user_auth/login/** returns status_code 200.</span>
+<span class="sd">	- **test_register_status_code()** checks if accessing url **/user_auth/register/** returns status_code 200/</span>
+<span class="sd">	- **test_register_user()** checks if **RegisterForm.register_user()** gets called when **user_auth.views.register** gets POST data.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">django.test</span> <span class="kn">import</span> <span class="n">TestCase</span><span class="p">,</span> <span class="n">Client</span>
+<span class="kn">from</span> <span class="nn">django.contrib.auth.models</span> <span class="kn">import</span> <span class="n">User</span>
+<span class="kn">from</span> <span class="nn">mock</span> <span class="kn">import</span> <span class="n">MagicMock</span><span class="p">,</span> <span class="n">Mock</span><span class="p">,</span> <span class="n">patch</span>
+<span class="kn">from</span> <span class="nn">user_auth.views</span> <span class="kn">import</span> <span class="n">login</span><span class="p">,</span> <span class="n">logout_user</span><span class="p">,</span> <span class="n">register</span>
+
+<span class="c"># Create your tests here.</span>
+<div class="viewcode-block" id="user_authTest"><a class="viewcode-back" href="../../user_auth/tests.html#user_auth.tests.user_authTest">[docs]</a><span class="k">class</span> <span class="nc">user_authTest</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
+
+<div class="viewcode-block" id="user_authTest.setUp"><a class="viewcode-back" href="../../user_auth/tests.html#user_auth.tests.user_authTest.setUp">[docs]</a>	<span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">()</span>
+</div>
+<div class="viewcode-block" id="user_authTest.tearDown"><a class="viewcode-back" href="../../user_auth/tests.html#user_auth.tests.user_authTest.tearDown">[docs]</a>	<span class="k">def</span> <span class="nf">tearDown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span> <span class="c"># clean up the user database.</span>
+</div>
+<div class="viewcode-block" id="user_authTest.test_register_status_code"><a class="viewcode-back" href="../../user_auth/tests.html#user_auth.tests.user_authTest.test_register_status_code">[docs]</a>	<span class="k">def</span> <span class="nf">test_register_status_code</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="c"># create client.</span>
+		<span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;/user_auth/register/&#39;</span><span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="user_authTest.test_login_status_code"><a class="viewcode-back" href="../../user_auth/tests.html#user_auth.tests.user_authTest.test_login_status_code">[docs]</a>	<span class="k">def</span> <span class="nf">test_login_status_code</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;/user_auth/login/&#39;</span><span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="user_authTest.test_views_register"><a class="viewcode-back" href="../../user_auth/tests.html#user_auth.tests.user_authTest.test_views_register">[docs]</a>	<span class="k">def</span> <span class="nf">test_views_register</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">		**test_views_register()** checks if the function is called if anybody accessed the url **/user_auth/register/**.</span>
+<span class="sd">		This test should be considered as different test with **test_register_status_code()** since this function just</span>
+<span class="sd">		checks if the httpresponse returns the status_code 200.</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+
+		<span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s">&#39;user_auth.views.register&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">reg</span><span class="p">:</span>
+			<span class="c"># access the url.</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;/user_auth/register/&#39;</span><span class="p">)</span>
+			<span class="c"># check if the function gets called.</span>
+			<span class="n">reg</span><span class="o">.</span><span class="n">called</span>
+</div>
+<div class="viewcode-block" id="user_authTest.test_views_login"><a class="viewcode-back" href="../../user_auth/tests.html#user_auth.tests.user_authTest.test_views_login">[docs]</a>	<span class="k">def</span> <span class="nf">test_views_login</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">		**test_views_login()** checks if the function is called if anybody accessed the url **/user_auth/login/**.</span>
+<span class="sd">		This test should be considered as different test with **test_login_status_code()** since this function just</span>
+<span class="sd">		checks if the httpresponse returns the status_code 200. </span>
+<span class="sd">		&quot;&quot;&quot;</span>
+
+		<span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s">&#39;user_auth.views.login&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">login</span><span class="p">:</span>
+			<span class="c"># access the url.</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;/user_auth/login/&#39;</span><span class="p">)</span>
+			<span class="n">login</span><span class="o">.</span><span class="n">called</span>
+</div>
+<div class="viewcode-block" id="user_authTest.test_RegisterForm"><a class="viewcode-back" href="../../user_auth/tests.html#user_auth.tests.user_authTest.test_RegisterForm">[docs]</a>	<span class="k">def</span> <span class="nf">test_RegisterForm</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">		**test_RegisterForm()** checks if request.method to **user_auth.views.register()** is POST or </span>
+<span class="sd">		GET, the form is properly instantiated. </span>
+<span class="sd">		&quot;&quot;&quot;</span>
+
+		<span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s">&#39;user_auth.views.RegisterForm&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">reg</span><span class="p">:</span>
+			<span class="n">args</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;user_name&#39;</span><span class="p">:</span><span class="s">&#39;user1&#39;</span><span class="p">,</span> <span class="s">&#39;password&#39;</span><span class="p">:</span><span class="s">&#39;password&#39;</span><span class="p">}</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">&#39;/user_auth/register/&#39;</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+			<span class="c"># check if RegisterForm is called with post method.</span>
+			<span class="n">reg</span><span class="o">.</span><span class="n">called</span>
+
+		<span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s">&#39;user_auth.views.RegisterForm&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">reg</span><span class="p">:</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;/user_auth/register/&#39;</span><span class="p">)</span>
+			<span class="c"># check if RegisterForm is called with post method.</span>
+			<span class="n">reg</span><span class="o">.</span><span class="n">called</span>
+</div>
+<div class="viewcode-block" id="user_authTest.test_register_user"><a class="viewcode-back" href="../../user_auth/tests.html#user_auth.tests.user_authTest.test_register_user">[docs]</a>	<span class="k">def</span> <span class="nf">test_register_user</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">		**test_register_user()** check if the function **RegisterForm.register_user()** </span>
+<span class="sd">		is called when POST data is sent to **user_auth.views.register()** function.</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+
+		<span class="c"># mock register_user function.</span>
+		<span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s">&#39;user_auth.views.RegisterForm.register_user&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">reg</span><span class="p">:</span>
+			<span class="n">reg</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="bp">None</span>
+			<span class="c"># The function gets called when user_auth.register() gets POST data.</span>
+			<span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">&#39;/user_auth/register/&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;user_name&#39;</span><span class="p">:</span><span class="s">&#39;test_user&#39;</span><span class="p">,</span> <span class="s">&#39;password&#39;</span><span class="p">:</span><span class="s">&#39;test1_user&#39;</span><span class="p">})</span>
+			<span class="n">reg</span><span class="o">.</span><span class="n">assert_called_with</span><span class="p">()</span>
+
+
+	<span class="c"># def test_auth_forms_register_user(self):</span>
+	<span class="c"># 	&quot;&quot;&quot;</span>
+	<span class="c"># 	This function checks if the function *register_user* in **auth_forms.py** was called with</span>
+	<span class="c"># 	appropriate data.</span>
+	<span class="c"># 	&quot;&quot;&quot;</span>
+
+	<span class="c"># 	with patch(&#39;Register&#39;)</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, WebDev.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.2</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Tests for User Authentication &mdash; MetDoc 0.0.1 documentation</title>
+    <title>Tests &mdash; MetDoc 0.0.1 documentation</title>
     
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -50,7 +50,7 @@
           <div class="body" role="main">
             
   <div class="section" id="module-user_auth.tests">
-<span id="tests-for-user-authentication"></span><h1>Tests for User Authentication<a class="headerlink" href="#module-user_auth.tests" title="Permalink to this headline">¶</a></h1>
+<span id="tests"></span><h1>Tests<a class="headerlink" href="#module-user_auth.tests" title="Permalink to this headline">¶</a></h1>
 <p>Unit test for <strong>user_auth</strong> django application.</p>
 <p>The list of tests are :</p>
 <blockquote>
@@ -60,6 +60,61 @@
 <li><strong>test_register_user()</strong> checks if <strong>RegisterForm.register_user()</strong> gets called when <strong>user_auth.views.register</strong> gets POST data.</li>
 </ul>
 </div></blockquote>
+<dl class="class">
+<dt id="user_auth.tests.user_authTest">
+<em class="property">class </em><code class="descclassname">user_auth.tests.</code><code class="descname">user_authTest</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/tests.html#user_authTest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="user_auth.tests.user_authTest.setUp">
+<code class="descname">setUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/tests.html#user_authTest.setUp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.setUp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="user_auth.tests.user_authTest.tearDown">
+<code class="descname">tearDown</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/tests.html#user_authTest.tearDown"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.tearDown" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="user_auth.tests.user_authTest.test_RegisterForm">
+<code class="descname">test_RegisterForm</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/tests.html#user_authTest.test_RegisterForm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_RegisterForm" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>test_RegisterForm()</strong> checks if request.method to <strong>user_auth.views.register()</strong> is POST or 
+GET, the form is properly instantiated.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="user_auth.tests.user_authTest.test_login_status_code">
+<code class="descname">test_login_status_code</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/tests.html#user_authTest.test_login_status_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_login_status_code" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="user_auth.tests.user_authTest.test_register_status_code">
+<code class="descname">test_register_status_code</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/tests.html#user_authTest.test_register_status_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_register_status_code" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="user_auth.tests.user_authTest.test_register_user">
+<code class="descname">test_register_user</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/tests.html#user_authTest.test_register_user"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_register_user" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>test_register_user()</strong> check if the function <strong>RegisterForm.register_user()</strong> 
+is called when POST data is sent to <strong>user_auth.views.register()</strong> function.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="user_auth.tests.user_authTest.test_views_login">
+<code class="descname">test_views_login</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/tests.html#user_authTest.test_views_login"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_views_login" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>test_views_login()</strong> checks if the function is called if anybody accessed the url <strong>/user_auth/login/</strong>.
+This test should be considered as different test with <strong>test_login_status_code()</strong> since this function just
+checks if the httpresponse returns the status_code 200.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="user_auth.tests.user_authTest.test_views_register">
+<code class="descname">test_views_register</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/tests.html#user_authTest.test_views_register"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_views_register" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>test_views_register()</strong> checks if the function is called if anybody accessed the url <strong>/user_auth/register/</strong>.
+This test should be considered as different test with <strong>test_register_status_code()</strong> since this function just
+checks if the httpresponse returns the status_code 200.</p>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 
 
