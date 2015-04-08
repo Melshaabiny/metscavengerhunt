@@ -1,6 +1,6 @@
 {% extends "met_hunt/index.html" %}
 {% block body %}
-<div class="row">
+<div class="row panel">
 
 	<div class="columns small-12 medium-4 large-4" >
 		<span>
@@ -14,29 +14,34 @@
 	</div>
 
 	<div class="columns small-12 medium-4 large-4">
-		<h4>User Information</h4>
-		<table>
-			<tr>
-				<td>Name</td>
-				<td>:</td>
-				<td>{{ user.get_full_name }}</td>
-			</tr>
-			<tr>
-				<td>Expert Area</td>
-				<td>:</td>
-				<td>{{ user.userinfo.area_of_expertise }}</td>
-			</tr>
-			<tr>
-				<td>Expert Level</td>
-				<td>:</td>
-				<td>{{ user.userinfo.expert_level }}</td>
-			</tr>
-		</table>
-		<span><a href="#">Edit</a></span>
+		<div class="row">
+			<h4>User Information</h4>
+			<table>
+				<tr>
+					<td>Name</td>
+					<td>:</td>
+					<td>{{ user.get_full_name }}</td>
+				</tr>
+				<tr>
+					<td>Expert Area</td>
+					<td>:</td>
+					<td>{{ user.userinfo.area_of_expertise }}</td>
+				</tr>
+				<tr>
+					<td>Expert Level</td>
+					<td>:</td>
+					<td>{{ user.userinfo.expert_level }}</td>
+				</tr>
+			</table>
+			<form action={% url 'user_auth.views.edit' %} method="GET">
+				<!-- {% csrf_token %} -->
+				<input type="submit" class="button round" value="Edit">
+			</form>
+		</div>
 	</div>
 
 	<div class="columns small-12 medium-4 large-4">
-		<img src="http://placehold.it/350x150">
+		<img src="http://placehold.it/350x250">
 	</div>
 </div>
 

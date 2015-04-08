@@ -6,7 +6,7 @@ user_auth.views
 """
 
 from django.shortcuts import render_to_response
-from user_auth.auth_forms import RegisterForm, LogInForm
+from user_auth.auth_forms import RegisterForm, LogInForm, EditForm
 from django.http import HttpResponseRedirect
 from django.core.context_processors import csrf # for Cross Site Request Forgery.
 from django.contrib.auth.decorators import login_required
@@ -17,22 +17,28 @@ def edit(request):
 	"""
 	The user can edit their information from the profile page.
 	"""
+	form = None
+	title = "Edit User Information"
 	if request.method == 'POST':
 		# make changes.
-
+		form = EditForm()
 	else:
 		# provide edit form.
+		form = EditForm()
 
+	args = {'form':form, 'user':request.user, 'title':title}
+	args.update(csrf(request))
 
-	args = {}
-	return render_to_response()
-	
+	return render_to_response('user_auth/edit.html', args)
+
+@login_required	
 def profile(request):
 	user = None
 	if request.user.is_authenticated():
 		user = request.user
 
 	args = {'user':user}
+	args.update(csrf(request))
 	return render_to_response('user_auth/profile.html', args)
 
 # Create your views here.

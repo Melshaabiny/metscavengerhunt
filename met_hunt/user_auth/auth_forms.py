@@ -81,3 +81,20 @@ class LogInForm(forms.Form):
 
 		return None
 
+class EditForm(forms.Form):
+	"""
+	**EditForm** is responsible for editing the user information. The assumption is that the user
+	is already registered. We restrict non-registered user to access edit page from the profifle
+	views function. The list of information that the user can edit is : 
+
+		- Password
+		- Description
+		- Picture
+		- Name
+	"""
+	picture = forms.ImageField()
+	first_name = forms.CharField(max_length = 50)
+	last_name = forms.CharField(max_length = 50)
+	password = forms.CharField(max_length = 50, widget = forms.PasswordInput())
+	description = forms.CharField(widget = forms.Textarea)
+
