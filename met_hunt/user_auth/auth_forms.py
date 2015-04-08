@@ -5,6 +5,7 @@ User authenticating related form.
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
+from user_auth.models import UserInfo
 
 class RegisterForm(forms.Form):
 	"""
@@ -45,7 +46,7 @@ class RegisterForm(forms.Form):
 										email = user_email)
 
 		# create empty user info.
-		user_info = UserInfo.create(user=user)
+		user_info = UserInfo.objects.create(user=user)
 
 		# save.
 		user.save()

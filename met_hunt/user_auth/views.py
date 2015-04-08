@@ -12,7 +12,21 @@ from django.core.context_processors import csrf # for Cross Site Request Forgery
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 
+@login_required
+def edit(request):
+	"""
+	The user can edit their information from the profile page.
+	"""
+	if request.method == 'POST':
+		# make changes.
 
+	else:
+		# provide edit form.
+
+
+	args = {}
+	return render_to_response()
+	
 def profile(request):
 	user = None
 	if request.user.is_authenticated():

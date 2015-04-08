@@ -17,9 +17,17 @@ from user_auth.views import login, logout_user, register
 class user_authTest(TestCase):
 
 	def setUp(self):
+		"""
+		**setUp** method sets up all neccessary modules. djanfo.TestCase inherits unittest so it follows same syntax
+		that the unittest libary use.
+		"""
 		self.client = Client()
 
 	def tearDown(self):
+		"""
+		**teatDown** method removes all the changes that the test cases made for our system. This will be executed 
+		each time that the test case runs.
+		"""
 		User.objects.all().delete() # clean up the user database.
 
 	def test_register_status_code(self):
@@ -31,7 +39,11 @@ class user_authTest(TestCase):
 		response = self.client.get('/user_auth/login/')
 		self.assertEqual(response.status_code, 200)
 
-	def test_views_register(self):
+	def test_profile_status_code(self):
+		response = self.client.get('/user_auth/login/')
+		self.assertEqual(response.status_code, 200)
+
+	def test_register(self):
 		"""
 		**test_views_register()** checks if the function is called if anybody accessed the url **/user_auth/register/**.
 		This test should be considered as different test with **test_register_status_code()** since this function just
@@ -44,7 +56,7 @@ class user_authTest(TestCase):
 			# check if the function gets called.
 			reg.called
 
-	def test_views_login(self):
+	def test_login(self):
 		"""
 		**test_views_login()** checks if the function is called if anybody accessed the url **/user_auth/login/**.
 		This test should be considered as different test with **test_login_status_code()** since this function just
@@ -56,6 +68,10 @@ class user_authTest(TestCase):
 			self.client.get('/user_auth/login/')
 			login.called
 
+	def test_login_with_post(self):
+		"""
+		**test_login_with_post()** tests the **login()** methods with POST data. 
+		"""
 	def test_RegisterForm(self):
 		"""
 		**test_RegisterForm()** checks if request.method to **user_auth.views.register()** is POST or 
