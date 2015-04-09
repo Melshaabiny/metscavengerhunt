@@ -26,32 +26,7 @@ class RegisterForm(forms.Form):
 	email_address = forms.EmailField(label = "Email",
 							   		 max_length = 50, required=False)
 
-	def register_user(self):
-		"""
-		This member function **register_user** takes care of registering the visitor's user
-		information into the database.
-		"""
-
-		# register the user using User model.
-		user_name = self.cleaned_data['user_name']
-		user_password = self.cleaned_data['password']
-		user_first_name = self.cleaned_data['first_name']
-		user_last_name = self.cleaned_data['last_name']
-		user_email = self.cleaned_data['email_address']
-
-		user = User.objects.create_user(username = user_name,
-										password = user_password,
-										first_name = user_first_name,
-										last_name = user_last_name,
-										email = user_email)
-
-		# create empty user info.
-		user_info = UserInfo.objects.create(user=user)
-
-		# save.
-		user.save()
-		user_info.save()
-		return
+	
 
 class LogInForm(forms.Form):
 	"""
@@ -63,23 +38,6 @@ class LogInForm(forms.Form):
 							   label = "Password", 
 							   widget = forms.PasswordInput())
 
-	def log_user_in(self, request):
-		"""
-		This member function can take care of the process of loggin the user in.
-		"""
-
-		user_name = self.cleaned_data['user_name']
-		password = self.cleaned_data['password']
-
-		# instanciate the user object.
-		user = authenticate(username = user_name, password = password)
-
-		if user is not None:
-			if user.is_active:
-				login(request, user)
-				return user
-
-		return None
 
 class EditForm(forms.Form):
 	"""
@@ -92,9 +50,19 @@ class EditForm(forms.Form):
 		- Picture
 		- Name
 	"""
-	picture = forms.ImageField()
-	first_name = forms.CharField(max_length = 50)
-	last_name = forms.CharField(max_length = 50)
-	password = forms.CharField(max_length = 50, widget = forms.PasswordInput())
-	description = forms.CharField(widget = forms.Textarea)
+	picture = forms.ImageField(required = False)
+	first_name = forms.CharField(max_length = 50, required = False)
+	last_name = forms.CharField(max_length = 50, required = False)
+	password = forms.CharField(max_length = 50, widget = forms.PasswordInput(), required = False)
+	description = forms.CharField(widget = forms.Textarea, required = False)
 
+	def process(self, user):
+		if self.cleaned_data['first_name']:
+			user.first_name = self.cleaned_data['first_name']
+		if self.cleaned_data['last_name']:
+			user.last_name = self.cleaned_data['last_name']
+		if self.cleaned_data['picture']:
+			user_info = UserInfo.objects.get(user = user)
+			user_info.picture = self.cleaned_data['picture']
+			user_info.save()
+		user.save()

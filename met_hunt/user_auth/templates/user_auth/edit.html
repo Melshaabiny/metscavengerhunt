@@ -3,7 +3,7 @@
 <div class="row panel">
 	<div class="columns large-12">
 		<h2>{{ title }}</h2>
-		<form action={% url 'user_auth.views.edit'%} method="POST">
+		<form action={% url 'user_auth.views.edit'%} method="POST" enctype="multipart/form-data">
 			{% csrf_token %}
 			{{ form.as_table }}
 			<input type="submit" class="button expand">
