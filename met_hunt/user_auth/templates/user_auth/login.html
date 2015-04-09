@@ -3,7 +3,7 @@
 	<div class="row">
 		<div class="large-6 medium-6 small-12 columns small-centered medium-centered large-centered small-centered panel">
 		<h1>{{ title }}</h1>
-		<form action={% url 'user_auth.views.login' %} method="POST">
+		<form action={% url 'user_auth.views.login_user' %} method="POST">
 			{% csrf_token %}
 			{{ form.as_table }}
 			<input type="submit" class="button expand" value="LogIn">
