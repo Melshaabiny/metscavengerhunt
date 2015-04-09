@@ -25,6 +25,7 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="MetDoc 0.0.1 documentation" href="index.html" />
+    <link rel="next" title="User Authentication Documentation" href="UserAuthentication.html" />
     <link rel="prev" title="MetMuseum Scavenger Hunt" href="index.html" />
    
   
@@ -38,6 +39,12 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="UserAuthentication.html" title="User Authentication Documentation"
+             accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="index.html" title="MetMuseum Scavenger Hunt"
              accesskey="P">previous</a> |</li>
@@ -59,7 +66,10 @@
 <tr class="field-odd field"><th class="field-name">ProjectTitle:</th><td class="field-body"><p class="first">MetMuseum Scavenger Hunt</p>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Authors:</th><td class="field-body"><ul class="first simple">
+<tr class="field-even field"><th class="field-name">CourseName:</th><td class="field-body"><p class="first">Web Design</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Authors:</th><td class="field-body"><ul class="first last simple">
 <li>Moustafa Elshaabiny (Product Owner)</li>
 <li>Santiago Salas (Scrum Master)</li>
 <li>Edward Chung (Developer)</li>
@@ -67,11 +77,33 @@
 </ul>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">CourseName:</th><td class="field-body"><p class="first last">Web Design</p>
-</td>
-</tr>
 </tbody>
 </table>
+<span class="target" id="module-user_auth.auth_forms"></span><p>User authenticating related form.</p>
+<dl class="class">
+<dt id="user_auth.auth_forms.LogInForm">
+<em class="property">class </em><code class="descclassname">user_auth.auth_forms.</code><code class="descname">LogInForm</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id=u'id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/user_auth/auth_forms.html#LogInForm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.auth_forms.LogInForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creating user login form that will be used in login template page.</p>
+<dl class="method">
+<dt id="user_auth.auth_forms.LogInForm.log_user_in">
+<code class="descname">log_user_in</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/user_auth/auth_forms.html#LogInForm.log_user_in"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.auth_forms.LogInForm.log_user_in" title="Permalink to this definition">¶</a></dt>
+<dd><p>This member function can take care of the process of loggin the user in.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="user_auth.auth_forms.RegisterForm">
+<em class="property">class </em><code class="descclassname">user_auth.auth_forms.</code><code class="descname">RegisterForm</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id=u'id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/user_auth/auth_forms.html#RegisterForm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.auth_forms.RegisterForm" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="user_auth.auth_forms.RegisterForm.register_user">
+<code class="descname">register_user</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/user_auth/auth_forms.html#RegisterForm.register_user"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.auth_forms.RegisterForm.register_user" title="Permalink to this definition">¶</a></dt>
+<dd><p>This member function <strong>register_user</strong> takes care of registering the visitor&#8217;s user
+information into the database.</p>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 
 
@@ -83,6 +115,9 @@
   <h4>Previous topic</h4>
   <p class="topless"><a href="index.html"
                         title="previous chapter">MetMuseum Scavenger Hunt</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="UserAuthentication.html"
+                        title="next chapter">User Authentication Documentation</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -111,8 +146,8 @@
       &copy;2015, WebDev.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.2</a>
       
       |
       <a href="_sources/TeamInformation.txt"

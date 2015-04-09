@@ -1,9 +1,6 @@
 Team Member
 ===========
 
-- Made some changes
-
-
 :Project\ Title:
 	MetMuseum Scavenger Hunt
 
@@ -15,3 +12,7 @@ Team Member
 	- Santiago Salas (Scrum Master)
 	- Edward Chung (Developer)
 	- Bancroft Sparkes (Developer)
+	  
+
+.. automodule:: user_auth.auth_forms
+	:members:
