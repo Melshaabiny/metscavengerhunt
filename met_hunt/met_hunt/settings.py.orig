@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
@@ -26,6 +25,7 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
+DJANGO_SETTINGS_MODULE = 'met_hunt.settings'
 
 # Application definition
 
@@ -38,6 +38,8 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 	'home',
     'user_auth',
+	'tutorial_hunt',
+    'hunts',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -85,6 +87,7 @@ USE_TZ = True
 TEMPLATE_DIRS = (
     'met_hunt/templates/',
     'user_auth/templates/',
+    'tutorial_hunt/templates/',
     )
 
 STATIC_URL = '/static/'
