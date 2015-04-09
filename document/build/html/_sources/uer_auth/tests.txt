@@ -1,0 +1,7 @@
+*****************************
+Tests for User Authentication
+*****************************
+aaaa
+
+.. automodule:: user_auth.tests
+	:members:
