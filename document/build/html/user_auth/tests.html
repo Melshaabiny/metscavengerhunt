@@ -66,51 +66,96 @@
 <dd><dl class="method">
 <dt id="user_auth.tests.user_authTest.setUp">
 <code class="descname">setUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/tests.html#user_authTest.setUp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.setUp" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p><strong>setUp</strong> method sets up all neccessary modules. djanfo.TestCase inherits unittest so it follows same syntax
+that the unittest libary use.</p>
+</dd></dl>
 
 <dl class="method">
 <dt id="user_auth.tests.user_authTest.tearDown">
 <code class="descname">tearDown</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/tests.html#user_authTest.tearDown"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.tearDown" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="user_auth.tests.user_authTest.test_RegisterForm">
-<code class="descname">test_RegisterForm</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/tests.html#user_authTest.test_RegisterForm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_RegisterForm" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>test_RegisterForm()</strong> checks if request.method to <strong>user_auth.views.register()</strong> is POST or 
-GET, the form is properly instantiated.</p>
+<dd><p><strong>teatDown</strong> method removes all the changes that the test cases made for our system. This will be executed 
+each time that the test case runs.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="user_auth.tests.user_authTest.test_login_status_code">
-<code class="descname">test_login_status_code</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/tests.html#user_authTest.test_login_status_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_login_status_code" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="user_auth.tests.user_authTest.test_register_status_code">
-<code class="descname">test_register_status_code</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/tests.html#user_authTest.test_register_status_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_register_status_code" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="user_auth.tests.user_authTest.test_register_user">
-<code class="descname">test_register_user</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/tests.html#user_authTest.test_register_user"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_register_user" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>test_register_user()</strong> check if the function <strong>RegisterForm.register_user()</strong> 
-is called when POST data is sent to <strong>user_auth.views.register()</strong> function.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="user_auth.tests.user_authTest.test_views_login">
-<code class="descname">test_views_login</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/tests.html#user_authTest.test_views_login"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_views_login" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>test_views_login()</strong> checks if the function is called if anybody accessed the url <strong>/user_auth/login/</strong>.
+<dt id="user_auth.tests.user_authTest.test_LogInForm_get">
+<code class="descname">test_LogInForm_get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/tests.html#user_authTest.test_LogInForm_get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_LogInForm_get" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>test_loginForm()</strong> checks if the LogInForm is instantiated when an user access to login page.
 This test should be considered as different test with <strong>test_login_status_code()</strong> since this function just
 checks if the httpresponse returns the status_code 200.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="user_auth.tests.user_authTest.test_views_register">
-<code class="descname">test_views_register</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/tests.html#user_authTest.test_views_register"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_views_register" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>test_views_register()</strong> checks if the function is called if anybody accessed the url <strong>/user_auth/register/</strong>.
-This test should be considered as different test with <strong>test_register_status_code()</strong> since this function just
-checks if the httpresponse returns the status_code 200.</p>
+<dt id="user_auth.tests.user_authTest.test_LogInForm_post">
+<code class="descname">test_LogInForm_post</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/tests.html#user_authTest.test_LogInForm_post"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_LogInForm_post" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>test_LogInForm_post()</strong> tests if the LogINForm is properly instantiated with POST data.
+If the post data looks like {&#8216;user_name&#8217;:&#8217;test_user&#8217;, &#8216;password&#8217;:&#8217;password&#8217;}, then the LogInForm
+must be called with the argument <strong>QueryDict(&#8216;user_name=test_user&amp;password=password&#8217;)</strong>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="user_auth.tests.user_authTest.test_RegisterForm_get">
+<code class="descname">test_RegisterForm_get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/tests.html#user_authTest.test_RegisterForm_get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_RegisterForm_get" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>test_RegisterForm()</strong> checks when request.method to <strong>user_auth.views.register()</strong> is
+GET, the RegisterForm is properly instantiated.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="user_auth.tests.user_authTest.test_RegisterForm_invalid">
+<code class="descname">test_RegisterForm_invalid</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/tests.html#user_authTest.test_RegisterForm_invalid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_RegisterForm_invalid" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>test_RegisterForm_validation()</strong> tests if it raise exception when the form is not valid.
+The attributes user_name and password are required. So if the registering user does not pass 
+these two information, the form is not valid.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="user_auth.tests.user_authTest.test_RegisterForm_post">
+<code class="descname">test_RegisterForm_post</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/tests.html#user_authTest.test_RegisterForm_post"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_RegisterForm_post" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>test_RegisterForm()</strong> checks when request.method to <strong>user_auth.views.register()</strong> is
+POST, the RegisterForm is properly instantiated with appropriate data. This test only 
+checks if the RegisterForm is called with the POST data passed into register().</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="user_auth.tests.user_authTest.test_edit_status_code">
+<code class="descname">test_edit_status_code</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/tests.html#user_authTest.test_edit_status_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_edit_status_code" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>test_edit_status_code()</strong> checks if a user access to the edit page, the status_code equals to 200.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="user_auth.tests.user_authTest.test_login_status_code">
+<code class="descname">test_login_status_code</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/tests.html#user_authTest.test_login_status_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_login_status_code" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>test_login_status_code()</strong> checks if a user access to the login page, the status_code
+is 200.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="user_auth.tests.user_authTest.test_login_user_invalid_username">
+<code class="descname">test_login_user_invalid_username</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/tests.html#user_authTest.test_login_user_invalid_username"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_login_user_invalid_username" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>test_login_user_invalid_username()</strong> tests if an user tries to login with invalid username such as
+non-exist username.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="user_auth.tests.user_authTest.test_profile_status_code">
+<code class="descname">test_profile_status_code</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/tests.html#user_authTest.test_profile_status_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_profile_status_code" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>test_profile_status_code()</strong> checks if a user access to the profile page, the status_code
+is 200.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="user_auth.tests.user_authTest.test_register_notUnique_username">
+<code class="descname">test_register_notUnique_username</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/tests.html#user_authTest.test_register_notUnique_username"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_register_notUnique_username" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>test_register_notUnique_username()</strong> tests if a user trying to register with an username 
+that is already exists in the database. This test should be failed since our website not allow
+two users with same username.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="user_auth.tests.user_authTest.test_register_status_code">
+<code class="descname">test_register_status_code</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/tests.html#user_authTest.test_register_status_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_register_status_code" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>test_register_status_code()</strong> checks if a user access to the register page, the status_code
+is 200.</p>
 </dd></dl>
 
 </dd></dl>
