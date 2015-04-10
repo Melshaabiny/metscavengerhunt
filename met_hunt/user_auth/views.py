@@ -4,7 +4,7 @@ user_auth.views
 	This views.py is responsible for all user authenticating related jobs such as login a user,
 	register a visitor...
 """
-
+from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response, redirect
 from user_auth.auth_forms import RegisterForm, LogInForm, EditForm
 from django.http import HttpResponseRedirect
@@ -26,6 +26,7 @@ def edit(request):
 	if request.method == 'POST':
 		# make changes.
 		form = EditForm(request.POST, request.FILES)
+		print request.FILES
 		if form.is_valid():
 			form.process(request.user)
 	else:

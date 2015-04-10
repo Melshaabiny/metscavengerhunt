@@ -9,22 +9,13 @@ from user_auth.models import UserInfo
 
 class RegisterForm(forms.Form):
 	"""
+	RegisterForm
 	"""
-	user_name = forms.CharField(label = "User Name",
-						  		max_length = 30)
-
-	password = forms.CharField(label = "Password",
-							   widget = forms.PasswordInput(),
-							   max_length = 50)
-
-	first_name = forms.CharField(label = "First_Name",
-								 max_length = 50, required=False)
-
-	last_name = forms.CharField(label = "Last Name",
-								max_length = 50, required=False)
-
-	email_address = forms.EmailField(label = "Email",
-							   		 max_length = 50, required=False)
+	user_name = forms.CharField(label = "User Name", max_length = 30)
+	password = forms.CharField(label = "Password", widget = forms.PasswordInput(), max_length = 50)
+	first_name = forms.CharField(label = "First_Name", max_length = 50, required=False)
+	last_name = forms.CharField(label = "Last Name", max_length = 50, required=False)
+	email_address = forms.EmailField(label = "Email", max_length = 50, required=False)
 
 	
 

@@ -163,25 +163,75 @@ class user_authTest(unittest.TestCase):
 
 
 
+
+###################################################################################
+###############Test login_user
+
 	def test_profile_status_code(self):
 		"""
 		**test_profile_status_code()** checks if a user access to the profile page, the status_code
 		is 200.
 		"""
-		response = self.client.get('/user_auth/login/')
+		# user must be logged in.
+		user = User.objects.create_user(username='test_profile_user', password='password')
+		self.client.login(username='test_profile_user', password='password')
+		response = self.client.get('/user_auth/profile/')
+		User.objects.get(username='test_profile_user').delete()
 		self.assertEqual(response.status_code, 200)
+
+
+	def test_profile_not_logged_in(self):
+		"""
+		**test_profile_not_logged_in()** tests the status code of http response when the user
+		who tries to access the profile page is not logged in. The status code should not be 200.
+		"""
+
+		response = self.client.get('/user_auth/profile/')
+		self.assertTrue(response.status_code != 200)		
+
+
+
+###################################################################################
+###############Test login_user
 
 	def test_edit_status_code(self):
 		"""
 		**test_edit_status_code()** checks if a user access to the edit page, the status_code equals to 200.
 		"""
+		User.objects.create_user(username='edit_status_code', password='password')
+		self.client.login(username='edit_status_code', password='password')
 		response = self.client.get('/user_auth/edit/')
+		User.objects.get(username='edit_status_code').delete()
 		self.assertEqual(response.status_code, 200)
 
+	def test_edit_EditForm_get(self):
+		"""
+		**test_edit_EditForm_get()** tests if the EditForm is properly instantiated when 
+		request.method is GET method. 
+		"""
+		User.objects.create_user(username='edit_EditForm', password='password')
+		self.client.login(username='edit_EditForm', password='password')
+		with patch('user_auth.views.EditForm') as form:
+			self.client.get('/user_auth/edit/')
+			User.objects.get(username='edit_EditForm').delete()
+			form.assert_called_with()
 
-
-
-
+	# def test_edit_EditForm_post(self):
+	# 	"""
+	# 	**test_edit_EditForm_post()** tests if the EditForm is properly instantiated with 
+	# 	appropriate post data when request.method is POST method. 
+	# 	"""
+	# 	User.objects.create_user(username='edit_EditForm', password='password')
+	# 	self.client.login(username='edit_EditForm', password='password')
+	# 	with patch('user_auth.views.EditForm') as form:
+	# 		with patch('__builtin__.open') as file:
+	# 			# only check if post data is properly passed.
+	# 			form.return_value.is_valid = MagicMock(return_value=False)
+	# 			file = 'somefile'
+	# 			args = {'first_name':'name1', 'last_name':'name2', 'file':file} # all attributes are not required.
+	# 			self.client.post('/user_auth/edit/', args)
+	# 			User.objects.get(username='edit_EditForm').delete()			
+	# 			form.assert_called_with(QueryDict('first_name=name1&last_name=name2'))
 
 
 
