@@ -23,7 +23,7 @@ class hunts_test(TestCase):
 		self.assertEqual(resp.status_code, 200)
 
 	def test_getData(self): #INCOMPLETE
-		
+		pass
 			#call query
 			#use fixtures to fill database and grab from there
 			#use count to check that something was grabbed
