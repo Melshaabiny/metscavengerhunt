@@ -1,0 +1,391 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>User Authentication Documentation &mdash; MetDoc 0.0.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="MetDoc 0.0.1 documentation" href="index.html" />
+    <link rel="prev" title="Team Member" href="TeamInformation.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="TeamInformation.html" title="Team Member"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">MetDoc 0.0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="user-authentication-documentation">
+<h1>User Authentication Documentation<a class="headerlink" href="#user-authentication-documentation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-user_auth.tests">
+<span id="tests"></span><h2>Tests<a class="headerlink" href="#module-user_auth.tests" title="Permalink to this headline">¶</a></h2>
+<p>Unit test for <strong>user_auth</strong> django application.</p>
+<p>The list of tests are :</p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>test_login_status_code()</strong> checks if accessing url <strong>/user_auth/login/</strong> returns status_code 200.</li>
+<li><strong>test_register_status_code()</strong> checks if accessing url <strong>/user_auth/register/</strong> returns status_code 200/</li>
+<li><strong>test_register_user()</strong> checks if <strong>RegisterForm.register_user()</strong> gets called when <strong>user_auth.views.register</strong> gets POST data.</li>
+</ul>
+</div></blockquote>
+<dl class="class">
+<dt id="user_auth.tests.user_authTest">
+<em class="property">class </em><code class="descclassname">user_auth.tests.</code><code class="descname">user_authTest</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/user_auth/tests.html#user_authTest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="user_auth.tests.user_authTest.setUp">
+<code class="descname">setUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/user_auth/tests.html#user_authTest.setUp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.setUp" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>setUp</strong> method sets up all neccessary modules. djanfo.TestCase inherits unittest so it follows same syntax
+that the unittest libary use.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="user_auth.tests.user_authTest.tearDown">
+<code class="descname">tearDown</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/user_auth/tests.html#user_authTest.tearDown"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.tearDown" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>teatDown</strong> method removes all the changes that the test cases made for our system. This will be executed 
+each time that the test case runs.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="user_auth.tests.user_authTest.test_LogInForm_get">
+<code class="descname">test_LogInForm_get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/user_auth/tests.html#user_authTest.test_LogInForm_get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_LogInForm_get" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>test_loginForm()</strong> checks if the LogInForm is instantiated when an user access to login page.
+This test should be considered as different test with <strong>test_login_status_code()</strong> since this function just
+checks if the httpresponse returns the status_code 200.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="user_auth.tests.user_authTest.test_LogInForm_post">
+<code class="descname">test_LogInForm_post</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/user_auth/tests.html#user_authTest.test_LogInForm_post"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_LogInForm_post" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>test_LogInForm_post()</strong> tests if the LogINForm is properly instantiated with POST data.
+If the post data looks like {&#8216;user_name&#8217;:&#8217;test_user&#8217;, &#8216;password&#8217;:&#8217;password&#8217;}, then the LogInForm
+must be called with the argument <strong>QueryDict(&#8216;user_name=test_user&amp;password=password&#8217;)</strong>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="user_auth.tests.user_authTest.test_RegisterForm_get">
+<code class="descname">test_RegisterForm_get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/user_auth/tests.html#user_authTest.test_RegisterForm_get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_RegisterForm_get" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>test_RegisterForm()</strong> checks when request.method to <strong>user_auth.views.register()</strong> is
+GET, the RegisterForm is properly instantiated.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="user_auth.tests.user_authTest.test_RegisterForm_invalid">
+<code class="descname">test_RegisterForm_invalid</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/user_auth/tests.html#user_authTest.test_RegisterForm_invalid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_RegisterForm_invalid" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>test_RegisterForm_validation()</strong> tests if it raise exception when the form is not valid.
+The attributes user_name and password are required. So if the registering user does not pass 
+these two information, the form is not valid.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="user_auth.tests.user_authTest.test_RegisterForm_post">
+<code class="descname">test_RegisterForm_post</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/user_auth/tests.html#user_authTest.test_RegisterForm_post"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_RegisterForm_post" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>test_RegisterForm()</strong> checks when request.method to <strong>user_auth.views.register()</strong> is
+POST, the RegisterForm is properly instantiated with appropriate data. This test only 
+checks if the RegisterForm is called with the POST data passed into register().</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="user_auth.tests.user_authTest.test_edit_status_code">
+<code class="descname">test_edit_status_code</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/user_auth/tests.html#user_authTest.test_edit_status_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_edit_status_code" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>test_edit_status_code()</strong> checks if a user access to the edit page, the status_code equals to 200.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="user_auth.tests.user_authTest.test_login_status_code">
+<code class="descname">test_login_status_code</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/user_auth/tests.html#user_authTest.test_login_status_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_login_status_code" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>test_login_status_code()</strong> checks if a user access to the login page, the status_code
+is 200.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="user_auth.tests.user_authTest.test_login_user_invalid_username">
+<code class="descname">test_login_user_invalid_username</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/user_auth/tests.html#user_authTest.test_login_user_invalid_username"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_login_user_invalid_username" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>test_login_user_invalid_username()</strong> tests if an user tries to login with invalid username such as
+non-exist username.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="user_auth.tests.user_authTest.test_profile_status_code">
+<code class="descname">test_profile_status_code</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/user_auth/tests.html#user_authTest.test_profile_status_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_profile_status_code" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>test_profile_status_code()</strong> checks if a user access to the profile page, the status_code
+is 200.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="user_auth.tests.user_authTest.test_register_notUnique_username">
+<code class="descname">test_register_notUnique_username</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/user_auth/tests.html#user_authTest.test_register_notUnique_username"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_register_notUnique_username" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>test_register_notUnique_username()</strong> tests if a user trying to register with an username 
+that is already exists in the database. This test should be failed since our website not allow
+two users with same username.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="user_auth.tests.user_authTest.test_register_status_code">
+<code class="descname">test_register_status_code</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/user_auth/tests.html#user_authTest.test_register_status_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_register_status_code" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>test_register_status_code()</strong> checks if a user access to the register page, the status_code
+is 200.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="model">
+<h2>Model<a class="headerlink" href="#model" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-user_auth.models"></span><p>This user_auth.models defined several user information.</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><strong>UserInfo</strong> defines those neccessary user information such as the date when each user registered, picture, expert_level and area of expertises.</li>
+<li><strong>FriendList</strong> defines the list of friend for each user. Each user can have many friends.</li>
+</ol>
+</div></blockquote>
+<dl class="class">
+<dt id="user_auth.models.Answered">
+<em class="property">class </em><code class="descclassname">user_auth.models.</code><code class="descname">Answered</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/user_auth/models.html#Answered"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.models.Answered" title="Permalink to this definition">¶</a></dt>
+<dd><p>Any question can be answered by some other users. <strong>Answered</strong> is model to relate a question 
+is answered by whom and when. Many questions can be aswered by many users.</p>
+<dl class="exception">
+<dt id="user_auth.models.Answered.DoesNotExist">
+<em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#user_auth.models.Answered.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="user_auth.models.Answered.MultipleObjectsReturned">
+<em class="property">exception </em><code class="descclassname">Answered.</code><code class="descname">MultipleObjectsReturned</code><a class="headerlink" href="#user_auth.models.Answered.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="user_auth.models.Answered.answeredBy">
+<code class="descclassname">Answered.</code><code class="descname">answeredBy</code><a class="headerlink" href="#user_auth.models.Answered.answeredBy" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="user_auth.models.Answered.get_next_by_when">
+<code class="descclassname">Answered.</code><code class="descname">get_next_by_when</code><span class="sig-paren">(</span><em>*moreargs</em>, <em>**morekwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#user_auth.models.Answered.get_next_by_when" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="user_auth.models.Answered.get_previous_by_when">
+<code class="descclassname">Answered.</code><code class="descname">get_previous_by_when</code><span class="sig-paren">(</span><em>*moreargs</em>, <em>**morekwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#user_auth.models.Answered.get_previous_by_when" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="user_auth.models.Answered.objects">
+<code class="descclassname">Answered.</code><code class="descname">objects</code><em class="property"> = &lt;django.db.models.manager.Manager object at 0x3b11510&gt;</em><a class="headerlink" href="#user_auth.models.Answered.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="user_auth.models.Answered.questionBy">
+<code class="descclassname">Answered.</code><code class="descname">questionBy</code><a class="headerlink" href="#user_auth.models.Answered.questionBy" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="user_auth.models.FriendList">
+<em class="property">class </em><code class="descclassname">user_auth.models.</code><code class="descname">FriendList</code><span class="sig-paren">(</span><em>id</em>, <em>user_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/user_auth/models.html#FriendList"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.models.FriendList" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="exception">
+<dt id="user_auth.models.FriendList.DoesNotExist">
+<em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#user_auth.models.FriendList.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="user_auth.models.FriendList.MultipleObjectsReturned">
+<em class="property">exception </em><code class="descclassname">FriendList.</code><code class="descname">MultipleObjectsReturned</code><a class="headerlink" href="#user_auth.models.FriendList.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="user_auth.models.FriendList.objects">
+<code class="descclassname">FriendList.</code><code class="descname">objects</code><em class="property"> = &lt;django.db.models.manager.Manager object at 0x3b11890&gt;</em><a class="headerlink" href="#user_auth.models.FriendList.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="user_auth.models.FriendList.user">
+<code class="descclassname">FriendList.</code><code class="descname">user</code><a class="headerlink" href="#user_auth.models.FriendList.user" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="user_auth.models.QuestionAsked">
+<em class="property">class </em><code class="descclassname">user_auth.models.</code><code class="descname">QuestionAsked</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/user_auth/models.html#QuestionAsked"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.models.QuestionAsked" title="Permalink to this definition">¶</a></dt>
+<dd><p>This model <strong>QuestionAsked</strong> is related to the questions that a user asked on the website. It 
+has <em>title</em>, <em>description</em> and the <em>status</em> which indicate if the question is answered or not. This model should be
+one-to-many from user to QuestionAsked since each user can have many asked questions.</p>
+<dl class="exception">
+<dt id="user_auth.models.QuestionAsked.DoesNotExist">
+<em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#user_auth.models.QuestionAsked.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="user_auth.models.QuestionAsked.MultipleObjectsReturned">
+<em class="property">exception </em><code class="descclassname">QuestionAsked.</code><code class="descname">MultipleObjectsReturned</code><a class="headerlink" href="#user_auth.models.QuestionAsked.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="user_auth.models.QuestionAsked.answered_set">
+<code class="descclassname">QuestionAsked.</code><code class="descname">answered_set</code><a class="headerlink" href="#user_auth.models.QuestionAsked.answered_set" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="user_auth.models.QuestionAsked.get_next_by_when">
+<code class="descclassname">QuestionAsked.</code><code class="descname">get_next_by_when</code><span class="sig-paren">(</span><em>*moreargs</em>, <em>**morekwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#user_auth.models.QuestionAsked.get_next_by_when" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="user_auth.models.QuestionAsked.get_previous_by_when">
+<code class="descclassname">QuestionAsked.</code><code class="descname">get_previous_by_when</code><span class="sig-paren">(</span><em>*moreargs</em>, <em>**morekwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#user_auth.models.QuestionAsked.get_previous_by_when" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="user_auth.models.QuestionAsked.objects">
+<code class="descclassname">QuestionAsked.</code><code class="descname">objects</code><em class="property"> = &lt;django.db.models.manager.Manager object at 0x3b0bfd0&gt;</em><a class="headerlink" href="#user_auth.models.QuestionAsked.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="user_auth.models.QuestionAsked.user">
+<code class="descclassname">QuestionAsked.</code><code class="descname">user</code><a class="headerlink" href="#user_auth.models.QuestionAsked.user" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="user_auth.models.UserInfo">
+<em class="property">class </em><code class="descclassname">user_auth.models.</code><code class="descname">UserInfo</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/user_auth/models.html#UserInfo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.models.UserInfo" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>UserInfo</strong> model defines extra user information such as picture, expert level and areas, and 
+their description.</p>
+<p>Here are the attributes of the model.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">User:</th><td class="field-body">This is one-to-one relationship from the django User class to UserInfor.</td>
+</tr>
+</tbody>
+</table>
+<dl class="exception">
+<dt id="user_auth.models.UserInfo.DoesNotExist">
+<em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#user_auth.models.UserInfo.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="user_auth.models.UserInfo.MultipleObjectsReturned">
+<em class="property">exception </em><code class="descclassname">UserInfo.</code><code class="descname">MultipleObjectsReturned</code><a class="headerlink" href="#user_auth.models.UserInfo.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="user_auth.models.UserInfo.get_expert_level_display">
+<code class="descclassname">UserInfo.</code><code class="descname">get_expert_level_display</code><span class="sig-paren">(</span><em>*moreargs</em>, <em>**morekwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#user_auth.models.UserInfo.get_expert_level_display" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="user_auth.models.UserInfo.objects">
+<code class="descclassname">UserInfo.</code><code class="descname">objects</code><em class="property"> = &lt;django.db.models.manager.Manager object at 0x3b0ba50&gt;</em><a class="headerlink" href="#user_auth.models.UserInfo.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="user_auth.models.UserInfo.user">
+<code class="descclassname">UserInfo.</code><code class="descname">user</code><a class="headerlink" href="#user_auth.models.UserInfo.user" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">User Authentication Documentation</a><ul>
+<li><a class="reference internal" href="#module-user_auth.tests">Tests</a></li>
+<li><a class="reference internal" href="#model">Model</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="TeamInformation.html"
+                        title="previous chapter">Team Member</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/UserAuthentication.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, WebDev.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.2</a>
+      
+      |
+      <a href="_sources/UserAuthentication.txt"
+          rel="nofollow">Page source</a></li>
+    </div>
+
+    
+
+    
+  </body>
+</html>
