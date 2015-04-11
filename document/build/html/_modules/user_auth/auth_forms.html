@@ -98,8 +98,12 @@
 										<span class="n">last_name</span> <span class="o">=</span> <span class="n">user_last_name</span><span class="p">,</span>
 										<span class="n">email</span> <span class="o">=</span> <span class="n">user_email</span><span class="p">)</span>
 
-		<span class="c"># save it</span>
+		<span class="c"># create empty user info.</span>
+		<span class="n">user_info</span> <span class="o">=</span> <span class="n">UserInfo</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">)</span>
+
+		<span class="c"># save.</span>
 		<span class="n">user</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+		<span class="n">user_info</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
 		<span class="k">return</span>
 </div></div>
 <div class="viewcode-block" id="LogInForm"><a class="viewcode-back" href="../../TeamInformation.html#user_auth.auth_forms.LogInForm">[docs]</a><span class="k">class</span> <span class="nc">LogInForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>

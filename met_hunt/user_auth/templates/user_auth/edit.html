@@ -1,0 +1,15 @@
+{% extends "met_hunt/index.html" %}
+{% block body %}
+<div class="row">
+	<div class="columns large-12">
+		<form action={% url 'user_auth.views.edit'%} method="POST" enctype="multipart/form-data">
+			<fieldset>
+				<legend><h2>{{ title }}</h2></legend>
+				{% csrf_token %}
+				{{ form.as_table }}
+				<input type="submit" class="button expand">
+			</fieldset>
+		</form>
+	</div>
+</div>
+{% endblock %}
