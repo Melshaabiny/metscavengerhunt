@@ -2,36 +2,47 @@
 {% block body %}
 
 
-<div class="row panel">
-	<div class="small-6 medium-6 large-6 columns">
+<div class="row">
+	<div class="small-12 medium-6 large-6 columns">
 		<ul data-orbit>
 			{% load staticfiles %}
-			<li data-orbit-slider="Autumn" slider-pause><img src="{% static 'img/Autumn.jpg' %}" alt=""></li>
-			<li data-orbit-slider="Houses" slider-pause><img src="{% static 'img/houses.jpg' %}" alt=""></li>
-			<li data-orbit-slider="SeaSide" slider-pause><img src="{% static 'img/seaside.jpg' %}" alt=""></li>
+			<li data-orbit-slider="Front" slider-pause><img src="{% static 'img/metfront.jpg' %}" alt=""></li>
+			<li data-orbit-slider="Gallery" slider-pause><img src="{% static 'img/gallery.jpg' %}" alt=""></li>
+			<li data-orbit-slider="Kemet" slider-pause><img src="{% static 'img/kemet.jpg' %}" alt=""></li>
+			<li data-orbit-slider="Hall" slider-pause><img src="{% static 'img/mainhall.jpg' %}" alt=""></li>
 		</ul>
 	</div>
 
-	<div class="small-6 medium-6 large-6 columns">
-		<h3>Some Images</h3>
-		<p>Some images are placed on the left side of our website.</p>
-		<a href= {% url "tutorial_hunt.views.rend_welcome" %}>Start Hunt</p>
+	<div class="small-12 medium-6 large-6 centered columns panel text-center">
+		
+			<h3>MetScavenger Hunt</h3>
+		
+		<span class="text-left">
+			<p >Welcome to our Scavenger Hunt for the Metropolitain Museum.<br> Register. <br>Sign In.<br> Jump Right into a New Hunt.<br>
+			</p>
+		</span>
+		<a href= {% url "tutorial_hunt.views.rend_welcome" %}>
+		<span class="button radius ">Start Hunt &raquo;</span>
 	</div>
 </div>
+
 
 <hr>
 
 <div class="row">
 	<div class="small-12 medium-4 large-4 columns">
 		<!-- <p class="panel callout">Fun</p> -->
-		<img src="http://placehold.it/350x250">
+		<img src="{% static 'img/fun.png' %}" alt="">
 	</div>
 	<div class="small-12 medium-4 large-4 columns">
-		<!-- <p class="panel callout">Education</p> -->
-		<img src="http://placehold.it/350x250">
+
+		
+		<img src="{% static 'img/edu.png' %}" alt="">
+		<!--<img src="http://placehold.it/350x250">-->
 	</div>
 	<div class="small-12 medium-4 large-4 columns">
-		<img src="http://placehold.it/350x250">
+		
+		<img src="{% static 'img/socialll.png' %}" alt="">
 	</div>
 </div>
 
@@ -48,16 +59,16 @@
 
 <div class="row">
 	<div class="small-12 medium-4 large-4 columns">
-		<!-- <p class="panel callout">Gallery</p> -->
-		<img src="http://placehold.it/350x250">
+		<img src="{% static 'img/gilt.jpg'%}" alt="">
 	</div>
 	<div class="small-12 medium-4 large-4 columns">
-		<!-- <p class="panel callout">Map</p> -->
-		<img src="http://placehold.it/350x250">
+		<img src="{% static 'img/olmec.jpg'%}" alt="">
 	</div>
 	<div class="small-12 medium-4 large-4 columns">
-		<img src="http://placehold.it/350x250">
+		<img src="{% static 'img/bowl.jpg'%}" alt="">
 	</div>
 </div>
+
+
 <hr>
 {% endblock %}
