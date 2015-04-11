@@ -19,15 +19,11 @@ class hunts_test(TestCase):
 		pass
 
 	def test_hunts_status(self):
-		resp = self.client.get('/hunts/') #should be directory of welcom page
+		resp = self.client.get('/hunts/hunt/') #should be directory of welcom page
 		self.assertEqual(resp.status_code, 200)
 
 	def test_getData(self): #INCOMPLETE
-#		hunt_ID_mock = mock.Mock()
-#		has_mock = mock.Mock(spec=models.Has)
-		with patch('hunts.views.getData') as reg:
-			self.client.get('/hunts/')#should be directory where hunt is initilized
-			reg.called
+		
 			#call query
 			#use fixtures to fill database and grab from there
 			#use count to check that something was grabbed
@@ -85,7 +81,7 @@ class hunts_test(TestCase):
 			except AssertionError:
 				print "verify_id did not return false when input and item_id were different"
 
-	def test_render_verify(self):#INCOMPLETE - test if links are correct
+	def test_render_verify(self):#DONE
 	"""
 	**test_render_verify** tests if render_verify is ran at the correct url
 	"""
@@ -94,10 +90,6 @@ class hunts_test(TestCase):
 			assert reg.called
 			except AssertionError:
 				print "render_verify was not called at the url: /hunts/verify/"
-
-		
-			#assign val to ID_var
-			#check that next button links to next_proc
 
 	def test_next_proc(self): #Needs to be checked
 	"""
@@ -128,7 +120,7 @@ class hunts_test(TestCase):
 
 	def test_congrats(self):#DONE
 	"""
-	**test_congrats** tests if render_congrats is ran the correct url
+	**test_congrats** tests if render_congrats is ran at the correct url
 	"""
 		with patch('hunts.views.render_congrats') as reg:
 			self.client.get('/hunts/congrats/')
@@ -136,11 +128,42 @@ class hunts_test(TestCase):
 			except AssertionError:
 				print "render_congrats was not called at the url: /hunts/congrats/"
 
-	def test_render_result(self):#INCOMPLETE
+	def test_render_result(self):#DONE
 	""""
-	**test_render_result**
+	**test_render_result** The test mocks verify_id. Fixes it to True and checks that render_result redirects to the
+				correct page
+				Then the test fixes verify_id to false and checks that render_result redirects to incorrect page
 	"""
 		with patch('hunts.views.verify_id') as verify_id:
 			verify_id.return_value = True
+			input_mock = mock.Mock()
+			input_mock.GET.get = Mock()
+			input_mock.GET.get.return_value = '123'
+			try:
+  	                	self.assertRedirects(render_result(input_mock),'/hunts/correct/') #should redirect to correct
+                        except Exception as e:
+        	        	print "render_verify does not correctly redirect to 'correct' page when expected"
+			verify_id.return_value = False
+			try:
+				self.assertRedirects(next_proc(input_mock),'/hunts/incorrect/') #should redirect to incorrect
+			except Exception as e:
+                        	print "render_verify does not correctly redirect to 'incorrect' page when expected"
+
+
 			
-	def test_render_hunt(self):#incomplete
+	def test_render_hunt(self):#DONE
+	"""
+	**test_render_hunt** This test mocks hunt_title and hunt_start. Then the test tries to call the hunts/hunt url which
+				should render with hunt_title and hunt_start which are validated at the end of the test.
+	"""
+		with patch('hunts.views.hunt_title') as hunt_title:
+			with patch('hunts.views.hunt_start') as hunt_start:
+				hunt_title.return_value = 'test1234567'
+				hunt_start.return_value = 'test7654321'
+				response = self.client.get('/hunts/hunt/')
+				assert 'test1234567' in response.content
+				except AssertionError:
+					print "Correct title not in /hunts/hunt/"
+				assert 'test7654321' in response.content
+				except AssertionError:
+					print "Correct starting point not in /hunts/hunt/"
