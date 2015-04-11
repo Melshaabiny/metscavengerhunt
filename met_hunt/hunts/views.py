@@ -1,7 +1,7 @@
 from django.shortcuts import render_to_reponse
 from hunts.models import Hunts, Items, Has
 
-TEMP 		= []
+TEMP 		= {}
 item_clue	= ""
 item_id 	= NULL
 hunt_title	= ""
@@ -21,18 +21,19 @@ def getData(request, hunt_id):
 	# List of items in a hunt. Instance of 'Has' class
 	hunt_items 	= Has.objects.filter(hunt = hunt_title)
 	# TODO TEMP should be a dic
+	tuples = ()
 	for x in range(0,hunt_items.count()):
-		TEMP.append(hunt_items[x])
+		tuples = tuples + ((hunt_items[x].item.ID, hunt_items[x].clue),)
 	
-	# TODO
-	# assign_vars()
-	# redirect to render_hunt 
+	TEMP = dict(tuples)
+	assign_vars()
+	
+	return redirect('render_hunt')
 
 '''
 	* Usign the TEMP global list, assing_vars() assigns the id and clue 
 		of the first item in the list to their global vars
 	* deletes (pops) the first item of the list
-
 '''
 def assing_vars():
 	item_id 	= TEMP[0].item.ID
@@ -47,10 +48,9 @@ def assing_vars():
 def next_proc():
 	if len(TEMP) > 0:
 		assing_vars()
-	 	# TODO
-	 	# redirect to render_clue()
-	# else:
-		#redirect to render_congrats()
+	 	return redirect('render_clue')
+	else:
+		return redirect('render_congrats')
 '''
 	* Checks the user input against the item id and returns a boolean result
 '''
@@ -71,14 +71,17 @@ def render_clue(request):
 def render_verify(request):
 	return render_to_reponse("hunts/verify.html", {})
 
-# TODO write the html files: correct.html and incorrect.html
+def render_correct(requst):
+	return render_to_reponse("hunts/correct.html",{})
+
+def render_incorrect(request):
+	return render_to_reponse("hunts/incorrect.html", {})
+
 def render_result(request, usr_input):
 	if verify_ID(usr_input) == True:
-		# redirect to correct page
-		return render_to_reponse("hunts/correct.html", {})
+		return redirect('render_correct')
 	else:
-		# or to incorrect page
-		return render_to_reponse("hunts/incorrect.html", {})
+		return redirect('render_incorrect')
 
 def render_congrats(request):
 	return render_to_reponse("hunts/congrats.html", {})
