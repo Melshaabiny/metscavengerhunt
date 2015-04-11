@@ -1,11 +1,10 @@
 from django.db import models
 '''
-	Create your models here.
-	----------Tables----------
-
-database table that contains all the scavenger hunts 
-each hunt has a unique id and name
-and belong to a specific category 
+	* Create your models here.
+	* ----------Tables----------
+	* database table that contains all the scavenger hunts 
+	* each hunt has a unique id and name
+	* and belong to a specific category 
 '''
 class Hunts(models.Model):
 	
@@ -21,10 +20,10 @@ class Hunts(models.Model):
 	def __str__(self):
 		return self.Title
 '''
-# database table that contains all the items of the Met (to be completed)
-# each item has a unique id, belongs to a specific category
-# has a specific type (painting, sculpture, instrument, etc.)
-# is a part of one or more hunts
+	* database table that contains all the items of the Met (to be completed)
+	* each item has a unique id, belongs to a specific category
+	* has a specific type (painting, sculpture, instrument, etc.)
+	* is a part of one or more hunts
 '''
 
 class Items(models.Model):
@@ -41,11 +40,12 @@ class Items(models.Model):
 
 	def __str__(self):
 		return self.ID
-		
-# intermediate model that links Hunts to Items
-# each hunt has one or more items
-# each item belongs to one or more hunts
-# in every hunt there is a clue that leads to the item
+'''		
+	* intermediate model that links Hunts to Items
+	* each hunt has one or more items
+	* each item belongs to one or more hunts
+	* in every hunt there is a clue that leads to the item and every item has an order number
+'''
 class Has(models.Model):
 
 	hunt 	= models.ForeignKey(Hunts)

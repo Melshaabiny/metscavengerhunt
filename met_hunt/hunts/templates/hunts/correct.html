@@ -1,0 +1,19 @@
+{% extends "home/index.html %}
+
+{% block body %}
+
+<!-- First row: display the message for correct answer -->
+<div class = "row">
+	<div class = "small-12 medium-12 large-12 columns panel">
+		<p>Correct!<br><br>To move to the next clue please press "Next"</p>
+	</div>
+</div>
+
+<!-- Second row: Show button to next clue and link it to next_proc function which re-assings the global vars for item_id and item_clue then redirects to the clue.html -->
+<div class = "row">
+	<div class = "small-12 medium-12 large-12 columns">
+		<a href={% url "hunts.views.next_proc" %} class = "botton">Next clue</a>
+	</div>
+</div>
+
+{% endblock %}
