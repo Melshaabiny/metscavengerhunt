@@ -1,7 +1,8 @@
+from django.template import RequestContext
 from django.shortcuts import render_to_reponse
 from hunts.models import Hunts, Items, Has
 
-TEMP 		= {}
+TEMP 		= []
 item_clue	= ""
 item_id 	= NULL
 hunt_title	= ""
@@ -13,19 +14,21 @@ hunt_start 	= ""
 	* Creates a list of item objects and stores them into the TEMP global var
 	* Redirects to the hunt.html page
 '''
-def getData(request, hunt_id):
+def getData(request, id):
 
-	hunt_title 	= Hunts.objects.get(ID = hunt_id)
-	hunt_start	= hunt_title.Start
+	hunt 		= Hunts.objects.get(ID = hunt_id)
+	hunt_title	= str(hunt.Title)
+	hunt_start	= str(hunt_title.Start)
 
 	# List of items in a hunt. Instance of 'Has' class
-	hunt_items 	= Has.objects.filter(hunt = hunt_title)
-	# TODO TEMP should be a dic
+	hunt_items 	= Has.objects.filter(hunt_id = hunt_title)
+	
 	tuples = ()
 	for x in range(0,hunt_items.count()):
-		tuples = tuples + ((hunt_items[x].item.ID, hunt_items[x].clue),)
-	
-	TEMP = dict(tuples)
+		tuples = tuples + ((str(hunt_items[x].item.ID), str(hunt_items[x].clue), int(hunt_items[x].number)),)
+
+		TEMP = sorted(list(tuples), key = lambda element: element[2])
+
 	assign_vars()
 	
 	return redirect('render_hunt')
@@ -36,8 +39,8 @@ def getData(request, hunt_id):
 	* deletes (pops) the first item of the list
 '''
 def assing_vars():
-	item_id 	= TEMP[0].item.ID
-	item_clue 	= TEMP[0].clue
+	item_id 	= TEMP[0][0]
+	item_clue 	= TEMP[0][1]
 
 	del TEMP[0]
 ''' 
