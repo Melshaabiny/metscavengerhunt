@@ -1,0 +1,23 @@
+{% extends "met_hunt/index.html" %}
+{% block body %}
+{% if editted %}
+<div class="row">
+	<div class="columns large-9 small-9 medium-9 large-centered medium-centered small-centered">
+		<h2>Your Profile editted.</h2>
+	</div>
+</div>
+{% else %}
+<div class="row">
+	<div class="columns large-12 small-12 medium-12">
+		<form action={% url 'user_auth.views.edit'%} method="POST" enctype="multipart/form-data">
+			<fieldset>
+				<legend><h2>{{ title }}</h2></legend>
+				{% csrf_token %}
+				{{ form.as_table }}
+				<input type="submit" class="button expand">
+			</fieldset>
+		</form>
+	</div>
+</div>
+{% endif %}
+{% endblock %}
