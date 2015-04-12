@@ -1,24 +1,25 @@
-from django.template import RequestContext
-from django.shortcuts import render_to_reponse
+# from django.template import RequestContext
+from django.shortcuts import render_to_response
+from django.shortcuts import redirect
 from hunts.models import Hunts, Items, Has
 
 TEMP 		= []
 item_clue	= ""
-item_id 	= NULL
+item_id 	= 0
 hunt_title	= ""
 hunt_start 	= ""
 
 '''
-	* Gets triggered with the appropriate hunt_id once a user chooses a hunt from the categories drop down menu
+	* Gets triggered with the appropriate hunt_id once a user chooses a hunt from the categories' drop down menu
 	* Assigns hunt title and hunt id to their global vars
 	* Creates a list of item objects and stores them into the TEMP global var
 	* Redirects to the hunt.html page
 '''
-def getData(request, id):
+def getData(request):
 
-	hunt 		= Hunts.objects.get(ID = hunt_id)
+	hunt 		= Hunts.objects.get(ID = 001)
 	hunt_title	= str(hunt.Title)
-	hunt_start	= str(hunt_title.Start)
+	hunt_start	= hunt_title.Start.encode('ascii','ignore')
 
 	# List of items in a hunt. Instance of 'Has' class
 	hunt_items 	= Has.objects.filter(hunt_id = hunt_title)
@@ -26,8 +27,8 @@ def getData(request, id):
 	tuples = ()
 	for x in range(0,hunt_items.count()):
 		tuples = tuples + ((str(hunt_items[x].item.ID), str(hunt_items[x].clue), int(hunt_items[x].number)),)
-
-		TEMP = sorted(list(tuples), key = lambda element: element[2])
+	# sort using the order number of each item
+	TEMP = sorted(list(tuples), key = lambda element: element[2])
 
 	assign_vars()
 	
@@ -65,20 +66,21 @@ def verify_ID(usr_input):
 '''
 	* Funtions to render appropriate html files based on the user's progress
 '''
+
 def render_hunt(request):
-	return render_to_reponse("hunts/hunt.html", {"title": hunt_title, "start_pt": hunt_start})
+ 	return render_to_response("hunts/hunt.html", {"title": hunt_title, "start_pt": hunt_start})
 
 def render_clue(request):
-	return render_to_reponse("hunts/clue.html", {"clue_text":item_clue})
+	return render_to_response("hunts/clue.html", {"clue_text":item_clue})
 
 def render_verify(request):
-	return render_to_reponse("hunts/verify.html", {})
+	return render_to_response("hunts/verify.html", {})
 
 def render_correct(requst):
-	return render_to_reponse("hunts/correct.html",{})
+	return render_to_response("hunts/correct.html",{})
 
 def render_incorrect(request):
-	return render_to_reponse("hunts/incorrect.html", {})
+	return render_to_response("hunts/incorrect.html", {})
 
 def render_result(request, usr_input):
 	if verify_ID(usr_input) == True:
@@ -87,4 +89,4 @@ def render_result(request, usr_input):
 		return redirect('render_incorrect')
 
 def render_congrats(request):
-	return render_to_reponse("hunts/congrats.html", {})
+	return render_to_response("hunts/congrats.html", {})
