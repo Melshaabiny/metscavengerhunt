@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Scavenger Hunt</title>
+	<title>Scavenger</title>
 	
 	{% load staticfiles %}
 	<link rel="stylesheet" href="{% static 'foundation/css/foundation.css' %}">
@@ -13,39 +13,15 @@
 <body>
 	<div class="row">
 		<div class="contain-to-grid sticky">
-			<nav class="top-bar" data-topbar>
+			<nav class="top-bar" data-topbar role="navigation">
 				<ul class="title-area">
 					<li class="name">
-						<h1><a href="/">Scavenger Hunt</a></h1>
+						<h1><a href="/">Scavanger Hunt</a></h1>
 					</li>
-
-					<li class="toggle-topbar menu-icon"><a href="#">
-						<!-- Hamburger menu bar -->
-
-						<!-- insert Met Logo Here -->
-						<img src="{% static 'img/met_logo.jpg' %}" alt="">
-						<span></span>
-					</a></li>
+					<li class="toggle-toolbar menu-icon">
+					<a href="#"><span>Menu</span></a>
+					</li>
 				</ul>
-
-				<!-- list of menus -->
-				<section class="top-bar-section">
-					<ul class="right">
-						<li><a href="/">Home</a></li>
-						<li><a href="#">About</a></li>
-						<li><a href="#">Profile</a></li>
-						<li class="has-dropdown not-click">
-							<a href="#">Categories</a>
-							<ul class="dropdown">
-								<li><a href="#">View Hunts</a></li>
-								<li><a href="#">Make Hunts</a></li>
-							</ul>
-						</li>
-						<li>
-							<a href={% url 'user_auth.views.register' %}>Register</a>
-						</li>
-					</ul>
-				</section>
 			</nav>
 		</div>
 	</div>
