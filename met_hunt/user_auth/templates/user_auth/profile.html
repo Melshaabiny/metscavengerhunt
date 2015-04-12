@@ -6,12 +6,12 @@
 			<legend><h3>Picture</h3></legend>
 			<a href="#" class="th">
 				{% load staticfiles %}
-				<img src="{% static 'pic.jpg' %}" alt="">
+				<img style="height:220px;width:260px;"src="{% static user.userinfo.picture %}" alt="">
 			</a>
 		</fieldset>
 	</div>
 	<div class="columns small-12 medium-12 large-4">
-		<form action={% url 'user_auth.views.edit' %} method="POST">
+		<form action={% url 'user_auth.views.edit' %} method="GET">
 			{% csrf_token %}
 			<fieldset data-equalizer-watch>
 				<legend><h3>User Information</h3></legend>
@@ -39,10 +39,10 @@
 	<div class="columns small-12 medium-12 large-4">
 		<fieldset data-equalizer-watch>
 			<legend><h3>Sorcial Network</h3></legend>
-			<ul>
-				<li>FaceBook</li>
-				<li>Twitter</li>
-				<li>Flickr</li>
+			<ul style="list-style-type:none;">
+				<li><a href="https://www.facebook.com/"><h2><i class="fi-social-facebook"></i>FaceBook</h2></a></li>
+				<li><a href="https://www.twitter.com/"><h2><i class="fi-social-twitter"></i>Twitter</h2></a></li>
+				<li><a href="https://www.flickr.com/"><h2><i class="fi-social-flickr"></i>Flickr</h2></a></li>
 			</ul>
 		</fieldset>
 		<!-- <img src="http://placehold.it/350x150"> -->
@@ -54,7 +54,7 @@
 <div class="row">
 	<div class="columns small-12 medium-12 large-12">
 		<dl>
-			<dt>Description</dt>
+			<dt>Biography</dt>
 			<dd>
 				<blockquote>
 					<p>{{user.userinfo.description}}</p>
