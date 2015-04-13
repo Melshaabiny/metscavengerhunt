@@ -7,13 +7,14 @@ MetMuseum Scavenger Hunt
 ========================
 
 
-Contents:
+Documentation
+*************
 
 .. toctree::
    :maxdepth: 2
 
    TeamInformation
-
+   UserAuthentication
 
 Indices and tables
 ==================
