@@ -216,26 +216,76 @@
 		<span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">&#39;/user_auth/login/&#39;</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span> <span class="c"># This will throw exception.</span>
 
 
+
+
+<span class="c">###################################################################################</span>
+<span class="c">###############Test login_user</span>
 </div>
 <div class="viewcode-block" id="user_authTest.test_profile_status_code"><a class="viewcode-back" href="../../user_auth/tests.html#user_auth.tests.user_authTest.test_profile_status_code">[docs]</a>	<span class="k">def</span> <span class="nf">test_profile_status_code</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 		<span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">		**test_profile_status_code()** checks if a user access to the profile page, the status_code</span>
 <span class="sd">		is 200.</span>
 <span class="sd">		&quot;&quot;&quot;</span>
-		<span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;/user_auth/login/&#39;</span><span class="p">)</span>
+		<span class="c"># user must be logged in.</span>
+		<span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create_user</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s">&#39;test_profile_user&#39;</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s">&#39;password&#39;</span><span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s">&#39;test_profile_user&#39;</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s">&#39;password&#39;</span><span class="p">)</span>
+		<span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;/user_auth/profile/&#39;</span><span class="p">)</span>
+		<span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s">&#39;test_profile_user&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
 		<span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="user_authTest.test_profile_not_logged_in"><a class="viewcode-back" href="../../user_auth/tests.html#user_auth.tests.user_authTest.test_profile_not_logged_in">[docs]</a>	<span class="k">def</span> <span class="nf">test_profile_not_logged_in</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">		**test_profile_not_logged_in()** tests the status code of http response when the user</span>
+<span class="sd">		who tries to access the profile page is not logged in. The status code should not be 200.</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+
+		<span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;/user_auth/profile/&#39;</span><span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">)</span>		
+
+
+
+<span class="c">###################################################################################</span>
+<span class="c">###############Test login_user</span>
 </div>
 <div class="viewcode-block" id="user_authTest.test_edit_status_code"><a class="viewcode-back" href="../../user_auth/tests.html#user_auth.tests.user_authTest.test_edit_status_code">[docs]</a>	<span class="k">def</span> <span class="nf">test_edit_status_code</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 		<span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">		**test_edit_status_code()** checks if a user access to the edit page, the status_code equals to 200.</span>
 <span class="sd">		&quot;&quot;&quot;</span>
+		<span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create_user</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s">&#39;edit_status_code&#39;</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s">&#39;password&#39;</span><span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s">&#39;edit_status_code&#39;</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s">&#39;password&#39;</span><span class="p">)</span>
 		<span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;/user_auth/edit/&#39;</span><span class="p">)</span>
+		<span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s">&#39;edit_status_code&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
 		<span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="user_authTest.test_edit_EditForm_get"><a class="viewcode-back" href="../../user_auth/tests.html#user_auth.tests.user_authTest.test_edit_EditForm_get">[docs]</a>	<span class="k">def</span> <span class="nf">test_edit_EditForm_get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">		**test_edit_EditForm_get()** tests if the EditForm is properly instantiated when </span>
+<span class="sd">		request.method is GET method. </span>
+<span class="sd">		&quot;&quot;&quot;</span>
+		<span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create_user</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s">&#39;edit_EditForm&#39;</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s">&#39;password&#39;</span><span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s">&#39;edit_EditForm&#39;</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s">&#39;password&#39;</span><span class="p">)</span>
+		<span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s">&#39;user_auth.views.EditForm&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">form</span><span class="p">:</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;/user_auth/edit/&#39;</span><span class="p">)</span>
+			<span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s">&#39;edit_EditForm&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
+			<span class="n">form</span><span class="o">.</span><span class="n">assert_called_with</span><span class="p">()</span>
 
-
-
-
-
+	<span class="c"># def test_edit_EditForm_post(self):</span>
+	<span class="c"># 	&quot;&quot;&quot;</span>
+	<span class="c"># 	**test_edit_EditForm_post()** tests if the EditForm is properly instantiated with </span>
+	<span class="c"># 	appropriate post data when request.method is POST method. </span>
+	<span class="c"># 	&quot;&quot;&quot;</span>
+	<span class="c"># 	User.objects.create_user(username=&#39;edit_EditForm&#39;, password=&#39;password&#39;)</span>
+	<span class="c"># 	self.client.login(username=&#39;edit_EditForm&#39;, password=&#39;password&#39;)</span>
+	<span class="c"># 	with patch(&#39;user_auth.views.EditForm&#39;) as form:</span>
+	<span class="c"># 		with patch(&#39;__builtin__.open&#39;) as file:</span>
+	<span class="c"># 			# only check if post data is properly passed.</span>
+	<span class="c"># 			form.return_value.is_valid = MagicMock(return_value=False)</span>
+	<span class="c"># 			file = &#39;somefile&#39;</span>
+	<span class="c"># 			args = {&#39;first_name&#39;:&#39;name1&#39;, &#39;last_name&#39;:&#39;name2&#39;, &#39;file&#39;:file} # all attributes are not required.</span>
+	<span class="c"># 			self.client.post(&#39;/user_auth/edit/&#39;, args)</span>
+	<span class="c"># 			User.objects.get(username=&#39;edit_EditForm&#39;).delete()			</span>
+	<span class="c"># 			form.assert_called_with(QueryDict(&#39;first_name=name1&amp;last_name=name2&#39;))</span>
 
 
 
@@ -274,8 +324,8 @@
       &copy;2015, WebDev.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.2</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.3</a>
       
     </div>
 
