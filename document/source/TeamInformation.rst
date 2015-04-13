@@ -7,8 +7,9 @@ Team Member
 :Course\ Name:
 	Web Design
 	
-:Authors:
+:Team Members:
 	- Moustafa Elshaabiny (Product Owner)
 	- Santiago Salas (Scrum Master)
 	- Edward Chung (Developer)
 	- Bancroft Sparkes (Developer)
+	  
