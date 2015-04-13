@@ -6,10 +6,11 @@
 	<div class = "small-12 medium-12 large-12 columns panel">
 	<!-- Submit the user's answer and send it through POST request.-->
 	<!-- Verify the answer with the hunt_id.item.id (TODO)-->
-	<form action={% url "hunts.views.render_result" %} method="GET">
+	<form action={% url "hunts.views.render_result" %} method="POST">
+	{% csrf_token %}
 	<!-- replace # witht a congratualtions or retry page (TODO) -->
 	<label> Enter ID
-		<input type = "text" placeholder = "ID"/>
+		<input type = "text" id = "input" name = "input" placeholder = "ID"/>
 	</label>
 	<input type = "submit" class = "button expand"/>
 	</form>
