@@ -117,6 +117,13 @@ checks if the RegisterForm is called with the POST data passed into register().<
 </dd></dl>
 
 <dl class="method">
+<dt id="user_auth.tests.user_authTest.test_edit_EditForm_get">
+<code class="descname">test_edit_EditForm_get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/tests.html#user_authTest.test_edit_EditForm_get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_edit_EditForm_get" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>test_edit_EditForm_get()</strong> tests if the EditForm is properly instantiated when 
+request.method is GET method.</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="user_auth.tests.user_authTest.test_edit_status_code">
 <code class="descname">test_edit_status_code</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/tests.html#user_authTest.test_edit_status_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_edit_status_code" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>test_edit_status_code()</strong> checks if a user access to the edit page, the status_code equals to 200.</p>
@@ -134,6 +141,13 @@ is 200.</p>
 <code class="descname">test_login_user_invalid_username</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/tests.html#user_authTest.test_login_user_invalid_username"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_login_user_invalid_username" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>test_login_user_invalid_username()</strong> tests if an user tries to login with invalid username such as
 non-exist username.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="user_auth.tests.user_authTest.test_profile_not_logged_in">
+<code class="descname">test_profile_not_logged_in</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/tests.html#user_authTest.test_profile_not_logged_in"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_profile_not_logged_in" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>test_profile_not_logged_in()</strong> tests the status code of http response when the user
+who tries to access the profile page is not logged in. The status code should not be 200.</p>
 </dd></dl>
 
 <dl class="method">
@@ -196,8 +210,8 @@ is 200.</p>
       &copy;2015, WebDev.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.2</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.3</a>
       
       |
       <a href="../_sources/user_auth/tests.txt"
