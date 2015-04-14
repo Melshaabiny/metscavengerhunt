@@ -10,13 +10,16 @@ The list of tests are :
 
 from django.test import Client
 from django.contrib.auth.models import User
-from mock import MagicMock, Mock, patch
+from mock import MagicMock
+from mock import Mock
+from mock import patch
 from user_auth.views import login, logout_user, register
 from django.http import QueryDict
 import unittest
+
+
 # Create your tests here.
 class user_authTest(unittest.TestCase):
-
 	def setUp(self):
 		"""
 		**setUp** method sets up all neccessary modules. djanfo.TestCase inherits unittest so it follows same syntax

@@ -29,13 +29,14 @@ def edit(request):
 		print request.FILES
 		if form.is_valid():
 			form.process(request.user)
+			args = {'editted':True, 'user':request.user}
+			args.update(csrf(request))
+			return render_to_response('user_auth/edit.html', args)
 	else:
 		# provide edit form.
 		form = EditForm()
-
-	args = {'form':form, 'user':request.user, 'title':title}
+	args = {'form':form, 'user':request.user, 'title':title, 'editted':False}
 	args.update(csrf(request))
-
 	return render_to_response('user_auth/edit.html', args)
 
 @login_required	
