@@ -1,0 +1,248 @@
+{% extends "met_hunt/index.html" %}
+{% block body %}
+
+
+<div class="row panel" data-equalizer>
+	<div class="small-12 medium-12 large-6 columns" data-equalizer-watch>
+		<ul data-orbit>
+			{% load staticfiles %}
+			<li data-orbit-slider="Autumn" slider-pause><img src="{% static 'img/Autumn.jpg' %}" alt="">
+				<div class="orbit-caption">
+					Modern Hunt
+				</div>
+			</li>
+			<li data-orbit-slider="Houses" slider-pause><img src="{% static 'img/houses.jpg' %}" alt="">
+				<div class="orbit-caption">
+					Classic Hunt
+				</div>
+			</li>
+			<li data-orbit-slider="SeaSide" slider-pause><img src="{% static 'img/seaside.jpg' %}" alt="">
+				<div class="orbit-caption">
+					Ancient Hunt
+				</div>
+			</li>
+		</ul>
+	</div>
+
+	<div class="small-12 medium-12 large-6 columns panel" data-equalizer-watch>
+		<h3>You Can Start Hunt Now!</h3>
+		<p>We have awsome Hunts avilable on our website. You can try it out and become one of the best hunter.</p>
+		<!-- <a href={% url "tutorial_hunt.views.rend_welcome" %}>
+			<button value="Start Hunt" class="button expand round">
+			</button>
+		</a> -->
+		<br><br><br><br><br>
+		<a href={% url "tutorial_hunt.views.rend_welcome" %}>
+		<input type="button" value="Start Hunt" class="button expand">
+		</a>
+	</div>
+</div>
+
+
+			<!-- <ul class="example-orbit orbit-slides-container" data-orbit>
+				{% load staticfiles %}
+				<li class="active">
+					<img src="{% static 'img/Autumn.jpg' %}" alt="">
+					<div class="orbit-caption">
+						Something
+					</div>
+				</li>
+				<li>
+					<img src="{% static 'img/houses.jpg' %}" alt="">
+					<div class="orbit-caption">
+						Something
+					</div>
+				</li>
+				<li>
+					<img src="{% static 'img/seaside.jpg' %}" alt="">
+					<div class="orbit-caption">
+						Something
+					</div>
+				</li>
+			</ul> -->
+
+<hr>
+
+<div class="row panel">
+	<div class="columns large-12">
+		<ul class="accordion" data-accordion>
+			<li class="accordion-navigation">
+				<a href="#fun">Fun</a>
+					<div class="content" id="fun">
+						<div class="row">
+							<ul class="large-block-grid-3 small-block-grid-1 medium-block-grid-1">
+								<li>
+									<a class="hr" href="#">
+										<img src="http://placehold.it/350x250">
+									</a>
+								</li>
+								<li>
+									<a class="hr" href="#">
+										<img src="http://placehold.it/350x250">
+									</a>
+								</li>
+								<li>
+									<a class="hr" href="#">
+										<img src="http://placehold.it/350x250">
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+			</li>
+
+			<li class="accordion-navigation">
+				<a href="#education">Education</a>
+				<div class="content" id="education">
+					<div class="row">
+						<div class="columns large-6 small-12 medium-12">
+							<a class="hr" href="#">
+								<img src="http://placehold.it/350x250">
+							</a>
+						</div>
+						<div class="columns large-6 small-12 medium-12">
+							<p>
+								Our Scavenger Hunt can be used for your own education purposes. There are lots of possibilities.
+							</p>
+						</div>
+					</div>
+				</div>
+			</li>
+
+			<li class="accordion-navigation">
+				<a href="#gallery">Gallery</a>
+				<div class="content" id="gallery">
+					<div class="row">
+						<ul class="large-block-grid-3 small-block-grid-1 medium-block-grid-1">
+							<li>
+								<a class="hr" href="#">
+									<img src="http://placehold.it/350x250">
+								</a>
+							</li>
+							<li>
+								<a class="hr" href="#">
+									<img src="http://placehold.it/350x250">
+								</a>
+							</li>
+							<li>
+								<a class="hr" href="#">
+									<img src="http://placehold.it/350x250">
+								</a>
+							</li>
+							<li>
+								<a class="hr" href="#">
+									<img src="http://placehold.it/350x250">
+								</a>
+							</li>
+							<li>
+								<a class="hr" href="#">
+									<img src="http://placehold.it/350x250">
+								</a>
+							</li>
+							<li>
+								<a class="hr" href="#">
+									<img src="http://placehold.it/350x250">
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</li>
+
+			<li class="accordion-navigation">
+				<a href="#map">Map</a>
+				<div class="content" id="map">
+					<div class="row">
+						<div class="columns small-12 medium-12 large-6">
+							<a class="hr" href="#">
+									<img src="http://placehold.it/350x250">
+							</a>
+						</div>
+						<div class="columns	small-12 medium-12 large-6">
+							<p>The Metropolitan map can be found here!</p>
+						</div>
+					</div>
+				</div>
+			</li>
+
+			<li class="accordion-navigation">
+				<a href="#community">Community</a>
+				<div class="content" id="community">
+					<div class="row">
+						<h3>Community</h3>
+						<p>We have active scavenger hunt community that you can ask questions and help others by answering there questions.</p>
+						<a href="#">
+							<input type="button" class="button expand" value="Visit Community">
+						</a>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+</div>
+<!-- 
+<div class="row">
+	<ul class="tabs vertical" data-tab>
+		<li class="tab-title active"><a href="#fun">Fun</a></li>
+		<li class="tab-title"><a href="#education">Education</a></li>
+		<li class="tab-title"><a href="#gallery">Gallery</a></li>
+		<li class="tab-title"><a href="#map">Map</a></li>
+		<li class="tab-title"><a href="#community">Community</a></li>
+	</ul>
+	<div class="tabs-content">
+		<div class="content active" id="fun">
+			<p>One</p>
+		</div>
+		<div class="content" id="education">
+			<p>Two</p>
+		</div>
+		<div class="content" id="gallery">
+			<p>Three</p>
+		</div>
+		<div class="content" id="map">
+			<p>Four</p>
+		</div>
+		<div class="content" id="community">
+			<p>Five</p>
+		</div>
+	</div>
+</div>
+ -->
+<!-- <div class="row">
+	<div class="small-12 medium-4 large-12 columns">
+		<p class="panel callout">Start Hunt</p>
+	</div>
+</div>
+
+<hr> -->
+<!-- 
+<div class="row">
+	<ul class="small-block-grid-1 medium-block-grid-1 large-block-grid-3">
+		<li>
+			<a class="hr" href="#"><img src="http://placehold.it/350x250"></a>
+		</li>
+		<li>
+			<a class="hr" href="#"><img src="http://placehold.it/350x250"></a>
+		</li>
+		<li>
+			<a class="hr" href="#"><img src="http://placehold.it/350x250"></a>
+		</li>
+	</ul>
+</div>
+
+<div class="row">
+	<ul class="small-block-grid-1 medium-block-grid-1 large-block-grid-3">
+		<li>
+			<a class="hr" href="#"><img src="http://placehold.it/350x250"></a>
+		</li>
+		<li>
+			<a class="hr" href="#"><img src="http://placehold.it/350x250"></a>
+		</li>
+		<li>
+			<a class="hr" href="#"><img src="http://placehold.it/350x250"></a>
+		</li>
+	</ul>
+</div> -->
+
+<hr>
+{% endblock %}
