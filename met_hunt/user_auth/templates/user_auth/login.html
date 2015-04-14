@@ -1,0 +1,15 @@
+{% extends "met_hunt/index.html" %}
+{% block body %}
+	<div class="row">
+		<div class="large-6 medium-6 small-12 columns small-centered medium-centered large-centered small-centered">
+		<form action={% url 'user_auth.views.login_user' %} method="POST">
+			<fieldset>
+			<legend><h2>{{ title }}</h2></legend>
+				{% csrf_token %}
+				{{ form.as_table }}
+				<input type="submit" class="button expand" value="LogIn">
+			</fieldset>	
+		</form>
+		</div>
+	</div>
+{% endblock %}
