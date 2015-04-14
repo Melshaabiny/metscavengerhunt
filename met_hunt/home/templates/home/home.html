@@ -44,60 +44,60 @@
 
 
 <hr>
+<!--Bottom Half -->
 
 <div class="row panel">
-	<div class="column large-12">
+	<div class="columns large-12">
 		<ul class="accordion" data-accordion>
-		<!-- Fun Tab-->
-			<li class="accordion-navigation"><a href="#fun">These Hunts Are...</a>
-			<div class="row">
-				<ul class="large-block-grid-3 small-block-grid-1 medium-block-grid-1">
-					<li>
-					<a href="#" class="hr">
-						<img src="{% static 'img/fun.png' %}" alt=""></a>
-					</li>
-					<li>
-					<a href="#" class="hr">
-						<img src="{% static 'img/edu.png' %}" alt=""></a>
-					</li>
-					<li>
-						<a href="#" class="hr">
-							<img src="{% static 'img/socialll.png' %}" alt=""></a>
-					</li>					
-				</ul>
-			</div>
-		</li>
-		<!-- Educational Tab -->
 			<li class="accordion-navigation">
-				<a href="#education">Education</a>
-				<div class="content" id="education">
-					<div class="columns large-6 small-12 medium-12">
-						<p>Our Scavenger Hunt can be used for your own educational purposes. There are lots of possibilities.
-						</p>
-					</div>
-				</div>
-			</li>
-			
-				<!--Community Tab-->
-				<li class="accordion-navigation">
-				<a href="#community">Community</a>
-				<div class="content" id="community">
-					<div class="row">
-						<h3>Community</h3>
-						<p>We have active scavenger hunt community that you can ask questions and help others by answering there questions.</p>
-						<a href="#">
-							<input type="button" class="button expand" value="Visit Community">
-						</a>
-					</div>
-				</div>
-			</li>
-
-			<!--  Gallery Tab -->
-				<li class="accordian-navigation"><a href="#gallery">Gallery</a>
-					<div class="content" id="gallery">
+				<a href="#fun">These Hunts Are...</a>
+					<div class="content" id="fun">
 						<div class="row">
 							<ul class="large-block-grid-3 small-block-grid-1 medium-block-grid-1">
 								<li>
+									<a class="hr" href="#">
+										<img src="{% static 'img/fun.png' %}">
+									</a>
+								</li>
+								<li>
+									<a class="hr" href="#">
+										<img src="{% static 'img/edu.png' %}">
+									</a>
+								</li>
+								<li>
+									<a class="hr" href="#">
+										<img src="{% static 'img/socialll.png' %}">
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+			</li>
+
+			<li class="accordion-navigation">
+				<a href="#education">Education</a>
+				<div class="content" id="education">
+					<div class="row">
+						<div class="columns large-6 small-12 medium-12">
+							<a class="hr" href="#">
+								<img src="{% static 'img/edu.png' %}">
+							</a>
+						</div>
+						<div class="columns large-6 small-12 medium-12">
+							<p>
+								Our Scavenger Hunt can be used for your own education purposes. There are lots of possibilities.
+							</p>
+						</div>
+					</div>
+				</div>
+			</li>
+
+			<li class="accordion-navigation">
+				<a href="#gallery">Gallery</a>
+				<div class="content" id="gallery">
+					<div class="row">
+						<ul class="large-block-grid-3 small-block-grid-1 medium-block-grid-1">
+							<li>
 								<a class="hr" href="#">
 									<img src="{% static 'img/olmec.jpg'%}">
 								</a>
@@ -111,35 +111,58 @@
 								<a class="hr" href="#">
 									<img src="{% static 'img/gilt.jpg'%}">
 								</a>
-							</li>	
-
-							</ul>
-						</div>
+							</li>
+							<li>
+								<a class="hr" href="#">
+									<img src="{% static 'img/dagger.jpg'%}">
+								</a>
+							</li>
+							<li>
+								<a class="hr" href="#">
+									<img src="{% static 'img/kanagawa.jpg'%}">
+								</a>
+							</li>
+							<li>
+								<a class="hr" href="#">
+									<img src="{% static 'img/houses.jpg'%}">
+								</a>
+							</li>
+						</ul>
 					</div>
-				</li>
+				</div>
+			</li>
 
-			<!-- Map Tab-->
 			<li class="accordion-navigation">
 				<a href="#map">Map</a>
 				<div class="content" id="map">
 					<div class="row">
 						<div class="columns small-12 medium-12 large-6">
 							<a class="hr" href="#">
-									<img src="http://placehold.it/350x250">
+									<img src="{% static 'img/mapview.png'%}">
 							</a>
 						</div>
 						<div class="columns	small-12 medium-12 large-6">
-							<p>The Metropolitan map can be found here!</p>
+							<p>The Metropolitan museum can be found here on the map!</p>
 						</div>
 					</div>
 				</div>
 			</li>
 
-
+			<li class="accordion-navigation">
+				<a href="#community">Community</a>
+				<div class="content" id="community">
+					<div class="row">
+						<h3>Community</h3>
+						<p>We have active scavenger hunt community that you can ask questions and help others by answering there questions.</p>
+						<a href="#">
+							<input type="button" class="button expand" value="Visit Community">
+						</a>
+					</div>
+				</div>
+			</li>
 		</ul>
 	</div>
 </div>
-
 
 
 <hr>
