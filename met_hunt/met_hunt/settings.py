@@ -93,5 +93,5 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
     'met_hunt/static/',
-    '/', # add root path. /met_hunt
+    '', # add root path. /met_hunt
 )
