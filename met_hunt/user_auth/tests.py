@@ -15,7 +15,9 @@ from mock import Mock
 from mock import patch
 from user_auth.views import login, logout_user, register
 from django.http import QueryDict
+from django.utils.datastructures import MultiValueDict
 import unittest
+from django.core.files.uploadedfile import SimpleUploadedFile
 
 
 # Create your tests here.
@@ -219,23 +221,46 @@ class user_authTest(unittest.TestCase):
 			User.objects.get(username='edit_EditForm').delete()
 			form.assert_called_with()
 
-	# def test_edit_EditForm_post(self):
-	# 	"""
-	# 	**test_edit_EditForm_post()** tests if the EditForm is properly instantiated with 
-	# 	appropriate post data when request.method is POST method. 
-	# 	"""
-	# 	User.objects.create_user(username='edit_EditForm', password='password')
-	# 	self.client.login(username='edit_EditForm', password='password')
-	# 	with patch('user_auth.views.EditForm') as form:
-	# 		with patch('__builtin__.open') as file:
-	# 			# only check if post data is properly passed.
-	# 			form.return_value.is_valid = MagicMock(return_value=False)
-	# 			file = 'somefile'
-	# 			args = {'first_name':'name1', 'last_name':'name2', 'file':file} # all attributes are not required.
-	# 			self.client.post('/user_auth/edit/', args)
-	# 			User.objects.get(username='edit_EditForm').delete()			
-	# 			form.assert_called_with(QueryDict('first_name=name1&last_name=name2'))
+	def test_edit_EditForm_post(self):
+		"""
+		**test_edit_EditForm_post()** tests if the EditForm is properly instantiated with 
+		appropriate post data when request.method is POST method. 
+		"""
+		# create temp user.
+		User.objects.create_user(username='edit_EditForm', password='password')
 
+		# log the user in.
+		self.client.login(username='edit_EditForm', password='password')
+
+		# make fake file
+		file = SimpleUploadedFile('filename.png', 'image_content')
+		dic = MultiValueDict({'picture':file})
+		# mock user.save() so that we not really saving the test user.
+		with patch('user_auth.views.User.save') as user_save:
+			user_save.return_value = None
+			self.client.post('/user_auth/edit/', {'first_name':'name', 'last_name':'last_name'} )
+			user_save.assert_called_with()
+		User.objects.get(username='edit_EditForm').delete()
+
+	# def test_edit_EditForm_file(self):
+	# 	"""
+	# 	This test the request.FILE in the edit function.
+	# 	"""
+	# 	# create temp user.
+	# 	User.objects.create_user(username='edit_EditForm', password='password')
+	# 	# log the user in.
+	# 	self.client.login(username='edit_EditForm', password='password')
+
+	# 	# make fake file
+	# 	file = SimpleUploadedFile('filename.png', 'image_content')
+	# 	# mock user.save() so that we not really saving the test user.
+	# 	with patch('user_auth.views.UserInfo.save') as info_save:
+	# 		with patch('user_auth.views.EditForm.is_valid') as valid:
+	# 			valid.return_value = True
+	# 			info_save.return_value = None
+	# 			self.client.post('/user_auth/edit/', {'picture':file})
+	# 			info_save.assert_called_with()
+	# 	User.objects.get(username='edit_EditForm').delete()
 
 
 	# def test_auth_forms_register_user(self):
