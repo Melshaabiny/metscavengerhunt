@@ -8,7 +8,7 @@
 	<link rel="stylesheet" href="{% static 'foundation/css/foundation.min.css' %}">
 	<link rel="stylesheet" href="{% static 'foundation/css/normalize.css' %}">
 	<link rel="stylesheet" href="{% static 'foundation/css/foundation-icons/foundation-icons.css' %}">
-	<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<!-- // <script type="text/javascript" src="{% static 'edit.js' %}"></script> -->
 </head>
 <body>
@@ -27,7 +27,7 @@
 
 				<!-- list of munus -->
 				<section class="top-bar-section">
-					<ul class="right">
+					<ul class="left">
 						<li><a href="/">Home</a></li>
 						<li><a href="#">About</a></li>
 						<li class="has-dropdown not-click">
@@ -41,7 +41,55 @@
 							</ul>
 						</li>
 						<li><a href="#">Create Hunts</a></li>
+					</ul>
+					<ul class="right">
+						<li>
+							<a href="#" data-dropdown="search" aria-controls="search" aria-expanded="false">
+								<i class="fi-magnifying-glass"></i>
+							</a>
+							<div id="search" data-dropdown-content class="f-dropdown content medium" aria-hidden="true">
+								<h3>Search</h3>
+								<div class="row">
+									<div class="columns large-12">
+										<input id="searchBox" type="text">
+									</div>
+								</div>
+								<br>
+								<hr id="top">
+								
 
+
+								<!-- <div class="row">
+									<div class="columns large-3">
+										<img src="http://placehold.it/350x250">
+									</div>
+									<div class="columns large-9">
+										<p id="searchText"></p>
+									</div>
+								</div>
+								<hr>
+								<div class="row">
+									<div class="columns large-3">
+										<img src="http://placehold.it/350x250">
+									</div>
+									<div class="columns large-9">
+										<p>This part of the interface is for search feature! This is second hunt!</p>
+									</div>
+								</div>
+								<hr>
+								<div class="row">
+									<div class="columns large-3">
+										<img src="http://placehold.it/350x250">
+									</div>
+									<div class="columns large-9">
+										<p>This part of the interface is for search feature! This is second hunt!</p>
+									</div>
+								</div> -->
+								<!-- content end -->
+							</div>
+						</li>
+
+						<!-- user name -->
 						{% if user.is_authenticated %}
 						<li class="has-dropdown not-click">
 							<a href="#">Welcome {{ user.username }}!</a>
@@ -58,7 +106,7 @@
 						{% else %}
 						<li><a href={% url 'user_auth.views.register' %}>Register</a></li>
 						<li><a href={% url 'user_auth.views.login_user' %}>LogIn</a></li>
-						{% endif %}
+						{% endif %}						
 					</ul>
 				</section>
 			</nav>
@@ -67,10 +115,24 @@
 	{% block body%}
 	{% endblock %}
 
+
+
 	<script src="{% static 'foundation/js/vendor/jquery.js' %}"></script>
 	<script src="{% static 'foundation/js/foundation.min.js' %}"></script>
 	<script>
 		$(document).foundation();
+	</script>
+
+	<script>
+		$(document).ready(function(){
+			$('#searchBox').keyup(function(){
+				if($('#searchBox').val() == ""){
+					$('#top').text("");
+				}
+				$result = $('#top').load("search/" + $('#searchBox').val());
+				// $('#top').html($result);
+			});
+		});
 	</script>
 </body>
 

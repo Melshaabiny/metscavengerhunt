@@ -14,7 +14,6 @@ from django.contrib.auth import logout, login, authenticate
 from django.contrib.auth.models import User
 from user_auth.models import UserInfo
 
-variable = 123
 
 @login_required
 def edit(request):
@@ -146,3 +145,4 @@ def register(request):
 			'valid':True}
 	args.update(csrf(request)) # Guess passing csrf token to the template.
 	return render_to_response('user_auth/register.html', args)
+
