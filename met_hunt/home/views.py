@@ -8,3 +8,7 @@ def main(request):
 		user = None
 	args = {'user':user}
 	return render_to_response('home/home.html', args)
+
+def search(request, query):
+	args = {'result':query}
+	return render_to_response('home/search_template.html', args)
