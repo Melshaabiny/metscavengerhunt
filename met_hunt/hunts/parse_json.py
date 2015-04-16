@@ -1,5 +1,6 @@
 import json
 from hunts.models import Hunts, Items, Has
+from random import randrange
 
 with open('data.json') as file:
 	data = json.load(file)
@@ -30,3 +31,18 @@ for i in xrange(11, len(data)):
 				clue=str(data[i]['fields']['clue']))
 	has.save()
 
+rnd_str = "ABCDEFGHIJKLMNabcdefghijklmn123456789"
+def make_str(source):
+	s = randrange(2,10)
+	st = ""
+	for i in xrange(0,s):
+		st += rnd_str[randrange(0,len(rnd_str))]
+
+	return st
+
+for i in xrange(2,20):
+	hunt = Hunts(ID=i,Title=make_str(rnd_str), 
+			Category=make_str(rnd_str),
+			Start = make_str(rnd_str))
+	# save it.
+	hunt.save()
