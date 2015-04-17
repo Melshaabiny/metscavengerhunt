@@ -1,0 +1,26 @@
+{% extends "index.html" %}
+{% block body %}
+	<div class="row">
+		<div class="large-centered small-centered medium-centered panel columns small-12 medium-12 large-12">
+			<table>
+				<thead>
+					<tr>
+						<th>Type</th>
+						<th>Description</th>
+						<th>Total</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					{% for thread in threads %}
+						<tr>
+							<td><a href="#">{{ thread.type }}</a></td>
+							<td>{{ thread.description }}</td>
+							<td>{{ thread.total_post }}</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+{% endblock %}
