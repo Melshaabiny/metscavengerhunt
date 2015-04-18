@@ -16,7 +16,7 @@ class Hunts(models.Model):
 	Title = models.CharField(max_length = 200)
 	# Category of the Hunt
 	Category = models.CharField(max_length = 200)
-	# Starting point of each Scavenger Hunt
+	# Starting point of each Scavenger Hunt 
 	Start = models.CharField(max_length = 400)
 	def __str__(self):
 		return self.Title
