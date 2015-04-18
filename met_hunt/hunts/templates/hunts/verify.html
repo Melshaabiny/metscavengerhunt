@@ -1,12 +1,12 @@
-{% extends "met_hunt/index.html" %}
+{% extends "met_hunt/index_wobbly.html" %}
 
 {% block body %}
 
 <div class = "row">
-	<div class = "small-12 medium-12 large-12 columns panel">
-	<!-- Submit the user's answer and send it through POST request.-->
-	<!-- Verify the answer with the hunt_id.item.id (TODO)-->
-	<form action={% url "hunts.views.render_result" %} method="POST">
+	<div class="slide">
+		<img class="icon" src="img/methunters.png" alt="Museum Hunters Logo"/>
+		<h1>Verify</h1>
+			<form action={% url "hunts.views.render_result" %} method="POST">
 	{% csrf_token %}
 	<!-- replace # witht a congratualtions or retry page (TODO) -->
 	<label> Enter ID

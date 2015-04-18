@@ -1,26 +1,13 @@
-{% extends "met_hunt/index.html" %}
-
+{% extends "met_hunt/index_wobbly.html" %}
 {% block body  %}
 
 <div class = "row">
-	<h3></h3>
-	<!-- Row 1, column 1: show {hunt_id.item.hint} (TODO) -->
-	<div class= "small-12 medium-2 large-2 columns">
-		<a href = "#" class = "button small">Show Hint</a>
-	</div>
-	<!-- Row 1, column 2: display {hunt_id.item.clue} -->
-	<div class = "small-12 medium-6 large-6 large columns panel">
-		<p class="text-center">{{clue_text}}</p>
-	</div>
-	<!-- Row 1, column 3: connect with social media (TODO) -->
-	<div class = "small-12 medium-2 large-2 columns">
-		<a href = "#" class = "button small">Ask a friend</a>
+	<div class="slide">
+		<img class="icon" src="img/methunters.png" alt="Museum Hunters Logo"/>
+		<h1>{{clue_text}}</h1>
+			<a href={% url "hunts.views.render_verify" %}>Found it</a>
 	</div>
 </div>
-<div class="row">
-	<div class="small-12 medium-12 large-12 columns">
-	<a href={% url "hunts.views.render_verify" %} class = "button">Found it</a>
-	</div>
-</div>
+
 
 {% endblock %}
