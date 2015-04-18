@@ -9,6 +9,4 @@
 
 body {
 	padding: 20px;
-	background: #ccc;
-	background-color:222;
 }

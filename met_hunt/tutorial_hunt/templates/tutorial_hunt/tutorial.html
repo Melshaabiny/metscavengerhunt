@@ -4,12 +4,23 @@
 	<h1>{{title}}</h1>
 	<div class="small-12 medium-12 large-12 columns panel">
 	<p>Welcome to your first hunt!<br>You will be given clues that lead to a piece of art in the museum<br>
-	Once you've found it there will be an id of numbers on the plaque near the artwork<br> Use that as your verification code</p>
+	Once you've found it there will be an id of numbers on the plaque near the artwork<br> Use that as your verification code<br>
+	<a href="#" data-reveal-id="reModal">Show me an Example!</a>
+	<div id="reModal" class="reveal-modal" data-reveal>
+		{% load staticfiles %}
+		<h2>This is the Collection Label</h2>
+		<img src="{% static 'img/label.jpg' %}" alt="">
+		<p>You can find the Accession Number highlighted above</p>
+		<a href="" class="close-reveal-modal">&#215;</a>
+	</div></p>
+
 	</div>
 </div>
 <div class="row">
 	<div class = "small-12 medium-12 large-12 columns panel">
-	<a href = {% url "tutorial_hunt.views.rend_clue" %}>Show Clue</a>
+	<a href = {% url "tutorial_hunt.views.rend_clue" %}>
+	<span class="button radius">Ok, Give Me a Clue &raquo;</span>
+	</a>
 	</div>
 </div>
 
