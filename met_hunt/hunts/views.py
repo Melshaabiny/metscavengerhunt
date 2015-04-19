@@ -24,11 +24,9 @@ def next_proc(request):
         	and redirects to render_clue()
     """
     global TEMP
+    pop_item()
     if len(TEMP) > 0:
-        pop_item()
         return redirect('rend_clue')
-    else:
-        return redirect('rend_congrats')
 
 def render_clue(request):
     """
@@ -40,14 +38,18 @@ def render_clue(request):
 
 def render_result(request):
     """
-        * based on the user input it either redirects to render_correct() or render_incorrect()
+        * based on the user input it either redirects to render_correct(), render_incorrect(), or render_congrats
     """
     if request.method == "POST":
         
         usr_input_value = str(request.POST.get('input', ''))
         
         if verify_id(usr_input_value) == True:
-            return redirect('rend_correct')
+            global TEMP
+            if len(TEMP)==1:
+                return redirect('rend_congrats')
+            else:
+                return redirect('rend_correct')
         else:
             return redirect('rend_incorrect')
 

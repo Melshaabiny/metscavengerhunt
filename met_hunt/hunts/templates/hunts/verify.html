@@ -4,7 +4,7 @@
 
 <div class = "row">
 	<div class="slide">
-		<img class="icon" src="img/methunters.png" alt="Museum Hunters Logo"/>
+		<img class="icon" src="../../static/img/museumhunters.svg" alt="Museum Hunters Logo"/>
 		<h1>Verify</h1>
 			<form action={% url "hunts.views.render_result" %} method="POST">
 	{% csrf_token %}
