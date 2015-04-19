@@ -259,35 +259,5 @@
     },
     "model": "hunts.has",
     "pk": 13
-},
-{
-    "fields": {
-        "item": "1986.205",
-        "hunt": 2,
-        "number": 4,
-        "clue": "While you would normally pull the rope/cord back, requiring a large amount of force to load its ammunition, I am a device you can instead crank to load the ammuniti."
-    },
-    "model": "hunts.has",
-    "pk": 14
-},
-{
-    "fields": {
-        "item": "1993.14",
-        "hunt": 2,
-        "number": 5,
-        "clue": "Designed by Turkish Jeweler Ahmed Tekelu. What is the name of this Turkish Weapon?"
-    },
-    "model": "hunts.has",
-    "pk": 15
-},
-{
-    "fields": {
-        "item": "65.109.2",
-        "hunt": 2,
-        "number": 6,
-        "clue": "A Star made up of serpents Chasing their own tails."
-    },
-    "model": "hunts.has",
-    "pk": 16
 }
 ]
