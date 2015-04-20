@@ -3,7 +3,7 @@ from django.shortcuts import redirect
 from hunts.models import Hunts, Items, Has, set_ItemsData, set_HuntsData, pop_item, verify_id
 from django.core.context_processors import csrf
 
-global TEMP
+#global TEMP
 
 def render_hunt(request, id):
 	"""
@@ -12,9 +12,9 @@ def render_hunt(request, id):
         * Sets the hunt's data (title and starting location) and stores the items data in global var TEMP list 
         * finally, it renders the welcome page 
     """
-	global TEMP
+	global temp
 	hunt_dict = set_HuntsData(id)
-	TEMP = set_ItemsData(id)
+	temp = set_ItemsData(id)
 	return render_to_response("hunts/hunt.html", {"title": hunt_dict['hunt title'], "start_pt": hunt_dict['hunt start']})
 
 def next_proc(request):
@@ -23,17 +23,17 @@ def next_proc(request):
         * Otherwise, it calls pop_item() to update the global list of items
         	and redirects to render_clue()
     """
-    global TEMP
-    pop_item()
-    if len(TEMP) > 0:
+    global temp
+    temp = pop_item(temp)
+    if len(temp) > 0:
         return redirect('rend_clue')
 
 def render_clue(request):
     """
         * render item's clue page using global var item_clue as template var
     """
-    global TEMP
-    return render_to_response("hunts/clue.html", {"clue_text":TEMP[0][1]})
+    global temp
+    return render_to_response("hunts/clue.html", {"clue_text":temp[0][1]})
 
 
 def render_result(request):
@@ -45,8 +45,8 @@ def render_result(request):
         usr_input_value = str(request.POST.get('input', ''))
         
         if verify_id(usr_input_value) == True:
-            global TEMP
-            if len(TEMP)==1:
+            global temp
+            if len(temp)==1:
                 return redirect('rend_congrats')
             else:
                 return redirect('rend_correct')
