@@ -3,6 +3,7 @@ from django.db import models
 		* Create your models here.
 		* ----------Tables----------
 """
+global TEMP
 class Hunts(models.Model):
 	"""
 		* database table that contains all the scavenger hunts 
@@ -15,7 +16,7 @@ class Hunts(models.Model):
 	Title = models.CharField(max_length = 200)
 	# Category of the Hunt
 	Category = models.CharField(max_length = 200)
-	# Starting point of each Scavenger Hunt
+	# Starting point of each Scavenger Hunt 
 	Start = models.CharField(max_length = 400)
 	def __str__(self):
 		return self.Title
@@ -49,3 +50,45 @@ class Has(models.Model):
 	item = models.ForeignKey(Items)
 	number = models.IntegerField() 
 	clue = models.CharField(max_length = 250)
+
+def set_HuntsData(id):
+	"""
+		* Based on the hunt id, set_HuntsData returns a python dictionary
+		* containing all the Hunt's title and starting location
+	"""	
+	hunt = Hunts.objects.get(ID=id)
+	hunt_title = str(hunt.Title)
+	hunt_start = str(hunt.Start)
+	hunt_dict = {'hunt title': hunt_title, 'hunt start': hunt_start}
+	return hunt_dict
+
+def set_ItemsData(id):
+	"""
+		* Based on the hunt id, set_ItemsData creates a list of tuples
+		* containing all the items in that hunt and their respective database
+		* returns TEMP[(id, clue, number), ...]
+	"""
+	hunt_items = Has.objects.filter(hunt_id=id)
+	tuples = ()
+	for x in range(0, hunt_items.count()):
+		tuples = tuples + ((str(hunt_items[x].item.ID), str(hunt_items[x].clue), int(hunt_items[x].number)),)
+	global TEMP
+	TEMP = sorted(list(tuples), key=lambda element: element[2])
+	return TEMP
+
+def pop_item():
+	"""
+		* Pops an item from the global list of items, once a user moves on the next item in the hunt.
+	"""
+	global TEMP
+	del TEMP[0]
+
+def verify_id(usr_input):
+    """
+        * Checks the user input against the item id and returns a boolean result
+    """
+    global TEMP
+    if usr_input == TEMP[0][0]:
+        return True
+    else:
+        return False

@@ -4,9 +4,7 @@ from django.contrib import admin
 from hunts import views
 
 urlpatterns = patterns('',
- 
-	url(r'^getdata/(?P<id>[0-9]{3})/$', views.get_data, name='hunt_get_data'),
-	url(r'^welcome$', views.render_hunt, name='hunt_welcome'),
+	url(r'^welcome/(?P<id>[0-9]{3})$', views.render_hunt, name='hunt_welcome'),
 	url(r'^clue$', views.render_clue, name='rend_clue'),
     url(r'^verify$', views.render_verify, name='rend_verify'),
 	url(r'^result$', 		views.render_result, 	name='rend_result'),
