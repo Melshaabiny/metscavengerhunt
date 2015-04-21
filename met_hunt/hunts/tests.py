@@ -99,15 +99,15 @@ class hunts_test(TestCase):
 		"""
 		**test_congrats** tests if render_congrats is ran at the correct url
 		"""
-		with patch('hunts.views.render_congrats') as reg:
+		with patch('hunts.views.render_to_response') as rend:
 			request = MagicMock()
-			reg(request)
+			views.render_congrats(request)
 			#self.client.get('/hunts/congrats/')
 			#try:
 			#	assert reg.called
 			#except AssertionError:
 			#	print "render_congrats was not called at the url: /hunts/congrats/"
-			reg.assert_called_with(request)
+			rend.assert_called_with("hunts/congrats.html", {})
 
 	def test_correct(self):
 		with patch('hunts.views.render_to_response') as rend:
