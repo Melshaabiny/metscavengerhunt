@@ -37,11 +37,11 @@
 						<li class="has-dropdown not-click">
 							<a href="#">Categories</a>
 							<ul class="dropdown">
-								<li><a href= {% url "hunts.views.render_hunt" '001' %}>Ancient Art Hunt</a></li>
-								<li><a href= {% url "hunts.views.render_hunt" '002' %}>Medieval Art Hunt</a></li>
-								<li><a href= {% url "hunts.views.render_hunt" '003'%}>Asian Art Hunt</a></li>
-								<li><a href= {% url "hunts.views.render_hunt" '004'%}>Modern Art Hunt</a></li>
-								<li><a href= {% url "hunts.views.render_hunt" '005' %}>European Art Hunt</a></li>
+								<li><a href= {% url "hunts.views.get_data" '001' %}>Ancient Art Hunt</a></li>
+								<li><a href= {% url "hunts.views.get_data" '002' %}>Medieval Art Hunt</a></li>
+								<li><a href= {% url "hunts.views.get_data" '003'%}>Asian Art Hunt</a></li>
+								<li><a href= {% url "hunts.views.get_data" '004'%}>Modern Art Hunt</a></li>
+								<li><a href= {% url "hunts.views.get_data" '005' %}>European Art Hunt</a></li>
 							</ul>
 						</li>
 						<li><a href="#">Create Hunts</a></li>
