@@ -14,7 +14,7 @@
 				<tbody>
 					{% for thread in threads %}
 						<tr>
-							<td><a href="#">{{ thread.type }}</a></td>
+							<td><a href={% url 'forum.views.modern_thread' %}>{{ thread.type }}</a></td>
 							<td>{{ thread.description }}</td>
 							<td>{{ thread.total_post }}</td>
 						</tr>
