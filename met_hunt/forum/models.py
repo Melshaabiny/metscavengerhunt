@@ -37,6 +37,7 @@ class QuestionAsked(models.Model):
 	description = models.TextField()
 	status = models.BooleanField(default=False)
 	when = models.DateField(auto_now_add=True)
+	view = models.IntegerField(default=0)
 
 	def __str__(self):
 		return "%s's Questions" % (self.user.username)

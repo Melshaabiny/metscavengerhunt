@@ -13,7 +13,7 @@ from django.contrib.auth.models import User
 from mock import MagicMock
 from mock import Mock
 from mock import patch
-from user_auth.views import login, logout_user, register
+from user_auth.views import login_user, logout_user, register
 from django.http import QueryDict
 from django.utils.datastructures import MultiValueDict
 import unittest
@@ -37,6 +37,139 @@ class user_authTest(unittest.TestCase):
 		User.objects.all().delete() # clean up the user database.
 
 
+###### Unit tests
+#####################################################
+####################register unit tests##############
+	def test_unit_register_with_POST(self):
+		"""
+		We need to mock several things to make this unittest.
+
+			1. request
+			2. register_form() : For this, make seperate test.
+				- request has **method** attribute that specifies the method of the form.
+			3. Need to mock RegisterForm because we are not testing the register function.
+				- RegisterForm instance should have is_valid() method that returns boolean.
+			4. We need to mock HttpResponseRedirect.
+		"""
+		with patch('user_auth.views.RegisterForm') as form:
+			with patch('user_auth.views.HttpResponseRedirect') as redir:
+				request = MagicMock()
+				request.method = "POST" ## this will pass if request.POST == "POST" part.
+				request.POST = "some_input"
+				form.return_value = Mock()
+				form.return_value.is_valid = Mock(return_value=True)
+				# mock register_form
+				form.return_value.register_form = Mock(return_value=None)
+				register(request)
+				# make function call
+				form.assert_called_with("some_input")
+				redir.assert_called_with('/')
+				self.assertTrue(form.return_value.register_form.called)
+
+	def test_unit_register_with_invalidPOST(self):
+		"""
+		This function tests the **register()** function with invalid post data.
+		we should mock
+
+			1. request
+			2. RegisterForm
+				- is_valid()
+			3. args
+		"""
+
+		with patch('user_auth.views.RegisterForm') as reg:
+			request = MagicMock()
+			request.method = "POST"
+			request.POST = "some input" # make input to RegisterForm
+			reg.return_value = Mock()
+			reg.return_value.is_valid = Mock(return_value=False) # make it pass the if part.
+			reg.return_value.register_form = Mock(return_value=None)
+			with patch('user_auth.views.render_to_response') as render:
+				render.return_value = "some value"
+				register(request)
+
+				# asserts
+				reg.assert_called_with("some input")
+				self.assertTrue(not reg.return_value.register_form.called)
+				self.assertTrue(render.called)
+
+	def test_unit_register_with_get(self):
+		"""
+		This test function tests if **register()** is called with get method.
+		We need to mock
+
+			1. request
+			2. RegisterForm
+			3. render_to_response
+		"""
+
+		with patch('user_auth.views.RegisterForm') as reg:
+			request = MagicMock()
+			request.method = "GET"
+			reg.return_value = Mock()
+
+			# For testing if we execute correct else statement.
+			reg.return_value.is_valid = Mock(return_value=False)
+			with patch('user_auth.views.render_to_response') as render:
+				render.return_value = True
+				register(request)
+
+				# asserts
+				self.assertTrue(not reg.return_value.is_valid.called)
+				self.assertTrue(render.called)
+
+
+########################################################
+####################logout_user unit tests##############
+	def test_unit_logout_user(self):
+		"""
+		This function tests **logout_user()** function.
+		We need to mock
+
+			1. request
+			2. render_to_response
+			3. logout
+		"""
+
+		with patch('user_auth.views.logout') as logout:
+			request = MagicMock()
+			with patch('user_auth.views.render_to_response') as render:
+				logout_user(request)
+				logout.assert_called_with(request)
+				self.assertTrue(render.called)
+
+
+########################################################
+####################logout_user unit tests##############
+	def test_unit_login_user_with_post(self):
+		"""
+		This function tests **login_user()** with post data.
+		We need to mock
+
+			1. request
+			2. LogInForm
+				- is_valid
+				- cleaned_data
+			3. authenticate
+				- is_active
+			4. render_to_response
+		"""
+		with patch('user_auth.views.LogInForm') as form:
+			request = MagicMock()
+			request.method = "POST"
+			request.POST = "some data"
+
+			form.return_value = Mock()
+			form.return_value.is_valid = Mock(return_value=True)
+			form.return_value.login_process = Mock()
+			with patch('user_auth.views.render_to_response') as render:
+				login_user(request)
+				form.return_value.login_process.assert_called_with(request)
+				form.assert_called_with("some data")
+				self.assertTrue(render.called)
+
+
+#### Integration Tests
 ###################################################################################
 ###############Test Register
 
