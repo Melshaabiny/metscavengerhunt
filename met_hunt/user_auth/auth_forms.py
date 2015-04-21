@@ -18,6 +18,23 @@ class RegisterForm(forms.Form):
 	last_name = forms.CharField(label = "Last Name", max_length = 50, required=False)
 	email_address = forms.EmailField(label = "Email", max_length = 50, required=False)
 
+	def register_form(self):
+		# Use form.cleaned_data to save the user information.
+		# ...
+		# data = form.cleaned_data
+		# Access user name using data['user_name'], password using data['password']
+		# and email using data['email_address']. See auth_forms.py
+		user = User.objects.create_user(username = self.cleaned_data['user_name'],
+										password = self.cleaned_data['password'],
+										first_name = self.cleaned_data['first_name'],
+										last_name = self.cleaned_data['last_name'],
+										email = self.cleaned_data['email_address'])
+
+		# create empty userinfo
+		user_info = UserInfo.objects.create(user=user)
+
+		user.save()
+		user_info.save()
 	
 
 class LogInForm(forms.Form):
@@ -29,6 +46,19 @@ class LogInForm(forms.Form):
 	password = forms.CharField(max_length = 50, 
 							   label = "Password", 
 							   widget = forms.PasswordInput())
+
+	def login_process(self, request):
+		user_name = self.cleaned_data['user_name']
+		password = self.cleaned_data['password']
+
+		# instanciate the user object.
+		user = authenticate(username = user_name, password = password)
+
+		if user is not None:
+			if user.is_active:
+				login(request, user)
+				return user
+		return None
 
 
 class EditForm(forms.Form):

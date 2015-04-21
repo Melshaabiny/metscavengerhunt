@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'user_auth',
 	'tutorial_hunt',
     'hunts',
+    'forum',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -88,6 +89,7 @@ TEMPLATE_DIRS = (
     'met_hunt/templates/',
     'user_auth/templates/',
     'tutorial_hunt/templates/',
+    'forum/templates/',
     )
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
