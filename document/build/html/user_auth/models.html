@@ -1,0 +1,260 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Model &mdash; MetDoc 0.0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="MetDoc 0.0.1 documentation" href="../index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">MetDoc 0.0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="model">
+<h1>Model<a class="headerlink" href="#model" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-user_auth.models"></span><p>This user_auth.models defined several user information.</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><strong>UserInfo</strong> defines those neccessary user information such as the date when each user registered, picture, expert_level and area of expertises.</li>
+<li><strong>FriendList</strong> defines the list of friend for each user. Each user can have many friends.</li>
+</ol>
+</div></blockquote>
+<dl class="class">
+<dt id="user_auth.models.Answered">
+<em class="property">class </em><code class="descclassname">user_auth.models.</code><code class="descname">Answered</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/models.html#Answered"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.models.Answered" title="Permalink to this definition">¶</a></dt>
+<dd><p>Any question can be answered by some other users. <strong>Answered</strong> is model to relate a question 
+is answered by whom and when. Many questions can be aswered by many users.</p>
+<dl class="exception">
+<dt id="user_auth.models.Answered.DoesNotExist">
+<em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#user_auth.models.Answered.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="user_auth.models.Answered.MultipleObjectsReturned">
+<em class="property">exception </em><code class="descclassname">Answered.</code><code class="descname">MultipleObjectsReturned</code><a class="headerlink" href="#user_auth.models.Answered.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="user_auth.models.Answered.answeredBy">
+<code class="descclassname">Answered.</code><code class="descname">answeredBy</code><a class="headerlink" href="#user_auth.models.Answered.answeredBy" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="user_auth.models.Answered.get_next_by_when">
+<code class="descclassname">Answered.</code><code class="descname">get_next_by_when</code><span class="sig-paren">(</span><em>*moreargs</em>, <em>**morekwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#user_auth.models.Answered.get_next_by_when" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="user_auth.models.Answered.get_previous_by_when">
+<code class="descclassname">Answered.</code><code class="descname">get_previous_by_when</code><span class="sig-paren">(</span><em>*moreargs</em>, <em>**morekwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#user_auth.models.Answered.get_previous_by_when" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="user_auth.models.Answered.objects">
+<code class="descclassname">Answered.</code><code class="descname">objects</code><em class="property"> = &lt;django.db.models.manager.Manager object&gt;</em><a class="headerlink" href="#user_auth.models.Answered.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="user_auth.models.Answered.questionBy">
+<code class="descclassname">Answered.</code><code class="descname">questionBy</code><a class="headerlink" href="#user_auth.models.Answered.questionBy" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="user_auth.models.FriendList">
+<em class="property">class </em><code class="descclassname">user_auth.models.</code><code class="descname">FriendList</code><span class="sig-paren">(</span><em>id</em>, <em>user_id</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/models.html#FriendList"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.models.FriendList" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="exception">
+<dt id="user_auth.models.FriendList.DoesNotExist">
+<em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#user_auth.models.FriendList.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="user_auth.models.FriendList.MultipleObjectsReturned">
+<em class="property">exception </em><code class="descclassname">FriendList.</code><code class="descname">MultipleObjectsReturned</code><a class="headerlink" href="#user_auth.models.FriendList.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="user_auth.models.FriendList.objects">
+<code class="descclassname">FriendList.</code><code class="descname">objects</code><em class="property"> = &lt;django.db.models.manager.Manager object&gt;</em><a class="headerlink" href="#user_auth.models.FriendList.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="user_auth.models.FriendList.user">
+<code class="descclassname">FriendList.</code><code class="descname">user</code><a class="headerlink" href="#user_auth.models.FriendList.user" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="user_auth.models.QuestionAsked">
+<em class="property">class </em><code class="descclassname">user_auth.models.</code><code class="descname">QuestionAsked</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/models.html#QuestionAsked"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.models.QuestionAsked" title="Permalink to this definition">¶</a></dt>
+<dd><p>This model <strong>QuestionAsked</strong> is related to the questions that a user asked on the website. It 
+has <em>title</em>, <em>description</em> and the <em>status</em> which indicate if the question is answered or not. This model should be
+one-to-many from user to QuestionAsked since each user can have many asked questions.</p>
+<dl class="exception">
+<dt id="user_auth.models.QuestionAsked.DoesNotExist">
+<em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#user_auth.models.QuestionAsked.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="user_auth.models.QuestionAsked.MultipleObjectsReturned">
+<em class="property">exception </em><code class="descclassname">QuestionAsked.</code><code class="descname">MultipleObjectsReturned</code><a class="headerlink" href="#user_auth.models.QuestionAsked.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="user_auth.models.QuestionAsked.answered_set">
+<code class="descclassname">QuestionAsked.</code><code class="descname">answered_set</code><a class="headerlink" href="#user_auth.models.QuestionAsked.answered_set" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="user_auth.models.QuestionAsked.get_next_by_when">
+<code class="descclassname">QuestionAsked.</code><code class="descname">get_next_by_when</code><span class="sig-paren">(</span><em>*moreargs</em>, <em>**morekwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#user_auth.models.QuestionAsked.get_next_by_when" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="user_auth.models.QuestionAsked.get_previous_by_when">
+<code class="descclassname">QuestionAsked.</code><code class="descname">get_previous_by_when</code><span class="sig-paren">(</span><em>*moreargs</em>, <em>**morekwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#user_auth.models.QuestionAsked.get_previous_by_when" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="user_auth.models.QuestionAsked.objects">
+<code class="descclassname">QuestionAsked.</code><code class="descname">objects</code><em class="property"> = &lt;django.db.models.manager.Manager object&gt;</em><a class="headerlink" href="#user_auth.models.QuestionAsked.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="user_auth.models.QuestionAsked.user">
+<code class="descclassname">QuestionAsked.</code><code class="descname">user</code><a class="headerlink" href="#user_auth.models.QuestionAsked.user" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="user_auth.models.UserInfo">
+<em class="property">class </em><code class="descclassname">user_auth.models.</code><code class="descname">UserInfo</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/models.html#UserInfo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.models.UserInfo" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>UserInfo</strong> model defines extra user information such as picture, expert level and areas, and 
+their description.</p>
+<p>Here are the attributes of the model.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">User:</th><td class="field-body">This is one-to-one relationship from the django User class to UserInfor.</td>
+</tr>
+</tbody>
+</table>
+<dl class="exception">
+<dt id="user_auth.models.UserInfo.DoesNotExist">
+<em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#user_auth.models.UserInfo.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="user_auth.models.UserInfo.MultipleObjectsReturned">
+<em class="property">exception </em><code class="descclassname">UserInfo.</code><code class="descname">MultipleObjectsReturned</code><a class="headerlink" href="#user_auth.models.UserInfo.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="user_auth.models.UserInfo.get_expert_level_display">
+<code class="descclassname">UserInfo.</code><code class="descname">get_expert_level_display</code><span class="sig-paren">(</span><em>*moreargs</em>, <em>**morekwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#user_auth.models.UserInfo.get_expert_level_display" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="user_auth.models.UserInfo.objects">
+<code class="descclassname">UserInfo.</code><code class="descname">objects</code><em class="property"> = &lt;django.db.models.manager.Manager object&gt;</em><a class="headerlink" href="#user_auth.models.UserInfo.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="user_auth.models.UserInfo.user">
+<code class="descclassname">UserInfo.</code><code class="descname">user</code><a class="headerlink" href="#user_auth.models.UserInfo.user" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/user_auth/models.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, WebDev.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.3</a>
+      
+      |
+      <a href="../_sources/user_auth/models.txt"
+          rel="nofollow">Page source</a></li>
+    </div>
+
+    
+
+    
+  </body>
+</html>

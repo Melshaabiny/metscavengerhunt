@@ -1,0 +1,263 @@
+[
+{
+    "fields": {
+        "Category": "Ancient Art",
+        "Start": "Start at the Robert and Reuee Belfer court on the first floor.",
+        "Title": "Ancient Art Hunt"
+    },
+    "model": "hunts.hunts",
+    "pk": 1
+},
+{
+    "fields": {
+        "Category": "Medieval Art",
+        "Start": "Start In room 305, The room with the Great Choir Gates.",
+        "Title": "Medieval Art Hunt"
+    },
+    "model": "hunts.hunts",
+    "pk": 2
+},
+{
+    "fields": {
+        "Category": "Greek and Roman"
+    },
+    "model": "hunts.items",
+    "pk": "03.12.14"
+},
+{
+    "fields": {
+        "Category": "Egyptian Art"
+    },
+    "model": "hunts.items",
+    "pk": "11.154.1AB"
+},
+{
+    "fields": {
+        "Category": "Egyptian Art"
+    },
+    "model": "hunts.items",
+    "pk": "12.181.198"
+},
+{
+    "fields": {
+        "Category": "Egyptian Art"
+    },
+    "model": "hunts.items",
+    "pk": "131"
+},
+{
+    "fields": {
+        "Category": "Greek and Roman"
+    },
+    "model": "hunts.items",
+    "pk": "14.130.9"
+},
+{
+    "fields": {
+        "Category": "Egyptian Art"
+    },
+    "model": "hunts.items",
+    "pk": "20.3.7"
+},
+{
+    "fields": {
+        "Category": "Greek and Roman"
+    },
+    "model": "hunts.items",
+    "pk": "27.122.9"
+},
+{
+    "fields": {
+        "Category": "Ancient Near Eastern"
+    },
+    "model": "hunts.items",
+    "pk": "31.13.1"
+},
+{
+    "fields": {
+        "Category": "Ancient Near Eastern"
+    },
+    "model": "hunts.items",
+    "pk": "43.89.3"
+},
+{
+    "fields": {
+        "Category": "Ancient Near Eastern"
+    },
+    "model": "hunts.items",
+    "pk": "74.51.2467"
+},
+{
+    "fields": {
+        "Category": "Medieval Art"
+    },
+    "model": "hunts.items",
+    "pk": "53.37"
+},
+{
+    "fields": {
+        "Category": "Medieval Art"
+    },
+    "model": "hunts.items",
+    "pk": "27.18.2"
+},
+{
+    "fields": {
+        "Category": "Arms and Armors"
+    },
+    "model": "hunts.items",
+    "pk": "14.100.33"
+},
+{
+    "fields": {
+        "Category": "Arms and Armors"
+    },
+    "model": "hunts.items",
+    "pk": "1986.205"
+},
+{
+    "fields": {
+        "Category": "Islamic Art"
+    },
+    "model": "hunts.items",
+    "pk": "1993.14"
+},
+{
+    "fields": {
+        "Category": "Islamic Art"
+    },
+    "model": "hunts.items",
+    "pk": "65.109.2"
+},
+{
+    "fields": {
+        "item": "14.130.9",
+        "hunt": 1,
+        "number": 1,
+        "clue": "Find a barelief with Demeter, Persephone, and Triptolemos"
+    },
+    "model": "hunts.has",
+    "pk": 1
+},
+{
+    "fields": {
+        "item": "27.122.9",
+        "hunt": 1,
+        "number": 2,
+        "clue": "Find the double faced Kantharos"
+    },
+    "model": "hunts.has",
+    "pk": 2
+},
+{
+    "fields": {
+        "item": "03.12.14",
+        "hunt": 1,
+        "number": 3,
+        "clue": "A mirroring Hercules may be getting eaten by a lion! Find him."
+    },
+    "model": "hunts.has",
+    "pk": 3
+},
+{
+    "fields": {
+        "item": "31.13.1",
+        "hunt": 1,
+        "number": 4,
+        "clue": "I am the symbol of Babylonian goddess of love and war. I face in the opposite cardinal direction of my brother. Who am I?"
+    },
+    "model": "hunts.has",
+    "pk": 4
+},
+{
+    "fields": {
+        "item": "43.89.3",
+        "hunt": 1,
+        "number": 5,
+        "clue": "Find a 'Female Figure'. It may not look quite female!"
+    },
+    "model": "hunts.has",
+    "pk": 5
+},
+{
+    "fields": {
+        "item": "74.51.2467",
+        "hunt": 1,
+        "number": 6,
+        "clue": "Find an item that looks Egyptian, but is actually from Cyprus"
+    },
+    "model": "hunts.has",
+    "pk": 6
+},
+{
+    "fields": {
+        "item": "20.3.7",
+        "hunt": 1,
+        "number": 7,
+        "clue": "This lade is painted in red, yellow, blue, and green and holds a Duck. Find her!"
+    },
+    "model": "hunts.has",
+    "pk": 7
+},
+{
+    "fields": {
+        "item": "11.154.1AB",
+        "hunt": 1,
+        "number": 8,
+        "clue": "Find an item with a lid wide open. Its body is carved with texts and scenes relating to the after life. It's big enouch to fit a person! "
+    },
+    "model": "hunts.has",
+    "pk": 8
+},
+{
+    "fields": {
+        "item": "12.181.198",
+        "hunt": 1,
+        "number": 9,
+        "clue": "This is a quartet of lionesses, each holds a key of life. Find the one that lost its key!"
+    },
+    "model": "hunts.has",
+    "pk": 9
+},
+{
+    "fields": {
+        "item": "131",
+        "hunt": 1,
+        "number": 10,
+        "clue": "The four figures from your previous clue face your final destination!"
+    },
+    "model": "hunts.has",
+    "pk": 10
+},
+
+{
+    "fields": {
+        "item": "53.37",
+        "hunt": 2,
+        "number": 1,
+        "clue": "Locate the Holy Dove flying over the red limestone."
+    },
+    "model": "hunts.has",
+    "pk": 11
+},
+{
+    "fields": {
+        "item": "27.18.2",
+        "hunt": 2,
+        "number": 2,
+        "clue": "Locate the Red Papal Tiara."
+    },
+    "model": "hunts.has",
+    "pk": 12
+},
+{
+    "fields": {
+        "item": "14.100.33",
+        "hunt": 2,
+        "number": 3,
+        "clue": "Find the Happy Old Man."
+    },
+    "model": "hunts.has",
+    "pk": 13
+}
+]
