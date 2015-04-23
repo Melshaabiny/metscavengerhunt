@@ -4,19 +4,15 @@ from django.http import JsonResponse
 
 # Create your views here.
 
-def thread_main(request):
+def thread_layout(request):
 	"""
 	This views.py is responsible for the view of main thread page. It should display
 	all type of threads with their description and total number of posts in each thread.
 	"""
-	threads = Thread.objects.all()
-	args = {'threads':threads}
-	return render_to_response('forum/thread_main.html', args)
+	return render_to_response('forum/thread_layout.html')
 
-def modern_thread(request):
-	thread = Thread.objects.get(type='modern')
-	args = {'total_post' : thread.total_post}
-	return render_to_response('forum/modern_thread.html', args)
+def modern(request):
+	return render_to_response('forum/modern.html')
 
 def load_data(request):
 	if request.method == "GET":
@@ -35,7 +31,6 @@ def load_data(request):
 							  'description' : each.description,
 							  'when': each.when,
 							  'view' : each.view,
-							  'username' : each.user.username,
-							  'picture' : each.user.userinfo.picture.path}]
-
+							  'username' : each.user.username
+							  }]
 		return JsonResponse(data)

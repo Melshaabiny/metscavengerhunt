@@ -26,18 +26,8 @@ def edit(request):
 		# make changes.
 		form = EditForm(request.POST, request.FILES)
 		if form.is_valid():
-			# form.process(request.user)
-			if form.cleaned_data['first_name']:
-				request.user.first_name = form.cleaned_data['first_name']
-			if form.cleaned_data['last_name']:
-				request.user.last_name = form.cleaned_data['last_name']
-			if form.cleaned_data['picture']:
-				user_info = UserInfo.objects.get(user = user)
-				user_info.picture = form.cleaned_data['picture']
-				user_info.save()
-
-			request.user.save()
-			args = {'editted':True, 'user':request.user}
+			user = form.process(request.user)
+			args = {'editted':True, 'user':user}
 			args.update(csrf(request))
 			return render_to_response('user_auth/edit.html', args)
 	else:

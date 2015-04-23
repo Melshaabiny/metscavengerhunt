@@ -88,3 +88,5 @@ class EditForm(forms.Form):
 			user_info.picture = self.cleaned_data['picture']
 			user_info.save()
 		user.save()
+
+		return user

@@ -13,7 +13,8 @@ from django.contrib.auth.models import User
 from mock import MagicMock
 from mock import Mock
 from mock import patch
-from user_auth.views import login_user, logout_user, register
+from user_auth.views import login_user, logout_user, register, profile, edit
+from user_auth.models import UserInfo
 from django.http import QueryDict
 from django.utils.datastructures import MultiValueDict
 import unittest
@@ -167,6 +168,85 @@ class user_authTest(unittest.TestCase):
 				form.return_value.login_process.assert_called_with(request)
 				form.assert_called_with("some data")
 				self.assertTrue(render.called)
+
+
+########################################################
+####################logout_user unit tests##############
+	def test_unit_profile_authentication_check(self):
+		"""
+		For this test, we need to mock
+
+			1. login_required
+			2. request
+				- user
+				- user.is_authenticated
+			3. render_to_response
+		"""
+
+		with patch('user_auth.views.login_required') as require:
+			request = MagicMock()
+			request.user.is_authenticated = Mock(return_value=True)
+			with patch('user_auth.views.render_to_response') as render:
+				profile(request)
+				self.assertTrue(render.called)
+				request.user.is_authenticated.assert_called_with()
+
+
+########################################################
+####################logout_user unit tests##############
+	def test_unit_edit_with_post(self):
+		"""
+		This function test with post data to **edit()**.
+		We need to mock
+
+			1. login_required
+			2. request
+				- method
+			3. EditForm
+				- is_valid
+				- process
+			4. render_to_response
+		"""
+
+		with patch('user_auth.views.EditForm') as form:
+			request = MagicMock()
+			request.method = "POST"
+			request.POST = "post data"
+			request.FILES = "files"
+			request.user = Mock()
+			request.user.is_authenticated = Mock(return_value=True)
+
+			form.return_value = Mock()
+			form.return_value.is_valid = Mock(return_value=True)
+			form.return_value.process = Mock()
+			with patch('user_auth.views.login_required') as log:
+				with patch('user_auth.views.render_to_response') as render:
+					edit(request)
+					form.assert_called_with(request.POST, request.FILES)
+					self.assertTrue(render.called)
+					form.return_value.process.assert_called_with(request.user)
+
+########################################################
+####################logout_user unit tests##############
+	def test_unit_edit_with_get(self):
+		"""
+		This tests **edit()** with get method.
+		We need to mock 
+
+			1. request
+			2. EditForm
+			3. render_to_response
+		"""
+
+		with patch('user_auth.views.EditForm') as form:
+			request = MagicMock()
+			request.user = Mock()
+			form.return_value = Mock()
+			with patch('user_auth.views.render_to_response') as render:
+				edit(request)
+				self.assertTrue(form.called)
+				self.assertTrue(render.called)
+
 
 
 #### Integration Tests
@@ -360,8 +440,8 @@ class user_authTest(unittest.TestCase):
 		appropriate post data when request.method is POST method. 
 		"""
 		# create temp user.
-		User.objects.create_user(username='edit_EditForm', password='password')
-
+		user = User.objects.create_user(username='edit_EditForm', password='password')
+		UserInfo.objects.create(user=user)
 		# log the user in.
 		self.client.login(username='edit_EditForm', password='password')
 
