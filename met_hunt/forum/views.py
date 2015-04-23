@@ -14,6 +14,9 @@ def thread_layout(request):
 def modern(request):
 	return render_to_response('forum/modern.html')
 
+def create(request):
+	return render_to_response('forum/create_post.html')
+
 def load_data(request):
 	if request.method == "GET":
 		# instantiate the thread.
