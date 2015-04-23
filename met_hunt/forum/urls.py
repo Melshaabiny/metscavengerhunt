@@ -9,4 +9,5 @@ urlpatterns = patterns('',
 	url(r'^thread/$', views.thread_layout, name='thread_layout'),
 	url(r'^thread/modern/$', views.modern, name='modern'),
 	url(r'^thread/load_data/$', views.load_data, name='load_data'),
+	url(r'^thread/create/$', views.create, name='create'),
 )
