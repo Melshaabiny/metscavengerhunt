@@ -37,3 +37,7 @@ def load_data(request):
 							  'username' : each.user.username
 							  }]
 		return JsonResponse(data)
+
+def submit(request):
+	print request.body
+	return render_to_response('forum/modern.html')
