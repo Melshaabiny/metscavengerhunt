@@ -10,9 +10,9 @@ body {
 
 .ng-enter{
 	opacity: 0;
-	-webkit-transition: 2s;
-	-o-transition: 2s;
-	transition: 2s;
+	-webkit-transition: 1s;
+	-o-transition: 1s;
+	transition: 1s;
 }
 
 .ng-enter-active{
