@@ -7,7 +7,9 @@
 	<div class="slide">
 		<img class="icon" src="../../static/img/museumhunters.svg" alt="Museum Hunters Logo"/>
 		<h1>Oops! That was the wrong ID number</h1>
-		<a href={% url "hunts.views.render_verify" %} class = "button">Try again</a>
+		<form action={% url "hunts.views.render_verify" %}>
+			<input class="submit" type="submit" value="Try again">
+		</form>
 </div>
 
 {% endblock %}

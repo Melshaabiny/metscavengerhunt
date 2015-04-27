@@ -167,7 +167,7 @@ img, object, embed {
 
 .icon {
 	display: block;
-	padding-top: 3%;
+	padding-top: 2%;
 	position: relative;
 	margin: 0 auto 50px;
 	width: 50%;
@@ -200,4 +200,16 @@ img, object, embed {
 		transform: translateX(0);
 	}
 
+}
+
+input[type=submit], button {
+    border: 1px solid #fff;
+    color: #fff;
+    background: #C6B491;
+    padding: 3px 20px;
+    border-radius: 3px;
+}
+
+input[type=submit]:hover, button:hover {
+    background: #635A48;
 }

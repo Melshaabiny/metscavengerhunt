@@ -6,9 +6,11 @@
 <div class="row">
 	<div class="slide">
 		<h1>Correct!<h1>
-		<img class="icon" src="{{url}}">
+		<img src="{{url}}" height="15%" width="15%">
 		<h1>To move to the next clue please press "Next"</h1>
-		<a href={% url "hunts.views.next_proc" %} class = "botton">Next</a>		
+		<form action={% url "hunts.views.next_proc" %}>
+			<input class="submit" type="submit" value="Next">
+		</form>
 	</div>
 </div>
 
