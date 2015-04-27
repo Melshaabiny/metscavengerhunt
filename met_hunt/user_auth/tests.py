@@ -1,13 +1,13 @@
 """
 Unit test for **user_auth** django application.
 
-The list of tests are : 
+The list of tests are :
 
-    - **test_login_status_code()** checks if accessing url 
+    - **test_login_status_code()** checks if accessing url
     **/user_auth/login/** returns status_code 200.
-    - **test_register_status_code()** checks if accessing 
+    - **test_register_status_code()** checks if accessing
     url **/user_auth/register/** returns status_code 200/
-    - **test_register_user()** checks if **RegisterForm.register_user()** 
+    - **test_register_user()** checks if **RegisterForm.register_user()**
     gets called when **user_auth.views.register** gets POST data.
 """
 
@@ -28,8 +28,8 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 class user_authTest(unittest.TestCase):
     def setUp(self):
         """
-        **setUp** method sets up all neccessary modules. 
-        djanfo.TestCase inherits unittest so it follows 
+        **setUp** method sets up all neccessary modules.
+        djanfo.TestCase inherits unittest so it follows
         same syntax that the unittest libary use.
         """
         self.client = Client()
