@@ -1,8 +1,11 @@
+"""
+        * implement models for Hunts and Items and their relationship
+        * add functions that set each Hunt's data and the data of Items that belong to it
+        * pop_item and verify_id are funtions that are called in the views.py
+        * that processes each hunt's progress.
+"""
 from django.db import models
-"""
-        * Create your models here.
-        * ----------Tables----------
-"""
+
 global TEMP
 class Hunts(models.Model):
     """
@@ -73,15 +76,22 @@ def set_ItemsData(id_hunt):
     """
     hunt_items = Has.objects.filter(hunt_id=id_hunt)
     tuples = ()
-    for x in range(0, hunt_items.count()):
-        tuples = tuples + ((hunt_items[x].item.ID, hunt_items[x].clue, hunt_items[x].number, hunt_items[x].hint, hunt_items[x].image, hunt_items[x].fact),)
+    for obj in range(0, hunt_items.count()):
+        item_id = hunt_items[obj].item.ID
+        item_clue = hunt_items[obj].clue
+        item_number = hunt_items[obj].number
+        item_hint = hunt_items[obj].hint
+        item_image = hunt_items[obj].image
+        item_fact = hunt_items[obj].fact
+        tuples = tuples + ((item_id, item_clue, item_number, item_hint, item_image, item_fact), )
     global TEMP
     TEMP = sorted(list(tuples), key=lambda element: element[2])
     return TEMP
 
 def pop_item(lst):
     """
-        * Pops an item from the global list of items, once a user moves on the next item in the hunt.
+        * Pops an item from the global list of items,
+        once a user moves on the next item in the hunt.
     """
     del lst[0]
     return lst
