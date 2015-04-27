@@ -24,7 +24,10 @@ def load_data(request):
     if request.method == "GET":
         # instantiate the thread.
         thread = Thread.objects.get(type="modern")
-        posts = QuestionAsked.objects.filter(thread=thread)
+        posts = QuestionAsked.objects.filter(thread=thread).order_by('-when')
+        test = posts[:3]
+        for i in test:
+          print i.when
         ########## The json file always formatted as 
                    # {
                    # 'data' : [

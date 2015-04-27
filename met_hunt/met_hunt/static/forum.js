@@ -7,6 +7,7 @@ modern_thread.config(function($locationProvider){
 });
 modern_thread.controller('modern_controller', function($scope, $http, $cookies, $location){
 	var load = function(){
+		$scope.posts = {}
 		$http.get('load_data/')
 			 .success(function(data){
 			 	$scope.posts = data.json;

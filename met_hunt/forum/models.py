@@ -36,7 +36,7 @@ class QuestionAsked(models.Model):
 	title = models.CharField(max_length=50)
 	description = models.TextField()
 	status = models.BooleanField(default=False)
-	when = models.DateField(auto_now_add=True)
+	when = models.DateTimeField(auto_now_add=True)
 	view = models.IntegerField(default=0)
 
 	def __str__(self):
