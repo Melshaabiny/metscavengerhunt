@@ -235,7 +235,9 @@
         "item": "53.37",
         "hunt": 2,
         "number": 1,
-        "clue": "Locate the Holy Dove flying over the red limestone."
+        "clue": "Locate the Holy Dove flying over the red limestone.",
+        "hint": "Jesus is holding onto his wound.",
+        "image": "http://images.metmuseum.org/CRDImages/cl/original/DT201109.jpg"
     },
     "model": "hunts.has",
     "pk": 11

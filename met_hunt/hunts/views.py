@@ -3,8 +3,6 @@ from django.shortcuts import redirect
 from hunts.models import Hunts, Items, Has, set_ItemsData, set_HuntsData, pop_item, verify_id
 from django.core.context_processors import csrf
 
-#global TEMP
-
 def render_hunt(request, id):
 	"""
         * Gets triggered with the appropriate hunt id once a user chooses
@@ -53,6 +51,10 @@ def render_result(request):
         else:
             return redirect('rend_incorrect')
 
+def render_hint(request):
+    global temp
+    return render_to_response("hunts/hint.html", {"hint_text":temp[0][3]})
+
 def render_verify(request):
     """
         * render item's verify page
@@ -65,7 +67,8 @@ def render_correct(request):
     """
         * render correct answer's page
     """
-    return render_to_response("hunts/correct.html", {})
+    global temp
+    return render_to_response("hunts/correct.html", {"url":temp[0][4]})
 
 def render_incorrect(request):
     """

@@ -25,6 +25,7 @@ def edit(request):
 	if request.method == 'POST':
 		# make changes.
 		form = EditForm(request.POST, request.FILES)
+		user_info = UserInfo.objects.get(user = request.user)
 		if form.is_valid():
 			# form.process(request.user)
 			if form.cleaned_data['first_name']:
@@ -32,9 +33,10 @@ def edit(request):
 			if form.cleaned_data['last_name']:
 				request.user.last_name = form.cleaned_data['last_name']
 			if form.cleaned_data['picture']:
-				user_info = UserInfo.objects.get(user = user)
 				user_info.picture = form.cleaned_data['picture']
-				user_info.save()
+			if form.cleaned_data['description']:
+				user_info.description = form.cleaned_data['description']
+			user_info.save()
 
 			request.user.save()
 			args = {'editted':True, 'user':request.user}
