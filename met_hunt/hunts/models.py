@@ -29,13 +29,13 @@ class Items(models.Model):
 		* is a part of one or more hunts
 	"""
 	# Official Met issued ID for each item
-	ID = models.CharField(max_length = 20, unique = True, primary_key = True)
+	ID = models.CharField(max_length=20, unique=True, primary_key=True)
 	# Item category is a subset of the Hunt category according to our design
 	# e.g. Hunt category "Ancient Art" contains items from "Egyptian Art",
 	# "Greek and Roman Art", and "Ancient Near Eastern Art"
-	Category = models.CharField(max_length = 200)
+	Category = models.CharField(max_length=200)
 	# Type 		= models.CharField(max_length = 200)
-	partof = models.ManyToManyField(Hunts, through = 'Has')
+	partof = models.ManyToManyField(Hunts, through='Has')
 	def __str__(self):
 		return self.ID
 
@@ -50,6 +50,8 @@ class Has(models.Model):
 	item = models.ForeignKey(Items)
 	number = models.IntegerField() 
 	clue = models.CharField(max_length = 250)
+	hint = models.CharField(max_length=200, default="No hint available")
+	image = models.CharField(max_length=250, default="No image available")
 
 def set_HuntsData(id):
 	"""
@@ -71,7 +73,7 @@ def set_ItemsData(id):
 	hunt_items = Has.objects.filter(hunt_id=id)
 	tuples = ()
 	for x in range(0, hunt_items.count()):
-		tuples = tuples + ((str(hunt_items[x].item.ID), str(hunt_items[x].clue), int(hunt_items[x].number)),)
+		tuples = tuples + ((str(hunt_items[x].item.ID), str(hunt_items[x].clue), int(hunt_items[x].number), str(hunt_items[x].hint), str(hunt_items[x].image)),)
 	global TEMP
 	TEMP = sorted(list(tuples), key=lambda element: element[2])
 	return TEMP

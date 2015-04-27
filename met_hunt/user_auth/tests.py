@@ -14,6 +14,7 @@ from mock import MagicMock
 from mock import Mock
 from mock import patch
 from user_auth.views import login_user, logout_user, register
+from user_auth.models import UserInfo
 from django.http import QueryDict
 from django.utils.datastructures import MultiValueDict
 import unittest
@@ -360,7 +361,9 @@ class user_authTest(unittest.TestCase):
 		appropriate post data when request.method is POST method. 
 		"""
 		# create temp user.
-		User.objects.create_user(username='edit_EditForm', password='password')
+		user = User.objects.create_user(username='edit_EditForm', password='password')
+		UserInfo.objects.create(user = user)
+
 
 		# log the user in.
 		self.client.login(username='edit_EditForm', password='password')
