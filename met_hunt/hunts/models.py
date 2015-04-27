@@ -52,6 +52,7 @@ class Has(models.Model):
     clue = models.CharField(max_length=250)
     hint = models.CharField(max_length=200, default="No hint available")
     image = models.CharField(max_length=250, default="No image available")
+    fact = models.CharField(max_length=250, default="No fact available")
 
 def set_HuntsData(id_hunt):
     """
@@ -73,7 +74,7 @@ def set_ItemsData(id_hunt):
     hunt_items = Has.objects.filter(hunt_id=id_hunt)
     tuples = ()
     for x in range(0, hunt_items.count()):
-        tuples = tuples + ((hunt_items[x].item.ID, hunt_items[x].clue, hunt_items[x].number, hunt_items[x].hint, hunt_items[x].image),)
+        tuples = tuples + ((hunt_items[x].item.ID, hunt_items[x].clue, hunt_items[x].number, hunt_items[x].hint, hunt_items[x].image, hunt_items[x].fact),)
     global TEMP
     TEMP = sorted(list(tuples), key=lambda element: element[2])
     return TEMP
