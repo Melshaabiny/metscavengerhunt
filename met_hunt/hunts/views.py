@@ -72,7 +72,7 @@ def render_correct(request):
         * render correct answer's page
     """
     global temp
-    return render_to_response("hunts/correct.html", {"url":temp[0][4]})
+    return render_to_response("hunts/correct.html", {"url":temp[0][4], "fact":temp[0][5]})
 
 def render_incorrect(request):
     """

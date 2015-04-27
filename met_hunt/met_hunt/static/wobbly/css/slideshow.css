@@ -110,9 +110,9 @@ img, object, embed {
 .slide {
 	position: absolute;
 	top: 0;
-	left: 16%;
-	right: 16%;
-	padding: 1em;
+	left: 1%;
+	right: 1%;
+	padding: em;
 	white-space: initial;
 	text-align: center;
 }
@@ -123,19 +123,19 @@ img, object, embed {
 	font-weight: 400;
 	font-size: 3em;
 	font-size: 3vw;
-	padding-top: 3%;
+	padding-top: 1%;
 	text-shadow: 0 1px 1px rgba(0,0,0,0.05);
 	font-family: 'Flamenco', Arial, sans-serif;
 }
 
 .slide h1 {
-	margin-bottom: 4%;
+	margin-bottom: 1%;
 }
 
 .slide > p {
-	line-height: 1.5;
-	font-size: 0.85em;
-	font-weight: bold;
+	line-height: 1;
+	font-size: 1.5em;
+	font-family: 'Flamenco', Arial, sans-serif;
 }
 
 .slide blockquote {
@@ -167,11 +167,12 @@ img, object, embed {
 
 .icon {
 	display: block;
-	padding-top: 2%;
-	position: relative;
+	padding-top: 1%;
+	position: right;
 	margin: 0 auto 50px;
 	width: 50%;
 	max-width: 160px;
+	max-height: 260px;
 }
 
 @media screen and (max-width: 32em) {
