@@ -1,21 +1,28 @@
+"""
+    * views functions that renders each html throughout a user's hunt progress
+    * starts from the selection of a hunt from the categories list to the Rate Hunt page
+"""
 from django.shortcuts import render_to_response
 from django.shortcuts import redirect
 from hunts.models import set_ItemsData, set_HuntsData, pop_item, verify_id
 from django.core.context_processors import csrf
 
-global temp
+global TEMP
 
-def render_hunt(request, id):
+def render_hunt(request, given_id):
     """
-        * Gets triggered with the appropriate hunt id once a user chooses
+        * gets triggered with the appropriate hunt id once a user chooses
         * a hunt from the categories' drop down menu
-        * Sets the hunt's data (title and starting location) and stores the items data in global var TEMP list
+        * sets the hunt's data (title and starting location)
+        * stores the items data in global var TEMP list
         * finally, it renders the welcome page
     """
-    global temp
-    hunt_dict = set_HuntsData(id)
-    temp = set_ItemsData(id)
-    return render_to_response("hunts/hunt.html", {"title": hunt_dict['hunt title'], "start_pt": hunt_dict['hunt start']})
+    global TEMP
+    hunt_dict = set_HuntsData(given_id)
+    TEMP = set_ItemsData(given_id)
+    hunt_title = hunt_dict['hunt title']
+    hunt_start = hunt_dict['hunt start']
+    return render_to_response("hunts/hunt.html", {"title": hunt_title, "start_pt": hunt_start})
 
 def next_proc(request):
     """
@@ -23,32 +30,33 @@ def next_proc(request):
         * Otherwise, it calls pop_item() to update the global list of items
             and redirects to render_clue()
     """
-    global temp
-    temp = pop_item(temp)
-    if len(temp) > 0:
+    global TEMP
+    TEMP = pop_item(TEMP)
+    if len(TEMP) > 0:
         return redirect('rend_clue')
     else:
         return redirect('rend_congrats')
 
 def render_clue(request):
     """
-        * render item's clue page using global var item_clue as template var
+        * render item's clue page using global var item_clue as TEMPlate var
     """
-    global temp
-    return render_to_response("hunts/clue.html", {"clue_text":temp[0][1]})
+    global TEMP
+    return render_to_response("hunts/clue.html", {"clue_text":TEMP[0][1]})
 
 
 def render_result(request):
     """
-        * based on the user input it either redirects to render_correct(), render_incorrect(), or render_congrats
+        * based on the user input it either redirects to render_correct(),
+        * render_incorrect(), or render_congrats
     """
     if request.method == "POST":
 
         usr_input_value = str(request.POST.get('input', ''))
 
         if verify_id(usr_input_value) == True:
-            global temp
-            if len(temp) == 0:
+            global TEMP
+            if len(TEMP) == 0:
                 return redirect('rend_congrats')
             else:
                 return redirect('rend_correct')
@@ -56,8 +64,11 @@ def render_result(request):
             return redirect('rend_incorrect')
 
 def render_hint(request):
-    global temp
-    return render_to_response("hunts/hint.html", {"hint_text":temp[0][3]})
+    """
+        * render item's hint page
+    """
+    global TEMP
+    return render_to_response("hunts/hint.html", {"hint_text":TEMP[0][3]})
 
 def render_verify(request):
     """
@@ -71,8 +82,8 @@ def render_correct(request):
     """
         * render correct answer's page
     """
-    global temp
-    return render_to_response("hunts/correct.html", {"url":temp[0][4], "fact":temp[0][5]})
+    global TEMP
+    return render_to_response("hunts/correct.html", {"url":TEMP[0][4], "fact":TEMP[0][5]})
 
 def render_incorrect(request):
     """
