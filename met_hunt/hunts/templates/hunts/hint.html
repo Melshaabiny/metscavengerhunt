@@ -6,7 +6,9 @@
 	<div class="slide">
 		<h1>Here's a Hint to help you find your item</h1>
 		<h3>"{{hint_text}}"</h3>
-		<p><br><a href={% url "hunts.views.render_clue" %}>Back</a></p>
+		<br><form action={% url "hunts.views.render_clue" %}>
+			<input class="submit" type="submit" value="Back">
+		</form>
 	</div>
 </div>
 

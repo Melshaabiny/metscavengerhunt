@@ -7,9 +7,10 @@
 		<div class="slide">
 			<img src="../../static/img/museumhunters.svg" alt="Museum Hunters Logo"/>
 			<h1>Welcome to the {{title}}</h1>
-			<p><em>You will be given a series of clues that lead to a piece of art in the museum. <br> Once you've found it there will be an id of numbers on the plaque near the artwork.<br> Use that as your verification code.</em><br>Ready?!</p>
 			<h1>{{start_pt}}</h1>
-			<br><a href={% url "hunts.views.render_clue" %}>Show First Clue</a>
+			<form action={% url "hunts.views.render_clue" %}>
+				<input class = "submit" type="submit" value="Show First Clue">
+			</form>
 			<div class="small-2 medium-6 large 12 columns">
 				<!-- <p class="float right">Where does this paragraph get displayed</p> -->
 			</div>

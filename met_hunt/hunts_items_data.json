@@ -247,7 +247,9 @@
         "item": "27.18.2",
         "hunt": 2,
         "number": 2,
-        "clue": "Locate the Red Papal Tiara."
+        "clue": "Locate the Red Papal Tiara.",
+        "hint": "Missing the keys to the gates of heaven.",
+        "image": "http://images.metmuseum.org/CRDImages/md/original/sf27-18-2s4.jpg"
     },
     "model": "hunts.has",
     "pk": 12
@@ -257,7 +259,9 @@
         "item": "14.100.33",
         "hunt": 2,
         "number": 3,
-        "clue": "Find the Happy Old Man."
+        "clue": "Find the Happy Old Man.",
+        "hint": "Im on a wall surronded by others like me, yet my beard shows my age.",
+        "image": "http://images.metmuseum.org/CRDImages/aa/original/2793.jpg"
     },
     "model": "hunts.has",
     "pk": 13
