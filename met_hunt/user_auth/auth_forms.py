@@ -29,7 +29,10 @@ class RegisterForm(forms.Form):
         # data = form.cleaned_data
         # Access user name using data['user_name'], password using data['password']
         # and email using data['email_address']. See auth_forms.py
-        isvalid = User.objects.get(username=self.cleaned_data['user_name'])
+        try:
+            isvalid = User.objects.get(username=self.cleaned_data['user_name'])
+        except:
+            isvalid = None
         if not isvalid:
             user = User.objects.create_user(username=self.cleaned_data['user_name'],
                                             password=self.cleaned_data['password'],
