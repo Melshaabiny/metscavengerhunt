@@ -238,7 +238,7 @@
         "clue": "Locate the Holy Dove flying over the red limestone.",
         "hint": "Jesus is holding onto his wound.",
         "image": "http://images.metmuseum.org/CRDImages/cl/original/DT201109.jpg",
-        "fact": "There is no historical evidences to prove on which side was Jesus wounded. The Gospels give no information on this subject as well. However, this was conventionally shown in art as being on Jesus' proper right side."
+        "fact": "There are no historical evidences to prove on which side was Jesus wounded. The Gospels give no information on this subject as well. However, it was conventionally shown in art as being on Jesus' proper right side."
     },
     "model": "hunts.has",
     "pk": 11

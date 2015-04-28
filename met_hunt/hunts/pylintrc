@@ -13,6 +13,8 @@ profile=no
 # Add files or directories to the blacklist. They should be base names, not
 # paths.
 ignore=CVS
+ignore=migrations
+
 
 # Pickle collected data for later comparisons.
 persistent=yes
@@ -72,6 +74,8 @@ confidence=
 # --disable=W"
 disable=E1608,W1627,E1601,E1603,E1602,E1605,E1604,E1607,E1606,W1621,W1620,W1623,W1622,W1625,W1624,W1609,W1608,W1607,W1606,W1605,W1604,W1603,W1602,W1601,W1639,W1640,I0021,W1638,I0020,W1618,W1619,W1630,W1626,W1637,W1634,W1635,W1610,W1611,W1612,W1613,W1614,W1615,W1616,W1617,W1632,W1633,W0704,W1628,W1629,W1636
 disable=E
+disable=unused-argument
+disable=invalid-name, global-variable-not-assigned, global-variable-undefined, bad-continuation
 
 [REPORTS]
 
@@ -197,7 +201,7 @@ docstring-min-length=-1
 [FORMAT]
 
 # Maximum number of characters on a single line.
-max-line-length=100
+max-line-length=115
 
 # Regexp for a line that is allowed to be longer than the limit.
 ignore-long-lines=^\s*(# )?<?https?://\S+>?$
