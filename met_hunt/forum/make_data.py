@@ -15,7 +15,7 @@ except:
 def make_title(size, sample):
     title = ""
     for i in range(size):
-        title += sample[randrange(0,len(sample))]
+        title += sample[randrange(0, len(sample))]
     return title
 
 def make_description(size, sample):
@@ -37,6 +37,6 @@ text = [text1, text2, text3]
 for i in range(5):
     # title = make_title(randrange(8,20), sample)
     # description = make_description(randrange(15,30), sample)
-    description = text[randrange(0,3)]
-    post = QuestionAsked(title = title, description = description, user = user, thread = thread)
+    description = text[randrange(0, 3)]
+    post = QuestionAsked(title=title, description=description, user=user, thread=thread)
     post.save()

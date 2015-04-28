@@ -48,7 +48,7 @@ class RegisterForm(forms.Form):
         user.save()
         user_info.save()
         return True
-    
+
 
 class LogInForm(forms.Form):
     """
@@ -56,8 +56,8 @@ class LogInForm(forms.Form):
     """
 
     user_name = forms.CharField(max_length=50, label="User Name")
-    password = forms.CharField(max_length=50, 
-                               label="Password", 
+    password = forms.CharField(max_length=50,
+                               label="Password",
                                widget=forms.PasswordInput())
 
     def login_process(self, request):
@@ -82,7 +82,7 @@ class EditForm(forms.Form):
     """
     **EditForm** is responsible for editing the user information. The assumption is that the user
     is already registered. We restrict non-registered user to access edit page from the profifle
-    views function. The list of information that the user can edit is : 
+    views function. The list of information that the user can edit is :
 
         - Password
         - Description

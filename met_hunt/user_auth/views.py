@@ -4,15 +4,12 @@ user_auth.views
     This views.py is responsible for all user authenticating related jobs such as login a user,
     register a visitor...
 """
-from django.core.urlresolvers import reverse
-from django.shortcuts import render_to_response, redirect
+from django.shortcuts import render_to_response
 from user_auth.auth_forms import RegisterForm, LogInForm, EditForm
 from django.http import HttpResponseRedirect
 from django.core.context_processors import csrf # for Cross Site Request Forgery.
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import logout, login, authenticate
-from django.contrib.auth.models import User
-from user_auth.models import UserInfo
+from django.contrib.auth import logout
 
 
 @login_required
@@ -37,7 +34,7 @@ def edit(request):
     args.update(csrf(request))
     return render_to_response('user_auth/edit.html', args)
 
-@login_required 
+@login_required
 def profile(request):
     user = None
     if request.user.is_authenticated():
@@ -112,7 +109,7 @@ def register(request):
     else:
         form = RegisterForm()
 
-    args = {'form' : form, 
+    args = {'form' : form,
             'title' : title,
             'valid':True}
     args.update(csrf(request)) # Guess passing csrf token to the template.

@@ -6,7 +6,7 @@ The list of tests are:
 """
 from django.test.client import RequestFactory
 from django.test import  Client, TestCase
-from mock import MagicMock, Mock, patch
+from mock import MagicMock, patch
 from hunts import views
 from hunts import models
 from django.core.urlresolvers import reverse
