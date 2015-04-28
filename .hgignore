@@ -1,4 +1,4 @@
-# user glob syntax.
+# use glob syntax.
 syntax: glob
-
+met_hunt/htmlcov/**
 *.pyc
