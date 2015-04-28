@@ -1,0 +1,18 @@
+{% extends "met_hunt/index_wobbly.html" %}
+
+{% block body %}
+
+<div class="row">
+		<div class="slide">
+			<img class ="icon" src="../../static/img/museumhunters.svg" alt="Museum Hunters Logo"/>
+			<h1>Welcome to the {{title}}</h1>
+			<h1>{{start_pt}}</h1>
+			<form action={% url "hunts.views.render_clue" %}>
+				<input class = "submit" type="submit" value="Show First Clue">
+			</form>
+			<div class="small-2 medium-6 large 12 columns"></div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

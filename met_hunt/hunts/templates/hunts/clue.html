@@ -1,0 +1,18 @@
+{% extends "met_hunt/index_wobbly.html" %}
+{% block body  %}
+
+<div class = "row">
+	<div class="slide">
+		<img class="icon" src="../../static/img/museumhunters.svg" alt="Museum Hunters Logo"/>
+		<h1>{{clue_text}}</h1>
+		<form action={% url "hunts.views.render_verify" %}>
+			<input class="submit" type="submit" value="Found it">
+		</form>
+		<br>
+			<form action={% url "hunts.views.render_hint" %}>
+				<input class="submit" type="submit" value="Show me a Hint">
+			</form>
+	</div>
+</div>
+
+{% endblock %}

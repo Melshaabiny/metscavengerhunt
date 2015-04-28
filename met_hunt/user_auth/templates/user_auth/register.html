@@ -1,0 +1,21 @@
+{% extends "met_hunt/index.html" %}
+{% block body %}
+<div class="row">
+	<div class="small-12 medium-6 large-6 large-centered medium-centered small-centered columns">
+		{% if valid %}
+		<form action={% url 'user_auth.views.register' %} method="POST">
+			<fieldset>
+				<legend><h2>{{ title }}</h2></legend>
+				{% csrf_token %}
+				{{ form.as_table }}
+				<input type="submit" class="button expand" value="Register">
+			</fieldset>
+		</form>
+		{% else %}
+		<h2>{{ title }}</h2>
+		<p>The information is not valid.</p>
+		<a href={% url 'user_auth.views.register' %}>Go Back</a>
+		{% endif %}
+	</div>
+</div>
+{% endblock %}
