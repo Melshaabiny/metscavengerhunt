@@ -2,10 +2,37 @@
 {% block body %}
 
 
-<div class="row panel" data-equalizer>
-	<div class="small-12 medium-6 large-6 columns">
+
+
+<div class="MainBod medium-12 small-12 large-12">
+<header>
+{% load staticfiles %}
+
+<div class="row newPanel">
+	<div class="columns large-12">
+		<ul class="accordion" data-accordion>
+				<li class="accordion-navigation">
+					<a href="#MainLogo"><h1 class="MainHead">Museum Hunters</h1></a>
+    					<div id="MainLogo" class="content">
+							<a href="#"><img src="{% static 'img/winglobecol_icon.png' %}">
+							</a>
+						</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+
+
+
+
+	<div class="large-12">
+	<div class="row newPanel large-12 sideA" data-equalizer>
+
+	<div class="small-12 medium-12 large-6 columns">
 		<ul data-orbit>
-			{% load staticfiles %}
+			
+
 			<li data-orbit-slider="Front" slider-pause><img src="{% static 'img/metfront.jpg' %}" alt="">
 				<div class="orbit-caption">
 					Metropolitan Museum Scavenger Hunt
@@ -13,25 +40,27 @@
 			</li>
 			<li data-orbit-slider="Kemet" slider-pause><img src="{% static 'img/kemet.jpg' %}" alt="">
 				<div class="orbit-caption">
-					Ancient Hunt/ Embark on a Journey
+					Ancient Hunt/ Embark on a Journey Through Time
 				</div>
 			</li>
 			<li data-orbit-slider="Gallery" slider-pause><img src="{% static 'img/gallery.jpg' %}" alt="">
-				<div class="orbit-caption">Classic Hunt</div>
+				<div class="orbit-caption">Medieval Hunt/ From Darkness to Light</div>
 			</li>
 			<li data-orbit-slider="Hall" slider-pause><img src="{% static 'img/mainhall.jpg' %}" alt="">
 				<div class="orbit-caption">
-					Modern Hunt
+					Modern Hunt/ Keep up with the Contemporary
 				</div>
 			</li>
 		</ul>
 	</div>
+	
+						<!--<h3>Hunt with us</h3>-->
 
-	<div class="small-12 medium-6 large-6 centered columns panel text-center" data-equalizer-watch>
+	<div class="small-12 medium-12 large-6 centered columns newPanel sideB" data-equalizer-watch>
 		
-			<h3>MetScavenger Hunt</h3>
+			<h3>Museum Hunters: Scavenger Hunt</h3>
 		
-		<span class="text-left">
+		<span class="introBox">
 			<p >Welcome to our Scavenger Hunt for the Metropolitain Museum.<br> Register. <br>Sign In.<br> Jump Right into a New Hunt.<br>
 			Try it out and strive to be the best Hunter.<br>
 			</p>
@@ -40,57 +69,95 @@
 		<input type="button" value="Start Hunt" class="button radius expand">
 		</a>
 	</div>
+	<div class="large-12 column underSide newPanel">
+		<h3>Hunt with us today!</h3>
+	</div>
+	
+	</div>
+	
+</header>
+	<!--ummmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm-->
+	
 </div>
 
+<div class="subSpot large-12">
+	<div class="centerLine">
+	<!--	<img class ="imgForm" src="static/img/horsey1.png" alt=""> -->
+	</div>
+	
+<div class="row newPanel">
+	<div class="large-4 column rowFix">
+	<ul class="accordion no-bullet" data-accordion>
+	<li class="accordion-navigation">
+			<a href="#funID"><i class="fi-puzzle iconic"></i>
+				<p class="centerLine">Fun</p>
+			</a>
+		<div class="content" id="funID">
+			<p>
+				An Interactive Adventure through time and cultures.<br>
+				Test your Detective skills and become the best hunter!  
+			</p>
+		</div>
+	</li>
+	</ul>
+	</div>
+	<div class="large-4  column rowFix">
+	<ul class="accordion no-bullet" data-accordion>
+	<li class="accordion-navigation">
+		<a href="#eduID"><i class="fi-book-bookmark iconic"></i>
+		<p class="centerLine">Educational</p>
+		</a>
+		<div class="content" id="eduID">
+			<p>
+				Learn (and even teach...) as you solve clues and scour through the works of art!<br> 
+				Work with classmates during school trips.  
+			</p>
+		</div>
+	</li>
+	</ul>
+	</div>
+	<div class="large-4  column rowFix">
+	<ul class="accordion no-bullet" data-accordion>
+	<li class="accordion-navigation">
+		<a href="#socialID"><i class="fi-male-female iconic"></i>
+		<p class="centerLine">Social</p></a>
+			<div class="content" id="socialID">
+			<p>
+				Collaborate with friends to have even more of a blast while hunting. <br>Share the adventure on your favorite social media.
+			</p>
+		</div>
+	</li>
+	</ul>
+	</div>
+</div>
+<div class="row rowFix">
+	<div class="column large-12 centered newPanel ">
+	<ul class="accordion no-bullet" data-accordion>
+		<li class="accordion-navigation">
+			<a href="#contribID"><i class="fi-lightbulb iconic"></i>
+		<p class="centerLine">Have an Idea?</p>
+		</a>
+		<div class="content" id="contribID">
+			<p>
+				Create and contribute your own Hunts! 
+			</p>
+		</div>
+	</li>
+	</ul>
+
+	</div>
+
+	
+	
+</div>
+	
+</div>
 
 <hr>
-<!--Bottom Half -->
 
-<div class="row panel">
+<div class="row newPanel">
 	<div class="columns large-12">
 		<ul class="accordion" data-accordion>
-			<li class="accordion-navigation">
-				<a href="#fun">These Hunts Are...</a>
-					<div class="content" id="fun">
-						<div class="row">
-							<ul class="large-block-grid-3 small-block-grid-1 medium-block-grid-1">
-								<li>
-									<a class="hr" href="#">
-										<img src="{% static 'img/fun.png' %}">
-									</a>
-								</li>
-								<li>
-									<a class="hr" href="#">
-										<img src="{% static 'img/edu.png' %}">
-									</a>
-								</li>
-								<li>
-									<a class="hr" href="#">
-										<img src="{% static 'img/socialll.png' %}">
-									</a>
-								</li>
-							</ul>
-						</div>
-					</div>
-			</li>
-
-			<li class="accordion-navigation">
-				<a href="#education">Education</a>
-				<div class="content" id="education">
-					<div class="row">
-						<div class="columns large-6 small-12 medium-12">
-							<a class="hr" href="#">
-								<img src="{% static 'img/edu.png' %}">
-							</a>
-						</div>
-						<div class="columns large-6 small-12 medium-12">
-							<p>
-								Our Scavenger Hunt can be used for your own education purposes. There are lots of possibilities.
-							</p>
-						</div>
-					</div>
-				</div>
-			</li>
 
 			<li class="accordion-navigation">
 				<a href="#gallery">Gallery</a>
@@ -99,32 +166,32 @@
 						<ul class="large-block-grid-3 small-block-grid-1 medium-block-grid-1">
 							<li>
 								<a class="hr" href="#">
-									<img src="{% static 'img/olmec.jpg'%}">
+									<img src="/static/img/olmec.jpg">
 								</a>
 							</li>
 							<li>
 								<a class="hr" href="#">
-									<img src="{% static 'img/bowl.jpg'%}">
+									<img src="/static/img/bowl.jpg">
 								</a>
 							</li>
 							<li>
 								<a class="hr" href="#">
-									<img src="{% static 'img/gilt.jpg'%}">
+									<img src="/static/img/gilt.jpg">
 								</a>
 							</li>
 							<li>
 								<a class="hr" href="#">
-									<img src="{% static 'img/dagger.jpg'%}">
+									<img src="/static/img/dagger.jpg">
 								</a>
 							</li>
 							<li>
 								<a class="hr" href="#">
-									<img src="{% static 'img/kanagawa.jpg'%}">
+									<img src="/static/img/kanagawa.jpg">
 								</a>
 							</li>
 							<li>
 								<a class="hr" href="#">
-									<img src="{% static 'img/houses.jpg'%}">
+									<img src="/static/img/houses.jpg">
 								</a>
 							</li>
 						</ul>
@@ -138,7 +205,7 @@
 					<div class="row">
 						<div class="columns small-12 medium-12 large-6">
 							<a class="hr" href="#">
-									<img src="{% static 'img/mapview.png'%}">
+									<img src="{% static 'img/mapview.png' %}">
 							</a>
 						</div>
 						<div class="columns	small-12 medium-12 large-6">
@@ -154,7 +221,7 @@
 					<div class="row">
 						<h3>Community</h3>
 						<p>We have active scavenger hunt community that you can ask questions and help others by answering there questions.</p>
-						<a href="#">
+						<a href={% url 'forum.views.thread_layout' %}>
 							<input type="button" class="button expand" value="Visit Community">
 						</a>
 					</div>
@@ -166,4 +233,8 @@
 
 
 <hr>
+
+
+
+
 {% endblock %}
