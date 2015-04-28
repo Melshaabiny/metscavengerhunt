@@ -1,0 +1,42 @@
+@keyframe post_animation {
+	from {opacity: 1;}
+	to {opacity: 0;}
+}
+
+/*
+body {
+	font-family: 'Indie Flower', cursive;
+}*/
+
+.ng-enter{
+	opacity: 0;
+	-webkit-transition: 1s;
+	-o-transition: 1s;
+	transition: 1s;
+}
+
+.ng-enter-active{
+	opacity: 1;
+}
+
+
+#post_search {
+	/*border-style: none none solid;*/
+	border-image: none;
+	/*background-color: transparent;*/
+	font-size: 100%;
+	border-top-color: none;
+	border-left-color: none;
+	border-right-color: none;
+	border-bottom-color: none;
+	height: 10%;
+}
+
+
+#thread_menu > dd {
+	background-color: inherit;
+}
+
+#thread_menu > dd:hover{
+	background-color: yellow;
+}

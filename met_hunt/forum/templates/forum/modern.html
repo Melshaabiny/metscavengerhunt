@@ -1,0 +1,23 @@
+<div class="columns large-12">
+	<label for="Search">Search : </label>
+	<input id="post_search" type="search" placeholder="Search" ng-model="query">
+
+</div>
+
+<div class="columns small-12 medium-12 large-12">
+	<div class="row animate-repeat" ng-repeat="post in posts | filter:query">
+		<hr>
+		<div class="columns large-3">
+			{% verbatim %}
+			{{ post.username }}
+			{% endverbatim %}
+		</div>
+		{{ cntl }}
+		<div class="columns large-9">
+			{% verbatim %}
+			<h4>{{ post.title }}</h4>
+			<p>{{ post.description }}</p>
+			{% endverbatim %}
+		</div>
+	</div>
+</div>
