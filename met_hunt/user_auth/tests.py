@@ -360,7 +360,7 @@ class user_authTest(unittest.TestCase):
 		**test_edit_EditForm_post()** tests if the EditForm is properly instantiated with 
 		appropriate post data when request.method is POST method. 
 		"""
-		# create temp user.
+		# create TEMP user.
 		user = User.objects.create_user(username='edit_EditForm', password='password')
 		UserInfo.objects.create(user = user)
 
@@ -382,7 +382,7 @@ class user_authTest(unittest.TestCase):
 	# 	"""
 	# 	This test the request.FILE in the edit function.
 	# 	"""
-	# 	# create temp user.
+	# 	# create TEMP user.
 	# 	User.objects.create_user(username='edit_EditForm', password='password')
 	# 	# log the user in.
 	# 	self.client.login(username='edit_EditForm', password='password')
