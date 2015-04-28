@@ -18,13 +18,13 @@ class hunts_test(TestCase):
     def setUp(self):
         self.client = Client()
         global TEMP
-        views.temp = [('123', 'a clue', 1, 'hint', 'image url', 'fun fact')]
-        models.TEMP = views.temp
+        views.TEMP = [('123', 'a clue', 1, 'hint', 'image url', 'fun fact')]
+        models.TEMP = views.TEMP
         TEMP = models.TEMP
         self.factory = RequestFactory()
 
     def tearDown(self):
-        del views.temp
+        del views.TEMP
         del models.TEMP
 #   def test_hunts_status(self):
 #       views.hunt_title = 'test1234567'
@@ -48,7 +48,7 @@ class hunts_test(TestCase):
             with patch('hunts.views.set_HuntsData') as huntsdata:
                 with patch('hunts.views.render_to_response') as rend:
                     global TEMP
-                    itemsdata.return_value = views.temp
+                    itemsdata.return_value = views.TEMP
                     huntsdata.return_value = {'hunt title' : 'test1234', 'hunt start' : 'test7654321'}
                     request = MagicMock()
                     views.render_hunt(request, 1)
@@ -95,16 +95,16 @@ class hunts_test(TestCase):
 
     def test_next_proc(self): #Needs to be checked
         """
-            mocks temp and pop_item function. Runs next_proc see if pop_tem is called when temp is not empty.
+            mocks TEMP and pop_item function. Runs next_proc see if pop_tem is called when TEMP is not empty.
             Then an assert is made to check that it correctly redirects to the clue page.
-            Empties temp and runs next_proc again. This time checks that pop_item is not called.
+            Empties TEMP and runs next_proc again. This time checks that pop_item is not called.
             Then an assert is made to check that it correctly redirects to the congrats page.
         """
         with patch('hunts.views.pop_item') as pop_item:
             with patch('hunts.views.redirect') as redirect:
                 pop_item.return_value = [1]
-                global temp
-                temp = views.temp
+                global TEMP
+                TEMP = views.TEMP
                 views.next_proc(self.factory)
                 assert pop_item.called #test that pop_item is called
                 redirect.assert_called_with('rend_clue') #next_proc does not correctly redirect to clue page
@@ -123,12 +123,12 @@ class hunts_test(TestCase):
             with patch('hunts.views.redirect') as redirect:
                 verify_id.return_value = True
                 request = self.factory.post('/hunts/result/', {'input':'123'})
-                views.temp = [('123', 'a clue', 1, 'hint', 'image url', 'fun fact'), ('234', 'a clue2', 2, 'hint 2', 'image url 2', 'fun fact 2')]
+                views.TEMP = [('123', 'a clue', 1, 'hint', 'image url', 'fun fact'), ('234', 'a clue2', 2, 'hint 2', 'image url 2', 'fun fact 2')]
                 #run render_result
                 views.render_result(request)
                 #render_verify does not correctly redirect to 'correct' page when expected"
                 redirect.assert_called_with('rend_correct')
-                views.temp = [('123', 'a clue', 1, 'hint', 'image url', 'fun fact')]
+                views.TEMP = [('123', 'a clue', 1, 'hint', 'image url', 'fun fact')]
                 views.render_result(request)
                 #render_result dow not correctly redirect to 'congrats' page when expected
                 redirect.assert_called_with('rend_correct')
@@ -179,7 +179,7 @@ class hunts_test(TestCase):
             rend.assert_called_with("hunts/congrats.html", {})
 
 ######################***Model tests***
-    def test_set_HuntsData(self):
+    def test_set_HuntsData(self): #DONE
         """
             **test_set_HuntsData this test creates a mock object
             **then tests that the correct values are retrieved
@@ -197,9 +197,16 @@ class hunts_test(TestCase):
             **test_set_ItemsData** this test should mock the model
             **check that correct items were retrieved
         """
-        pass
+        with patch('hunts.models.Has.objects.filter') as items_hunt:
+            items_hunt = MagicMock()
+            items_hunt.return_value.item.ID = "123"
+            items_hunt[0].return_value.clue = "clue test"
+            items_hunt[0].return_value.number = "1"
+            items_hunt[0].return_value.hint = "Hint test"
+            items_hunt[0].return_value.image = "image url test"
+            items_hunt[0].return_value.fact = "fact test"
 
-    def test_pop_item(self):
+    def test_pop_item(self): #DONE
         lst = [1]
         lst = models.pop_item(lst)
         self.assertTrue(len(lst) < 1)
