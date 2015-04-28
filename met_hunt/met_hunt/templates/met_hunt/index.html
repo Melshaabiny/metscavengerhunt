@@ -4,12 +4,18 @@
 	<meta charset="utf-8">
 	<title>Scavenger Hunt</title>
 	{% load staticfiles%}
-	<link rel="stylesheet" href="{% static 'foundation/css/foundation.css' %}">
-	<link rel="stylesheet" href="{% static 'foundation/css/foundation.min.css' %}">
+	
+	
+
+	<link rel="stylesheet" href="{% static 'css/app2.css' %}">
+
+
+
 	<link rel="stylesheet" href="{% static 'foundation/css/normalize.css' %}">
+
+	
 	<link rel="stylesheet" href="{% static 'foundation/css/foundation-icons/foundation-icons.css' %}">
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-	
 	<!-- // <script type="text/javascript" src="{% static 'edit.js' %}"></script> -->
 </head>
 <body>
@@ -18,7 +24,7 @@
 			<nav class="top-bar" data-topbar role="navigation" data-options="sticky_on: large">
 				<ul class="title-area">
 					<li class="name">
-						<h1><a href="#">Scavenger Hunt</a></h1>
+						<h1><a href="/"><img src="{% static 'img/winglobecol_icon.png' %}" alt=""></a></h1>
 					</li>
 					<li class="toggle-topbar menu-icon"><a href="#">
 						<!-- Hamberger menu bar -->
@@ -109,6 +115,9 @@
 						<li><a href={% url 'user_auth.views.login_user' %}>LogIn</a></li>
 						{% endif %}						
 					</ul>
+					<ul class="center">
+						<li><a href="">ScavengerHunt</a></li>
+					</ul>
 				</section>
 			</nav>
 		</div>
@@ -135,6 +144,7 @@
 			});
 		});
 	</script>
+
 </body>
 
 
