@@ -4,5 +4,13 @@ from django.shortcuts import redirect
 from django.core.context_processors import csrf
 # Create your views here.
 
-def render_main(request,id):
+def render_main(request):
+	return render_to_response("cr_hunt/cr_hunt_main.html")
+
+def render_ats(request):
+	c_srf = {}
+	c_srf.update(csrf(request))
+	return render_to_response("cr_hunt/cr_hunt_title_strt.html", c_srf, {})
+
+def render_proc_ts(request):
 	pass

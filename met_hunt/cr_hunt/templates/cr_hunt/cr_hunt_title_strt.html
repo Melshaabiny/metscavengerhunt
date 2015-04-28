@@ -1,12 +1,12 @@
-{% extends "index_wobbly.html" %}
+{% extends "met_hunt/index_wobbly.html" %}
 
 {% block body %}
 <!--When submitting data, must pass with a unique huntid -->
 <div class = "row">
         <div class="slide">
                 <img class="icon" src="../../static/img/museumhunters.svg" alt="Museum Hunters Logo"/>
-                <h1>Verify</h1>
-                        <form action={% url "" %} method="POST">
+                <h1>Enter The Title and Starting Point</h1>
+                        <form action={% url "cr_hunt.views.render_proc_ts" %} method="POST">
         {% csrf_token %}
         <label> Enter Title
                 <input type = "text" id = "title" name = "input" placeholder = "title"/>
