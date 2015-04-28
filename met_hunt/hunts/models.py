@@ -76,12 +76,12 @@ def set_ItemsData(id):
 	TEMP = sorted(list(tuples), key=lambda element: element[2])
 	return TEMP
 
-def pop_item():
+def pop_item(lst):
 	"""
 		* Pops an item from the global list of items, once a user moves on the next item in the hunt.
 	"""
-	global TEMP
-	del TEMP[0]
+	del lst[0]
+	return lst
 
 def verify_id(usr_input):
     """
