@@ -39,36 +39,6 @@ class UserInfo(models.Model):
 	def __str__(self):
 		return "%s's UserInfo" % (self.user.username)
 
-class QuestionAsked(models.Model):
-	"""
-	This model **QuestionAsked** is related to the questions that a user asked on the website. It 
-	has *title*, *description* and the *status* which indicate if the question is answered or not. This model should be
-	one-to-many from user to QuestionAsked since each user can have many asked questions.
-	"""
-
-	user = models.ForeignKey(User)
-	title = models.CharField(max_length=50)
-	description = models.TextField()
-	status = models.BooleanField(default=False)
-	when = models.DateField(auto_now_add=True)
-
-	def __str__(self):
-		return "%s's Questions" % (self.user.username)
-
-class Answered(models.Model):
-	"""
-	Any question can be answered by some other users. **Answered** is model to relate a question 
-	is answered by whom and when. Many questions can be aswered by many users.
-	"""
-
-	# Each question can be marked as answered by one user.
-	questionBy = models.ForeignKey(QuestionAsked)
-	answeredBy = models.OneToOneField(User) # user name.
-	when = models.DateField(auto_now_add=True)
-	
-	def __str__(self):
-		return "Answered by %s" % (self.answeredBy.username)
-
 class FriendList(models.Model):
 	user = models.ForeignKey(User)
 

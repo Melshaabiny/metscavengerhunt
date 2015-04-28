@@ -32,7 +32,6 @@ def edit(request):
 			if form.cleaned_data['last_name']:
 				request.user.last_name = form.cleaned_data['last_name']
 			if form.cleaned_data['picture']:
-				print 'called'
 				user_info = UserInfo.objects.get(user = user)
 				user_info.picture = form.cleaned_data['picture']
 				user_info.save()
@@ -74,16 +73,7 @@ def login_user(request):
 		# check the form validation.
 		if form.is_valid():
 
-			user_name = form.cleaned_data['user_name']
-			password = form.cleaned_data['password']
-
-			# instanciate the user object.
-			user = authenticate(username = user_name, password = password)
-
-			if user is not None:
-				if user.is_active:
-					login(request, user)
-
+			user = form.login_process(request)
 			args = {'user':user}
 			args.update(csrf(request))
 			return render_to_response('home/home.html', args)
@@ -106,7 +96,6 @@ def register(request):
 	Otherwise, register the user with given data.
 	"""
 	user = None
-	
 	# handles registering.
 	title = 'Register'
 	args = {}
@@ -116,22 +105,7 @@ def register(request):
 		form = RegisterForm(request.POST)
 		# check if all inputs are valid.
 		if form.is_valid():
-			# Use form.cleaned_data to save the user information.
-			# ...
-			# data = form.cleaned_data
-			# Access user name using data['user_name'], password using data['password']
-			# and email using data['email_address']. See auth_forms.py
-			user = User.objects.create_user(username = form.cleaned_data['user_name'],
-											password = form.cleaned_data['password'],
-											first_name = form.cleaned_data['first_name'],
-											last_name = form.cleaned_data['last_name'],
-											email = form.cleaned_data['email_address'])
-
-			# create empty userinfo
-			user_info = UserInfo.objects.create(user=user)
-
-			user.save()
-			user_info.save()
+			form.register_form()
 			return HttpResponseRedirect('/')
 		else:
 			# form is not valid.

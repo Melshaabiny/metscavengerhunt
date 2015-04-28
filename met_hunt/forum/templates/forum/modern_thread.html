@@ -1,0 +1,97 @@
+{% extends "met_hunt/index.html" %}
+{% block body %}
+	<div class="row" ng-app="modern_thread">
+		<!-- search -->
+		<div class="columns large-12" ng-controller="modern_controller">
+			<div class="row">
+				<div class="columns large-12">
+					<div class="large-centered columns large-3">
+						<h1>Questions</h1>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="columns large-12">
+					Search : <input type="text" ng-model="query" placeholder="Search">
+				</div>
+			</div>
+
+			<div class="row" data-equalizer>
+				<div class="columns small-9 medium-9 large-9">
+					<!-- List of questions -->
+					<div class="row animate-repeat" ng-repeat="post in posts | filter:query">
+						<hr>
+						<div class="columns large-3">
+							{% verbatim %}
+							{{ post.username }}
+							{% endverbatim %}
+						</div>
+
+						<div class="columns large-9">
+							{% verbatim %}
+							<h5>{{ post.title }}</h5>
+							<p>{{ post.description }}</p>
+							{% endverbatim %}
+						</div>
+					</div>
+
+				</div>
+
+				<div class="columns small-3 medium-3 large-3">
+					<!-- side menu -->
+					<ul class="side-nav">
+						<li class="active">
+							<h3>Total Posts : {{ total_post}}</h3>
+							
+						</li>
+					</ul>
+				</div>
+				<!-- <div class="columns large-12">
+					<table>
+						<thead>
+							<tr>
+								<th>Title</th>
+								<th>Description</th>
+								<th>Date</th>
+								<th>QuestionBy</th>
+								<th>View</th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr ng-repeat="post in posts | filter:query">
+								<td>{{ post.title }}</td>
+								<td>{{ post.description }}</td>
+								<td>{{ post.when }}</td>
+								<td>{{ post.user }}</td>
+								<td>{{ post.view }}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div> -->
+
+
+			</div>
+		</div>
+		<!-- post list -->
+
+	</div>
+{% verbatim %}
+
+{% endverbatim %}
+{% endblock %}
+
+{% block script%}
+	<script>
+
+		var modern_thread = angular.module('modern_thread', []);
+		modern_thread.controller('modern_controller', function($scope, $http, $location){
+			$http.get('load_data/')
+				 .success(function(data){
+				 	$scope.posts = data.json;
+				 });
+		});
+
+	</script>
+{% endblock %}

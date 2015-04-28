@@ -13,4 +13,5 @@ urlpatterns = patterns('',
 	url(r'^tutorial/',include('tutorial_hunt.urls')),
 	url(r'^hunts/',include('hunts.urls')),
 	url(r'^search/(.+)/$', views.search, name='search'),
+	url(r'^forum/', include('forum.urls')),
 )
