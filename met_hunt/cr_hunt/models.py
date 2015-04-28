@@ -1,4 +1,5 @@
 from django.db import models
+from hunts.models import Items
 """
 		* Create your models here.
 		* ----------Tables----------
@@ -48,8 +49,25 @@ class cr_Has(models.Model):
 		* each item belongs to one or more hunts
 		* in every hunt there is a clue that leads to the item and every item has an order number
 	"""
-	hunt = models.ForeignKey(Hunts)
+	hunt = models.ForeignKey(cr_Hunts)
 	item = models.ForeignKey(Items)
 	number = models.IntegerField() 
 	clue = models.CharField(max_length = 250)
+
+
+def add_hunt_its(id_hunt,title,start):
+	"""
+		* Takes in 3 parameters and creates a new hunt tuple
+	"""
+	hunt = cr_Hunt.objects.create(ID = id_hunt)
+	hunt.Title = title
+	hunt.Start = start
+	#hunt.Category = cat
+	hunt.save()
+
+def add_hunt_has(id_hunt,nitem,nnum,nclue):
+	has = cr_Has.objects.create(hunt = ir_hunt, item = nitem)
+	has.number = nnum
+	has.clue = nclue
+	has.save()
 
