@@ -1,0 +1,4 @@
+# user glob syntax.
+syntax: glob
+
+*.pyc
