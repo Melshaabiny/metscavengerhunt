@@ -178,7 +178,7 @@ class hunts_test(TestCase):
             #   print "render_congrats was not called at the url: /hunts/congrats/"
             rend.assert_called_with("hunts/congrats.html", {})
 
-######################***Model tests***
+            #***Model tests***
     def test_set_HuntsData(self): #DONE
         """
             **test_set_HuntsData this test creates a mock object
