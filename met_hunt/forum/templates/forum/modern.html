@@ -9,13 +9,14 @@
 		<hr>
 		<div class="columns large-3">
 			{% verbatim %}
-			{{ post.username }}
+			<div class="label">{{ post.username }}</div>
+			<div class="label">Expertise : Modern Art</div>
 			{% endverbatim %}
 		</div>
 		{{ cntl }}
 		<div class="columns large-9">
 			{% verbatim %}
-			<h4>{{ post.title }}</h4>
+			<h4><a href="#">{{ post.title }}</a></h4>
 			<p>{{ post.description }}</p>
 			{% endverbatim %}
 		</div>

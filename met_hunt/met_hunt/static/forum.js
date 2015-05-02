@@ -37,5 +37,13 @@ modern_thread.controller('modern_controller', function($scope, $http, $cookies, 
 
 	}
 
+
+	//jquery part
+	$("dd").click(function() {
+		//If one of the dd element clicked, remove the current active class on one of those
+		//and add the active class to the element just clicked.
+		$("dd.active").removeClass("active");
+		$(this).addClass("active"); // add the active class.
+	});
 });
 
