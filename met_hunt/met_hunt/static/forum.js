@@ -37,8 +37,9 @@ modern_thread.controller('modern_controller', function($scope, $http, $cookies, 
 
 	}
 
-	$scope.postShow = function(id) {
+	$scope.postShow = function(id, post) {
 		$scope.posturl = "post/" + id;
+		$scope.post = post; 
 	}
 
 
