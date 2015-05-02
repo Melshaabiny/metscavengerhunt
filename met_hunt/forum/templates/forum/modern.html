@@ -15,10 +15,13 @@
 		</div>
 		{{ cntl }}
 		<div class="columns large-9">
-			{% verbatim %}
-			<h4><a href="#">{{ post.title }}</a></h4>
-			<p>{{ post.description }}</p>
-			{% endverbatim %}
+			<!-- {% verbatim %} -->
+			<h4><a href="#" data-reveal-id="modal" ng-click="postShow(post.id)">
+				{{ post.title }}
+			</a></h4>
+			<p>{{ post.when | date : "yyyy/MM/dd 'at' h:mma" }}</p>
+			<!-- {% endverbatim %} -->
 		</div>
 	</div>
 </div>
+
