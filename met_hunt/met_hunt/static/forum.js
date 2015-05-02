@@ -11,15 +11,15 @@ modern_thread.controller('modern_controller', function($scope, $http, $cookies, 
 		$http.get('load_data/')
 			 .success(function(data){
 			 	$scope.posts = data.json;
-			 	$scope.templateurl = "modern/"
-			 	$scope.title = "Modern Hunt"
+			 	$scope.templateurl = "modern/";
+			 	$scope.title = "Modern Hunt";
 			 });		
 	}
 	load();
 
 	$scope.create = function(){
-		$scope.templateurl = "create/"
-		$scope.title = "Create Post"
+		$scope.templateurl = "create/";
+		$scope.title = "Create Post";
 	}
 
 	$scope.submit = function(data){
@@ -35,6 +35,10 @@ modern_thread.controller('modern_controller', function($scope, $http, $cookies, 
 			 	load();
 			 });
 
+	}
+
+	$scope.postShow = function(id) {
+		$scope.posturl = "post/" + id;
 	}
 
 

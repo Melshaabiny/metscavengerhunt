@@ -27,9 +27,15 @@
 			</div>
 
 			<div ng-include="templateurl" class="row">
-				
 			</div>
-		</div>
 
+			<!-- Post modal -->
+			<div id="modal" class="reveal-modal" data-reveal aria-rabelledby="title" aria-hidden="true" role="dialog" class="row">
+				<div ng-include="posturl" class="columns small-12 large-12 medium-12">
+				</div>
+			</div>
+			
+		</div>
 	</div>
+
 {% endblock %}

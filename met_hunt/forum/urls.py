@@ -11,4 +11,5 @@ urlpatterns = patterns('',
     url(r'^thread/load_data/$', views.load_data, name='load_data'),
     url(r'^thread/create/$', views.create, name='create'),
     url(r'^thread/submit/$', views.submit, name='submit'),
+    url(r'^thread/post/([1-9])+/$', views.post, name='post'),
 )

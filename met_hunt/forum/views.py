@@ -41,7 +41,8 @@ def load_data(request):
                             'view' : each.view,
                             'username' : each.user.username,
                             'thread' : 'modern',
-                            'logged_user' : request.user.username}]
+                            'logged_user' : request.user.username,
+                            'id' : each.id}]
         return JsonResponse(data)
 
 def submit(request):
@@ -56,3 +57,13 @@ def submit(request):
     thread = Thread.objects.get(type=data['thread'])
     post = QuestionAsked.objects.create(user=user, thread=thread, title=data['title'], description=data['description'])
     return render_to_response('forum/modern.html')
+
+
+def post(request, id):
+    """
+    This function returns the template with requested post info. such as
+    the title of the post with its description.
+    """
+    post = QuestionAsked.objects.get(id=id)
+    args = {'title':post.title, 'description':post.description}
+    return render_to_response('forum/post.html', args)
