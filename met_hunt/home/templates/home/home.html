@@ -205,7 +205,8 @@
 					<div class="row">
 						<div class="columns small-12 medium-12 large-6">
 							<a class="hr" href="#">
-									<img src="{% static 'img/mapview.png' %}">
+									<div id="map-canvas"></div>
+
 							</a>
 						</div>
 						<div class="columns	small-12 medium-12 large-6">
@@ -233,6 +234,18 @@
 
 
 <hr>
+	
+    <script type="text/javascript">
+      function initialize() {
+        var mapOptions = {
+          center: { lat: 40.779405, lng: -73.963233},
+          zoom: 8
+        };
+        var map = new google.maps.Map(document.getElementById('map-canvas'),
+            mapOptions);
+      }
+      google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
 
 
 
