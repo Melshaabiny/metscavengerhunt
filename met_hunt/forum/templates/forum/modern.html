@@ -8,8 +8,10 @@
 	<div class="row animate-repeat" ng-repeat="post in posts | filter:query">
 		<hr>
 		<div class="columns large-3">
+			<img src="http://placehold.it/100x100" alt="">
 			{% verbatim %}
-			<div class="label">{{ post.username }}</div>
+			<br>
+			<div class="label">Username : {{ post.username }}</div>
 			<div class="label">Expertise : Modern Art</div>
 			{% endverbatim %}
 		</div>
