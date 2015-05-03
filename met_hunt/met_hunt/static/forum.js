@@ -13,7 +13,9 @@ modern_thread.controller('modern_controller', function($scope, $http, $cookies, 
 			 	$scope.posts = data.json;
 			 	$scope.templateurl = "modern/";
 			 	$scope.title = "Modern Hunt";
-			 });		
+			 });
+		$("#create").removeClass("active");
+		$("#modern").addClass("active");
 	}
 	load();
 
@@ -41,6 +43,7 @@ modern_thread.controller('modern_controller', function($scope, $http, $cookies, 
 		$scope.posturl = "post/" + id;
 		$scope.post = post; 
 	}
+
 
 
 	//jquery part
