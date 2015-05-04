@@ -8,8 +8,8 @@ from django.test.client import RequestFactory
 from django.test import  Client, TestCase
 from django.contrib.auth.models import User
 from mock import MagicMock, Mock, patch
-from cr_hunts import views 
-from cr_hunts import models
+from cr_hunt import views 
+from cr_hunt import models
 from django.core.urlresolvers import reverse
 # Create your tests here.
 class hunts_test(TestCase):
@@ -35,6 +35,7 @@ class hunts_test(TestCase):
 		"""
 		with patch('cr_hunt.views.render_to_response') as rend:
 			request = MagicMock()
+			views.render_ats(request)
 			assert rend.called # Check that rend got called
 
 	def test_render_proc_ts(self):
@@ -48,17 +49,19 @@ class hunts_test(TestCase):
 
 ##############**** Model tests
 
-	def test_add_hunt_its(self):
+	def test_add_hunt_its(self): #incomplete
 		"""
 			* Test that correct items are added
 		"""
-		with patch('cr_hunt.models.cr_Hunt.objects.create') as cr_obj:
+		with patch('cr_hunt.models.cr_Hunts.objects.create') as cr_obj:
 			id_hunt = '123'
 			title = 'test title'
 			start = 'test start'
 			cr_obj.Title = MagicMock()
+			cr_obj.Title.return_value = None
 			cr_obj.Start = MagicMock()
-			cr_obj.save() = MagicMock()
+			cr_obj.Start.return_value = None
+			#cr_obj.save() = MagicMock()
 			cr_obj.save().return_value = None
 			models.add_hunt_its(id_hunt,title,start)
 			self.assertEqual(cr_obj.Title, title) # Check that correct title is passed through

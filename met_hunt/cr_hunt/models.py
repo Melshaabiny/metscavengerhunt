@@ -59,14 +59,14 @@ def add_hunt_its(id_hunt,title,start):
 	"""
 		* Takes in 3 parameters and creates a new hunt tuple
 	"""
-	hunt = cr_Hunt.objects.create(ID = id_hunt)
+	hunt = cr_Hunts.objects.create(ID = id_hunt)
 	hunt.Title = title
 	hunt.Start = start
 	#hunt.Category = cat
 	hunt.save()
 
 def add_hunt_has(id_hunt,nitem,nnum,nclue):
-	has = cr_Has.objects.create(hunt = ir_hunt, item = nitem)
+	has = cr_Has.objects.create(hunt = id_hunt, item = nitem)
 	has.number = nnum
 	has.clue = nclue
 	has.save()
