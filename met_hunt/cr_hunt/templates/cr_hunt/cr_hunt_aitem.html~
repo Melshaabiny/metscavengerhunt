@@ -1,0 +1,19 @@
+{% extends "met_hunt/index_wobbly.html" %}
+
+{% block body %}
+<!--When submitting data, must pass with a unique huntid -->
+<div class = "row">
+        <div class="slide">
+                <img class="icon" src="../../static/img/museumhunters.svg" alt="Museum Hunters Logo"/>
+                <h1>Add item and clue to your hunt</h1>
+                        <form action={% url "cr_hunt.views.render_proc_it" %} method="POST">
+        {% csrf_token %}
+	{{ form }}
+        <input type="submit" class="button expand"/>
+        </form>
+	{% if can_exit %}
+        </div>
+</div>
+
+{% endblock %}
+
