@@ -14,10 +14,15 @@ def render_ats(request):
     c_srf.update(csrf(request))
     return render_to_response("cr_hunt/cr_hunt_title_strt.html", c_srf, {})
 
-#def render_aitem(request):
-#    c_srf = {}
-#    c_srf.update(csrf(request))
-#    return render_to_response("cr_hunt/cr_hunt_aitem.html",c_srf, {})
+def render_aitem(request):
+    form = ItemForm()
+    if request.method == "POST":
+        form = ItemForm(request.POST)
+        if form.is_valid:
+            pass
+    c_srf = {}
+    c_srf.update(csrf(request))
+    return render_to_response("cr_hunt/cr_hunt_aitem.html",{"form": form})
 
 def render_proc_ts(request):
     pass
