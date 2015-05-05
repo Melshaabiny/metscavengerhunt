@@ -74,10 +74,38 @@ class hunts_test(TestCase):
 		"""
 			* Test that items are grabbed correctly
 		"""
-		pass
+		with patch('cr_hunt.views.add_hunt_its') as addf:
+			with patch('cr_hunt.views.redirect') as red:
+				request = MagicMock()
+				request.method = MagicMock()
+				request.method.return_value = "POST"
+				request.POST.get = MagicMock()
+				request.POST.get('title', '').return_value = 'test123'
+				request.POST.get('start', '').return_value = 'test321'
+				views.render_proc_ts(request)
+				assert addf.called
+				addf.assert_called_with(111222, 'test123', 'test321')
+				assert red.called #test that redirect is called
 
-
-
+	def test_render_proc_it(self):
+		"""
+			* Test that items are grabbed correctly
+		"""
+		with patch('cr_hunt.views.redirect') as red:
+			request = MagicMock()
+			request.method = MagicMock()
+			request.method.return_value = "POST"
+			request.POST.get = MagicMock()
+			request.POST.get('clue','').return_value = 'testclue'
+			request.POST.get('item','').return_value = 'testitem'
+			views.render_proc_it(request)
+			self.assertEqual(views.i_counter, 1) #counter was incremented
+			red.assert_called_with('cr_aitem') #check that correct redirect is made
+			views.i_counter = 10
+			red.reset_mock()
+			views.render_proc_it(request)
+			red.assert_called_with('cr_end') #check that correct redirect is made
+			
 
 ##############**** Model tests
 
