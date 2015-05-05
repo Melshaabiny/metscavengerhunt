@@ -14,9 +14,13 @@ from django.core.urlresolvers import reverse
 # Create your tests here.
 class hunts_test(TestCase):
         def setUp(self):
+		views.hunt_id = 111222
+		views.i_counter = 0
 		pass
 
 	def tearDown(self):
+		del views.hunt_id
+		del views.i_counter
 		pass
 
 	def test_render_main(self):
@@ -28,6 +32,8 @@ class hunts_test(TestCase):
 			views.render_main(request)
 			assert rend.called # Check that rend got called
 			rend.assert_called_with("cr_hunt/cr_hunt_main.html") # Check that correct url is called
+			self.assertEqual(views.hunt_id, 12349) #check that hunt_id got reassigned correctly
+			self.assertEqual (views.i_counter, 0) #check that i_counter is initialized to 0
 
 	def test_render_ats(self):
 		"""
@@ -36,7 +42,33 @@ class hunts_test(TestCase):
 		with patch('cr_hunt.views.render_to_response') as rend:
 			request = MagicMock()
 			views.render_ats(request)
+			c_srf = MagicMock()
 			assert rend.called # Check that rend got called
+			#rend.assert_called_with("cr_hunt/cr_hunt_title_strt.html", c_srf, {}) # check that rend got called with correct url and arguments
+
+	def test_render_aitem(self):
+		"""
+			* Test that correct checks are performed and that form is generated and passed in as argument
+		"""
+		with patch('cr_hunt.views.render_to_response') as rend:
+			with patch('cr_hunt.views.ItemForm') as form_func:
+				request = MagicMock()
+				request.method = MagicMock()
+				request.method.return_value = "POST"
+				form_func.is_valid = MagicMock()
+				form_func.is_valid.return_value = True
+				views.render_aitem(request)
+				assert rend.called
+
+	def test_render_end(self):
+		"""
+			* Test that rend is called with correct url
+		"""
+		with patch('cr_hunt.views.render_to_response') as rend:
+			request = MagicMock()
+			views.render_end(request)
+			assert rend.called #check that rend is called
+			rend.assert_called_with("cr_hunt/cr_hunt_end.html")
 
 	def test_render_proc_ts(self):
 		"""
