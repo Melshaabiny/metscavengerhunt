@@ -9,11 +9,11 @@
                         <form action={% url "cr_hunt.views.render_proc_ts" %} method="POST">
         {% csrf_token %}
         <label> Enter Title
-                <input type = "text" id = "title" name = "input" placeholder = "title"/>
+                <input type = "text" id = "title" name = "title" placeholder = "title"/>
         </label>
 	<br>
 	<label> Enter Starting Point
-                <input type = "text" id = "start" name = "input" placeholder = "start"/>
+                <input type = "text" id = "start" name = "start" placeholder = "start"/>
         </label>
         <input type="submit" class="button expand"/>
         </form>

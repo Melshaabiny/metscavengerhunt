@@ -66,6 +66,9 @@ def add_hunt_its(id_hunt,title,start):
 	hunt.save()
 
 def add_hunt_has(id_hunt,nitem,nnum,nclue):
+        """
+                * Takes in 4 parameters and creates a new has tuple
+        """
 	has = cr_Has.objects.create(hunt = id_hunt, item = nitem)
 	has.number = nnum
 	has.clue = nclue
