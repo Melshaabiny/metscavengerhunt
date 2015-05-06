@@ -1,12 +1,6 @@
 """
-Unit test for **user_auth** django application.
-
-The list of tests are :
-
-    - **test_login_status_code()** checks if accessing url **/user_auth/login/** returns status_code 200.
-    - **test_register_status_code()** checks if accessing url **/user_auth/register/** returns status_code 200/
-    - **test_register_user()** checks if **RegisterForm.register_user()** gets called
-        when **user_auth.views.register** gets POST data.
+Unit test for **user_auth** django application. This test module contains
+the unit tests, the integration tests, and acceptance tests. 
 """
 
 from django.test import Client

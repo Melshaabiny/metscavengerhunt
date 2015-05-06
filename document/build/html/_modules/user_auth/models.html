@@ -55,79 +55,51 @@
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">This user_auth.models defined several user information.</span>
 
-<span class="sd">	1. **UserInfo** defines those neccessary user information such as the date when each user registered, picture, expert_level and area of expertises.</span>
-<span class="sd">	</span>
-<span class="sd">	2. **FriendList** defines the list of friend for each user. Each user can have many friends.</span>
-<span class="sd">	</span>
+<span class="sd">    1. **UserInfo** defines those neccessary user information such as</span>
+<span class="sd">        the date when each user registered, picture, expert_level and area of expertises.</span>
+<span class="sd">    2. **FriendList** defines the list of friend for each user. Each user can have many friends.</span>
+
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
 <span class="kn">from</span> <span class="nn">django.contrib.auth.models</span> <span class="kn">import</span> <span class="n">User</span>
 
 <span class="n">level</span> <span class="o">=</span> <span class="p">(</span>
-	<span class="p">(</span><span class="s">&#39;expert&#39;</span><span class="p">,</span> <span class="s">&#39;Expert&#39;</span><span class="p">),</span>
-	<span class="p">(</span><span class="s">&#39;itermmediate&#39;</span><span class="p">,</span> <span class="s">&#39;Intermmediate&#39;</span><span class="p">),</span>
-	<span class="p">(</span><span class="s">&#39;beginner&#39;</span><span class="p">,</span> <span class="s">&#39;Beginner&#39;</span><span class="p">)</span>
-	<span class="p">)</span>
+    <span class="p">(</span><span class="s">&#39;expert&#39;</span><span class="p">,</span> <span class="s">&#39;Expert&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s">&#39;itermmediate&#39;</span><span class="p">,</span> <span class="s">&#39;Intermmediate&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s">&#39;beginner&#39;</span><span class="p">,</span> <span class="s">&#39;Beginner&#39;</span><span class="p">)</span>
+    <span class="p">)</span>
 
 <span class="c"># Create your models here.</span>
-<div class="viewcode-block" id="UserInfo"><a class="viewcode-back" href="../../user_auth/models.html#user_auth.models.UserInfo">[docs]</a><span class="k">class</span> <span class="nc">UserInfo</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
-	<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">	**UserInfo** model defines extra user information such as picture, expert level and areas, and </span>
-<span class="sd">	their description. </span>
+<div class="viewcode-block" id="UserInfo"><a class="viewcode-back" href="../../user_auth/doc_user_auth.html#user_auth.models.UserInfo">[docs]</a><span class="k">class</span> <span class="nc">UserInfo</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    **UserInfo** model defines extra user information such as picture, expert level and areas, and</span>
+<span class="sd">    their description.</span>
 
-<span class="sd">	Here are the attributes of the model.</span>
+<span class="sd">    Here are the attributes of the model.</span>
 
-<span class="sd">	:user: This is one-to-one relationship from the django User class to UserInfor.</span>
-<span class="sd">	</span>
-<span class="sd">	&quot;&quot;&quot;</span>
+<span class="sd">    :user: This is one-to-one relationship from the django User class to UserInfor.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
 
-	<span class="n">user</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">OneToOneField</span><span class="p">(</span><span class="n">User</span><span class="p">)</span>
-	<span class="n">picture</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ImageField</span><span class="p">(</span><span class="n">upload_to</span><span class="o">=</span><span class="s">&#39;user_auth/user_pic/&#39;</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">OneToOneField</span><span class="p">(</span><span class="n">User</span><span class="p">)</span>
+    <span class="n">picture</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ImageField</span><span class="p">(</span><span class="n">upload_to</span><span class="o">=</span><span class="s">&#39;user_auth/user_pic/&#39;</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 
-	<span class="c"># choices, (c1, c2), c1 is actual value, c2 is label.</span>
-	<span class="n">expert_level</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="n">level</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s">&#39;beginner&#39;</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-	<span class="n">area_of_expertise</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-	<span class="n">description</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">TextField</span><span class="p">(</span><span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-	
-	<span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-		<span class="k">return</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s">&#39;s UserInfo&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">username</span><span class="p">)</span>
+    <span class="c"># choices, (c1, c2), c1 is actual value, c2 is label.</span>
+    <span class="n">expert_level</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="n">level</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s">&#39;beginner&#39;</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">area_of_expertise</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">description</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">TextField</span><span class="p">(</span><span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s">&#39;s UserInfo&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">username</span><span class="p">)</span>
 </div>
-<div class="viewcode-block" id="QuestionAsked"><a class="viewcode-back" href="../../user_auth/models.html#user_auth.models.QuestionAsked">[docs]</a><span class="k">class</span> <span class="nc">QuestionAsked</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
-	<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">	This model **QuestionAsked** is related to the questions that a user asked on the website. It </span>
-<span class="sd">	has *title*, *description* and the *status* which indicate if the question is answered or not. This model should be</span>
-<span class="sd">	one-to-many from user to QuestionAsked since each user can have many asked questions.</span>
-<span class="sd">	&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="FriendList"><a class="viewcode-back" href="../../user_auth/doc_user_auth.html#user_auth.models.FriendList">[docs]</a><span class="k">class</span> <span class="nc">FriendList</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Model for friendlist for each user.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">User</span><span class="p">)</span>
 
-	<span class="n">user</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">User</span><span class="p">)</span>
-	<span class="n">title</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
-	<span class="n">description</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">TextField</span><span class="p">()</span>
-	<span class="n">status</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
-	<span class="n">when</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateField</span><span class="p">(</span><span class="n">auto_now_add</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-
-	<span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-		<span class="k">return</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s">&#39;s Questions&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">username</span><span class="p">)</span>
-</div>
-<div class="viewcode-block" id="Answered"><a class="viewcode-back" href="../../user_auth/models.html#user_auth.models.Answered">[docs]</a><span class="k">class</span> <span class="nc">Answered</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
-	<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">	Any question can be answered by some other users. **Answered** is model to relate a question </span>
-<span class="sd">	is answered by whom and when. Many questions can be aswered by many users.</span>
-<span class="sd">	&quot;&quot;&quot;</span>
-
-	<span class="c"># Each question can be marked as answered by one user.</span>
-	<span class="n">questionBy</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">QuestionAsked</span><span class="p">)</span>
-	<span class="n">answeredBy</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">OneToOneField</span><span class="p">(</span><span class="n">User</span><span class="p">)</span> <span class="c"># user name.</span>
-	<span class="n">when</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateField</span><span class="p">(</span><span class="n">auto_now_add</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-	
-	<span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-		<span class="k">return</span> <span class="s">&quot;Answered by </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">answeredBy</span><span class="o">.</span><span class="n">username</span><span class="p">)</span>
-</div>
-<div class="viewcode-block" id="FriendList"><a class="viewcode-back" href="../../user_auth/models.html#user_auth.models.FriendList">[docs]</a><span class="k">class</span> <span class="nc">FriendList</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
-	<span class="n">user</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">User</span><span class="p">)</span>
-
-	<span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-		<span class="k">return</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s">&#39;s Friend&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">username</span><span class="p">)</span></div>
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s">&#39;s Friend&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">username</span><span class="p">)</span></div>
 </pre></div>
 
           </div>
@@ -156,8 +128,8 @@
       &copy;2015, WebDev.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.2</a>
       
     </div>
 

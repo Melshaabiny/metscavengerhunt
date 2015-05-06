@@ -4,3 +4,17 @@ Model
 .. automodule:: user_auth.models
 	:members:
 	:undoc-members:
+
+
+Tests
+-----
+
+.. automodule:: user_auth.tests
+	:members:
+	:undoc-members:
+
+Views
+-----
+
+.. autofunction:: user_auth.views.register
+

@@ -18,6 +18,15 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 's-t-m^u%l!e+%=!u0tp^3koa$0!2n#vwpj-zapfx@6uhp80os5'
 
+# Nose Test settings
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+NOSE_ARGS = [
+		'--with-coverage',
+		'--cover-package=user_auth, hunts',
+		'--cover-inclusive',
+		]
+
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -41,6 +50,7 @@ INSTALLED_APPS = (
 	'tutorial_hunt',
     'hunts',
     'forum',
+	'django_nose',
 )
 
 MIDDLEWARE_CLASSES = (

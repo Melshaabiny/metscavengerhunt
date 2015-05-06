@@ -10,7 +10,8 @@ from user_auth.models import UserInfo
 
 class RegisterForm(forms.Form):
     """
-    RegisterForm
+    RegisterForm is a django form that is responsible for processing the 
+    user register information. 
     """
     user_name = forms.CharField(label="User Name", max_length=30)
     password = forms.CharField(label="Password", widget=forms.PasswordInput(), max_length=50)
@@ -24,11 +25,6 @@ class RegisterForm(forms.Form):
         from register page. It tries to reject if the username is already exists.
         """
 
-        # Use form.cleaned_data to save the user information.
-        # ...
-        # data = form.cleaned_data
-        # Access user name using data['user_name'], password using data['password']
-        # and email using data['email_address']. See auth_forms.py
         try:
             isvalid = User.objects.get(username=self.cleaned_data['user_name'])
         except:
@@ -52,7 +48,9 @@ class RegisterForm(forms.Form):
 
 class LogInForm(forms.Form):
     """
-    Creating user login form that will be used in login template page.
+    **LogInForm** is a django form that handles user login process. It is
+    used for displaying user login input fields as well as processing the
+    login process once it receives the neccessary information from user.
     """
 
     user_name = forms.CharField(max_length=50, label="User Name")
