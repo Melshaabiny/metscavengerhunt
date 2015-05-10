@@ -41,6 +41,7 @@ INSTALLED_APPS = (
 	'tutorial_hunt',
     'hunts',
     'forum',
+    'cr_hunt',
 )
 
 MIDDLEWARE_CLASSES = (
