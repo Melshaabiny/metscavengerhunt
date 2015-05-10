@@ -38,5 +38,5 @@ body {
 }
 
 #thread_menu > dd:hover{
-	background-color: yellow;
+	background-color: inherit;
 }
