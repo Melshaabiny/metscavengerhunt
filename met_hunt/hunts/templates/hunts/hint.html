@@ -1,10 +1,10 @@
 {% extends "met_hunt/index_wobbly.html" %}
 
 {% block body %}
-
+{% load staticfiles %}
 <div class="row">
 	<div class="slide">
-		<img class ="icon" src="../../static/img/museumhunters.svg" alt="Museum Hunters Logo"/>
+		<img class ="icon" src=" {% static hint_crop %}" alt="Museum Hunters Logo"/>
 		<h1>Here's a Hint to help you find your item</h1>
 		<h3>"{{hint_text}}"</h3>
 		<br><form action={% url "hunts.views.render_clue" %}>
