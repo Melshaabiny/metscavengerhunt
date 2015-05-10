@@ -267,7 +267,7 @@
         "number": 1,
         "clue": "Locate the Holy Dove flying over the red limestone.",
         "hint": "Jesus is holding onto his wound.",
-        "hintcrop": "hunts/Medeival_1_HintCrop.jpg",
+        "hintcrop": "hunts/Medieval_1_HintCrop.png",
         "image": "http://images.metmuseum.org/CRDImages/cl/original/DT201109.jpg",
         "fact": "There are no historical evidences to prove on which side was Jesus wounded. The Gospels give no information on this subject as well. However, it was conventionally shown in art as being on Jesus' proper right side."
     },
@@ -281,7 +281,7 @@
         "number": 2,
         "clue": "Locate the Red Papal Tiara.",
         "hint": "Missing the keys to the gates of heaven.",
-        "hintcrop": "hunts/Medeival_2_HintCrop.jpg",
+        "hintcrop": "hunts/Medieval_2_HintCrop.png",
         "image": "http://images.metmuseum.org/CRDImages/md/original/sf27-18-2s4.jpg",
         "fact": "Saint Peter was crucified at Rome with his head downwards after he himself requested this form of crucifixion. He felt unworthy to be crucified in the same manner that Jesus died. Though this was not the intention, in recent times the (inverted) cross of St. Peter is used as an anti-Christian symbol."
     },
@@ -295,7 +295,7 @@
         "number": 3,
         "clue": "Find the Happy Old Man.",
         "hint": "Im on a wall surronded by others like me, yet my beard shows my age.",
-        "hintcrop": "hunts/Medeival_3_HintCrop.jpg",
+        "hintcrop": "hunts/Medieval_3_HintCrop.png",
         "image": "http://images.metmuseum.org/CRDImages/aa/original/2793.jpg",
         "fact": "In Japanese Noh, an all-male traditional form of Japanese theatre, the Smilling Old Man mask (Okina) is used when actors play gods."
     },
