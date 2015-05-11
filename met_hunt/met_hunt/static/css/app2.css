@@ -1,9 +1,10 @@
 /*______-- "Custom Css" -- _______*/
 
 .MainBod{
-    background:url('/static/img/metpill.png');
     text-align:center;
+    width: 1000px;
     background-size:cover;
+    background-color: #385365; /*Blue*/
     font-family: 'Raleway',sans-serif;
 }
 
@@ -18,16 +19,90 @@ h3{
 
 #43E5E5
 */
+.top{
+    background:url('/static/img/lens.jpg');
+    background-size: 100%;
+
+}
+.MainHead{
+  background-size: cover;
+  padding: 0px;
+  margin: 50px;
+  font-family: Rockwell, “Courier Bold”, Courier, Georgia, Times, “Times New Roman”, serif;
+  font-size: 130px;
+  color: #e25136; /*Orange*/
+}
+.SubHead{
+  font-family: Rockwell, “Courier Bold”, Courier, Georgia, Times, “Times New Roman”, serif;
+  font-size: 30px;
+  margin: 50px;
+  color: rgba(255, 255, 255, 1); /*Orange*/
+}
+.buttondiv{
+  padding: 50px;
+  margin: 100px auto;
+}
+input[type=button], button {
+    background: #e25136;
+    margin: 0 auto;
+}
+input[type=button]:hover, button:hover {
+    background: #e97d68;
+}
+/*.factdiv{
+  background-color: rgba(255, 255, 255, 0.4);
+  padding: 20px;
+  margin: 80px auto;
+  border-radius: 12px;
+}*/
+.factdivision{
+  padding: auto;
+  background-color: black;
+}
+.button.createHunt{
+  padding: 50px;
+}
+.fact1{
+  margin: 30px 40px 30px 40px;
+  padding: auto;
+  text-align: center;
+  font-family: Rockwell, “Courier Bold”, Courier, Georgia, Times, “Times New Roman”, serif;
+  font-size:100px;
+  color: #e25136;
+  background-color: rgba(255,255,255, 0.5);
+}
+.fact2{
+  margin: 30px 40px 30px 40px;
+  padding: auto;
+  text-align: center;
+  font-family: Rockwell, “Courier Bold”, Courier, Georgia, Times, “Times New Roman”, serif;
+  font-size:100px;
+  color: #e25136;
+  background-color: rgba(255,255,255, 0.5);
+}
+.fact3{
+  margin: 30px 20px 30px 40px;
+  padding: auto;
+  text-align: center;
+  font-family: Rockwell, “Courier Bold”, Courier, Georgia, Times, “Times New Roman”, serif;
+  font-size:100px;
+  color: #e25136;
+  background-color: rgba(255,255,255, 0.5);
+}
+.factimg{
+  opacity: 0.5;
+}
+
 p,.introBox{
     color:rgba(255,255,255,1);
 }
 .newPanel{
-    background:rgba(0,0,0,0.37);
+    background:rgba(0,0,0,0);
     border:10px;
-    margin: 0 0 60px 0;
-    padding: 15px 50px 50px 50px;
+    margin: 90px auto;
+
 }
-header h1{
+header h1{  
     color:rgba(255,255,255,1);
     font-size:3.2em;
     position: relative;
@@ -49,7 +124,16 @@ header .underSide h3{
     text-align:center;
 }
 
-
+@media (max-width: 500px){
+.fact{ margin: 20px 0;}
+}
+@media (max-width: 500px){
+.MainHead{font-size: 80px;}
+}
+@media (max-width: 500px){
+input[type=button], button {
+  margin: 20px;}
+}
 @media screen and (orientation: portrait) {
   img.imgForm { max-width: 90%; }
 }
@@ -206,7 +290,7 @@ select {
   margin-right: auto;
   margin-top: 0;
   margin-bottom: 0;
-  max-width: 62.5rem; }
+  max-width: 100%; }
   .row:before, .row:after {
     content: " ";
     display: table; }
