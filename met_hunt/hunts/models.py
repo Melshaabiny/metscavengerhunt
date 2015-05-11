@@ -54,6 +54,7 @@ class Has(models.Model):
     number = models.IntegerField()
     clue = models.CharField(max_length=250)
     hint = models.CharField(max_length=200, default="No hint available")
+    hintcrop = models.CharField(max_length=200, default="No hintcrop available")
     image = models.CharField(max_length=250, default="No image available")
     fact = models.CharField(max_length=250, default="No fact available")
 
@@ -81,9 +82,10 @@ def set_ItemsData(id_hunt):
         item_clue = hunt_items[obj].clue
         item_number = hunt_items[obj].number
         item_hint = hunt_items[obj].hint
+        item_hint_crop = hunt_items[obj].hintcrop
         item_image = hunt_items[obj].image
         item_fact = hunt_items[obj].fact
-        tuples = tuples + ((item_id, item_clue, item_number, item_hint, item_image, item_fact), )
+        tuples = tuples + ((item_id, item_clue, item_number, item_hint, item_image, item_fact, item_hint_crop), )
     global TEMP
     TEMP = sorted(list(tuples), key=lambda element: element[2])
     return TEMP
