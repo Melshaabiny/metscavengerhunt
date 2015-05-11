@@ -1,0 +1,14 @@
+{% extends "met_hunt/index_wobbly.html" %}
+
+{% block body %}
+
+<div class = "row">
+        <div class="slide">
+                <img class="icon" src="../../static/img/museumhunters.svg" alt="Museum Hunters Logo"/>
+                <h1>Error: Must be logged in to create a hunt</h1>
+                       
+        </div>
+</div>
+
+{% endblock %}
+
