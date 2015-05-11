@@ -21,7 +21,7 @@ h3{
 */
 .top{
     background:url('/static/img/lens.jpg');
-    background-size: 100%;
+    background-size: cover;
 
 }
 .MainHead{
@@ -57,13 +57,14 @@ input[type=button]:hover, button:hover {
 }*/
 .factdivision{
   padding: auto;
+  margin: 60px;
   background-color: black;
 }
 .button.createHunt{
   padding: 50px;
 }
 .fact1{
-  margin: 30px 40px 30px 40px;
+  margin: 30px 0px 30px 0px;
   padding: auto;
   text-align: center;
   font-family: Rockwell, “Courier Bold”, Courier, Georgia, Times, “Times New Roman”, serif;
@@ -72,7 +73,7 @@ input[type=button]:hover, button:hover {
   background-color: rgba(255,255,255, 0.5);
 }
 .fact2{
-  margin: 30px 40px 30px 40px;
+  margin: 30px 0px 30px 0px;
   padding: auto;
   text-align: center;
   font-family: Rockwell, “Courier Bold”, Courier, Georgia, Times, “Times New Roman”, serif;
@@ -81,7 +82,7 @@ input[type=button]:hover, button:hover {
   background-color: rgba(255,255,255, 0.5);
 }
 .fact3{
-  margin: 30px 20px 30px 40px;
+  margin: 30px 0px 30px 0px;
   padding: auto;
   text-align: center;
   font-family: Rockwell, “Courier Bold”, Courier, Georgia, Times, “Times New Roman”, serif;
