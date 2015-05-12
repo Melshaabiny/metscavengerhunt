@@ -8,14 +8,12 @@ from .forms import ItemForm
 global hunt_id
 global i_counter
 def render_main(request):
-    #if request.user.is_authenticated():
-    #hunt_id = request.user.username
-    #possible solution limit users to one hunt per day grab date as set of numbers attach to username for unique id
-    global hunt_id
-    hunt_id = 12348
-    global i_counter
-    i_counter = 0
-    return render_to_response("cr_hunt/cr_hunt_main.html")
+    if request.user.is_authenticated():
+        global hunt_id
+        hunt_id = request.user.username
+        global i_counter
+        i_counter = 0
+        return render_to_response("cr_hunt/cr_hunt_main.html")
 
 def render_ats(request):
     c_srf = {}

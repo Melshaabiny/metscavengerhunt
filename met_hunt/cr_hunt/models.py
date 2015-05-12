@@ -13,13 +13,14 @@ class cr_Hunts(models.Model):
 		* each belongs to a specific category and have a starting location
 	"""
 	# Unique identification number for each hunt
-	ID = models.IntegerField(unique = True, primary_key = True)
+	ID = models.CharField(max_length = 25, unique = True, primary_key = True)
 	# Title of the Hunt. For now, same as category.
 	Title = models.CharField(max_length = 200)
 	# Category of the Hunt
 	Category = models.CharField(max_length = 200)
 	# Starting point of each Scavenger Hunt 
 	Start = models.CharField(max_length = 400)
+	CreatedBy = models.CharField(max_length = 25)
 	def __str__(self):
 		return self.Title
 
