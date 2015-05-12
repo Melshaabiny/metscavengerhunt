@@ -56,84 +56,113 @@
 <span class="sd">User authenticating related form.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
+
 <span class="kn">from</span> <span class="nn">django</span> <span class="kn">import</span> <span class="n">forms</span>
 <span class="kn">from</span> <span class="nn">django.contrib.auth.models</span> <span class="kn">import</span> <span class="n">User</span>
 <span class="kn">from</span> <span class="nn">django.contrib.auth</span> <span class="kn">import</span> <span class="n">authenticate</span><span class="p">,</span> <span class="n">login</span>
+<span class="kn">from</span> <span class="nn">user_auth.models</span> <span class="kn">import</span> <span class="n">UserInfo</span>
 
-<div class="viewcode-block" id="RegisterForm"><a class="viewcode-back" href="../../TeamInformation.html#user_auth.auth_forms.RegisterForm">[docs]</a><span class="k">class</span> <span class="nc">RegisterForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
-	<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">	&quot;&quot;&quot;</span>
-	<span class="n">user_name</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">label</span> <span class="o">=</span> <span class="s">&quot;User Name&quot;</span><span class="p">,</span>
-						  		<span class="n">max_length</span> <span class="o">=</span> <span class="mi">30</span><span class="p">)</span>
+<div class="viewcode-block" id="RegisterForm"><a class="viewcode-back" href="../../user_auth/doc_user_auth.html#user_auth.auth_forms.RegisterForm">[docs]</a><span class="k">class</span> <span class="nc">RegisterForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    RegisterForm is a django form that is responsible for processing the </span>
+<span class="sd">    user register information. </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">user_name</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s">&quot;User Name&quot;</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+    <span class="n">password</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s">&quot;Password&quot;</span><span class="p">,</span> <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">PasswordInput</span><span class="p">(),</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+    <span class="n">first_name</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s">&quot;First_Name&quot;</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">last_name</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s">&quot;Last Name&quot;</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">email_address</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">EmailField</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s">&quot;Email&quot;</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
 
-	<span class="n">password</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">label</span> <span class="o">=</span> <span class="s">&quot;Password&quot;</span><span class="p">,</span>
-							   <span class="n">widget</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">PasswordInput</span><span class="p">(),</span>
-							   <span class="n">max_length</span> <span class="o">=</span> <span class="mi">50</span><span class="p">)</span>
+<div class="viewcode-block" id="RegisterForm.register_form"><a class="viewcode-back" href="../../user_auth/doc_user_auth.html#user_auth.auth_forms.RegisterForm.register_form">[docs]</a>    <span class="k">def</span> <span class="nf">register_form</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This memeber function **register_form()** registers the user info received</span>
+<span class="sd">        from register page. It tries to reject if the username is already exists.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
 
-	<span class="n">first_name</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">label</span> <span class="o">=</span> <span class="s">&quot;First_Name&quot;</span><span class="p">,</span>
-								 <span class="n">max_length</span> <span class="o">=</span> <span class="mi">50</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">isvalid</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cleaned_data</span><span class="p">[</span><span class="s">&#39;user_name&#39;</span><span class="p">])</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">isvalid</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">isvalid</span><span class="p">:</span>
+            <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create_user</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cleaned_data</span><span class="p">[</span><span class="s">&#39;user_name&#39;</span><span class="p">],</span>
+                                            <span class="n">password</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cleaned_data</span><span class="p">[</span><span class="s">&#39;password&#39;</span><span class="p">],</span>
+                                            <span class="n">first_name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cleaned_data</span><span class="p">[</span><span class="s">&#39;first_name&#39;</span><span class="p">],</span>
+                                            <span class="n">last_name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cleaned_data</span><span class="p">[</span><span class="s">&#39;last_name&#39;</span><span class="p">],</span>
+                                            <span class="n">email</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cleaned_data</span><span class="p">[</span><span class="s">&#39;email_address&#39;</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s">&quot;error here!&quot;</span>
+            <span class="k">return</span> <span class="bp">False</span>
+        <span class="c"># create empty userinfo</span>
+        <span class="n">user_info</span> <span class="o">=</span> <span class="n">UserInfo</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">)</span>
 
-	<span class="n">last_name</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">label</span> <span class="o">=</span> <span class="s">&quot;Last Name&quot;</span><span class="p">,</span>
-								<span class="n">max_length</span> <span class="o">=</span> <span class="mi">50</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+        <span class="n">user</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+        <span class="n">user_info</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">True</span>
 
-	<span class="n">email_address</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">EmailField</span><span class="p">(</span><span class="n">label</span> <span class="o">=</span> <span class="s">&quot;Email&quot;</span><span class="p">,</span>
-							   		 <span class="n">max_length</span> <span class="o">=</span> <span class="mi">50</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
-
-<div class="viewcode-block" id="RegisterForm.register_user"><a class="viewcode-back" href="../../TeamInformation.html#user_auth.auth_forms.RegisterForm.register_user">[docs]</a>	<span class="k">def</span> <span class="nf">register_user</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-		<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">		This member function **register_user** takes care of registering the visitor&#39;s user</span>
-<span class="sd">		information into the database.</span>
-<span class="sd">		&quot;&quot;&quot;</span>
-
-		<span class="c"># register the user using User model.</span>
-		<span class="n">user_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cleaned_data</span><span class="p">[</span><span class="s">&#39;user_name&#39;</span><span class="p">]</span>
-		<span class="n">user_password</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cleaned_data</span><span class="p">[</span><span class="s">&#39;password&#39;</span><span class="p">]</span>
-		<span class="n">user_first_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cleaned_data</span><span class="p">[</span><span class="s">&#39;first_name&#39;</span><span class="p">]</span>
-		<span class="n">user_last_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cleaned_data</span><span class="p">[</span><span class="s">&#39;last_name&#39;</span><span class="p">]</span>
-		<span class="n">user_email</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cleaned_data</span><span class="p">[</span><span class="s">&#39;email_address&#39;</span><span class="p">]</span>
-
-		<span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create_user</span><span class="p">(</span><span class="n">username</span> <span class="o">=</span> <span class="n">user_name</span><span class="p">,</span>
-										<span class="n">password</span> <span class="o">=</span> <span class="n">user_password</span><span class="p">,</span>
-										<span class="n">first_name</span> <span class="o">=</span> <span class="n">user_first_name</span><span class="p">,</span>
-										<span class="n">last_name</span> <span class="o">=</span> <span class="n">user_last_name</span><span class="p">,</span>
-										<span class="n">email</span> <span class="o">=</span> <span class="n">user_email</span><span class="p">)</span>
-
-		<span class="c"># create empty user info.</span>
-		<span class="n">user_info</span> <span class="o">=</span> <span class="n">UserInfo</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">)</span>
-
-		<span class="c"># save.</span>
-		<span class="n">user</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-		<span class="n">user_info</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-		<span class="k">return</span>
 </div></div>
-<div class="viewcode-block" id="LogInForm"><a class="viewcode-back" href="../../TeamInformation.html#user_auth.auth_forms.LogInForm">[docs]</a><span class="k">class</span> <span class="nc">LogInForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
-	<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">	Creating user login form that will be used in login template page.</span>
-<span class="sd">	&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="LogInForm"><a class="viewcode-back" href="../../user_auth/doc_user_auth.html#user_auth.auth_forms.LogInForm">[docs]</a><span class="k">class</span> <span class="nc">LogInForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    **LogInForm** is a django form that handles user login process. It is</span>
+<span class="sd">    used for displaying user login input fields as well as processing the</span>
+<span class="sd">    login process once it receives the neccessary information from user.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
-	<span class="n">user_name</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s">&quot;User Name&quot;</span><span class="p">)</span>
-	<span class="n">password</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span> <span class="o">=</span> <span class="mi">50</span><span class="p">,</span> 
-							   <span class="n">label</span> <span class="o">=</span> <span class="s">&quot;Password&quot;</span><span class="p">,</span> 
-							   <span class="n">widget</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">PasswordInput</span><span class="p">())</span>
+    <span class="n">user_name</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&quot;User Name&quot;</span><span class="p">)</span>
+    <span class="n">password</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+                               <span class="n">label</span><span class="o">=</span><span class="s">&quot;Password&quot;</span><span class="p">,</span>
+                               <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">PasswordInput</span><span class="p">())</span>
 
-<div class="viewcode-block" id="LogInForm.log_user_in"><a class="viewcode-back" href="../../TeamInformation.html#user_auth.auth_forms.LogInForm.log_user_in">[docs]</a>	<span class="k">def</span> <span class="nf">log_user_in</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
-		<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">		This member function can take care of the process of loggin the user in.</span>
-<span class="sd">		&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="LogInForm.login_process"><a class="viewcode-back" href="../../user_auth/doc_user_auth.html#user_auth.auth_forms.LogInForm.login_process">[docs]</a>    <span class="k">def</span> <span class="nf">login_process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This function is responsible for log the user in into the site.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">user_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cleaned_data</span><span class="p">[</span><span class="s">&#39;user_name&#39;</span><span class="p">]</span>
+        <span class="n">password</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cleaned_data</span><span class="p">[</span><span class="s">&#39;password&#39;</span><span class="p">]</span>
 
-		<span class="n">user_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cleaned_data</span><span class="p">[</span><span class="s">&#39;user_name&#39;</span><span class="p">]</span>
-		<span class="n">password</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cleaned_data</span><span class="p">[</span><span class="s">&#39;password&#39;</span><span class="p">]</span>
 
-		<span class="c"># instanciate the user object.</span>
-		<span class="n">user</span> <span class="o">=</span> <span class="n">authenticate</span><span class="p">(</span><span class="n">username</span> <span class="o">=</span> <span class="n">user_name</span><span class="p">,</span> <span class="n">password</span> <span class="o">=</span> <span class="n">password</span><span class="p">)</span>
+        <span class="c"># instanciate the user object.</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">authenticate</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">user_name</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">password</span><span class="p">)</span>
 
-		<span class="k">if</span> <span class="n">user</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
-			<span class="k">if</span> <span class="n">user</span><span class="o">.</span><span class="n">is_active</span><span class="p">:</span>
-				<span class="n">login</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">user</span><span class="p">)</span>
-				<span class="k">return</span> <span class="n">user</span>
+        <span class="k">if</span> <span class="n">user</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">user</span><span class="o">.</span><span class="n">is_active</span><span class="p">:</span>
+                <span class="n">login</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">user</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">user</span>
+        <span class="k">return</span> <span class="bp">None</span>
 
-		<span class="k">return</span> <span class="bp">None</span>
-</pre></div></div></div>
+</div></div>
+<div class="viewcode-block" id="EditForm"><a class="viewcode-back" href="../../user_auth/doc_user_auth.html#user_auth.auth_forms.EditForm">[docs]</a><span class="k">class</span> <span class="nc">EditForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    **EditForm** is responsible for editing the user information. The assumption is that the user</span>
+<span class="sd">    is already registered. We restrict non-registered user to access edit page from the profifle</span>
+<span class="sd">    views function. The list of information that the user can edit is :</span>
+
+<span class="sd">        - Password</span>
+<span class="sd">        - Description</span>
+<span class="sd">        - Picture</span>
+<span class="sd">        - Name</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">picture</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">ImageField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">first_name</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">last_name</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">password</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">PasswordInput</span><span class="p">(),</span> <span class="n">required</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">description</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">Textarea</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+
+<div class="viewcode-block" id="EditForm.process"><a class="viewcode-back" href="../../user_auth/doc_user_auth.html#user_auth.auth_forms.EditForm.process">[docs]</a>    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        If an user tries to change their personal info, this function handles</span>
+<span class="sd">        the work.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">cleaned_data</span><span class="p">[</span><span class="s">&#39;first_name&#39;</span><span class="p">]:</span>
+            <span class="n">user</span><span class="o">.</span><span class="n">first_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cleaned_data</span><span class="p">[</span><span class="s">&#39;first_name&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">cleaned_data</span><span class="p">[</span><span class="s">&#39;last_name&#39;</span><span class="p">]:</span>
+            <span class="n">user</span><span class="o">.</span><span class="n">last_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cleaned_data</span><span class="p">[</span><span class="s">&#39;last_name&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">cleaned_data</span><span class="p">[</span><span class="s">&#39;picture&#39;</span><span class="p">]:</span>
+            <span class="n">user_info</span> <span class="o">=</span> <span class="n">UserInfo</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">)</span>
+            <span class="n">user_info</span><span class="o">.</span><span class="n">picture</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cleaned_data</span><span class="p">[</span><span class="s">&#39;picture&#39;</span><span class="p">]</span>
+            <span class="n">user_info</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+        <span class="n">user</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">user</span></div></div>
+</pre></div>
 
           </div>
         </div>
@@ -161,8 +190,8 @@
       &copy;2015, WebDev.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.2</a>
       
     </div>
 
