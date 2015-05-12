@@ -20,6 +20,7 @@ class cr_Hunts(models.Model):
 	Category = models.CharField(max_length = 200)
 	# Starting point of each Scavenger Hunt 
 	Start = models.CharField(max_length = 400)
+	CreatedBy = models.CharField(max_length = 25)
 	def __str__(self):
 		return self.Title
 
@@ -74,3 +75,14 @@ def add_hunt_has(id_hunt,nitem,nnum,nclue):
 	has.clue = nclue
 	has.save()
 
+def gen_hunt_id(uname):
+	num_of_hunts = cr_Hunts.objects.filter(CreatedBy = uname).count()
+	#num_2 = Hunts.objects.filter(CreatedBy = uname).count()
+	#num_of_hunts = num_of_hunts + num_2
+	new_id = ''
+	new_id += str(uname) + str(num_of_hunts)
+	return new_id
+
+def get_cur_count(id_hunt):
+	cur_count = cr_Has.objects.filter(hunt = id_hunt).count()
+	return cur_count
