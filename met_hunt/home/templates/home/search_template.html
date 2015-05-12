@@ -1,0 +1,14 @@
+{% if data %}
+	{% for item in data %}
+		<div class="row">
+			<div class="columns large-3">
+				<img src="http://placehold.it/350x250">
+			</div>
+			<div class="columns large-9">
+				<p>This is the Hunt result for the query. The title of the hunt is {{ item.Title }}
+				</p>
+			</div>
+		</div>
+		<hr>
+	{% endfor%}
+{% endif %}
