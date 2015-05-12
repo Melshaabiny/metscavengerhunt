@@ -51,6 +51,7 @@ INSTALLED_APPS = (
     'hunts',
     'forum',
 	'django_nose',
+	'cr_hunt',
 )
 
 MIDDLEWARE_CLASSES = (
