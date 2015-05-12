@@ -20,7 +20,7 @@ class cr_Hunts(models.Model):
 	Category = models.CharField(max_length = 200)
 	# Starting point of each Scavenger Hunt 
 	Start = models.CharField(max_length = 400)
-	CreatedBy = models.CharField(max_length = 25)
+	CreatedBy = models.CharField(max_length = 25, default = 'MetHunt Dev Team')
 	def __str__(self):
 		return self.Title
 
@@ -56,7 +56,7 @@ class cr_Has(models.Model):
 	clue = models.CharField(max_length = 250)
 
 
-def add_hunt_its(id_hunt,title,start):
+def add_hunt_its(id_hunt,title,start,uname):
 	"""
 		* Takes in 3 parameters and creates a new hunt tuple
 	"""
@@ -64,6 +64,7 @@ def add_hunt_its(id_hunt,title,start):
 	hunt.Title = title
 	hunt.Start = start
 	#hunt.Category = cat
+	hunt.CreatedBy = uname
 	hunt.save()
 
 def add_hunt_has(id_hunt,nitem,nnum,nclue):
