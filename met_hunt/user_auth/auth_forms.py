@@ -24,10 +24,10 @@ class RegisterForm(forms.Form):
         This memeber function **register_form()** registers the user info received
         from register page. It tries to reject if the username is already exists.
         """
-
         try:
             isvalid = User.objects.get(username=self.cleaned_data['user_name'])
         except:
+            print "rerere"
             isvalid = None
         if not isvalid:
             user = User.objects.create_user(username=self.cleaned_data['user_name'],
@@ -40,9 +40,9 @@ class RegisterForm(forms.Form):
             return False
         # create empty userinfo
         user_info = UserInfo.objects.create(user=user)
-
         user.save()
         user_info.save()
+        print user_info.save
         return True
 
 
