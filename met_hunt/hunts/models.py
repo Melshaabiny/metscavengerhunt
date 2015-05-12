@@ -58,6 +58,15 @@ class Has(models.Model):
     image = models.CharField(max_length=250, default="No image available")
     fact = models.CharField(max_length=250, default="No fact available")
 
+class HuntProg(models.Model):
+    """
+        * intermediate model that is linked to hunts and has to keep track of progress for the users
+    """
+    hunt = models.ForeignKey(Hunts)
+    user = models.CharField(max_length=30)
+    cur_item_num = models.IntegerField()
+    completed = models.BooleanField(default = False)
+
 def set_HuntsData(id_hunt):
     """
         * Based on the hunt id, set_HuntsData returns a python dictionary

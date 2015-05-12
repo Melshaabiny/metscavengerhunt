@@ -46,9 +46,10 @@ def render_proc_ts(request):
     if request.user.is_authenticated():
         if request.method == "POST":
             global hunt_id
+            uname = request.user.username
             title = str(request.POST.get('title', ''))
             start = str(request.POST.get('start', ''))
-            add_hunt_its(hunt_id, title, start)
+            add_hunt_its(hunt_id, title, start, uname)
             return redirect('cr_aitem')
     else:
         return redirect('cr_error')
