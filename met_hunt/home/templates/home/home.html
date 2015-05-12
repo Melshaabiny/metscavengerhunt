@@ -2,34 +2,33 @@
 {% block body %}
 <div class="MainBod medium-12 small-12 large-12">
     <div class="top row large-12">
-	    <header>
-	        {% load staticfiles %}
-	        <div class="row newPanel">
-	            <h1 class="MainHead"><em>Museum Hunters</em></h1>
-	            <h2 class="SubHead">Welcome to our Scavenger Hunt App for the Metropolitan Museum.</h2>
-	        </div>
-	    </header>
-	    <div class="row buttondiv large-12">
-	        <div class="small-12 medium-12 large-6 columns">
-	            <a href={% url "tutorial_hunt.views.rend_welcome" %}><input type="button" value="Start Tutorial Hunt" class="button radius expand">
-	            </a>
-	        </div>
-	        <div class="small-12 medium-12 large-6 columns">
-	            <a href= {% url "user_auth.views.register" %}>
-	            <input type="button" value="Register Now!" class="button radius expand">
-	            </a>
-	        </div>
-	    </div>
+        <header>
+            {% load staticfiles %}
+            <div class="row newPanel">
+                <h1 class="MainHead"><em>Museum Hunters</em></h1>
+                <h2 class="SubHead">Welcome to our Scavenger Hunt App for the Metropolitan Museum.</h2>
+            </div>
+        </header>
+        <div class="row buttondiv large-12">
+            <div class="small-12 medium-12 large-6 columns">
+                <a href={% url "tutorial_hunt.views.rend_welcome" %}><input type="button" value="Start Tutorial Hunt" class="button radius expand">
+                </a>
+            </div>
+            <div class="small-12 medium-12 large-6 columns">
+                <a href= {% url "user_auth.views.register" %}>
+                <input type="button" value="Register Now!" class="button radius expand">
+                </a>
+            </div>
+        </div>
     </div>
-<!--     <div class="row factdiv large-12">
+    <!--     <div class="row factdiv large-12">
         <div class="small-6 medium-6 large-6 columns">
             <img class="factimg" src="{% static 'home/static/home/img/scav_lens.jpg' %}">
         </div>
         <div class="small-6 medium-6 large-6 columns">
             <p>An Interactive Adventure through time and cultures.<br>Test your Detective skills and become the best hunter!</p>
         </div>
-    </div> -->
-
+        </div> -->
     <div class="row factdivision small-12 medium-12 large-12 centered">
         <div class="fact1 small-12 medium-12 large-4  centered columns">
             <h4>Fun</h4>
@@ -38,7 +37,7 @@
         <div class="fact2 small-12 medium-12 large-4 centered columns">
             <h4>Eduactional</h4>
             <p><small>Learn as you solve clues and scour through the works of art!<br>Work with classmates during school trips.</small></p>
-        </div
+            </div
         </div>
         <div class="fact3 small-12 medium-12 large-4 centered columns">
             <h4>Social</h4>
@@ -49,10 +48,10 @@
         <a href= {% url "cr_hunt.views.render_main" %}>
         <input type="button" value="Create your own hunt. Challenge your friends" class="button createHunt radius expand">
         </a>
-    </div>    
-<!--     <div class="row large-12">
-    <input type="button" class="button radius expand" value="Go to Idea" onClick="document.getElementById('idea').scrollIntoView();" />
-    </div> -->
+    </div>
+    <!--     <div class="row large-12">
+        <input type="button" class="button radius expand" value="Go to Idea" onClick="document.getElementById('idea').scrollIntoView();" />
+        </div> -->
     <div class="subSpot large-12">
         <div class="centerLine">
             <!--	<img class ="imgForm" src="static/img/horsey1.png" alt=""> -->
@@ -99,7 +98,7 @@
                         </div>
                     </div>
                 </li>
-          	     <li class="accordion-navigation">
+                <li class="accordion-navigation">
                     <a href="#community">Community</a>
                     <div class="content" id="community">
                         <div class="row">
@@ -116,5 +115,4 @@
     </div>
     <hr>
 </div>
-
 {% endblock %}
