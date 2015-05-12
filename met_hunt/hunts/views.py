@@ -18,11 +18,12 @@ def render_hunt(request, given_id):
         * finally, it renders the welcome page
     """
     global TEMP
+
     hunt_dict = set_HuntsData(given_id)
     TEMP = set_ItemsData(given_id)
     hunt_title = hunt_dict['hunt title']
     hunt_start = hunt_dict['hunt start']
-    return render_to_response("hunts/hunt.html", {"title": hunt_title, "start_pt": hunt_start})
+    return render_to_response("hunts/hunt.html", {"title": hunt_title, "start_pt": hunt_start, "user": request.user})
 
 def next_proc(request):
     """
