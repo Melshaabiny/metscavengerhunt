@@ -58,7 +58,7 @@ input[type=button]:hover, button:hover {
 .factdivision{
   padding: auto;
   margin: 60px;
-  background-color: black;
+
 }
 .button.createHunt{
   padding: 50px;
@@ -1859,7 +1859,8 @@ meta.foundation-mq-topbar {
   width: 100%;
   background: #333333; }
   .contain-to-grid .top-bar {
-    margin-bottom: 0; }
+    margin-bottom: 0;
+    color: #385365; }
 
 .fixed {
   width: 100%;
