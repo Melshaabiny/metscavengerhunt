@@ -15,7 +15,14 @@ from django.contrib.auth import logout
 @login_required
 def edit(request):
     """
-    The user can edit their information from the profile page.
+
+    :param: HttpRequest
+    :rtype: HttpResponse
+
+    The user can edit their information from the edit page. From the edit page, 
+    the information that the user wants to modify will be taken and passed to
+    the class **EditForm**. The class **EditForm** has class method called
+    **process()** which is responsible for processing the edit information.
     """
     form = None
     title = "Edit User Information"
@@ -36,6 +43,14 @@ def edit(request):
 
 @login_required
 def profile(request):
+    """
+    :param: HttpRequest
+    :rtype: HttpResponse
+
+    This function is responsible for checking if a user is authenticated when
+    the user is try to access profile page.
+    """
+
     user = None
     if request.user.is_authenticated():
         user = request.user
@@ -47,7 +62,15 @@ def profile(request):
 # Create your views here.
 def login_user(request):
     """
-    login a user into the website.
+
+    :param: HttpRequest
+    :rtype: HttpResponse
+    
+
+    log a user into the website. This function takes the login information
+    such as the username and password from the user and pass the information
+    to **LogInForm**. The **LogInForm** has class method called **login_process()**
+    and this class method handles processing the login information.
     """
     title = "LogIn"
     args = {}
@@ -79,13 +102,27 @@ def login_user(request):
 
 @login_required
 def logout_user(request):
+    """
+
+    :param: HttpRequest
+    :rtype: HttpResponse
+
+    This function handles log the user out from the website. 
+    """
+
     logout(request)
     return render_to_response('home/home.html', {})
 
 def register(request):
     """
-    Register new user. If the request method is not POST, then return the register page template.
-    Otherwise, register the user with given data.
+
+    :param: HttpRequest
+    :rtype: HttpResponse
+
+    This method handles registering new users. All neccessary information is
+    taken from **register.html** page, and those information is passed into
+    **RegisterForm** and the class method **register_form()** will process 
+    the information.
     """
     user = None
     # handles registering.
