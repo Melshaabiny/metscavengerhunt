@@ -10,6 +10,7 @@ from mock import Mock
 from mock import patch
 from user_auth.views import login_user, logout_user, register
 from user_auth.models import UserInfo
+from user_auth.auth_forms import RegisterForm, LogInForm
 from django.http import QueryDict
 from django.utils.datastructures import MultiValueDict
 import unittest
@@ -33,7 +34,59 @@ class user_authTest(unittest.TestCase):
         """
         User.objects.all().delete() # clean up the user database.
 
+###### Unit tests form user_auth.auth_forms
+#####################################################
+#####################################################
+    def test_unit_auth_form_with_invalid_user(self):
+        """
+        This is the unit test for user_auth.auth_forms. It tests if 
+        it operates correctly with invalid request which will be 
+        trying to register with username that is already in our 
+        database.
+        """
 
+        # mock forms.
+        with patch('user_auth.auth_forms.forms') as form:
+            form.CharField = MagicMock(return_value="charfield")
+            form.EmailField = MagicMock(return_value="emailfield")
+            with patch('user_auth.auth_forms.User') as user:
+                user.objects.get = MagicMock(return_value=False)
+                user.objects.create_user = MagicMock()
+                user.objects.create_user.return_value = MagicMock()
+                user.save = MagicMock()
+                with patch('user_auth.auth_forms.UserInfo') as user_info:
+                    user_info.objects.create = MagicMock()
+                    user_info.save = MagicMock()
+                    ins = RegisterForm()
+                    ins.cleaned_data = MagicMock(return_value=None)
+                    ins.register_form()
+
+                    # asserts
+                    self.assertTrue(user_info.objects.create.called)
+                    self.assertTrue(user.objects.get.called)
+                    self.assertTrue(user.objects.create_user.called)
+    def test_unit_loginform(self):
+        """
+        This is unit test for LogInForm.
+
+        """
+
+        with patch('user_auth.auth_forms.forms') as form:
+            form.CharField = MagicMock(return_value="charfiled")
+            with patch('user_auth.auth_forms.authenticate') as authenticate:
+                ins = LogInForm()
+                ins.cleaned_data = MagicMock(return_value=None)
+                authenticate.return_value = MagicMock()
+                authenticate.return_value.is_active = True
+                with patch('user_auth.auth_forms.login') as login:
+                    login.return_value = None
+                    request = MagicMock()
+                    ins.login_process(request)
+
+                    # asserts.
+                    self.assertTrue(login.called)
+                    self.assertTrue(authenticate.called)
+                    
 ###### Unit tests
 #####################################################
 ####################register unit tests##############
