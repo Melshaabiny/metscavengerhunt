@@ -9,6 +9,7 @@ This user_auth.models defined several user information.
 from django.db import models
 from django.contrib.auth.models import User
 from hunts.models import HuntProg, Hunts
+from cr_hunt.models import cr_Hunts
 
 level = (
     ('expert', 'Expert'),
@@ -24,7 +25,7 @@ class UserInfo(models.Model):
 
     Here are the attributes of the model.
 
-    :user: This is one-to-one relationship from the django User class to UserInfor.
+    :user: This is one-to-one relationship from the django User class to UserInfo.
     """
 
 
@@ -55,21 +56,43 @@ def get_huntprog(uname):
     user_hunts = HuntProg.objects.filter(user = uname)
     lst_hunts = ()
     for user_hunt in user_hunts:
-        uhunt_title = user_hunts[user_hunt].hunt.Title
-        prog_val = user_hunts[user_hunt].cur_item_num
+        uhunt_title = user_hunt.hunt.Title
+        prog_val = user_hunt.cur_item_num
         #under assumption that all hunts have 10 items
         prog_val = (prog_val / 10) * 100
         prog_str = str(prog_val) + ' %'
         lst_hunts = lst_hunts + ((uhunt_title, prog_str),)
     return list(lst_hunts)
 
-def get_createdhunts(unam):
+def get_createdhunts(uname):
     """
     Grab hunts that were created by a user
     """
-    user_hunts = Hunts.objects.filter(user = uname)
-    lst_hunts = []
+    user_hunts = cr_Hunts.objects.filter(CreatedBy = uname)
+    #should be Hunts.objects.filter(user = uname)
+    lst_hunts = ()
     for user_hunt in user_hunts:
-        uhunt_title = user_hunts[user_hunt].Title
-        lst_hunts.append(uhunt_title)
-    return lst_hunts
+        uhunt_title = str(user_hunt.Title)
+        lst_hunts = lst_hunts + ((uhunt_title),)
+    return list(lst_hunts)
+
+def get_expertise_lvl_rank(uname, nuser):
+    """
+    Get expertise lvl and calculate score
+    input: username and user object
+    output: list containg expert level and total score
+    """
+    user_ex_obj = UserInfo.objects.filter(user = nuser)
+    user_ex = user_ex_obj.expert_level
+    user_hunt_scores = HuntProg.objects.filter(user = uname)
+    t_score = 0
+    for score in user_hunt_scores:
+        prog_val = score.cur_item_num
+        #under assumption that all hunts have 10 items and each hunt is worth 50 points
+        prog_val = (prog_val / 10)
+        prog_val = prog_val * 50
+        t_score = t_score + prog_val
+    lvl_score_lst = []
+    lvl_score_lst += user_ex
+    lvl_score_lst += t_score
+    return lvl_score_lst
