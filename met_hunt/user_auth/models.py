@@ -8,6 +8,8 @@ This user_auth.models defined several user information.
 """
 from django.db import models
 from django.contrib.auth.models import User
+from hunts.models import HuntProg, Hunts
+from cr_hunt.models import cr_Hunts
 
 level = (
     ('expert', 'Expert'),
@@ -23,7 +25,7 @@ class UserInfo(models.Model):
 
     Here are the attributes of the model.
 
-    :user: This is one-to-one relationship from the django User class to UserInfor.
+    :user: This is one-to-one relationship from the django User class to UserInfo.
     """
 
 
@@ -46,3 +48,46 @@ class FriendList(models.Model):
 
     def __str__(self):
         return "%s's Friend" % (self.user.username)
+
+def get_huntprog(uname):
+    """
+    Grab progress of hunts for a user
+    """
+    user_hunts = HuntProg.objects.filter(user = uname)
+    lst_hunts = ()
+    for user_hunt in user_hunts:
+        uhunt_title = user_hunt.hunt.Title
+        prog_val = float(user_hunt.cur_item_num)
+        #under assumption that all hunts have 10 items
+        prog_val = (prog_val / 10) * 100
+        prog_str = str(prog_val) + ' %'
+        lst_hunts = lst_hunts + ((uhunt_title, prog_str),)
+    return list(lst_hunts)
+
+def get_createdhunts(uname):
+    """
+    Grab hunts that were created by a user
+    """
+    user_hunts = cr_Hunts.objects.filter(CreatedBy = uname)
+    #should be Hunts.objects.filter(user = uname)
+    lst_hunts = ()
+    for user_hunt in user_hunts:
+        uhunt_title = str(user_hunt.Title)
+        lst_hunts = lst_hunts + ((uhunt_title),)
+    return list(lst_hunts)
+
+def get_expertise_lvl_rank(uname):
+    """
+    Get expertise lvl and calculate score
+    input: username
+    output: total score
+    """
+    user_hunt_scores = HuntProg.objects.filter(user = uname)
+    t_score = 0
+    for score in user_hunt_scores:
+        prog_val = float(score.cur_item_num)
+        #under assumption that all hunts have 10 items and each hunt is worth 50 points
+        prog_val = (prog_val / 10)
+        prog_val = prog_val * 50
+        t_score = t_score + prog_val
+    return t_score
