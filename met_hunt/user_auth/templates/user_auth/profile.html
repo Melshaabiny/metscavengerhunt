@@ -93,14 +93,21 @@
 				{% for ht_cr in lst_of_crhunts %}
 				<tr>
 					<td>{{ ht_cr }}</td>
-				<tr>
+				</tr>
 				{% endfor %}
 				</table>
 			</a>
 		</li>
 		<li>
 			<a href="#" class="th">
-				<img src="http://placehold.it/350x250">
+				<table style = "width:100%">
+				<tr>
+					<th>{{ user.userinfo.expert_level }}</th>
+				</tr>
+				<tr>
+					<td>{{ user_score }}</td>
+				</tr>
+				</table>
 			</a>
 		</li>
 	</ul>
