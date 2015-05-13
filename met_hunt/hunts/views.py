@@ -4,10 +4,11 @@
 """
 from django.shortcuts import render_to_response
 from django.shortcuts import redirect
-from hunts.models import set_ItemsData, set_HuntsData, pop_item, verify_id
+from hunts.models import set_ItemsData, set_HuntsData, pop_item, verify_id, init_huntprog, update_cur_item
 from django.core.context_processors import csrf
 
 global TEMP
+global glob_hunt_id
 
 def render_hunt(request, given_id):
     """
@@ -18,10 +19,14 @@ def render_hunt(request, given_id):
         * finally, it renders the welcome page
     """
     global TEMP
+    global glob_hunt_id
+    glob_hunt_id = given_id
     hunt_dict = set_HuntsData(given_id)
     TEMP = set_ItemsData(given_id)
     hunt_title = hunt_dict['hunt title']
     hunt_start = hunt_dict['hunt start']
+    uname = request.user.username
+    init_huntprog(given_id, uname)
     return render_to_response("hunts/hunt.html", {"title": hunt_title, "start_pt": hunt_start})
 
 def next_proc(request):
@@ -83,6 +88,10 @@ def render_correct(request):
         * render correct answer's page
     """
     global TEMP
+    global glob_hunt_id
+    num = TEMP[0][2]
+    uname = request.user.username
+    update_cur_item(glob_hunt_id, uname, num)
     return render_to_response("hunts/correct.html", {"url":TEMP[0][4], "fact":TEMP[0][5]})
 
 def render_incorrect(request):

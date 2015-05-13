@@ -21,7 +21,7 @@ class Hunts(models.Model):
     Category = models.CharField(max_length=200)
     # Starting point of each Scavenger Hunt
     Start = models.CharField(max_length=400)
-    CreatedBy = models.CharField(max_length = 25, default = 'MetHunt Dev Team')
+    #CreatedBy = models.CharField(max_length = 25, default = 'MetHunt Dev Team')
     def __str__(self):
         return self.Title
 
@@ -65,7 +65,7 @@ class HuntProg(models.Model):
     """
     hunt = models.ForeignKey(Hunts)
     user = models.CharField(max_length=30)
-    cur_item_num = models.IntegerField()
+    cur_item_num = models.IntegerField(default = 0)
     completed = models.BooleanField(default = False)
 
     class Meta:
@@ -120,3 +120,18 @@ def verify_id(usr_input):
         return True
     else:
         return False
+
+def init_huntprog(h_id, uname):
+    e_hunt = Hunts.objects.filter(ID = h_id)
+    hprog_check = HuntProg.objects.filter(hunt_id = h_id, user = uname).count()
+    if hprog_check == 0:
+        hprog = HuntProg.objects.create(hunt = e_hunt[0], user = uname)
+        hprog.save()
+    else:
+        pass
+
+def update_cur_item(h_id, uname, newnum):
+    hprog = HuntProg.objects.get(hunt_id = h_id, user = uname)
+    hprog.cur_item_num = newnum
+    hprog.save()
+    

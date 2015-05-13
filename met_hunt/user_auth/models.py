@@ -57,7 +57,7 @@ def get_huntprog(uname):
     lst_hunts = ()
     for user_hunt in user_hunts:
         uhunt_title = user_hunt.hunt.Title
-        prog_val = user_hunt.cur_item_num
+        prog_val = float(user_hunt.cur_item_num)
         #under assumption that all hunts have 10 items
         prog_val = (prog_val / 10) * 100
         prog_str = str(prog_val) + ' %'
@@ -85,7 +85,7 @@ def get_expertise_lvl_rank(uname):
     user_hunt_scores = HuntProg.objects.filter(user = uname)
     t_score = 0
     for score in user_hunt_scores:
-        prog_val = score.cur_item_num
+        prog_val = float(score.cur_item_num)
         #under assumption that all hunts have 10 items and each hunt is worth 50 points
         prog_val = (prog_val / 10)
         prog_val = prog_val * 50
