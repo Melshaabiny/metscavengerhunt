@@ -1,0 +1,305 @@
+[
+{
+    "fields": {
+        "Category": "Ancient Art",
+        "Start": "Start at the Robert and Reuee Belfer court on the first floor.",
+        "Title": "Ancient Art Hunt"
+    },
+    "model": "hunts.hunts",
+    "pk": 1
+},
+{
+    "fields": {
+        "Category": "Medieval Art",
+        "Start": "Start In room 305, The room with the Great Choir Gates.",
+        "Title": "Medieval Art Hunt"
+    },
+    "model": "hunts.hunts",
+    "pk": 2
+},
+{
+    "fields": {
+        "Category": "Greek and Roman"
+    },
+    "model": "hunts.items",
+    "pk": "03.12.14"
+},
+{
+    "fields": {
+        "Category": "Egyptian Art"
+    },
+    "model": "hunts.items",
+    "pk": "11.154.1AB"
+},
+{
+    "fields": {
+        "Category": "Egyptian Art"
+    },
+    "model": "hunts.items",
+    "pk": "12.181.198"
+},
+{
+    "fields": {
+        "Category": "Egyptian Art"
+    },
+    "model": "hunts.items",
+    "pk": "131"
+},
+{
+    "fields": {
+        "Category": "Greek and Roman"
+    },
+    "model": "hunts.items",
+    "pk": "14.130.9"
+},
+{
+    "fields": {
+        "Category": "Egyptian Art"
+    },
+    "model": "hunts.items",
+    "pk": "20.3.7"
+},
+{
+    "fields": {
+        "Category": "Greek and Roman"
+    },
+    "model": "hunts.items",
+    "pk": "27.122.9"
+},
+{
+    "fields": {
+        "Category": "Ancient Near Eastern"
+    },
+    "model": "hunts.items",
+    "pk": "31.13.1"
+},
+{
+    "fields": {
+        "Category": "Ancient Near Eastern"
+    },
+    "model": "hunts.items",
+    "pk": "43.89.3"
+},
+{
+    "fields": {
+        "Category": "Ancient Near Eastern"
+    },
+    "model": "hunts.items",
+    "pk": "74.51.2467"
+},
+{
+    "fields": {
+        "Category": "Medieval Art"
+    },
+    "model": "hunts.items",
+    "pk": "53.37"
+},
+{
+    "fields": {
+        "Category": "Medieval Art"
+    },
+    "model": "hunts.items",
+    "pk": "27.18.2"
+},
+{
+    "fields": {
+        "Category": "Arms and Armors"
+    },
+    "model": "hunts.items",
+    "pk": "14.100.33"
+},
+{
+    "fields": {
+        "Category": "Arms and Armors"
+    },
+    "model": "hunts.items",
+    "pk": "1986.205"
+},
+{
+    "fields": {
+        "Category": "Islamic Art"
+    },
+    "model": "hunts.items",
+    "pk": "1993.14"
+},
+{
+    "fields": {
+        "Category": "Islamic Art"
+    },
+    "model": "hunts.items",
+    "pk": "65.109.2"
+},
+{
+    "fields": {
+        "item": "14.130.9",
+        "hunt": 1,
+        "number": 1,
+        "clue": "Find a barelief with Demeter, Persephone, and Triptolemos",
+        "hint": "Stone sculpture taller than a tall person",
+        "image": "http://images.metmuseum.org/CRDImages/gr/original/DT203390.jpg",
+        "fact": "This is the largest and most important known votive relief."
+    },
+    "model": "hunts.has",
+    "pk": 1
+},
+{
+    "fields": {
+        "item": "27.122.9",
+        "hunt": 1,
+        "number": 2,
+        "clue": "Find the double faced Kantharos",
+        "hint": "At the first glance you only see the bearded guy",
+        "image":"https://s-media-cache-ak0.pinimg.com/736x/8d/52/9f/8d529f0dead9509dd6c04f4a65185c39.jpg",
+        "fact": "Terracotta uses a far simpler process for creating the finished work with much lower material costs. It is also much lighter and is used to produce robust durable works."
+    },
+    "model": "hunts.has",
+    "pk": 2
+},
+{
+    "fields": {
+        "item": "03.12.14",
+        "hunt": 1,
+        "number": 3,
+        "clue": "A mirroring Hercules may be getting eaten by a lion! Find him.",
+        "hint": "Look for it in the courtyard.",
+        "image": "http://images.metmuseum.org/CRDImages/gr/original/DP156216.jpg",
+        "fact": "This Roman art work deviates away from the slender athletic form of the Classical Greek. It shows some of the differences between Greek and Roman idealism and their depictions of what they considered flawless since Greeks believed that it would be best to immortalize a subject in their athletic prime."
+    },
+    "model": "hunts.has",
+    "pk": 3
+},
+{
+    "fields": {
+        "item": "31.13.1",
+        "hunt": 1,
+        "number": 4,
+        "clue": "I am the symbol of Babylonian goddess of love and war. I face in the opposite cardinal direction of my brother. Who am I?",
+        "hint": "King of the jungle.",
+        "image": "http://images.metmuseum.org/CRDImages/an/original/DT891.jpg",
+        "fact": "A reconstruction of the Ishtar Gate and Processional Way was built at the Pergamon Museum in Berlin. It stands 14 m (46 ft) high and 30 m (100 ft). The excavation process took 12 years!"
+    },
+    "model": "hunts.has",
+    "pk": 4
+},
+{
+    "fields": {
+        "item": "43.89.3",
+        "hunt": 1,
+        "number": 5,
+        "clue": "Find a 'Female Figure'. It may not look quite female!",
+        "hint": "I am waring a pendant.",
+        "image": "http://images.metmuseum.org/CRDImages/an/original/hb43_89_3.jpg",
+        "fact": " Erich Schmidt, the archaeologist who excavated this item, fought in the World War I when he was young, and was captured by the Russians. In 1923 he moved to U.S., and studied anthropology at Columbia University."
+    },
+    "model": "hunts.has",
+    "pk": 5
+},
+{
+    "fields": {
+        "item": "74.51.2467",
+        "hunt": 1,
+        "number": 6,
+        "clue": "Find an item that looks Egyptian, but is actually from Cyprus",
+        "hint": "Don't you see the Wig?!",
+        "image": "http://images.metmuseum.org/CRDImages/gr/original/DP263872.jpg",
+        "fact": " This item is said to have been found at Golgoi"       
+    },
+    "model": "hunts.has",
+    "pk": 6
+},
+{
+    "fields": {
+        "item": "20.3.7",
+        "hunt": 1,
+        "number": 7,
+        "clue": "This lady is painted in red, yellow, blue, and green and holds a Duck. Find her!",
+        "hint": "Find the basket, you find the lady",
+        "image": "http://images.metmuseum.org/CRDImages/eg/original/DP249003.jpg",
+        "fact":  "Birds and rabits were two of the most sacrificed animals in Ancient Egypt"              
+    },
+    "model": "hunts.has",
+    "pk": 7
+},
+{
+    "fields": {
+        "item": "11.154.1AB",
+        "hunt": 1,
+        "number": 8,
+        "clue": "Find an item with a lid wide open. Its body is carved with texts and scenes relating to the after life. It's big enough to fit a person! ",
+        "hint": "The elevators lead you to this one.",
+        "image": "https://c2.staticflickr.com/8/7095/7156599167_031dd278f8_b.jpg",
+        "fact": "Sarcophagus was purchased from the Egyptian Government in 1911."
+    },
+    "model": "hunts.has",
+    "pk": 8
+},
+{
+    "fields": {
+        "item": "12.181.198",
+        "hunt": 1,
+        "number": 9,
+        "clue": "This is a quartet of lionesses, each holds a key of life. Find the one that lost its key!",
+        "hint": "During the day, your item is located in a very bright room",
+        "image": "http://www.insecula.com/PhotosNew/00/00/02/72/ME0000027237_3.JPG",
+        "fact": "The Egyptian gods are often portrayed carrying the Key of Life (Ankh) by its loop, or bearing one in each hand, arms crossed over their chest."
+    },
+    "model": "hunts.has",
+    "pk": 9
+},
+{
+    "fields": {
+        "item": "131",
+        "hunt": 1,
+        "number": 10,
+        "clue": "The four figures from your previous clue face your final destination!",
+        "hint": "That's too big for your eyes to miss!",
+        "image": "http://images.metmuseum.org/CRDImages/eg/original/DT563.jpg",
+        "fact": "Inside the it you can find something that has no business in an Egyptian temple: statuary depicting Roman Emperor Augustus Caesar. What is the image of the man who conquered Egypt doing in an Egyptian temple? We'll leave you with that question!"
+    },
+    "model": "hunts.has",
+    "pk": 10
+},
+
+{
+    "fields": {
+        "item": "53.37",
+        "hunt": 2,
+        "number": 1,
+        "clue": "Locate the Holy Dove flying over the red limestone.",
+        "hint": "Jesus is holding onto his wound.",
+        "hintcrop": "hunts/Medieval_1_HintCrop.png",
+        "image": "http://images.metmuseum.org/CRDImages/cl/original/DT201109.jpg",
+        "fact": "There are no historical evidences to prove on which side was Jesus wounded. The Gospels give no information on this subject as well. However, it was conventionally shown in art as being on Jesus' proper right side."
+    },
+    "model": "hunts.has",
+    "pk": 11
+},
+{
+    "fields": {
+        "item": "27.18.2",
+        "hunt": 2,
+        "number": 2,
+        "clue": "Locate the Red Papal Tiara.",
+        "hint": "Missing the keys to the gates of heaven.",
+        "hintcrop": "hunts/Medieval_2_HintCrop.png",
+        "image": "http://images.metmuseum.org/CRDImages/md/original/sf27-18-2s4.jpg",
+        "fact": "Saint Peter was crucified at Rome with his head downwards after he himself requested this form of crucifixion. He felt unworthy to be crucified in the same manner that Jesus died. Though this was not the intention, in recent times the (inverted) cross of St. Peter is used as an anti-Christian symbol."
+    },
+    "model": "hunts.has",
+    "pk": 12
+},
+{
+    "fields": {
+        "item": "14.100.33",
+        "hunt": 2,
+        "number": 3,
+        "clue": "Find the Happy Old Man.",
+        "hint": "Im on a wall surronded by others like me, yet my beard shows my age.",
+        "hintcrop": "hunts/Medieval_3_HintCrop.png",
+        "image": "http://images.metmuseum.org/CRDImages/aa/original/2793.jpg",
+        "fact": "In Japanese Noh, an all-male traditional form of Japanese theatre, the Smilling Old Man mask (Okina) is used when actors play gods."
+    },
+    "model": "hunts.has",
+    "pk": 13
+}
+]
