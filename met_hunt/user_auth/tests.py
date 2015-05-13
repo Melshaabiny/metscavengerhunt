@@ -10,7 +10,7 @@ from mock import Mock
 from mock import patch
 from user_auth.views import login_user, logout_user, register
 from user_auth.models import UserInfo
-from user_auth.auth_forms import RegisterForm, LogInForm
+from user_auth.auth_forms import RegisterForm, LogInForm, EditForm
 from django.http import QueryDict
 from django.utils.datastructures import MultiValueDict
 import unittest
@@ -86,7 +86,47 @@ class user_authTest(unittest.TestCase):
                     # asserts.
                     self.assertTrue(login.called)
                     self.assertTrue(authenticate.called)
-                    
+    def test_unit_login_username_notExist(self):
+        """
+        This test case is for when a user tries to login with username
+        that does not exists. Then, LogInForm.login_process should return
+        None.
+        """
+
+        with patch('user_auth.auth_forms.forms') as forms:
+            forms.CharField = MagicMock(return_value="username")
+            forms.CharField = MagicMock(return_value="password")
+            ins = LogInForm()
+            ins.cleaned_data = MagicMock(return_value="cleanddata")
+            with patch('user_auth.auth_forms.authenticate') as authenticate:
+                authenticate.return_value = None
+                request = MagicMock()
+                ret = ins.login_process(request)
+                self.assertTrue(authenticate.called)
+                self.assertTrue(not ret)
+
+    def test_unit_editform(self):
+        """
+        This test case is for EditForm in auth_forms and test if
+        it can correctly edit user information as the user intended.
+        """
+
+        with patch('user_auth.auth_forms.forms') as form:
+            form.CharField = MagicMock(return_value="CharField")
+            form.ImageField = MagicMock(return_value="ImageField")
+            ins = EditForm()
+            ins.cleaned_data = MagicMock(return_value="cleaned_data")
+            with patch('user_auth.auth_forms.UserInfo') as userinfo:
+                userinfo.objects.get = MagicMock()
+                # need to mock user
+                user = MagicMock()
+                # call the function.
+                ins.process(user)
+                # check
+                self.assertTrue(userinfo.objects.get.called)
+                self.assertTrue(user.save.called)
+                # self.assertTrue(userinfo.save.called)
+
 ###### Unit tests
 #####################################################
 ####################register unit tests##############
@@ -137,7 +177,6 @@ class user_authTest(unittest.TestCase):
             with patch('user_auth.views.render_to_response') as render:
                 render.return_value = "some value"
                 register(request)
-
                 # asserts
                 reg.assert_called_with("some input")
                 self.assertTrue(not reg.return_value.register_form.called)
@@ -157,13 +196,11 @@ class user_authTest(unittest.TestCase):
             request = MagicMock()
             request.method = "GET"
             reg.return_value = Mock()
-
             # For testing if we execute correct else statement.
             reg.return_value.is_valid = Mock(return_value=False)
             with patch('user_auth.views.render_to_response') as render:
                 render.return_value = True
                 register(request)
-
                 # asserts
                 self.assertTrue(not reg.return_value.is_valid.called)
                 self.assertTrue(render.called)
@@ -350,6 +387,20 @@ class user_authTest(unittest.TestCase):
         self.client.post('/user_auth/login/', args) # This will throw exception.
 
 
+    # def test_register_username_exist(self):
+    #     """
+    #     This tests if a visitor tries to register with the username
+    #     that is already exists in the site database.
+    #     """
+
+    #     with patch('user_auth.views.RegisterForm') as reg:
+    #         reg.return_value = MagicMock()
+    #         reg.register_form = MagicMock(return_value=True)
+    #         request = MagicMock()
+    #         request.POST = "POST method"
+    #         with patch('user_auth.views.HttpResponseRedirect') as redir:
+    #             register(request)
+    #             self.assertTrue(redir.called)
 
 
 ###################################################################################

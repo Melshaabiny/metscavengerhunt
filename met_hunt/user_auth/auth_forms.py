@@ -27,7 +27,6 @@ class RegisterForm(forms.Form):
         try:
             isvalid = User.objects.get(username=self.cleaned_data['user_name'])
         except:
-            print "rerere"
             isvalid = None
         if not isvalid:
             user = User.objects.create_user(username=self.cleaned_data['user_name'],
@@ -73,6 +72,7 @@ class LogInForm(forms.Form):
             if user.is_active:
                 login(request, user)
                 return user
+        print "hereer"
         return None
 
 
