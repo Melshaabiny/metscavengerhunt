@@ -1,253 +1,120 @@
 {% extends "met_hunt/index.html" %}
 {% block body %}
-
-
-
-
+<div class="row">
 <div class="MainBod medium-12 small-12 large-12">
-<header>
-{% load staticfiles %}
-
-<div class="row newPanel">
-	<div class="columns large-12">
-		<ul class="accordion" data-accordion>
-				<li class="accordion-navigation">
-					<a href="#MainLogo"><h1 class="MainHead">Museum Hunters</h1></a>
-    					<div id="MainLogo" class="content">
-							<a href="#"><img src="{% static 'img/winglobecol_icon.png' %}">
-							</a>
-						</div>
-				</li>
-			</ul>
-		</div>
-	</div>
-
-
-
-
-
-	<div class="large-12">
-	<div class="row newPanel large-12 sideA" data-equalizer>
-
-	<div class="small-12 medium-12 large-6 columns">
-		<ul data-orbit>
-			
-
-			<li data-orbit-slider="Front" slider-pause><img src="{% static 'img/metfront.jpg' %}" alt="">
-				<div class="orbit-caption">
-					Metropolitan Museum Scavenger Hunt
-				</div>
-			</li>
-			<li data-orbit-slider="Kemet" slider-pause><img src="{% static 'img/kemet.jpg' %}" alt="">
-				<div class="orbit-caption">
-					Ancient Hunt/ Embark on a Journey Through Time
-				</div>
-			</li>
-			<li data-orbit-slider="Gallery" slider-pause><img src="{% static 'img/gallery.jpg' %}" alt="">
-				<div class="orbit-caption">Medieval Hunt/ From Darkness to Light</div>
-			</li>
-			<li data-orbit-slider="Hall" slider-pause><img src="{% static 'img/mainhall.jpg' %}" alt="">
-				<div class="orbit-caption">
-					Modern Hunt/ Keep up with the Contemporary
-				</div>
-			</li>
-		</ul>
-	</div>
-	
-						<!--<h3>Hunt with us</h3>-->
-
-	<div class="small-12 medium-12 large-6 centered columns newPanel sideB" data-equalizer-watch>
-		
-			<h3>Museum Hunters: Scavenger Hunt</h3>
-		
-		<span class="introBox">
-			<p >Welcome to our Scavenger Hunt for the Metropolitain Museum.<br> Register. <br>Sign In.<br> Jump Right into a New Hunt.<br>
-			Try it out and strive to be the best Hunter.<br>
-			</p>
-		</span>
-		<a href= {% url "tutorial_hunt.views.rend_welcome" %}>
-		<input type="button" value="Start Hunt" class="button radius expand">
-		</a>
-	</div>
-	<div class="large-12 column underSide newPanel">
-		<h3>Hunt with us today!</h3>
-	</div>
-	
-	</div>
-	
-</header>
-	<!--ummmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm-->
-	
+    <div class="top row large-12">
+        <header>
+            {% load staticfiles %}
+            <div class="row newPanel">
+                <h1 class="MainHead"><em>Museum Hunters</em></h1>
+                <h2 class="SubHead">Welcome to our Scavenger Hunt App for the Metropolitan Museum.</h2>
+            </div>
+        </header>
+        <div class="row buttondiv large-12">
+            <div class="small-12 medium-12 large-6 columns">
+                <a href={% url "tutorial_hunt.views.rend_welcome" %}><input type="button" value="Start Tutorial Hunt" class="button radius expand">
+                </a>
+            </div>
+            <div class="small-12 medium-12 large-6 columns">
+                <a href= {% url "user_auth.views.register" %}>
+                <input type="button" value="Register Now!" class="button radius expand">
+                </a>
+            </div>
+        </div>
+    </div>
+    <!--     <div class="row factdiv large-12">
+        <div class="small-6 medium-6 large-6 columns">
+            <img class="factimg" src="{% static 'home/static/home/img/scav_lens.jpg' %}">
+        </div>
+        <div class="small-6 medium-6 large-6 columns">
+            <p>An Interactive Adventure through time and cultures.<br>Test your Detective skills and become the best hunter!</p>
+        </div>
+        </div> -->
+    <div class="row factdivision small-12 medium-12 large-12 centered">
+        <div class="fact1 small-12 medium-12 large-4  centered columns">
+            <h4>Fun</h4>
+            <p><small>An Interactive Adventure through time and cultures.<br>Test your Detective skills and become the best hunter!</small></p>
+        </div>
+        <div class="fact2 small-12 medium-12 large-4 centered columns">
+            <h4>Eduactional</h4>
+            <p><small>Learn as you solve clues and scour through the works of art!<br>Work with classmates during school trips.</small></p>
+            </div
+        </div>
+        <div class="fact3 small-12 medium-12 large-4 centered columns">
+            <h4>Social</h4>
+            <p><small>Collaborate with friends to have a blast while hunting.<br>Share the adventure on your favorite social media.</small></p>
+        </div>
+    </div>
+    <div class="row small-12 medium-12 large-12">
+        <a href= {% url "cr_hunt.views.render_main" %}>
+        <input type="button" value="Create your own hunt. Challenge your friends" class="button createHunt radius expand">
+        </a>
+    </div>
+    <!--     <div class="row large-12">
+        <input type="button" class="button radius expand" value="Go to Idea" onClick="document.getElementById('idea').scrollIntoView();" />
+        </div> -->
+    <div class="subSpot large-12">
+        <div class="centerLine">
+            <!--	<img class ="imgForm" src="static/img/horsey1.png" alt=""> -->
+        </div>
+        <div class="row rowFix" id="idea">
+            <div class="column large-12 centered newPanel ">
+                <ul class="accordion no-bullet" data-accordion>
+                    <li class="accordion-navigation">
+                        <a href="#contribID">
+                            <i class="fi-lightbulb iconic"></i>
+                            <p class="centerLine">Have an Idea?</p>
+                        </a>
+                        <div class="content" id="contribID">
+                            <p>
+                                Create and contribute your own Hunts! 
+                            </p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row newPanel">
+        <div class="columns large-12">
+            <ul class="accordion" data-accordion>
+                <li class="accordion-navigation">
+                    <a href="#gallery">Gallery</a>
+                    <div class="content" id="gallery">
+                    </div>
+                </li>
+                <li class="accordion-navigation">
+                    <a href="#map">Map</a>
+                    <div class="content" id="map">
+                        <div class="row">
+                            <div class="columns small-12 medium-12 large-6">
+                                <a class="hr" href="#">
+                                    <div id="map-canvas"></div>
+                                </a>
+                            </div>
+                            <div class="columns	small-12 medium-12 large-6">
+                                <p>The Metropolitan museum can be found here on the map!</p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="accordion-navigation">
+                    <a href="#community">Community</a>
+                    <div class="content" id="community">
+                        <div class="row">
+                            <h3>Community</h3>
+                            <p>We have active scavenger hunt community that you can ask questions and help others by answering there questions.</p>
+                            <a href={% url 'forum.views.thread_layout' %}>
+                            <input type="button" class="button expand" value="Visit Community">
+                            </a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <hr>
 </div>
-
-<div class="subSpot large-12">
-	<div class="centerLine">
-	<!--	<img class ="imgForm" src="static/img/horsey1.png" alt=""> -->
-	</div>
-	
-<div class="row newPanel">
-	<div class="large-4 column rowFix">
-	<ul class="accordion no-bullet" data-accordion>
-	<li class="accordion-navigation">
-			<a href="#funID"><i class="fi-puzzle iconic"></i>
-				<p class="centerLine">Fun</p>
-			</a>
-		<div class="content" id="funID">
-			<p>
-				An Interactive Adventure through time and cultures.<br>
-				Test your Detective skills and become the best hunter!  
-			</p>
-		</div>
-	</li>
-	</ul>
-	</div>
-	<div class="large-4  column rowFix">
-	<ul class="accordion no-bullet" data-accordion>
-	<li class="accordion-navigation">
-		<a href="#eduID"><i class="fi-book-bookmark iconic"></i>
-		<p class="centerLine">Educational</p>
-		</a>
-		<div class="content" id="eduID">
-			<p>
-				Learn (and even teach...) as you solve clues and scour through the works of art!<br> 
-				Work with classmates during school trips.  
-			</p>
-		</div>
-	</li>
-	</ul>
-	</div>
-	<div class="large-4  column rowFix">
-	<ul class="accordion no-bullet" data-accordion>
-	<li class="accordion-navigation">
-		<a href="#socialID"><i class="fi-male-female iconic"></i>
-		<p class="centerLine">Social</p></a>
-			<div class="content" id="socialID">
-			<p>
-				Collaborate with friends to have even more of a blast while hunting. <br>Share the adventure on your favorite social media.
-			</p>
-		</div>
-	</li>
-	</ul>
-	</div>
 </div>
-<div class="row rowFix">
-	<div class="column large-12 centered newPanel ">
-	<ul class="accordion no-bullet" data-accordion>
-		<li class="accordion-navigation">
-			<a href="#contribID"><i class="fi-lightbulb iconic"></i>
-		<p class="centerLine">Have an Idea?</p>
-		</a>
-		<div class="content" id="contribID">
-			<p>
-				Create and contribute your own Hunts! 
-			</p>
-		</div>
-	</li>
-	</ul>
-
-	</div>
-
-	
-	
-</div>
-	
-</div>
-
-<hr>
-
-<div class="row newPanel">
-	<div class="columns large-12">
-		<ul class="accordion" data-accordion>
-
-			<li class="accordion-navigation">
-				<a href="#gallery">Gallery</a>
-				<div class="content" id="gallery">
-					<div class="row">
-						<ul class="large-block-grid-3 small-block-grid-1 medium-block-grid-1">
-							<li>
-								<a class="hr" href="#">
-									<img src="/static/img/olmec.jpg">
-								</a>
-							</li>
-							<li>
-								<a class="hr" href="#">
-									<img src="/static/img/bowl.jpg">
-								</a>
-							</li>
-							<li>
-								<a class="hr" href="#">
-									<img src="/static/img/gilt.jpg">
-								</a>
-							</li>
-							<li>
-								<a class="hr" href="#">
-									<img src="/static/img/dagger.jpg">
-								</a>
-							</li>
-							<li>
-								<a class="hr" href="#">
-									<img src="/static/img/kanagawa.jpg">
-								</a>
-							</li>
-							<li>
-								<a class="hr" href="#">
-									<img src="/static/img/houses.jpg">
-								</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</li>
-
-			<li class="accordion-navigation">
-				<a href="#map">Map</a>
-				<div class="content" id="map">
-					<div class="row">
-						<div class="columns small-12 medium-12 large-6">
-							<a class="hr" href="#">
-									<div id="map-canvas"></div>
-
-							</a>
-						</div>
-						<div class="columns	small-12 medium-12 large-6">
-							<p>The Metropolitan museum can be found here on the map!</p>
-						</div>
-					</div>
-				</div>
-			</li>
-
-			<li class="accordion-navigation">
-				<a href="#community">Community</a>
-				<div class="content" id="community">
-					<div class="row">
-						<h3>Community</h3>
-						<p>We have active scavenger hunt community that you can ask questions and help others by answering there questions.</p>
-						<a href={% url 'forum.views.thread_layout' %}>
-							<input type="button" class="button expand" value="Visit Community">
-						</a>
-					</div>
-				</div>
-			</li>
-		</ul>
-	</div>
-</div>
-
-
-<hr>
-	
-    <script type="text/javascript">
-      function initialize() {
-        var mapOptions = {
-          center: { lat: 40.779405, lng: -73.963233},
-          zoom: 8
-        };
-        var map = new google.maps.Map(document.getElementById('map-canvas'),
-            mapOptions);
-      }
-      google.maps.event.addDomListener(window, 'load', initialize);
-    </script>
-
-
-
-
 {% endblock %}
