@@ -21,14 +21,7 @@
  	<script src="{% static 'angular-1.3.15/angular-animate.js' %}"></script>
 	<script src="{% static 'angular-1.3.15/angular-cookies.js' %}"></script>
 	<script src="{% static 'forum.js' %}"></script>
-	<script type="text/javascript"
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCseLu-5Ecx8wSJ6-KR1sIACHnrj12UqYU">
-    </script>
-    <style type="text/css">
-  		html { height: 100% }
-  		body { height: 100%; margin: 0; padding: 0 }
-  		#map-canvas { height: 100% }
-	</style>
+	
 
 
 
@@ -56,11 +49,11 @@
 						<li class="has-dropdown not-click">
 							<a href="#">Categories</a>
 							<ul class="dropdown">
-								<li><a href= {% url "hunts.views.render_hunt" '001' %}>Ancient Art Hunt</a></li>
-								<li><a href= {% url "hunts.views.render_hunt" '002' %}>Medieval Art Hunt</a></li>
-								<li><a href= {% url "hunts.views.render_hunt" '003'%}>Asian Art Hunt</a></li>
-								<li><a href= {% url "hunts.views.render_hunt" '004'%}>Modern Art Hunt</a></li>
-								<li><a href= {% url "hunts.views.render_hunt" '005' %}>European Art Hunt</a></li>
+								<li><a href= {% url "hunts.views.hunt_detail" 'Ancient' %}>Ancient Art Hunt</a></li>
+								<li><a href= {% url "hunts.views.hunt_detail" 'Medieval' %}>Medieval Art Hunt</a></li>
+								<li><a href= {% url "hunts.views.hunt_detail" 'Asian'%}>Asian Art Hunt</a></li>
+								<li><a href= {% url "hunts.views.hunt_detail" 'Modern'%}>Modern Art Hunt</a></li>
+								<li><a href= {% url "hunts.views.hunt_detail" 'European' %}>European Art Hunt</a></li>
 							</ul>
 						</li>
 						<li><a href= {% url "cr_hunt.views.render_main" %}>Create Hunts</a></li>

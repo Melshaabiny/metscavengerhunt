@@ -14,7 +14,7 @@ class Hunts(models.Model):
         * each belongs to a specific category and have a starting location
     """
     # Unique identification number for each hunt
-    ID = models.IntegerField(unique=True, primary_key=True)
+    ID = models.CharField(unique=True, primary_key=True, max_length=50)
     # Title of the Hunt. For now, same as category.
     Title = models.CharField(max_length=200)
     # Category of the Hunt

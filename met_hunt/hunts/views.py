@@ -6,7 +6,7 @@ from django.shortcuts import render_to_response
 from django.shortcuts import redirect
 from hunts.models import set_ItemsData, set_HuntsData, pop_item, verify_id
 from django.core.context_processors import csrf
-
+from hunts.models import Hunts
 global TEMP
 
 def render_hunt(request, given_id):
@@ -96,3 +96,27 @@ def render_congrats(request):
         * render congratulations page after finishing hunt
     """
     return render_to_response("hunts/congrats.html", {})
+
+
+def hunt_detail(request, category):
+    """
+    This view renders the page for each type of hunts available. It will
+    contain the list of hunts in each category. And each of this list will 
+    be linked to corresponding hunt page. Here, type will be a string that
+    represent the type of hunt.
+    """
+
+    # get all hunts with Category == type.
+    # try:
+    # hunts = Hunt.objects.all(Category=type)
+    if category == "Ancient":
+        category = category + " Art"
+    elif category == "Medieval":
+        category = category + " Art"
+    hunts = Hunts.objects.all().filter(Category=category)
+    args = {'hunts' : hunts, 'title' : category + ' Collection'}
+    # except:
+    #     args = {}
+
+    return render_to_response('hunts/hunt_detail.html', args)
+
