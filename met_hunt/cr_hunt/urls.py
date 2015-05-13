@@ -10,4 +10,5 @@ urlpatterns = patterns('',
     	url(r'^aitem$', views.render_aitem, name='cr_aitem'),
         url(r'^proc_it$', views.render_proc_it, name = 'cr_proc_it'),
 	url(r'^end$', views.render_end, name = 'cr_end'),
+        url(r'^cr_error$', views.render_error, name = 'cr_error'),
 )
