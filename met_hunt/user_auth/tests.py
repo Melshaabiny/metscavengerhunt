@@ -377,6 +377,18 @@ class user_authTest(unittest.TestCase):
         response = self.client.get('/user_auth/profile/')
         self.assertTrue(response.status_code != 200)
 
+##################################
+###########Profile Model Functions
+    def test_models_get_huntprog(self):
+        """
+        **test_models_get_huntprog()** tests that a list of lists is created from HuntsProg table
+        """
+        # mock return value of filter call to get all hunt id sharing a username
+        # mock the attributes of the objects to return fixed values 'title' '0 - 10'
+        # check return value to see if list of lists was created with a list[0][0] and list[1][0] being title
+        # ^and list[0][1] list[1][1] being a str that matches '(calculated int) %'
+        pass
+
 
 
 ###################################################################################

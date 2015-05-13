@@ -8,6 +8,7 @@ This user_auth.models defined several user information.
 """
 from django.db import models
 from django.contrib.auth.models import User
+from hunts.models import HuntProg, Hunts
 
 level = (
     ('expert', 'Expert'),
@@ -46,3 +47,19 @@ class FriendList(models.Model):
 
     def __str__(self):
         return "%s's Friend" % (self.user.username)
+
+def get_huntprog(uname):
+    """
+    Grab progress of hunts for a user
+    """
+    user_hunts = HuntProg.objects.filter(user = uname)
+    lst_hunts = ()
+    for user_hunt in user_hunts:
+        uhunt_title = user_hunts[user_hunt].hunt.Title
+        prog_val = user_hunts[user_hunt].cur_item_num
+        #under assumption that all hunts have 10 items
+        prog_val = (prog_val / 10) * 100
+        prog_str = str(prog_val) + ' %'
+        lst_hunts = lst_hunts + ((uhunt_title, prog_str),)
+    return list(lst_hunts)
+    
