@@ -389,6 +389,14 @@ class user_authTest(unittest.TestCase):
         # ^and list[0][1] list[1][1] being a str that matches '(calculated int) %'
         pass
 
+    def test_models_get_createdhunts(self):
+        """
+        **test_models_get_huntprog()** tests that a list of titles is created from hunts table
+        """
+        # mock return value of filter to get hunt tuples 
+        # check return value to see if list contains titles
+        pass
+
 
 
 ###################################################################################

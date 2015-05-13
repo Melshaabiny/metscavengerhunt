@@ -62,4 +62,14 @@ def get_huntprog(uname):
         prog_str = str(prog_val) + ' %'
         lst_hunts = lst_hunts + ((uhunt_title, prog_str),)
     return list(lst_hunts)
-    
+
+def get_createdhunts(unam):
+    """
+    Grab hunts that were created by a user
+    """
+    user_hunts = Hunts.objects.filter(user = uname)
+    lst_hunts = []
+    for user_hunt in user_hunts:
+        uhunt_title = user_hunts[user_hunt].Title
+        lst_hunts.append(uhunt_title)
+    return lst_hunts

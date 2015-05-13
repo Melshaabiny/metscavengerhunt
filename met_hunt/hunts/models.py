@@ -21,6 +21,7 @@ class Hunts(models.Model):
     Category = models.CharField(max_length=200)
     # Starting point of each Scavenger Hunt
     Start = models.CharField(max_length=400)
+    CreatedBy = models.CharField(max_length = 25, default = 'MetHunt Dev Team')
     def __str__(self):
         return self.Title
 
