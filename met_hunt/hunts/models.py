@@ -67,6 +67,9 @@ class HuntProg(models.Model):
     cur_item_num = models.IntegerField()
     completed = models.BooleanField(default = False)
 
+    class Meta:
+        unique_together = (("hunt","user"),)
+
 def set_HuntsData(id_hunt):
     """
         * Based on the hunt id, set_HuntsData returns a python dictionary
