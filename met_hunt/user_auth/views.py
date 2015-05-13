@@ -10,7 +10,7 @@ from django.http import HttpResponseRedirect
 from django.core.context_processors import csrf # for Cross Site Request Forgery.
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
-from user_auth.models import get_huntprog, get_createdhunts
+from user_auth.models import get_huntprog, get_createdhunts, get_expertise_lvl_rank
 
 
 @login_required
@@ -58,8 +58,9 @@ def profile(request):
         uname = request.user.username
         lst_of_hunts = get_huntprog(uname)
         lst_of_crhunts = get_createdhunts(uname)
+        user_score = get_expertise_lvl_rank(uname)
 
-    args = {'user':user, 'lst_of_hunts': lst_of_hunts, 'lst_of_crhunts':lst_of_crhunts}
+    args = {'user':user, 'lst_of_hunts': lst_of_hunts, 'lst_of_crhunts':lst_of_crhunts, 'user_score':user_score}
     args.update(csrf(request))
     return render_to_response('user_auth/profile.html', args)
 

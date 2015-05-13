@@ -76,14 +76,12 @@ def get_createdhunts(uname):
         lst_hunts = lst_hunts + ((uhunt_title),)
     return list(lst_hunts)
 
-def get_expertise_lvl_rank(uname, nuser):
+def get_expertise_lvl_rank(uname):
     """
     Get expertise lvl and calculate score
-    input: username and user object
-    output: list containg expert level and total score
+    input: username
+    output: total score
     """
-    user_ex_obj = UserInfo.objects.filter(user = nuser)
-    user_ex = user_ex_obj.expert_level
     user_hunt_scores = HuntProg.objects.filter(user = uname)
     t_score = 0
     for score in user_hunt_scores:
@@ -92,7 +90,4 @@ def get_expertise_lvl_rank(uname, nuser):
         prog_val = (prog_val / 10)
         prog_val = prog_val * 50
         t_score = t_score + prog_val
-    lvl_score_lst = []
-    lvl_score_lst += user_ex
-    lvl_score_lst += t_score
-    return lvl_score_lst
+    return t_score

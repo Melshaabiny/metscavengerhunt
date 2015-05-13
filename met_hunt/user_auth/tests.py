@@ -403,10 +403,10 @@ class user_authTest(unittest.TestCase):
         **test_models_get_expertise_lvl_rank()** tests that list of the correct form is returned
         """
         # mock return value of filter
-        # mock expert_level and cur_item_num for mocked object
+        # mock cur_item_num for mocked object
         # fix the cur_item_num and calculate how much the score should be check for that in return of function
-        # check that a list of the form ['beginner',80] is returned
         pass
+
 ###################################################################################
 ###############Test login_user
 
