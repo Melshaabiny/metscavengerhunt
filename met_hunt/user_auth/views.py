@@ -10,6 +10,7 @@ from django.http import HttpResponseRedirect
 from django.core.context_processors import csrf # for Cross Site Request Forgery.
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
+from user_auth.models import get_huntprog
 
 
 @login_required
@@ -54,8 +55,10 @@ def profile(request):
     user = None
     if request.user.is_authenticated():
         user = request.user
+        uname = request.user.username
+        lst_of_hunts = get_huntprog(uname)
 
-    args = {'user':user}
+    args = {'user':user, 'lst_of_hunts': lst_of_hunts}
     args.update(csrf(request))
     return render_to_response('user_auth/profile.html', args)
 
