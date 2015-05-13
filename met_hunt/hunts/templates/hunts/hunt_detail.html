@@ -1,0 +1,33 @@
+{% extends "met_hunt/index.html" %}
+{% block body %}
+	{% if not hunts %}
+		<h1>No Hunts Available</h1>
+	{% else %}
+		<div class="row">
+			<div class="columns small-6 medium-6 small-centered medium-centered">
+				<h1>{{ title }}</h1>
+			</div>
+		</div>
+		<hr>
+		<div class="row">
+			{% for hunt in hunts %}
+				<div class="columns large-4 small-6">
+					<div>
+						<a href={% url 'hunts.views.render_hunt' hunt.ID %}>
+							<img class="th" src="http://placehold.it/350x150&text=Hunt" alt="">
+						</a>
+					</div>	
+					<div class="panel">
+						<ul>
+							<li>Title : {{hunt.Title}}</li>
+							<li>Created By : </li>
+						</ul>
+						
+					</div>
+				</div>
+
+			{% endfor %}
+		</div>
+			
+	{% endif %}
+{% endblock %}

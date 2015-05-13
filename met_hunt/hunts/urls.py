@@ -2,7 +2,7 @@ from django.conf.urls import patterns, url
 from hunts import views
 
 urlpatterns = patterns('',
-    url(r'^welcome/(?P<given_id>[0-9]{3})$', views.render_hunt, name='hunt_welcome'),
+    url(r'^welcome/(?P<given_id>[0-9]+)$', views.render_hunt, name='hunt_welcome'),
     url(r'^clue$', views.render_clue, name='rend_clue'),
     url(r'^verify$', views.render_verify, name='rend_verify'),
     url(r'^hint$', views.render_hint, name='rend_hint'),
@@ -11,6 +11,7 @@ urlpatterns = patterns('',
     url(r'^next$', views.next_proc, name='next_proc'),
     url(r'^incorrect$', views.render_incorrect, name='rend_incorrect'),
     url(r'^congrats$', views.render_congrats, name='rend_congrats'),
+    url(r'^detail/([^/]+)$', views.hunt_detail, name='hunt_detail'),
 
 )
 
