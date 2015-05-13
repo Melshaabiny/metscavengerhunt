@@ -75,18 +75,27 @@
 					<th>Name of Hunt</th>
 					<th>Progress</th>
 				</tr>
-				<tr>
 				{% for ht_pr in lst_of_hunts %}
+				<tr>
 					<td>{{ ht_pr.0 }}</td>
 					<td>{{ ht_pr.1 }}</td>
-				{% endfor %}
 				</tr>
+				{% endfor %}
 				</table>
 			</a>
 		</li>
 		<li>
 			<a href="#" class="th">
-				<img src="http://placehold.it/350x250">
+				<table style = "width:100%">
+				<tr>
+					<th>Hunts Created</th>
+				</tr>
+				{% for ht_cr in lst_of_crhunts %}
+				<tr>
+					<td>{{ ht_cr }}</td>
+				<tr>
+				{% endfor %}
+				</table>
 			</a>
 		</li>
 		<li>
