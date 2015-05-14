@@ -4,4 +4,5 @@ from home import views
 
 urlpatterns = patterns('',
         url(r'^$', views.main, name='main'),
+        url(r'^wiki/$', views.wiki, name='wiki'),
 )

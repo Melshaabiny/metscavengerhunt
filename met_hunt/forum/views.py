@@ -6,7 +6,7 @@ import json
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
-@login_required
+
 def thread_layout(request):
     """
     This views.py is responsible for the view of main thread page. It should display

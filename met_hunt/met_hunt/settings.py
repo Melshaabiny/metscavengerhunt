@@ -9,7 +9,8 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 """
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-import os
+import os, sys
+sys.path.append('/home/munjo5746/Desktop/web_dev/fork/csc473s15_methunt_main/document/build/')
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 # Quick-start development settings - unsuitable for production
@@ -101,6 +102,7 @@ TEMPLATE_DIRS = (
     'user_auth/templates/',
     'tutorial_hunt/templates/',
     'forum/templates/',
+    '/home/munjo5746/Desktop/web_dev/fork/csc473s15_methunt_main/document/build/',
     )
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
