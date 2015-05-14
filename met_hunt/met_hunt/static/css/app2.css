@@ -28,17 +28,30 @@
   background-color: #e25136; /*Orange*/
 
 }
+.profile.button.expand.round.tiny{
+  margin: 25px auto;
+}
+.huntprog{
+  background-color: yellow;
+}
 /*
 h3{
     color:rgba(184,205,227,1);
 }
-
 #43E5E5
 */
+.userfield{
+  margin-top: 20px;
+  border-color: transparent;
+
+}
 .top{
     background:url('/static/img/lens.jpg');
     background-size: cover;
 
+}
+.proflegend{
+  background-color: transparent;
 }
 .MainHead{
   background-size: cover;
@@ -65,12 +78,29 @@ input[type=button], button {
 input[type=button]:hover, button:hover {
     background: #e97d68;
 }
+input[type=submit], button {
+    background: #e25136;
+    margin: 0 auto;
+}
+input[type=submit]:hover, button:hover {
+    background: #e97d68;
+}
+.Bio{
+  color: white;
+  font-family: "Lucida Sans Unicode", "Lucida Grande";
+  font-size: 1.5rem;
+}
 /*.factdiv{
   background-color: rgba(255, 255, 255, 0.4);
   padding: 20px;
   margin: 80px auto;
   border-radius: 12px;
 }*/
+.profheadline{
+  color: white;
+  font-family: "Lucida Sans Unicode", "Lucida Grande";
+  font-size: 1.5rem;
+}
 .factdivision{
   padding: auto;
   margin: 60px;
@@ -6421,3 +6451,88 @@ th.hide-for-touch {
 
   th.show-for-print {
     display: table-cell !important; } }
+/* ------------------
+ styling for the tables 
+   ------------------   */
+
+
+body
+{
+  line-height: 1.6em;
+}
+
+#box-table-a
+{
+  font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+  font-size: 12px;
+  margin: auto;
+  width: 480px;
+  text-align: left;
+  border-collapse: collapse;
+}
+#box-table-a th
+{
+  font-size: 13px;
+  font-weight: normal;
+  padding: 8px;
+  background: #e25136;
+  border-top: 4px;
+  border-bottom: 1px solid #fff;
+  color: white;
+  font-weight: bold;
+}
+#box-table-a td
+{
+  padding: 8px;
+  background: #e6674f; 
+  border-bottom: 1px solid #fff;
+  color: white;
+  border-top: 1px solid transparent;
+}
+#box-table-a tr:hover td
+{
+  background: #ed9281;
+  color: #f2f2f2;
+}
+
+
+
+
+body
+{
+  line-height: 1.6em;
+}
+
+#box-table-b
+{
+  font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+  font-size: 12px;
+  margin: auto;
+  width: 480px;
+  text-align: left;
+  border-collapse: collapse;
+}
+#box-table-b th
+{
+  font-size: 13px;
+  font-weight: normal;
+  padding: 8px;
+  background: white;
+  border-top: 4px;
+  border-bottom: 1px solid #e25136;
+  color: white;
+  font-weight: bold;
+}
+#box-table-b td
+{
+  padding: 8px;
+  background: #fff; 
+  border-bottom: 1px solid #e25136;
+  color: #e25136;
+  border-top: 1px solid transparent;
+}
+#box-table-b tr:hover td
+{
+  background: #e25136 ;
+  color: #f2f2f2;
+}
