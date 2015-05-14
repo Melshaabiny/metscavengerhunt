@@ -188,16 +188,24 @@ class hunts_test(TestCase):
             start = 'test start'
             uname = 'user1'
             cr_obj = MagicMock(Title = 'test title', Start = 'test start', CreatedBy = 'user1')
-            #cr_obj.return_value = None
-            #cr_obj.Title = MagicMock()
-            #cr_obj.Title.return_value = None
-            #cr_obj.Start = MagicMock()
-            #cr_obj.Start.return_value = None
-            #cr_obj.CreatedBy = MagicMock()
-            #cr_obj.CreatedBy.return_value = None
             cr_obj.save = MagicMock(return_value = None)
             #cr_obj.save().return_value = None
             models.add_hunt_its(id_hunt,title,start, uname)
             self.assertEqual(cr_obj.Title, title) # Check that correct title is passed through
             self.assertEqual(cr_obj.Start, start) # Check that correct start point is passed through
             #assert cr_obj.save.called # Check that data save was called
+
+    def test_add_hunt_has(self):
+        """
+            * Test that correct items are added
+        """
+        with patch('cr_hunt.models.cr_Hunts.objects.create') as cr_obj:
+            id_hunt = '123'
+            nitem = '1122'
+            nnum = 3
+            nclue = 'clue'
+            cr_obj = MagicMock(number = 3, clue = 'clue')
+            cr_obj.save = MagicMock(return_value = None)
+            models.add_hunt_has(id_hunt, nitem, nnum, nclue)
+            self.assertEqual(cr_obj.number, nnum)
+            self.assertEqual(cr_obj.clue, nclue)
