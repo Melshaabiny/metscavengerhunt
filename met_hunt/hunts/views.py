@@ -123,7 +123,7 @@ def hunt_detail(request, category):
     elif category == "Medieval":
         category = category + " Art"
     hunts = Hunts.objects.all().filter(Category=category)
-    args = {'hunts' : hunts, 'title' : category + ' Collection'}
+    args = {'hunts' : hunts, 'title' : category + ' Collection', 'user':request.user}
     # except:
     #     args = {}
 

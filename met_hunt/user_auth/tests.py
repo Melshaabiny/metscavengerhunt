@@ -34,6 +34,8 @@ class user_authTest(unittest.TestCase):
         """
         User.objects.all().delete() # clean up the user database.
 
+
+
 ###### Unit tests form user_auth.auth_forms
 #####################################################
 #####################################################
