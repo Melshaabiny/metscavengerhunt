@@ -1,0 +1,14 @@
+{% extends "met_hunt/index.html" %}
+{% block body %}
+<div class="row">
+	<div class="small-12 medium-12 large-12 large-centered columns panel">
+	<form action={% url "tutorial_hunt.views.verf_clue" %} method="POST">
+	<label> Enter ID
+		<input type="text" placeholder="ID" />
+	</label>
+	<input type="submit" class="button expand"/>
+	</form>
+	</div>
+</div>
+
+{% endblock %}
