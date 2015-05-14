@@ -85,18 +85,6 @@ class hunts_test(TestCase):
             #reg.assert_called_with("hunts/verify.html", c_srf, {})
             #check that correct html is used with csrf token
 
-    def test_verify_ID(self): #DONE
-        """
-            **test_verify_ID**  Function mocks the var 'item_id'
-            **then runs verify_id to see if it returns correct boolean values for equal input and unequal input
-        """
-        s_val = '123'
-        f_val = '234'
-        success = models.verify_id(s_val)
-        failure = models.verify_id(f_val)
-        assert success #verify_id did not return true when input and item_id were equal"
-        assert not failure #verify_id did not return false when input and item_id were different"
-
     def test_next_proc(self): #Needs to be checked
         """
             mocks TEMP and pop_item function. Runs next_proc see if pop_tem is called when TEMP is not empty.
@@ -233,3 +221,48 @@ class hunts_test(TestCase):
         lst = models.pop_item(lst)
         self.assertTrue(len(lst) < 1)
 
+    def test_verify_ID(self): #DONE
+        """
+            **test_verify_ID**  Function mocks the var 'item_id'
+            **then runs verify_id to see if it returns correct boolean values for equal input and unequal input
+        """
+        s_val = '123'
+        f_val = '234'
+        success = models.verify_id(s_val)
+        failure = models.verify_id(f_val)
+        assert success #verify_id did not return true when input and item_id were equal"
+        assert not failure #verify_id did not return false when input and item_id were different"
+
+    def test_init_huntprog(self):
+        """
+            **test_init_huntprog** tests if huntprog already exists if so check that nothing is done, else check that a create function is called
+        """
+        with patch('hunts.models.Hunts.objects.filter') as filt:
+            with patch('hunts.models.HuntProg.objects.filter') as filt1:
+                with patch('hunts.models.HuntProg.objects.create') as cr:
+                    filt.return_value = ['a list']
+                    filt1.return_value = MagicMock()
+                    attrs = {'count.return_value':0}
+                    filt1.return_value.configure_mock(**attrs)
+                    attrs = {'save.return_value':None}
+                    cr.configure_mock(**attrs)
+                    h_id = 'test'
+                    uname = 'testu'
+                    models.init_huntprog(h_id, uname)
+                    assert cr.called
+                    cr.reset_mock()
+                    attrs = {'count.return_value':1}
+                    filt1.return_value.configure_mock(**attrs)
+                    models.init_huntprog(h_id, uname)
+                    assert not(cr.called)
+
+    def test_update_cur_item(self):
+        """
+            **test_update_cur_item** tests that an object is called and an attribute is modified
+        """
+        with patch('hunts.models.HuntProg.objects.get') as geth:
+            geth.return_value = MagicMock(cur_item_num = 2)
+            attrs = {'save.return_value':None}
+            geth.return_value.configure_mock(**attrs)
+            models.update_cur_item('test','testu',2)
+            assert geth.return_value.save.called
