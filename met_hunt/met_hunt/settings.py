@@ -22,7 +22,7 @@ SECRET_KEY = 's-t-m^u%l!e+%=!u0tp^3koa$0!2n#vwpj-zapfx@6uhp80os5'
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 NOSE_ARGS = [
 		'--with-coverage',
-		'--cover-package=user_auth, hunts',
+		'--cover-package=user_auth',
 		'--cover-inclusive',
 		]
 
