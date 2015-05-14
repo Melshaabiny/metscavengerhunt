@@ -67,7 +67,6 @@ def profile(request):
 # Create your views here.
 def login_user(request):
     """
-
     :param: HttpRequest
     :rtype: HttpResponse
     
@@ -77,7 +76,7 @@ def login_user(request):
     to **LogInForm**. The **LogInForm** has class method called **login_process()**
     and this class method handles processing the login information.
     """
-    title = "LogIn"
+    title = "Log in"
     args = {}
     user = None
 
