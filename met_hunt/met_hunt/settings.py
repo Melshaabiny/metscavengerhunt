@@ -9,7 +9,8 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 """
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-import os
+import os, sys
+sys.path.append('/home/munjo5746/Desktop/web_dev/fork/csc473s15_methunt_main/document/build/')
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 # Quick-start development settings - unsuitable for production
@@ -21,7 +22,7 @@ SECRET_KEY = 's-t-m^u%l!e+%=!u0tp^3koa$0!2n#vwpj-zapfx@6uhp80os5'
 # Nose Test settings
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 NOSE_ARGS = [
-		#'--with-coverage',
+		'--with-coverage',
 		'--cover-package=user_auth, hunts, cr_hunt',
 		'--cover-inclusive',
 		]
@@ -101,6 +102,7 @@ TEMPLATE_DIRS = (
     'user_auth/templates/',
     'tutorial_hunt/templates/',
     'forum/templates/',
+    '/home/munjo5746/Desktop/web_dev/fork/csc473s15_methunt_main/document/build/',
     )
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (

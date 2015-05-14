@@ -3,6 +3,7 @@ from forum.models import Thread, QuestionAsked
 from django.http import JsonResponse
 from django.contrib.auth.models import User
 import json
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -11,7 +12,8 @@ def thread_layout(request):
     This views.py is responsible for the view of main thread page. It should display
     all type of threads with their description and total number of posts in each thread.
     """
-    return render_to_response('forum/thread_layout.html')
+    args = {'user' : request.user}
+    return render_to_response('forum/thread_layout.html', args)
 
 def modern(request):
     return render_to_response('forum/modern.html')

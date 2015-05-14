@@ -31,7 +31,6 @@ class UserInfo(models.Model):
 
     user = models.OneToOneField(User)
     picture = models.ImageField(upload_to='user_auth/user_pic/', blank=True)
-
     # choices, (c1, c2), c1 is actual value, c2 is label.
     expert_level = models.CharField(max_length=15, choices=level, default='beginner', blank=True)
     area_of_expertise = models.CharField(max_length=30, blank=True)
