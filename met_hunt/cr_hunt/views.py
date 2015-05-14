@@ -61,6 +61,7 @@ def render_proc_it(request):
             return redirect('cr_end')
         if request.method == "POST":
             global hunt_id
+            global i_counter
             clue = str(request.POST.get('clue',''))
             item_id = str(request.POST.get('item',''))
             i_counter = i_counter + 1

@@ -1,6 +1,6 @@
 from django.shortcuts import render_to_response
 from django.shortcuts import redirect
-from cr_hunt.models import add_hunt_its, add_hunt_has, gen_hunt_id, get_cur_count, init_huntprog, update_cur_item
+from cr_hunt.models import add_hunt_its, add_hunt_has, gen_hunt_id, get_cur_count
 from django.core.context_processors import csrf
 # Create your views here.
 
