@@ -21,7 +21,7 @@ modern_thread.controller('modern_controller', function($scope, $http, $cookies, 
 
 	$scope.create = function(){
 		$scope.templateurl = "create/";
-		$scope.title = "Ask Question";
+
 	}
 
 	$scope.submit = function(data){
