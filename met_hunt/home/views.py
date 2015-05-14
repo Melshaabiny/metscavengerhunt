@@ -1,5 +1,6 @@
 from django.shortcuts import render_to_response
 from django.contrib.auth.models import User
+from home.models import get_leaderboard
 from hunts.models import Hunts
 import os
 
@@ -9,7 +10,8 @@ def main(request):
         user = User.objects.get(username=request.user)
     else:
         user = None
-    args = {'user':user}
+    ldr = get_leaderboard()
+    args = {'user':user, 'ldr_brd' : ldr}
     return render_to_response('home/home.html', args)
 
 def wiki(request):

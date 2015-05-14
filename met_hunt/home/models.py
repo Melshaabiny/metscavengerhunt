@@ -12,5 +12,5 @@ def get_leaderboard():
         score = get_expertise_lvl_rank(uname)
         uname_str = str(uname)
         lst = lst + ((uname_str, score),)
-    return list(lst)
+    return sorted(list(lst), key=lambda element: element[1], reverse=True)
     
