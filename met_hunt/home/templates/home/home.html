@@ -1,6 +1,5 @@
 {% extends "met_hunt/index.html" %}
 {% block body %}
-<div class="row">
 <div class="MainBod medium-12 small-12 large-12">
     <div class="top row large-12">
         <header>
@@ -11,11 +10,11 @@
             </div>
         </header>
         <div class="row buttondiv large-12">
-            <div class="small-12 medium-12 large-6 columns">
+            <div class="small-12 medium-12 large-4 columns">
                 <a href={% url "tutorial_hunt.views.rend_welcome" %}><input type="button" value="Start Tutorial Hunt" class="button radius expand">
                 </a>
             </div>
-            <div class="small-12 medium-12 large-6 columns">
+            <div class="small-12 medium-12 large-4 columns">
                 <a href= {% url "user_auth.views.register" %}>
                 <input type="button" value="Register Now!" class="button radius expand">
                 </a>
@@ -53,7 +52,7 @@
     <div class="center size 6">
         <table style = "width:100%">
         <tr>
-	    <th>Rank</th>
+        <th>Rank</th>
             <th>User</th>
             <th>Score</th>
         </tr>
@@ -68,32 +67,6 @@
         {% endfor %}
         </table>
     </div>
-    <!--     <div class="row large-12">
-        <input type="button" class="button radius expand" value="Go to Idea" onClick="document.getElementById('idea').scrollIntoView();" />
-        </div> -->
-    <div class="subSpot large-12">
-        <div class="centerLine">
-            <!--	<img class ="imgForm" src="static/img/horsey1.png" alt=""> -->
-        </div>
-        <div class="row rowFix" id="idea">
-            <div class="column large-12 centered newPanel ">
-                <ul class="accordion no-bullet" data-accordion>
-                    <li class="accordion-navigation">
-                        <a href="#contribID">
-                            <i class="fi-lightbulb iconic"></i>
-                            <p class="centerLine">Have an Idea?</p>
-                        </a>
-                        <div class="content" id="contribID">
-                            <p>
-                                Create and contribute your own Hunts! 
-                            </p>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <hr>
     <div class="row newPanel">
         <div class="columns large-12">
             <ul class="accordion" data-accordion>
@@ -103,28 +76,12 @@
                     </div>
                 </li>
                 <li class="accordion-navigation">
-                    <a href="#map">Map</a>
-                    <div class="content" id="map">
-                        <div class="row">
-                            <div class="columns small-12 medium-12 large-6">
-                                <a class="hr" href="#">
-                                    <div id="map-canvas"></div>
-                                </a>
-                            </div>
-                            <div class="columns	small-12 medium-12 large-6">
-                                <p>The Metropolitan museum can be found here on the map!</p>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li class="accordion-navigation">
                     <a href="#community">Community</a>
                     <div class="content" id="community">
                         <div class="row">
-                            <h3>Community</h3>
                             <p>We have active scavenger hunt community that you can ask questions and help others by answering there questions.</p>
                             <a href={% url 'forum.views.thread_layout' %}>
-                            <input type="button" class="button expand" value="Visit Community">
+                            <input type="button" class="button expand" value="Check our Forum">
                             </a>
                         </div>
                     </div>
@@ -132,7 +89,7 @@
             </ul>
         </div>
     </div>
-    <hr>
+
 </div>
-</div>
+
 {% endblock %}

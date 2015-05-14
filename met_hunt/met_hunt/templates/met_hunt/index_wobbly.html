@@ -9,6 +9,8 @@
         <!-- <link rel="shortcut icon" href="{% static 'favicon.ico' %}"> -->
         <link href='http://fonts.googleapis.com/css?family=Flamenco' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" type="text/css" href="{% static 'wobbly/css/normalize.css' %}" />
+
+        <link rel="stylesheet" href="{% static 'css/app2.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'wobbly/css/demo.css' %}" />
         <link rel="stylesheet" type="text/css" href="{% static 'foundation/css/foundation.css' %}"/>
         <link rel="stylesheet" type="text/css" href="{% static 'wobbly/css/slideshow.css' %}" />
@@ -20,12 +22,10 @@
         <![endif]-->
     </head>
     <body>
-        <div class="container">
-            <div id="slideshow" class="slideshow">
-                <ul>
+        <div class="row MainBod">
+            <div class="columns small-12 medium-12 large-12 large-centered">
                     {% block body%}
                     {% endblock %}
-                </ul>
             </div>
         </div>
         <!-- /container -->
