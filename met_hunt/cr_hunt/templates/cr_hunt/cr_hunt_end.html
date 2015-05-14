@@ -2,7 +2,7 @@
 {% block body %}
 <div class = "row">
     <div class="slide">
-        <img class="icon" src="../../static/img/museumhunters.svg" alt="Museum Hunters Logo"/>
+        <img class="icon" src="{% static 'hunts/museumhunters.svg' %}" alt="Museum Hunters Logo"/>
         <h1>Thank you for creating your hunt</h1>
         <a href="{% url 'main' %}"> Exit Create Hunt And Return Home </a>       
     </div>
