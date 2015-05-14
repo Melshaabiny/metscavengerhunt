@@ -134,7 +134,7 @@ body {
   font-size: 100%; }
 
 body {
-  background: #79b5b5;
+  /*background: #79b5b5;*/
   color: #222;
   padding: 0;
   margin: 0;
@@ -204,8 +204,8 @@ select {
   margin-bottom: 0;
   max-width: 62.5rem; }
   .row:before, .row:after {
-    content: " ";
-    display: table; }
+/*    content: " ";
+    display: table;*/ }
   .row:after {
     clear: both; }
   .row.collapse > .column,
