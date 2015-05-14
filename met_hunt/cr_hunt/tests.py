@@ -199,7 +199,7 @@ class hunts_test(TestCase):
         """
             * Test that correct items are added
         """
-        with patch('cr_hunt.models.cr_Hunts.objects.create') as cr_obj:
+        with patch('cr_hunt.models.cr_Has.objects.create') as cr_obj:
             id_hunt = '123'
             nitem = '1122'
             nnum = 3
@@ -209,3 +209,27 @@ class hunts_test(TestCase):
             models.add_hunt_has(id_hunt, nitem, nnum, nclue)
             self.assertEqual(cr_obj.number, nnum)
             self.assertEqual(cr_obj.clue, nclue)
+
+    def test_gen_hunt_id(self):
+        """
+            * Test that a unique id is returned
+        """
+        with patch('cr_hunt.models.cr_Hunts.objects.filter') as filt:
+            #attrs = {'count.return_value':20}
+            #filt(CreatedBy = uname).configure_mock(**attrs)
+            #filt.return_value = 20
+            filt.count = MagicMock()
+            filt.count.return_value = 20
+            uname = 'bob'
+            retname = models.gen_hunt_id(uname)
+            self.assertEqual(retname, 'bob20')
+
+    def test_get_cur_count(self):
+        """
+            * Test that item number is returned
+        """
+        with patch('cr_hunt.models.cr_Has.objects.filter') as filt:
+            filt.count = MagicMock()
+            filt.count.return_value = 8
+            retval = models.get_cur_count('test')
+            self.assertEqual(retval, 8)
