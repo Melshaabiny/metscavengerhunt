@@ -188,13 +188,6 @@ class hunts_test(TestCase):
             start = 'test start'
             uname = 'user1'
             cr_obj = MagicMock(Title = 'test title', Start = 'test start', CreatedBy = 'user1')
-            #cr_obj.return_value = None
-            #cr_obj.Title = MagicMock()
-            #cr_obj.Title.return_value = None
-            #cr_obj.Start = MagicMock()
-            #cr_obj.Start.return_value = None
-            #cr_obj.CreatedBy = MagicMock()
-            #cr_obj.CreatedBy.return_value = None
             cr_obj.save = MagicMock(return_value = None)
             #cr_obj.save().return_value = None
             models.add_hunt_its(id_hunt,title,start, uname)
