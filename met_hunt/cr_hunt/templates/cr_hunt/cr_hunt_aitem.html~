@@ -11,7 +11,7 @@
 	{{ form }}
         <input type="submit" class="button expand"/>
         </form>
-	{% if can_exit %}
+	{% if can_exit %}<a href="{% url 'home:main' %}"> Exit Create Hunt And Return Home </a>{% endif %}
         </div>
 </div>
 
