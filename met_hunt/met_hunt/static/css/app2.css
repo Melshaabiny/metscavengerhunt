@@ -96,6 +96,9 @@ input[type=submit]:hover, button:hover {
   margin: 80px auto;
   border-radius: 12px;
 }*/
+.rank{
+  background-color: blue;
+}
 .profheadline{
   color: white;
   font-family: "Lucida Sans Unicode", "Lucida Grande";
@@ -6514,13 +6517,13 @@ body
 }
 #box-table-b th
 {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: normal;
   padding: 8px;
   background: white;
   border-top: 4px;
   border-bottom: 1px solid #e25136;
-  color: white;
+  color: #e25136;
   font-weight: bold;
 }
 #box-table-b td
