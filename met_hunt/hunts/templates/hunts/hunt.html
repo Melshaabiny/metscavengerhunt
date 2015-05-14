@@ -1,7 +1,7 @@
 {% extends "met_hunt/index_wobbly.html" %}
 {% block body %}
     <div class="slide">
-        <img class ="icon" src="../../static/img/museumhunters.svg" alt="Museum Hunters Logo"/>
+        <img class ="icon" src="{% static 'hunts/museumhunters.svg' %}" alt="Museum Hunters Logo"/>
         {% if user.is_authenticated %}
         <h1>Welcome to the {{title}}</h1>
         <h1>{{start_pt}}</h1>

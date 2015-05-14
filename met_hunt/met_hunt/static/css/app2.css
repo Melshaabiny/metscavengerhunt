@@ -34,6 +34,9 @@
 .huntprog{
   background-color: yellow;
 }
+.create.row.small-12.medium-12.large-12{
+  margin: 30px 0;
+}
 /*
 h3{
     color:rgba(184,205,227,1);
@@ -49,6 +52,9 @@ h3{
     background:url('/static/img/lens.jpg');
     background-size: cover;
 
+}
+.row.newPanel{
+  margin: 0;
 }
 .proflegend{
   background-color: transparent;
@@ -377,8 +383,8 @@ select {
 
 .column,
 .columns {
-  padding-left: 0.9375rem;
-  padding-right: 0.9375rem;
+/*  padding-left: 0.9375rem;
+  padding-right: 0.9375rem;*/
   width: 100%;
   float: left; }
 
@@ -755,8 +761,8 @@ select {
   .column,
   .columns {
     position: relative;
-    padding-left: 0.9375rem;
-    padding-right: 0.9375rem;
+/*    padding-left: 0.9375rem;
+    padding-right: 0.9375rem;*/
     float: left; }
 
   .medium-1 {
@@ -1118,8 +1124,8 @@ select {
   .column,
   .columns {
     position: relative;
-    padding-left: 0.9375rem;
-    padding-right: 0.9375rem;
+/*    padding-left: 0.9375rem;
+    padding-right: 0.9375rem;*/
     float: left; }
 
   .large-1 {
