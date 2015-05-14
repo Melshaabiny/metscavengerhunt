@@ -8,7 +8,7 @@ from django.test.client import RequestFactory
 from django.test import  Client, TestCase
 from django.contrib.auth.models import User
 from mock import MagicMock, Mock, patch
-from cr_hunt import views 
+from cr_hunt import views
 from cr_hunt import models
 from django.core.urlresolvers import reverse
 # Create your tests here.
@@ -43,7 +43,7 @@ class hunts_test(TestCase):
                         assert rend.called # Check that rend got called
                         rend.assert_called_with("cr_hunt/cr_hunt_main.html") # Check that correct url is called
                         self.assertEqual(views.hunt_id, 'test1') #check that hunt_id got reassigned correctly
-                        self.assertEqual (views.i_counter, 1) #check that i_counter is initialized to 0
+                        self.assertEqual(views.i_counter, 1) #check that i_counter is initialized to 0
                         attrs = {'is_authenticated.return_value':False}
                         request.user.configure_mock(**attrs)
                         views.render_main(request)
@@ -69,7 +69,7 @@ class hunts_test(TestCase):
                 views.render_ats(request)
                 assert red.called
                 red.assert_called_with('cr_error')
-          
+
     def test_render_aitem(self):
         """
             * Test that correct checks are performed and that form is generated and passed in as argument
@@ -142,8 +142,8 @@ class hunts_test(TestCase):
                 request.method = MagicMock()
                 request.method.return_value = "POST"
                 request.POST.get = MagicMock()
-                request.POST.get('clue','').return_value = 'testclue'
-                request.POST.get('item','').return_value = 'testitem'
+                request.POST.get('clue', '').return_value = 'testclue'
+                request.POST.get('item', '').return_value = 'testitem'
                 request.user = MagicMock()
                 attrs = {'is_authenticated.return_value':True}
                 request.user.configure_mock(**attrs)
@@ -174,7 +174,6 @@ class hunts_test(TestCase):
             views.render_error(request)
             assert rend.called #check that rend is called
             rend.assert_called_with("cr_hunt/cr_hunt_error.html")
-			
 
 ##############**** Model tests
 
@@ -187,10 +186,10 @@ class hunts_test(TestCase):
             title = 'test title'
             start = 'test start'
             uname = 'user1'
-            cr_obj = MagicMock(Title = 'test title', Start = 'test start', CreatedBy = 'user1')
-            cr_obj.save = MagicMock(return_value = None)
+            cr_obj = MagicMock(Title='test title', Start='test start', CreatedBy='user1')
+            cr_obj.save = MagicMock(return_value=None)
             #cr_obj.save().return_value = None
-            models.add_hunt_its(id_hunt,title,start, uname)
+            models.add_hunt_its(id_hunt, title, start, uname)
             self.assertEqual(cr_obj.Title, title) # Check that correct title is passed through
             self.assertEqual(cr_obj.Start, start) # Check that correct start point is passed through
             #assert cr_obj.save.called # Check that data save was called
@@ -204,8 +203,8 @@ class hunts_test(TestCase):
             nitem = '1122'
             nnum = 3
             nclue = 'clue'
-            cr_obj = MagicMock(number = 3, clue = 'clue')
-            cr_obj.save = MagicMock(return_value = None)
+            cr_obj = MagicMock(number=3, clue='clue')
+            cr_obj.save = MagicMock(return_value=None)
             models.add_hunt_has(id_hunt, nitem, nnum, nclue)
             self.assertEqual(cr_obj.number, nnum)
             self.assertEqual(cr_obj.clue, nclue)

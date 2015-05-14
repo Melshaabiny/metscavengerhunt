@@ -1,158 +1,169 @@
 {% extends "met_hunt/index.html" %}
 {% block body %}
 <div class="row" data-equalizer>
-	<div class="columns small-12 medium-12 large-4">
-		<fieldset class="userfield" data-equalizer-watch>
-			<legend class="proflegend"><h3 class="profheadline">Profile Picture:</h3></legend>
-			<a href="#" class="th">
-				{% load staticfiles %}
-				<img style="height:220px;width:260px;"src="{% static user.userinfo.picture %}" alt="">
-			</a>
-		</fieldset>
-	</div>
-	<div class="columns small-12 medium-12 large-4">
-		<form action={% url 'user_auth.views.edit' %} method="GET">
-			{% csrf_token %}
-			<fieldset class="userfield" data-equalizer-watch>
-				<legend class="proflegend"><h3 class="profheadline">User Information</h3></legend>
-				<table id="box-table-b" style="width:100%">
-					<!-- Table body -->
-						<tbody>
-							<tr>
-								<td>Name</td>
-								<td>:</td>
-								<td>{{user.get_full_name}}</td>
-							</tr>
-							<tr>
-								<td>Expert Level</td>
-								<td>:</td>
-								<td>{{user.userinfo.expert_level}}</td>
-							</tr>
-							<tr>
-								<td>Expert Area</td>
-								<td>:</td>
-								<td>{{user.userinfo.area_of_expert}}</td>
-							</tr>
-						</tbody>
-				</table>
-
-				<input type="submit" class=" profile button expand round tiny" value="Edit">
-			</fieldset>
-		</form>
-	</div>
-	<div class="columns small-12 medium-12 large-4">
-		<fieldset class="userfield" data-equalizer-watch>
-			<legend class="proflegend"><h3 class="profheadline">Social Media</h3></legend>
-			<ul style="list-style-type:none;">
-				<li><a href="https://www.facebook.com/"><h2><i class="fi-social-facebook"></i>FaceBook</h2></a></li>
-				<li><a href="https://www.twitter.com/"><h2><i class="fi-social-twitter"></i>Twitter</h2></a></li>
-				<li><a href="https://www.flickr.com/"><h2><i class="fi-social-flickr"></i>Flickr</h2></a></li>
-			</ul>
-		</fieldset>
-		<!-- <img src="http://placehold.it/350x150"> -->
-	</div>
+    <div class="columns small-12 medium-12 large-4">
+        <fieldset class="userfield" data-equalizer-watch>
+            <legend class="proflegend">
+                <h3 class="profheadline">Profile Picture:</h3>
+            </legend>
+            <a href="#" class="th">
+            {% load staticfiles %}
+            <img style="height:220px;width:260px;"src="{% static user.userinfo.picture %}" alt="">
+            </a>
+        </fieldset>
+    </div>
+    <div class="columns small-12 medium-12 large-4">
+        <form action={% url 'user_auth.views.edit' %} method="GET">
+        {% csrf_token %}
+        <fieldset class="userfield" data-equalizer-watch>
+            <legend class="proflegend">
+                <h3 class="profheadline">User Information</h3>
+            </legend>
+            <table id="box-table-b" style="width:100%">
+                <!-- Table body -->
+                <tbody>
+                    <tr>
+                        <td>Name</td>
+                        <td>:</td>
+                        <td>{{user.get_full_name}}</td>
+                    </tr>
+                    <tr>
+                        <td>Expert Level</td>
+                        <td>:</td>
+                        <td>{{user.userinfo.expert_level}}</td>
+                    </tr>
+                    <tr>
+                        <td>Expert Area</td>
+                        <td>:</td>
+                        <td>{{user.userinfo.area_of_expert}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <input type="submit" class=" profile button expand round tiny" value="Edit">
+        </fieldset>
+        </form>
+    </div>
+    <div class="columns small-12 medium-12 large-4">
+        <fieldset class="userfield" data-equalizer-watch>
+            <legend class="proflegend">
+                <h3 class="profheadline">Social Media</h3>
+            </legend>
+            <ul style="list-style-type:none;">
+                <li>
+                    <a href="https://www.facebook.com/">
+                        <h2><i class="fi-social-facebook"></i>FaceBook</h2>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.twitter.com/">
+                        <h2><i class="fi-social-twitter"></i>Twitter</h2>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.flickr.com/">
+                        <h2><i class="fi-social-flickr"></i>Flickr</h2>
+                    </a>
+                </li>
+            </ul>
+        </fieldset>
+        <!-- <img src="http://placehold.it/350x150"> -->
+    </div>
 </div>
-
 <hr>
-
 <div class="row">
-	<div class="columns small-12 medium-12 large-12">
-		<dl>
-			<dt class="Bio">My story:</dt>
-			<dd>
-				<blockquote>
-					<p>{{user.userinfo.description}}</p>
-				</blockquote>
-			</dd>
-		</dl>
-	</div>
+    <div class="columns small-12 medium-12 large-12">
+        <dl>
+            <dt class="Bio">My story:</dt>
+            <dd>
+                <blockquote>
+                    <p>{{user.userinfo.description}}</p>
+                </blockquote>
+            </dd>
+        </dl>
+    </div>
 </div>
-
 <hr>
-
 <div class="row">
-	<ul class="small-block-grid-1 medium-block-grid-1 large-block-grid-3">
-		<li>
-				<table id="box-table-a" style="width:100%">
-					<!-- Table header -->
-						<thead>
-							<tr>
-								<th scope="col" id="namehunt">Name of Hunt</th>
-								<th scope="col" id="huntprog">Progress</th>
-							</tr>
-						</thead>
-					<!-- Table body -->
-						<tbody>
-						{% for ht_pr in lst_of_hunts %}
-							<tr>
-								<td>{{ ht_pr.0 }}</td>
-								<td>{{ ht_pr.1 }}</td>
-							</tr>
-						{% endfor %}
-						</tbody>
-				</table>
-		</li>
-
-		<li>
-				<table id="box-table-a" style="width:100%">
-					<!-- Table header -->
-						<thead>
-							<tr>
-								<th scope="col" id="huntcreate">Hunts Created of Hunt</th>
-							</tr>
-						</thead>
-					<!-- Table body -->
-						<tbody>
-						{% for ht_pr in lst_of_hunts %}
-							<tr>
-								<td>{{ ht_cr }}</td>
-							</tr>
-						{% endfor %}
-						</tbody>
-				</table>			
-		</li>
-		<li>
-				<table id="box-table-a" style="width:100%">
-					<!-- Table header -->
-						<thead>
-							<tr>
-								<th scope="col" id="expertlvl">{{ user.userinfo.expert_level }}</th>
-							</tr>
-						</thead>
-					<!-- Table body -->
-						<tbody>
-							<tr>
-								<td>{{ user_score }}</td>
-							</tr>
-						</tbody>
-				</table>		
-		</li>
-	</ul>
-
-	<!-- <ul class="tabs" data-tab>
-		<li class="tab-title active"><a href="#latest">Latest Hunts</a></li>		
-		<li class="tab-title"><a href="#questions">Q&ampA</a></li>
-		<li class="tab-title"><a href="#make_hunt">Build Hunt</a></li>
-	</ul>
-
-	<div class="tabs-content">
-		<div class="content active" id="latest">
-			<div class="row">
-				<div class="columns large-6">
-					<img src="http://placehold.it/350x250">
-				</div>
-				<div class="columns large-6">
-					<p>Latest hunts contents go here.</p>
-					
-				</div>
-			</div>
-		</div>
-		<div class="content" id="questions">
-			<p>Questions and answers contents go here.</p>
-		</div>
-		<div class="content" id="make_hunt">
-			<p>Make hunt contents go here.</p>
-		</div>
-	</div> -->
+    <ul class="small-block-grid-1 medium-block-grid-1 large-block-grid-3">
+        <li>
+            <table id="box-table-a" style="width:100%">
+                <!-- Table header -->
+                <thead>
+                    <tr>
+                        <th scope="col" id="namehunt">Name of Hunt</th>
+                        <th scope="col" id="huntprog">Progress</th>
+                    </tr>
+                </thead>
+                <!-- Table body -->
+                <tbody>
+                    {% for ht_pr in lst_of_hunts %}
+                    <tr>
+                        <td>{{ ht_pr.0 }}</td>
+                        <td>{{ ht_pr.1 }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </li>
+        <li>
+            <table id="box-table-a" style="width:100%">
+                <!-- Table header -->
+                <thead>
+                    <tr>
+                        <th scope="col" id="huntcreate">Hunts Created</th>
+                    </tr>
+                </thead>
+                <!-- Table body -->
+                <tbody>
+                    {% for ht_cr in lst_of_crhunts %}
+                    <tr>
+                        <td>{{ ht_cr }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </li>
+        <li>
+            <table id="box-table-a" style="width:100%">
+                <!-- Table header -->
+                <thead>
+                    <tr>
+                        <th scope="col" id="expertlvl">{{ user.userinfo.expert_level }}</th>
+                    </tr>
+                </thead>
+                <!-- Table body -->
+                <tbody>
+                    <tr>
+                        <td>{{ user_score }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </li>
+    </ul>
+    <!-- <ul class="tabs" data-tab>
+        <li class="tab-title active"><a href="#latest">Latest Hunts</a></li>		
+        <li class="tab-title"><a href="#questions">Q&ampA</a></li>
+        <li class="tab-title"><a href="#make_hunt">Build Hunt</a></li>
+        </ul>
+        
+        <div class="tabs-content">
+        <div class="content active" id="latest">
+        	<div class="row">
+        		<div class="columns large-6">
+        			<img src="http://placehold.it/350x250">
+        		</div>
+        		<div class="columns large-6">
+        			<p>Latest hunts contents go here.</p>
+        			
+        		</div>
+        	</div>
+        </div>
+        <div class="content" id="questions">
+        	<p>Questions and answers contents go here.</p>
+        </div>
+        <div class="content" id="make_hunt">
+        	<p>Make hunt contents go here.</p>
+        </div>
+        </div> -->
 </div>
 {% endblock %}
