@@ -7,7 +7,7 @@ body,
 .slideshow ul li,
 .slide {
 	height: 100%; 
-	min-height: 480px;
+
 }
 
 /* Main slideshow wrapper */

@@ -2,16 +2,32 @@
 
 .MainBod{
     text-align:center;
+    width: 100%;
+    background-size:cover;
+    background-color: #385365; /*Blue*/
+    font-family: 'Raleway',sans-serif;
+}
+.row.MainBod{
+    text-align:center;
     width: 1000px;
     background-size:cover;
     background-color: #385365; /*Blue*/
     font-family: 'Raleway',sans-serif;
 }
-
+.container.row.MainBod{
+    text-align:center;
+    width: 1000px;
+    background-size:cover;
+    background-color: #385365; /*Blue*/
+    font-family: 'Raleway',sans-serif;
+}
 @media only screen and (min-width: 40.063em){
-  h1,h2,h3,h4,h5,h6{line-height:1.4}h1{font-size:2.75rem}
+ huntcollect.title h1,h2,h3,h4,h5,h6{line-height:1.4}h1{font-size:2.75rem}
       }
+.div > .panel{
+  background-color: #e25136; /*Orange*/
 
+}
 /*
 h3{
     color:rgba(184,205,227,1);
@@ -223,7 +239,7 @@ body {
   font-size: 100%; }
 
 body {
-  background: #79b5b5;
+  background: #385365;
   color: #222;
   padding: 0;
   margin: 0;
@@ -463,8 +479,8 @@ select {
   .column,
   .columns {
     position: relative;
-    padding-left: 0.9375rem;
-    padding-right: 0.9375rem;
+/*    padding-left: 0.9375rem;
+    padding-right: 0.9375rem;*/
     float: left; }
 
   .small-1 {
@@ -2838,16 +2854,50 @@ meta.foundation-mq-topbar {
   margin-right: 0.625rem; }
   .button-bar .button-group div {
     overflow: hidden; }
+.huntcollect{
+  margin: 40px, 0, 20px, 0;
+}
+.huntcollect.title{
+  font-family: Rockwell, “Courier Bold”, Courier, Georgia, Times, “Times New Roman”, serif;
+  color: #e25136;
+}
+.huntcollect.pic{
+   display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+}
+.huntcollect.pic img {
+    flex-shrink:0;
+    min-width:100%;
+    min-height:100%  
+}
 
+.huntbox{
+/*  padding-left: 0.9375rem;
+  padding-right: 0.9375rem;*/
+}
+.huntbox.row{
+  width: 600px;
+  height: 600px;
+  max-width: 600px;
+  max-height: 300px;
+}
+@media only screen and (max-width: 40em) {
+  .panel{
+    font-color: blue;
+  }
+}
 /* Panels */
 .panel {
+  background-color: #e25136; /*Orange*/
   border-style: solid;
   border-width: 1px;
   border-color: #d8d8d8;
   margin-bottom: 1.25rem;
   padding: 1.25rem;
-  background: #f2f2f2;
-  color: #333333; }
+  color: #333333; 
+  font-weight: bold;}
   .panel > :first-child {
     margin-top: 0; }
   .panel > :last-child {
@@ -3820,14 +3870,15 @@ p {
 
 /* Default header styles */
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+  font-family: "Raleway", Helvetica, Roboto, Arial, sans-serif;
   font-weight: normal;
   font-style: normal;
   color: #222222;
   text-rendering: optimizeLegibility;
   margin-top: 0.2rem;
   margin-bottom: 0.5rem;
-  line-height: 1.4; }
+  line-height: 1.4;
+  text-align: center; }
   h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
     font-size: 60%;
     color: #6f6f6f;
