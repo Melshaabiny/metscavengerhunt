@@ -102,6 +102,20 @@
     "pk": "27.18.2"
 },
 {
+    "fields":{
+        "Category": "Medieval Art"
+    },
+    "model": "hunts.items",
+    "pk": "17.190.726"
+},
+{
+    "fields":{
+        "Category":"Medieval Art"
+    },
+    "model":"hunts.items",
+    "pk": "17.190.3526"
+},
+{
     "fields": {
         "Category": "Arms and Armors"
     },
@@ -116,6 +130,13 @@
     "pk": "1986.205"
 },
 {
+    "fields":{
+        "Category":"Arms and Armors"
+    },
+    "model": "hunts.items",
+    "pk":"2007.477"
+},
+{
     "fields": {
         "Category": "Islamic Art"
     },
@@ -128,6 +149,13 @@
     },
     "model": "hunts.items",
     "pk": "65.109.2"
+},
+{
+    "fields": {
+        "Category": "Islamic Art"
+    },
+    "model":"hunts.items",
+    "pk": "1972.89"
 },
 {
     "fields": {
@@ -289,17 +317,115 @@
     "pk": 12
 },
 {
+    "fields":{
+        "item": "17.190.726",
+        "hunt": 2,
+        "number": 3,
+        "clue": "Find this Saintly yet Worldly Female Statue made of oak.",
+        "hint": "16th Century Fashion Sense, Elaborate Headress.",
+        "hintcrop": "hunts/Medieval_3_HintCrop.png",
+        "image":"http://images.metmuseum.org/CRDImages/md/original/sf17-190-726s1.jpg",
+        "fact": "This Oak German statue is said to be a depiction of Mary Magdelene. it is often assumed that Mary Magdelene means 'Mary from Magdala'"
+    },
+    "model": "hunts.has",
+    "pk": 13
+},
+{
+    "fields":{
+        "item": "17.190.3526",
+        "hunt": 2,
+        "number": 4,
+        "clue": "Find The Luxurious Bust that once contained a skull",
+        "hint": "Head to 304 Silver Adorned with Crystal and gems.",
+        "hintcrop": "hunts/Medieval_4_HintCrop.png",
+        "image":"http://images.metmuseum.org/CRDImages/md/web-large/DP134383.jpg",
+        "fact": "St. Yrieix also known as St. Ardeus, According to legend When Yrieix converted to christianity it is said that whilst singing psalms, A Dove descended from the sky and flew around his head. When Yrieix tried to shoo the bird, but the bird however remained in the above his head for the next 30 days. People believed that he had the gift of healing. "
+    },
+    "model": "hunts.has",
+    "pk": 14
+},
+{
     "fields": {
         "item": "14.100.33",
         "hunt": 2,
-        "number": 3,
+        "number": 5,
         "clue": "Find the Happy Old Man.",
         "hint": "Im on a wall surronded by others like me, yet my beard shows my age.",
-        "hintcrop": "hunts/Medieval_3_HintCrop.png",
+        "hintcrop": "hunts/Medieval_5_HintCrop.png",
         "image": "http://images.metmuseum.org/CRDImages/aa/original/2793.jpg",
         "fact": "In Japanese Noh, an all-male traditional form of Japanese theatre, the Smilling Old Man mask (Okina) is used when actors play gods."
     },
     "model": "hunts.has",
-    "pk": 13
+    "pk": 15
+},
+{
+    "fields": {
+        "item": "1986.205",
+        "hunt": 2,
+        "number": 6,
+        "clue": "While you would normally pull the rope/cord back, requiring a large amount of force to load its ammunition, I am a device you can instead crank to load the ammunition.",
+        "hint": "Has the initials CLR engraved into it.",
+        "hintcrop": "hunts/Medieval_6_HintCrop.png",
+        "image": "http://images.metmuseum.org/CRDImages/aa/original/DP282638.jpg",
+        "fact": "The origins of the crossbow are still under debate, however it is believed to have been invented in China and Europe during the 5th Century BCE, however there is indeed evidence that show that these crossbow were used during the Warring States period in China."
+    },
+    "model": "hunts.has",
+    "pk": 16
+},
+{
+    "fields":{
+        "item": "2007.477",
+        "hunt": 2,
+        "number": 7,
+        "clue": "Find the Firearm That has an animal being hunted by a cowboy etched on its side.",
+        "hint": "Made of Silver Room 372",
+        "hintcrop": "hunts/Medieval_7_HintCrop.png",
+        "image":"http://images.metmuseum.org/CRDImages/aa/web-large/DP162028.jpg",
+        "fact": "In 1852 Smith and Wesson originally started their company but only 2 years later, after facing financial problems they were forced to sell the company to Oliver Winchester. Winchester was originally a shirt manufactuer but after the aqcquisition created Winchester Repeating Arms Co. Learning from their previous financial blunders Smith and Wesson got back on their feet around 1856 and grew to become one of the premier gun manufatuers. Known for 'Dirty Harry's' Gun. "
+    },
+    "model": "hunts.has",
+    "pk": 17
+},
+{
+    "fields":{
+        "item": "1993.14",
+        "hunt": 2,
+        "number": 8,
+        "clue": "Designed by Turkish Jeweler Ahmed Tekelu. What is the name of this Turkish Weapon?",
+        "hint": "It features a battle between a dragon and a phoenix.",
+        "hintcrop": "hunts/Medieval_8_HintCrop.png",
+        "image":"http://images.metmuseum.org/CRDImages/aa/original/DP216853.jpg",
+        "fact": " A yatağan  is a type of Ottoman knife or short sabre used from the mid-16th to late 19th centuries mainly by Ottoman Empire and other countries in ."
+    },
+    "model": "hunts.has",
+    "pk": 18
+},
+{
+    "fields":{
+        "item": "65.109.2",
+        "hunt": 2,
+        "number": 9,
+        "clue": "A Star made up of serpents Chasing their own tails.",
+        "hint": "Found in Iran, But Looks like something traditionally Chinese.",
+        "hintcrop": "hunts/Medieval_9_HintCrop.png",
+        "image":"http://images.metmuseum.org/CRDImages/is/original/DP217227.jpg",
+        "fact": "There are clear Chinese influences on islamic pottery, the two cultures have been in interaction with each other since atleast 8th Century CE to 19th Century CE. Some say that their influences have origins surrounding the Silk Road."
+    },
+    "model": "hunts.has",
+    "pk": 19
+},
+{
+    "fields":{
+        "item": "1972.89",
+        "hunt": 2,
+        "number": 10,
+        "clue": "Find the Ivory Star by Muhammed Talib Gilani. Who was it commisioned for?",
+        "hint": "It is a Plaque likely from a cenotaph. 16th Century.",
+        "hintcrop": "hunts/Medieval_10_HintCrop.png",
+        "image":"http://images.metmuseum.org/CRDImages/is/original/DP149730.jpg",
+        "fact": "Shah Isma'il I was the founder of the Safavid Dynasty, Which ruled for nearly two centuries. It is said that he was a known poet by the name Khata'i and is considered an Important figure in Persian literary history."
+    },
+    "model": "hunts.has",
+    "pk": 20
 }
 ]

@@ -1,6 +1,7 @@
 from django.shortcuts import render_to_response
 from django.contrib.auth.models import User
 from hunts.models import Hunts
+import os
 
 # Create your views here.
 def main(request):
@@ -10,6 +11,9 @@ def main(request):
         user = None
     args = {'user':user}
     return render_to_response('home/home.html', args)
+
+def wiki(request):
+    return render_to_response('html/index.html')
 
 def search(request, query):
     # find from Hunts and Items
