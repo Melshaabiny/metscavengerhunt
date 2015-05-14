@@ -13,4 +13,3 @@ def get_leaderboard():
         uname_str = str(uname)
         lst = lst + ((uname_str, score),)
     return sorted(list(lst), key=lambda element: element[1], reverse=True)
-    

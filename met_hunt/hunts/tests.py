@@ -18,7 +18,8 @@ class hunts_test(TestCase):
     def setUp(self):
         self.client = Client()
         global TEMP
-        views.TEMP = [('123', 'a clue', 1, 'hint', 'image url', 'fun fact')]
+        views.TEMP = [('123', 'a clue', 1, 'hint', 'image url', 'fun fact','hint crop')]
+        views.glob_hunt_id = 'testid'
         models.TEMP = views.TEMP
         TEMP = models.TEMP
         self.factory = RequestFactory()
@@ -47,13 +48,16 @@ class hunts_test(TestCase):
         with patch('hunts.views.set_ItemsData') as itemsdata:
             with patch('hunts.views.set_HuntsData') as huntsdata:
                 with patch('hunts.views.render_to_response') as rend:
-                    global TEMP
-                    itemsdata.return_value = views.TEMP
-                    huntsdata.return_value = {'hunt title' : 'test1234', 'hunt start' : 'test7654321'}
-                    request = MagicMock()
-                    views.render_hunt(request, 1)
-                    #check that correct title and start point were passed through
-                    rend.assert_called_with("hunts/hunt.html", {"title" : 'test1234', "start_pt": 'test7654321'})
+                    with patch('hunts.views.init_huntprog') as init_pr:
+                        global TEMP
+                        itemsdata.return_value = views.TEMP
+                        huntsdata.return_value = {'hunt title' : 'test1234', 'hunt start' : 'test7654321'}
+                        request = MagicMock()
+                        request.user.username = MagicMock()
+                        request.user.username.return_value = 'user1'
+                        views.render_hunt(request, 1)
+                        #check that correct title and start point were passed through
+                        rend.assert_called_with("hunts/hunt.html", {"title" : 'test1234', "start_pt": 'test7654321'})
 
     def test_render_clue(self): #DONE
         """
@@ -151,9 +155,12 @@ class hunts_test(TestCase):
             **test_correct** tests if render_correct is ran at the correct url
         """
         with patch('hunts.views.render_to_response') as rend:
-            request = MagicMock()
-            views.render_correct(request)
-            rend.assert_called_with("hunts/correct.html", {"url":'image url', "fact":'fun fact'})
+            with patch('hunts.views.update_cur_item') as upd:
+                upd = MagicMock()
+                upd.return_value = None
+                request = MagicMock()
+                views.render_correct(request)
+                rend.assert_called_with("hunts/correct.html", {"url":'image url', "fact":'fun fact'})
 
     def test_incorrect(self):
         """
@@ -177,6 +184,21 @@ class hunts_test(TestCase):
             #except AssertionError:
             #   print "render_congrats was not called at the url: /hunts/congrats/"
             rend.assert_called_with("hunts/congrats.html", {})
+
+    def test_hunt_detail(self):
+        """
+            **test_hunt_detail** tests if correct categories are grabbed
+        """
+        with patch('hunts.views.Hunts.objects.all')as all_h:
+            with patch('hunts.views.render_to_response') as rend:
+                all_h.return_value = MagicMock()
+                all_h.return_value.filter = MagicMock()
+                all_h.return_value.filter.return_value = ['a list of hunts']
+                request = MagicMock()
+                request.user = MagicMock()
+                cat = "Ancient"
+                views.hunt_detail(request, cat)
+                assert rend.called
 
             #***Model tests***
     def test_set_HuntsData(self): #DONE

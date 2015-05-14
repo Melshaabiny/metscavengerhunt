@@ -436,25 +436,45 @@ class user_authTest(unittest.TestCase):
         """
         **test_models_get_huntprog()** tests that a list of lists is created from HuntsProg table
         """
-        # mock return value of filter call to get all hunt id sharing a username
-        # mock the attributes of the objects to return fixed values 'title' '0 - 10'
-        # check return value to see if list of lists was created with a list[0][0] and list[1][0] being title
-        # ^and list[0][1] list[1][1] being a str that matches '(calculated int) %'
-        pass
+        with patch('user_auth.models.HuntProg.objects.filter') as filt:
+            filt = MagicMock()
+            filt.return_value = ['a list']
+            filt.return_value.hunt.Title = 'test title'
+            filt[0].return_value.cur_item_num = 3
+            uname = MagicMock()
+            ret_lst = models.get_huntprog(uname)
+            # mock return value of filter call to get all hunt id sharing a username
+            # mock the attributes of the objects to return fixed values 'title' '0 - 10'
+            # check return value to see if list of lists was created with a list[0][0] and list[1][0] being title
+            # ^and list[0][1] list[1][1] being a str that matches '(calculated int) %'
+            pass
 
     def test_models_get_createdhunts(self):
         """
         **test_models_get_huntprog()** tests that a list of titles is created from hunts table
         """
-        # mock return value of filter to get hunt tuples 
-        # check return value to see if list contains titles
-        pass
+        with patch('user_auth.models.cr_Hunts.objects.filter') as filt:
+            filt = MagicMock()
+            filt[0].return_value.Title = 'test title'
+            uname = MagicMock()
+            ret_lst = models.get_createdhunts(uname)
+            # mock return value of filter to get hunt tuples 
+            # check return value to see if list contains titles
+            pass
 
 
     def test_models_get_expertise_lvl_rank(self):
         """
         **test_models_get_expertise_lvl_rank()** tests that list of the correct form is returned
         """
+        with patch('user_auth.models.HuntProg.objects.filter') as filt:
+            filt = MagicMock()
+            filt.return_value = ['a list']
+            filt[0].return_value.cur_item_num = 3
+            exp_val = 15.0
+            uname = MagicMock()
+            ret_val = models.get_expertise_lvl_rank(uname)
+            self.assertEqual(ret_val, exp_val)
         # mock return value of filter
         # mock cur_item_num for mocked object
         # fix the cur_item_num and calculate how much the score should be check for that in return of function
