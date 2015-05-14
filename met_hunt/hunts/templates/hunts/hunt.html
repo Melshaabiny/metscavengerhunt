@@ -1,0 +1,24 @@
+{% extends "met_hunt/index_wobbly.html" %}
+{% block body %}
+    <div class="slide">
+        <img class ="icon" src="../../static/img/museumhunters.svg" alt="Museum Hunters Logo"/>
+        {% if user.is_authenticated %}
+        <h1>Welcome to the {{title}}</h1>
+        <h1>{{start_pt}}</h1>
+        <form action={% url "hunts.views.render_clue" %}>
+        <input class = "submit" type="submit" value="Show First Clue">
+        </form>
+        {% else %}
+        <h1>It looks like you're not authorized to take this hunt yet.
+            <br>Please register (or log in) and try again.
+        </h1>
+
+        <form action={% url "user_auth.views.login_user" %}>
+        <input class = "submit" type="submit" value="Log in">
+        </form>
+        <form action={% url "user_auth.views.register" %}>
+        <input class = "submit" type="submit" value="Register">
+        </form>
+        {% endif %}
+    </div>	
+{% endblock %}
