@@ -2,7 +2,7 @@
 {% block body  %}
 {% load staticfiles %}
 <div class="slide">
-    <img class="icon" src="{% 'hunts/museumhunters.svg' %}" alt="Museum Hunters Logo"/>
+    <img class="icon" src="{% static 'hunts/museumhunters.svg' %}" alt="Museum Hunters Logo"/>
     <h1>{{clue_text}}</h1>
     <form action={% url "hunts.views.render_hint" %}>
     <input class="submit" type="submit" value="Show me a Hint">
