@@ -14,7 +14,7 @@ ancient = Hunts.objects.get(Category="Ancient Art")
 # else:
 # 	m = a_max+1
 m = 3
-for i  in range(5):
+for i  in range(7):
 	if m >= 10:
 		hunt_id = '0' + str(m)
 	else:
@@ -22,7 +22,7 @@ for i  in range(5):
 	Hunts.objects.create(ID=hunt_id, Title=str(i+1) + "th Medieval Hunt", Category="Medieval Art")
 	m = m+i+1
 
-for i in range(5):
+for i in range(7):
 	if m >= 10:
 		hunt_id = '0' + str(m)
 	else:

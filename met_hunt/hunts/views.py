@@ -73,7 +73,7 @@ def render_hint(request):
         * render item's hint page
     """
     global TEMP
-    return render_to_response("hunts/hint.html", {"hint_text":TEMP[0][3], "hint_crop": TEMP[0][6]})
+    return render_to_response("hunts/hint.html", {"hint_text":TEMP[0][3], "hint_crop":TEMP[0][6]})
 
 def render_verify(request):
     """

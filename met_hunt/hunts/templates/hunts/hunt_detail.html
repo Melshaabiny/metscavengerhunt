@@ -4,19 +4,20 @@
 		<h1>No Hunts Available</h1>
 	{% else %}
 		<div class="row">
-			<div class="columns small-6 medium-6 small-centered medium-centered">
-				<h1>{{ title }}</h1>
+			<div class="columns small-12 medium-6 small-centered medium-centered">
+				<div class="huntcollect">
+						<h1 class="huntcollect title">{{ title }}</h1>
+				</div>
 			</div>
 		</div>
-		<hr>
-		<div class="row">
+		<div class="huntcateg row">
 			{% for hunt in hunts %}
-				<div class="columns large-4 small-6">
-					<div>
-						<a href={% url 'hunts.views.render_hunt' hunt.ID %}>
-							<img class="th" src="http://placehold.it/350x150&text=Hunt" alt="">
+				<div class="huntcateg columns large-3 medium-6 small-12">
+					<div class="huntbox">
+						<a class="huntcollect pic"href={% url 'hunts.views.render_hunt' hunt.ID %}>
+							<img src="http://placehold.it/350x150&text=Hunt" alt="">
 						</a>
-					</div>	
+					</div>
 					<div class="panel">
 						<ul>
 							<li>Title : {{hunt.Title}}</li>
@@ -25,7 +26,6 @@
 						
 					</div>
 				</div>
-
 			{% endfor %}
 		</div>
 			
