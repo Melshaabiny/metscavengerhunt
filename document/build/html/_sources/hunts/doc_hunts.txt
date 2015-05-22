@@ -1,0 +1,11 @@
+Model
+-----
+
+.. automodule:: hunts.models
+	:members:
+	:undoc-members:
+
+Views
+-----
+
+.. autofunction:: hunts.views.render_hunt

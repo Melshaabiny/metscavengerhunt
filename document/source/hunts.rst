@@ -1,27 +1,18 @@
-Model
------
+Hunts
+*****
 
-.. automodule:: hunts.models
-	:members:
-	:undoc-members:
+The application that handles all of the hunts related tasks is named **hunts** app in our system. The tasks it handles are
 
-Views
------
+	1. Rendering Hunt
 
-.. autofunction:: user_auth.views.register
+		- The view that handles this task is **hunts.views.render_hunt**. It handles the hunt process, rendering template with appropriate forms and content.
 
-.. autofunction:: user_auth.views.login_user
+	2. Rendering Clue
+	   
+		- **hunts.views.render_clue** handles this task. It renders the proper clue for the items.
 
-.. autofunction:: user_auth.views.edit
+	3. Rendering Result
+		
+		- **hunts.views.render_result** function handles rendering the result of the item verification process.
 
-.. autofunction:: user_auth.views.profile
-
-.. autofunction:: user_auth.views.logout_user
-
-
-Tests
------
-
-.. automodule:: hunts.tests
-	:members:
-	:undoc-members:
+.. include:: ./hunts/doc_hunts.rst
