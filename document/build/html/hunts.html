@@ -1,0 +1,532 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Model &mdash; MetDoc 0.0.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="MetDoc 0.0.1 documentation" href="index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">MetDoc 0.0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-hunts.models">
+<span id="model"></span><h1>Model<a class="headerlink" href="#module-hunts.models" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li>implement models for Hunts and Items and their relationship</li>
+<li>add functions that set each Hunt&#8217;s data and the data of Items that belong to it</li>
+<li>pop_item and verify_id are funtions that are called in the views.py</li>
+<li>that processes each hunt&#8217;s progress.</li>
+</ul>
+<dl class="class">
+<dt id="hunts.models.Has">
+<em class="property">class </em><code class="descclassname">hunts.models.</code><code class="descname">Has</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hunts/models.html#Has"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hunts.models.Has" title="Permalink to this definition">¶</a></dt>
+<dd><ul class="simple">
+<li>intermediate model that links Hunts to Items</li>
+<li>each hunt has one or more items</li>
+<li>each item belongs to one or more hunts</li>
+<li>in every hunt there is a clue that leads to the item and every item has an order number</li>
+</ul>
+<dl class="exception">
+<dt id="hunts.models.Has.DoesNotExist">
+<em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#hunts.models.Has.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="hunts.models.Has.MultipleObjectsReturned">
+<em class="property">exception </em><code class="descclassname">Has.</code><code class="descname">MultipleObjectsReturned</code><a class="headerlink" href="#hunts.models.Has.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="hunts.models.Has.hunt">
+<code class="descclassname">Has.</code><code class="descname">hunt</code><a class="headerlink" href="#hunts.models.Has.hunt" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="hunts.models.Has.item">
+<code class="descclassname">Has.</code><code class="descname">item</code><a class="headerlink" href="#hunts.models.Has.item" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="hunts.models.Has.objects">
+<code class="descclassname">Has.</code><code class="descname">objects</code><em class="property"> = &lt;django.db.models.manager.Manager object&gt;</em><a class="headerlink" href="#hunts.models.Has.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="hunts.models.HuntProg">
+<em class="property">class </em><code class="descclassname">hunts.models.</code><code class="descname">HuntProg</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hunts/models.html#HuntProg"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hunts.models.HuntProg" title="Permalink to this definition">¶</a></dt>
+<dd><ul class="simple">
+<li>intermediate model that is linked to hunts and has to keep track of progress for the users</li>
+</ul>
+<dl class="exception">
+<dt id="hunts.models.HuntProg.DoesNotExist">
+<em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#hunts.models.HuntProg.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="hunts.models.HuntProg.MultipleObjectsReturned">
+<em class="property">exception </em><code class="descclassname">HuntProg.</code><code class="descname">MultipleObjectsReturned</code><a class="headerlink" href="#hunts.models.HuntProg.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="hunts.models.HuntProg.hunt">
+<code class="descclassname">HuntProg.</code><code class="descname">hunt</code><a class="headerlink" href="#hunts.models.HuntProg.hunt" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="hunts.models.HuntProg.objects">
+<code class="descclassname">HuntProg.</code><code class="descname">objects</code><em class="property"> = &lt;django.db.models.manager.Manager object&gt;</em><a class="headerlink" href="#hunts.models.HuntProg.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="hunts.models.Hunts">
+<em class="property">class </em><code class="descclassname">hunts.models.</code><code class="descname">Hunts</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hunts/models.html#Hunts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hunts.models.Hunts" title="Permalink to this definition">¶</a></dt>
+<dd><ul class="simple">
+<li>database table that contains all the scavenger hunts</li>
+<li>each hunt has a unique id and title</li>
+<li>each belongs to a specific category and have a starting location</li>
+</ul>
+<dl class="exception">
+<dt id="hunts.models.Hunts.DoesNotExist">
+<em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#hunts.models.Hunts.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="hunts.models.Hunts.MultipleObjectsReturned">
+<em class="property">exception </em><code class="descclassname">Hunts.</code><code class="descname">MultipleObjectsReturned</code><a class="headerlink" href="#hunts.models.Hunts.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="hunts.models.Hunts.has_set">
+<code class="descclassname">Hunts.</code><code class="descname">has_set</code><a class="headerlink" href="#hunts.models.Hunts.has_set" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="hunts.models.Hunts.huntprog_set">
+<code class="descclassname">Hunts.</code><code class="descname">huntprog_set</code><a class="headerlink" href="#hunts.models.Hunts.huntprog_set" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="hunts.models.Hunts.items_set">
+<code class="descclassname">Hunts.</code><code class="descname">items_set</code><a class="headerlink" href="#hunts.models.Hunts.items_set" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="hunts.models.Hunts.objects">
+<code class="descclassname">Hunts.</code><code class="descname">objects</code><em class="property"> = &lt;django.db.models.manager.Manager object&gt;</em><a class="headerlink" href="#hunts.models.Hunts.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="hunts.models.Items">
+<em class="property">class </em><code class="descclassname">hunts.models.</code><code class="descname">Items</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hunts/models.html#Items"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hunts.models.Items" title="Permalink to this definition">¶</a></dt>
+<dd><ul class="simple">
+<li>database table that contains all the items of the Met (to be completed)</li>
+<li>each item has a unique id, belongs to a specific category</li>
+<li>has a specific type (painting, sculpture, instrument, etc.)</li>
+<li>is a part of one or more hunts</li>
+</ul>
+<dl class="exception">
+<dt id="hunts.models.Items.DoesNotExist">
+<em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#hunts.models.Items.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="hunts.models.Items.MultipleObjectsReturned">
+<em class="property">exception </em><code class="descclassname">Items.</code><code class="descname">MultipleObjectsReturned</code><a class="headerlink" href="#hunts.models.Items.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="hunts.models.Items.cr_has_set">
+<code class="descclassname">Items.</code><code class="descname">cr_has_set</code><a class="headerlink" href="#hunts.models.Items.cr_has_set" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="hunts.models.Items.has_set">
+<code class="descclassname">Items.</code><code class="descname">has_set</code><a class="headerlink" href="#hunts.models.Items.has_set" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="hunts.models.Items.objects">
+<code class="descclassname">Items.</code><code class="descname">objects</code><em class="property"> = &lt;django.db.models.manager.Manager object&gt;</em><a class="headerlink" href="#hunts.models.Items.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="hunts.models.Items.partof">
+<code class="descclassname">Items.</code><code class="descname">partof</code><a class="headerlink" href="#hunts.models.Items.partof" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="hunts.models.init_huntprog">
+<code class="descclassname">hunts.models.</code><code class="descname">init_huntprog</code><span class="sig-paren">(</span><em>h_id</em>, <em>uname</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hunts/models.html#init_huntprog"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hunts.models.init_huntprog" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="hunts.models.pop_item">
+<code class="descclassname">hunts.models.</code><code class="descname">pop_item</code><span class="sig-paren">(</span><em>lst</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hunts/models.html#pop_item"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hunts.models.pop_item" title="Permalink to this definition">¶</a></dt>
+<dd><ul class="simple">
+<li>Pops an item from the global list of items,</li>
+</ul>
+<p>once a user moves on the next item in the hunt.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="hunts.models.set_HuntsData">
+<code class="descclassname">hunts.models.</code><code class="descname">set_HuntsData</code><span class="sig-paren">(</span><em>id_hunt</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hunts/models.html#set_HuntsData"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hunts.models.set_HuntsData" title="Permalink to this definition">¶</a></dt>
+<dd><ul class="simple">
+<li>Based on the hunt id, set_HuntsData returns a python dictionary</li>
+<li>containing all the Hunt&#8217;s title and starting location</li>
+</ul>
+</dd></dl>
+
+<dl class="function">
+<dt id="hunts.models.set_ItemsData">
+<code class="descclassname">hunts.models.</code><code class="descname">set_ItemsData</code><span class="sig-paren">(</span><em>id_hunt</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hunts/models.html#set_ItemsData"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hunts.models.set_ItemsData" title="Permalink to this definition">¶</a></dt>
+<dd><ul class="simple">
+<li>Based on the hunt id, set_ItemsData creates a list of tuples</li>
+<li>containing all the items in that hunt and their respective database</li>
+<li>returns TEMP[(id, clue, number), ...]</li>
+</ul>
+</dd></dl>
+
+<dl class="function">
+<dt id="hunts.models.update_cur_item">
+<code class="descclassname">hunts.models.</code><code class="descname">update_cur_item</code><span class="sig-paren">(</span><em>h_id</em>, <em>uname</em>, <em>newnum</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hunts/models.html#update_cur_item"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hunts.models.update_cur_item" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="hunts.models.verify_id">
+<code class="descclassname">hunts.models.</code><code class="descname">verify_id</code><span class="sig-paren">(</span><em>usr_input</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hunts/models.html#verify_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hunts.models.verify_id" title="Permalink to this definition">¶</a></dt>
+<dd><ul class="simple">
+<li>Checks the user input against the item id and returns a boolean result</li>
+</ul>
+</dd></dl>
+
+</div>
+<div class="section" id="views">
+<h1>Views<a class="headerlink" href="#views" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="user_auth.views.register">
+<code class="descclassname">user_auth.views.</code><code class="descname">register</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/user_auth/views.html#register"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.views.register" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body">HttpRequest</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">HttpResponse</td>
+</tr>
+</tbody>
+</table>
+<p>This method handles registering new users. All neccessary information is
+taken from <strong>register.html</strong> page, and those information is passed into
+<strong>RegisterForm</strong> and the class method <strong>register_form()</strong> will process 
+the information.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="user_auth.views.login_user">
+<code class="descclassname">user_auth.views.</code><code class="descname">login_user</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/user_auth/views.html#login_user"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.views.login_user" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body">HttpRequest</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">HttpResponse</td>
+</tr>
+</tbody>
+</table>
+<p>log a user into the website. This function takes the login information
+such as the username and password from the user and pass the information
+to <strong>LogInForm</strong>. The <strong>LogInForm</strong> has class method called <strong>login_process()</strong>
+and this class method handles processing the login information.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="user_auth.views.edit">
+<code class="descclassname">user_auth.views.</code><code class="descname">edit</code><span class="sig-paren">(</span><em>request</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/user_auth/views.html#edit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.views.edit" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body">HttpRequest</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">HttpResponse</td>
+</tr>
+</tbody>
+</table>
+<p>The user can edit their information from the edit page. From the edit page, 
+the information that the user wants to modify will be taken and passed to
+the class <strong>EditForm</strong>. The class <strong>EditForm</strong> has class method called
+<strong>process()</strong> which is responsible for processing the edit information.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="user_auth.views.profile">
+<code class="descclassname">user_auth.views.</code><code class="descname">profile</code><span class="sig-paren">(</span><em>request</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/user_auth/views.html#profile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.views.profile" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body">HttpRequest</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">HttpResponse</td>
+</tr>
+</tbody>
+</table>
+<p>This function is responsible for checking if a user is authenticated when
+the user is try to access profile page.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="user_auth.views.logout_user">
+<code class="descclassname">user_auth.views.</code><code class="descname">logout_user</code><span class="sig-paren">(</span><em>request</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/user_auth/views.html#logout_user"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.views.logout_user" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body">HttpRequest</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">HttpResponse</td>
+</tr>
+</tbody>
+</table>
+<p>This function handles log the user out from the website.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-hunts.tests">
+<span id="tests"></span><h1>Tests<a class="headerlink" href="#module-hunts.tests" title="Permalink to this headline">¶</a></h1>
+<p>Unit tests for &#8216;hunts&#8217; django application</p>
+<p>The list of tests are:</p>
+<dl class="class">
+<dt id="hunts.tests.hunts_test">
+<em class="property">class </em><code class="descclassname">hunts.tests.</code><code class="descname">hunts_test</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hunts/tests.html#hunts_test"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hunts.tests.hunts_test" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="hunts.tests.hunts_test.setUp">
+<code class="descname">setUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/hunts/tests.html#hunts_test.setUp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hunts.tests.hunts_test.setUp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="hunts.tests.hunts_test.tearDown">
+<code class="descname">tearDown</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/hunts/tests.html#hunts_test.tearDown"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hunts.tests.hunts_test.tearDown" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="hunts.tests.hunts_test.test_congrats">
+<code class="descname">test_congrats</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/hunts/tests.html#hunts_test.test_congrats"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hunts.tests.hunts_test.test_congrats" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>test_congrats</strong> tests if render_congrats is ran at the correct url</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="hunts.tests.hunts_test.test_correct">
+<code class="descname">test_correct</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/hunts/tests.html#hunts_test.test_correct"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hunts.tests.hunts_test.test_correct" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>test_correct</strong> tests if render_correct is ran at the correct url</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="hunts.tests.hunts_test.test_getData">
+<code class="descname">test_getData</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/hunts/tests.html#hunts_test.test_getData"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hunts.tests.hunts_test.test_getData" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="hunts.tests.hunts_test.test_hint">
+<code class="descname">test_hint</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/hunts/tests.html#hunts_test.test_hint"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hunts.tests.hunts_test.test_hint" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>test_incorrect</strong> tests if render_incorrect is ran at the correct url</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="hunts.tests.hunts_test.test_hunt_detail">
+<code class="descname">test_hunt_detail</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/hunts/tests.html#hunts_test.test_hunt_detail"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hunts.tests.hunts_test.test_hunt_detail" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>test_hunt_detail</strong> tests if correct categories are grabbed</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="hunts.tests.hunts_test.test_incorrect">
+<code class="descname">test_incorrect</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/hunts/tests.html#hunts_test.test_incorrect"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hunts.tests.hunts_test.test_incorrect" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>test_incorrect</strong> tests if render_incorrect is ran at the correct url</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="hunts.tests.hunts_test.test_init_huntprog">
+<code class="descname">test_init_huntprog</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/hunts/tests.html#hunts_test.test_init_huntprog"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hunts.tests.hunts_test.test_init_huntprog" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>test_init_huntprog</strong> tests if huntprog already exists if so check that nothing is done, else check that a create function is called</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="hunts.tests.hunts_test.test_next_proc">
+<code class="descname">test_next_proc</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/hunts/tests.html#hunts_test.test_next_proc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hunts.tests.hunts_test.test_next_proc" title="Permalink to this definition">¶</a></dt>
+<dd><p>mocks TEMP and pop_item function. Runs next_proc see if pop_tem is called when TEMP is not empty.
+Then an assert is made to check that it correctly redirects to the clue page.
+Empties TEMP and runs next_proc again. This time checks that pop_item is not called.
+Then an assert is made to check that it correctly redirects to the congrats page.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="hunts.tests.hunts_test.test_pop_item">
+<code class="descname">test_pop_item</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/hunts/tests.html#hunts_test.test_pop_item"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hunts.tests.hunts_test.test_pop_item" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="hunts.tests.hunts_test.test_render_clue">
+<code class="descname">test_render_clue</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/hunts/tests.html#hunts_test.test_render_clue"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hunts.tests.hunts_test.test_render_clue" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>test_render_clue</strong>
+First: tests if render_clue is called when going to the clue page</p>
+<p>Second: mocks item_clue to force it to return a unique value. Then tests if that clue
+is in the context of the rendered html page</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="hunts.tests.hunts_test.test_render_hunt">
+<code class="descname">test_render_hunt</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/hunts/tests.html#hunts_test.test_render_hunt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hunts.tests.hunts_test.test_render_hunt" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>test_render_hunt</strong> This test mocks hunt_title and hunt_start.
+Then the test tries to call the hunts/hunt url which
+should render with hunt_title and hunt_start which are validated at the end of the test.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="hunts.tests.hunts_test.test_render_result">
+<code class="descname">test_render_result</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/hunts/tests.html#hunts_test.test_render_result"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hunts.tests.hunts_test.test_render_result" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>test_render_result</strong> The test mocks verify_id.
+Fixes it to True and checks that render_result redirects to the correct page
+Then the test fixes verify_id to false and checks that render_result redirects to incorrect page</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="hunts.tests.hunts_test.test_render_verify">
+<code class="descname">test_render_verify</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/hunts/tests.html#hunts_test.test_render_verify"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hunts.tests.hunts_test.test_render_verify" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>test_render_verify</strong> tests if render_verify is ran at the correct url</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="hunts.tests.hunts_test.test_set_HuntsData">
+<code class="descname">test_set_HuntsData</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/hunts/tests.html#hunts_test.test_set_HuntsData"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hunts.tests.hunts_test.test_set_HuntsData" title="Permalink to this definition">¶</a></dt>
+<dd><p><a href="#id1"><span class="problematic" id="id2">**</span></a>test_set_HuntsData this test creates a mock object
+<a href="#id3"><span class="problematic" id="id4">**</span></a>then tests that the correct values are retrieved</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="hunts.tests.hunts_test.test_set_ItemsData">
+<code class="descname">test_set_ItemsData</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/hunts/tests.html#hunts_test.test_set_ItemsData"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hunts.tests.hunts_test.test_set_ItemsData" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>test_set_ItemsData</strong> this test should mock the model
+<a href="#id5"><span class="problematic" id="id6">**</span></a>check that correct items were retrieved</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="hunts.tests.hunts_test.test_update_cur_item">
+<code class="descname">test_update_cur_item</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/hunts/tests.html#hunts_test.test_update_cur_item"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hunts.tests.hunts_test.test_update_cur_item" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>test_update_cur_item</strong> tests that an object is called and an attribute is modified</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="hunts.tests.hunts_test.test_verify_ID">
+<code class="descname">test_verify_ID</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/hunts/tests.html#hunts_test.test_verify_ID"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hunts.tests.hunts_test.test_verify_ID" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>test_verify_ID</strong>  Function mocks the var &#8216;item_id&#8217;
+<a href="#id7"><span class="problematic" id="id8">**</span></a>then runs verify_id to see if it returns correct boolean values for equal input and unequal input</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Model</a></li>
+<li><a class="reference internal" href="#views">Views</a></li>
+<li><a class="reference internal" href="#module-hunts.tests">Tests</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/hunts.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, WebDev.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.3</a>
+      
+      |
+      <a href="_sources/hunts.txt"
+          rel="nofollow">Page source</a></li>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -15,6 +15,7 @@ Documentation
 
    TeamInformation
    UserAuthentication
+   Hunts
 
 Indices and tables
 ==================
