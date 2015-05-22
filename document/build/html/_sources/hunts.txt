@@ -1,7 +1,7 @@
 Model
 -----
 
-.. automodule:: user_auth.models
+.. automodule:: hunts.models
 	:members:
 	:undoc-members:
 
@@ -18,18 +18,10 @@ Views
 
 .. autofunction:: user_auth.views.logout_user
 
-Forms
------
-
-.. automodule:: user_auth.auth_forms
-	:members:
-	:undoc-members:
-
 
 Tests
 -----
 
-.. automodule:: user_auth.tests
+.. automodule:: hunts.tests
 	:members:
 	:undoc-members:
-
