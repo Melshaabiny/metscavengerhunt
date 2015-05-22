@@ -31,6 +31,7 @@ def edit(request):
         # make changes.
         form = EditForm(request.POST, request.FILES)
         if form.is_valid():
+            print "editing"
             user = form.process(request.user)
             args = {'editted':True, 'user':user}
             args.update(csrf(request))
