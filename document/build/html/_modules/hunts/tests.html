@@ -68,8 +68,8 @@
 <span class="k">global</span> <span class="n">TEMP</span>
 
 <span class="c"># Create your tests here.</span>
-<div class="viewcode-block" id="hunts_test"><a class="viewcode-back" href="../../Hunt.html#hunts.tests.hunts_test">[docs]</a><span class="k">class</span> <span class="nc">hunts_test</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
-<div class="viewcode-block" id="hunts_test.setUp"><a class="viewcode-back" href="../../Hunt.html#hunts.tests.hunts_test.setUp">[docs]</a>    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="hunts_test"><a class="viewcode-back" href="../../hunts.html#hunts.tests.hunts_test">[docs]</a><span class="k">class</span> <span class="nc">hunts_test</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
+<div class="viewcode-block" id="hunts_test.setUp"><a class="viewcode-back" href="../../hunts.html#hunts.tests.hunts_test.setUp">[docs]</a>    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">()</span>
         <span class="k">global</span> <span class="n">TEMP</span>
         <span class="n">views</span><span class="o">.</span><span class="n">TEMP</span> <span class="o">=</span> <span class="p">[(</span><span class="s">&#39;123&#39;</span><span class="p">,</span> <span class="s">&#39;a clue&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s">&#39;hint&#39;</span><span class="p">,</span> <span class="s">&#39;image url&#39;</span><span class="p">,</span> <span class="s">&#39;fun fact&#39;</span><span class="p">,</span><span class="s">&#39;hint crop&#39;</span><span class="p">)]</span>
@@ -78,7 +78,7 @@
         <span class="n">TEMP</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">TEMP</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">factory</span> <span class="o">=</span> <span class="n">RequestFactory</span><span class="p">()</span>
 </div>
-<div class="viewcode-block" id="hunts_test.tearDown"><a class="viewcode-back" href="../../Hunt.html#hunts.tests.hunts_test.tearDown">[docs]</a>    <span class="k">def</span> <span class="nf">tearDown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="hunts_test.tearDown"><a class="viewcode-back" href="../../hunts.html#hunts.tests.hunts_test.tearDown">[docs]</a>    <span class="k">def</span> <span class="nf">tearDown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">del</span> <span class="n">views</span><span class="o">.</span><span class="n">TEMP</span>
         <span class="k">del</span> <span class="n">models</span><span class="o">.</span><span class="n">TEMP</span>
 <span class="c">#   def test_hunts_status(self):</span>
@@ -87,13 +87,13 @@
 <span class="c">#       resp = self.client.get(&#39;/hunts/welcome/&#39;) #should be directory of welcom page</span>
 <span class="c">#       self.assertEqual(resp.status_code, 200)</span>
 </div>
-<div class="viewcode-block" id="hunts_test.test_getData"><a class="viewcode-back" href="../../Hunt.html#hunts.tests.hunts_test.test_getData">[docs]</a>    <span class="k">def</span> <span class="nf">test_getData</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="c">#INCOMPLETE</span>
+<div class="viewcode-block" id="hunts_test.test_getData"><a class="viewcode-back" href="../../hunts.html#hunts.tests.hunts_test.test_getData">[docs]</a>    <span class="k">def</span> <span class="nf">test_getData</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="c">#INCOMPLETE</span>
         <span class="k">pass</span>
             <span class="c">#call query</span>
             <span class="c">#use fixtures to fill database and grab from there</span>
             <span class="c">#use count to check that something was grabbed</span>
 </div>
-<div class="viewcode-block" id="hunts_test.test_render_hunt"><a class="viewcode-back" href="../../Hunt.html#hunts.tests.hunts_test.test_render_hunt">[docs]</a>    <span class="k">def</span> <span class="nf">test_render_hunt</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span><span class="c">#DONE, updated</span>
+<div class="viewcode-block" id="hunts_test.test_render_hunt"><a class="viewcode-back" href="../../hunts.html#hunts.tests.hunts_test.test_render_hunt">[docs]</a>    <span class="k">def</span> <span class="nf">test_render_hunt</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span><span class="c">#DONE, updated</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            **test_render_hunt** This test mocks hunt_title and hunt_start.</span>
 <span class="sd">            Then the test tries to call the hunts/hunt url which</span>
@@ -113,7 +113,7 @@
                         <span class="c">#check that correct title and start point were passed through</span>
                         <span class="n">rend</span><span class="o">.</span><span class="n">assert_called_with</span><span class="p">(</span><span class="s">&quot;hunts/hunt.html&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s">&quot;title&quot;</span> <span class="p">:</span> <span class="s">&#39;test1234&#39;</span><span class="p">,</span> <span class="s">&quot;start_pt&quot;</span><span class="p">:</span> <span class="s">&#39;test7654321&#39;</span><span class="p">})</span>
 </div>
-<div class="viewcode-block" id="hunts_test.test_render_clue"><a class="viewcode-back" href="../../Hunt.html#hunts.tests.hunts_test.test_render_clue">[docs]</a>    <span class="k">def</span> <span class="nf">test_render_clue</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="c">#DONE</span>
+<div class="viewcode-block" id="hunts_test.test_render_clue"><a class="viewcode-back" href="../../hunts.html#hunts.tests.hunts_test.test_render_clue">[docs]</a>    <span class="k">def</span> <span class="nf">test_render_clue</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="c">#DONE</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            **test_render_clue**</span>
 <span class="sd">            First: tests if render_clue is called when going to the clue page</span>
@@ -127,7 +127,7 @@
             <span class="c">#clue was not displayed on clue page&quot;</span>
             <span class="n">rend</span><span class="o">.</span><span class="n">assert_called_with</span><span class="p">(</span><span class="s">&quot;hunts/clue.html&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s">&quot;clue_text&quot;</span> <span class="p">:</span> <span class="s">&#39;a clue&#39;</span><span class="p">})</span>
 </div>
-<div class="viewcode-block" id="hunts_test.test_render_verify"><a class="viewcode-back" href="../../Hunt.html#hunts.tests.hunts_test.test_render_verify">[docs]</a>    <span class="k">def</span> <span class="nf">test_render_verify</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span><span class="c">#DONE</span>
+<div class="viewcode-block" id="hunts_test.test_render_verify"><a class="viewcode-back" href="../../hunts.html#hunts.tests.hunts_test.test_render_verify">[docs]</a>    <span class="k">def</span> <span class="nf">test_render_verify</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span><span class="c">#DONE</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            **test_render_verify** tests if render_verify is ran at the correct url</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -139,7 +139,7 @@
             <span class="c">#reg.assert_called_with(&quot;hunts/verify.html&quot;, c_srf, {})</span>
             <span class="c">#check that correct html is used with csrf token</span>
 </div>
-<div class="viewcode-block" id="hunts_test.test_next_proc"><a class="viewcode-back" href="../../Hunt.html#hunts.tests.hunts_test.test_next_proc">[docs]</a>    <span class="k">def</span> <span class="nf">test_next_proc</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="c">#Needs to be checked</span>
+<div class="viewcode-block" id="hunts_test.test_next_proc"><a class="viewcode-back" href="../../hunts.html#hunts.tests.hunts_test.test_next_proc">[docs]</a>    <span class="k">def</span> <span class="nf">test_next_proc</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="c">#Needs to be checked</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            mocks TEMP and pop_item function. Runs next_proc see if pop_tem is called when TEMP is not empty.</span>
 <span class="sd">            Then an assert is made to check that it correctly redirects to the clue page.</span>
@@ -159,7 +159,7 @@
                 <span class="n">views</span><span class="o">.</span><span class="n">next_proc</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">factory</span><span class="p">)</span>
 <span class="c">#               assert not(pop_item.called) #pop_item was called when TEMP was empty&quot;</span>
 </div>
-<div class="viewcode-block" id="hunts_test.test_render_result"><a class="viewcode-back" href="../../Hunt.html#hunts.tests.hunts_test.test_render_result">[docs]</a>    <span class="k">def</span> <span class="nf">test_render_result</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span><span class="c">#DONE</span>
+<div class="viewcode-block" id="hunts_test.test_render_result"><a class="viewcode-back" href="../../hunts.html#hunts.tests.hunts_test.test_render_result">[docs]</a>    <span class="k">def</span> <span class="nf">test_render_result</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span><span class="c">#DONE</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            **test_render_result** The test mocks verify_id.</span>
 <span class="sd">            Fixes it to True and checks that render_result redirects to the correct page</span>
@@ -183,7 +183,7 @@
                 <span class="c">#render_verify does not correctly redirect to &#39;incorrect&#39; page when expected</span>
                 <span class="n">redirect</span><span class="o">.</span><span class="n">assert_called_with</span><span class="p">(</span><span class="s">&#39;rend_incorrect&#39;</span><span class="p">)</span>
 </div>
-<div class="viewcode-block" id="hunts_test.test_hint"><a class="viewcode-back" href="../../Hunt.html#hunts.tests.hunts_test.test_hint">[docs]</a>    <span class="k">def</span> <span class="nf">test_hint</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="hunts_test.test_hint"><a class="viewcode-back" href="../../hunts.html#hunts.tests.hunts_test.test_hint">[docs]</a>    <span class="k">def</span> <span class="nf">test_hint</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            **test_incorrect** tests if render_incorrect is ran at the correct url</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -192,7 +192,7 @@
             <span class="n">views</span><span class="o">.</span><span class="n">render_hint</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
             <span class="n">rend</span><span class="o">.</span><span class="n">assert_called_with</span><span class="p">(</span><span class="s">&quot;hunts/hint.html&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s">&quot;hint_text&quot;</span><span class="p">:</span> <span class="s">&#39;hint&#39;</span><span class="p">})</span>
 </div>
-<div class="viewcode-block" id="hunts_test.test_correct"><a class="viewcode-back" href="../../Hunt.html#hunts.tests.hunts_test.test_correct">[docs]</a>    <span class="k">def</span> <span class="nf">test_correct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="hunts_test.test_correct"><a class="viewcode-back" href="../../hunts.html#hunts.tests.hunts_test.test_correct">[docs]</a>    <span class="k">def</span> <span class="nf">test_correct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            **test_correct** tests if render_correct is ran at the correct url</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -204,7 +204,7 @@
                 <span class="n">views</span><span class="o">.</span><span class="n">render_correct</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
                 <span class="n">rend</span><span class="o">.</span><span class="n">assert_called_with</span><span class="p">(</span><span class="s">&quot;hunts/correct.html&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s">&quot;url&quot;</span><span class="p">:</span><span class="s">&#39;image url&#39;</span><span class="p">,</span> <span class="s">&quot;fact&quot;</span><span class="p">:</span><span class="s">&#39;fun fact&#39;</span><span class="p">})</span>
 </div>
-<div class="viewcode-block" id="hunts_test.test_incorrect"><a class="viewcode-back" href="../../Hunt.html#hunts.tests.hunts_test.test_incorrect">[docs]</a>    <span class="k">def</span> <span class="nf">test_incorrect</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="hunts_test.test_incorrect"><a class="viewcode-back" href="../../hunts.html#hunts.tests.hunts_test.test_incorrect">[docs]</a>    <span class="k">def</span> <span class="nf">test_incorrect</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            **test_incorrect** tests if render_incorrect is ran at the correct url</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -213,7 +213,7 @@
             <span class="n">views</span><span class="o">.</span><span class="n">render_incorrect</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
             <span class="n">rend</span><span class="o">.</span><span class="n">assert_called_with</span><span class="p">(</span><span class="s">&quot;hunts/incorrect.html&quot;</span><span class="p">,</span> <span class="p">{})</span>
 </div>
-<div class="viewcode-block" id="hunts_test.test_congrats"><a class="viewcode-back" href="../../Hunt.html#hunts.tests.hunts_test.test_congrats">[docs]</a>    <span class="k">def</span> <span class="nf">test_congrats</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span><span class="c">#DONE</span>
+<div class="viewcode-block" id="hunts_test.test_congrats"><a class="viewcode-back" href="../../hunts.html#hunts.tests.hunts_test.test_congrats">[docs]</a>    <span class="k">def</span> <span class="nf">test_congrats</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span><span class="c">#DONE</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            **test_congrats** tests if render_congrats is ran at the correct url</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -227,7 +227,7 @@
             <span class="c">#   print &quot;render_congrats was not called at the url: /hunts/congrats/&quot;</span>
             <span class="n">rend</span><span class="o">.</span><span class="n">assert_called_with</span><span class="p">(</span><span class="s">&quot;hunts/congrats.html&quot;</span><span class="p">,</span> <span class="p">{})</span>
 </div>
-<div class="viewcode-block" id="hunts_test.test_hunt_detail"><a class="viewcode-back" href="../../Hunt.html#hunts.tests.hunts_test.test_hunt_detail">[docs]</a>    <span class="k">def</span> <span class="nf">test_hunt_detail</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="hunts_test.test_hunt_detail"><a class="viewcode-back" href="../../hunts.html#hunts.tests.hunts_test.test_hunt_detail">[docs]</a>    <span class="k">def</span> <span class="nf">test_hunt_detail</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            **test_hunt_detail** tests if correct categories are grabbed</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -243,7 +243,7 @@
                 <span class="k">assert</span> <span class="n">rend</span><span class="o">.</span><span class="n">called</span>
 
             <span class="c">#***Model tests***</span></div>
-<div class="viewcode-block" id="hunts_test.test_set_HuntsData"><a class="viewcode-back" href="../../Hunt.html#hunts.tests.hunts_test.test_set_HuntsData">[docs]</a>    <span class="k">def</span> <span class="nf">test_set_HuntsData</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="c">#DONE</span>
+<div class="viewcode-block" id="hunts_test.test_set_HuntsData"><a class="viewcode-back" href="../../hunts.html#hunts.tests.hunts_test.test_set_HuntsData">[docs]</a>    <span class="k">def</span> <span class="nf">test_set_HuntsData</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="c">#DONE</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            **test_set_HuntsData this test creates a mock object</span>
 <span class="sd">            **then tests that the correct values are retrieved</span>
@@ -256,7 +256,7 @@
             <span class="n">models</span><span class="o">.</span><span class="n">set_HuntsData</span><span class="p">(</span><span class="n">id_hunt</span><span class="p">)</span>
 
 </div>
-<div class="viewcode-block" id="hunts_test.test_set_ItemsData"><a class="viewcode-back" href="../../Hunt.html#hunts.tests.hunts_test.test_set_ItemsData">[docs]</a>    <span class="k">def</span> <span class="nf">test_set_ItemsData</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="hunts_test.test_set_ItemsData"><a class="viewcode-back" href="../../hunts.html#hunts.tests.hunts_test.test_set_ItemsData">[docs]</a>    <span class="k">def</span> <span class="nf">test_set_ItemsData</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            **test_set_ItemsData** this test should mock the model</span>
 <span class="sd">            **check that correct items were retrieved</span>
@@ -270,12 +270,12 @@
             <span class="n">items_hunt</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">return_value</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="s">&quot;image url test&quot;</span>
             <span class="n">items_hunt</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">return_value</span><span class="o">.</span><span class="n">fact</span> <span class="o">=</span> <span class="s">&quot;fact test&quot;</span>
 </div>
-<div class="viewcode-block" id="hunts_test.test_pop_item"><a class="viewcode-back" href="../../Hunt.html#hunts.tests.hunts_test.test_pop_item">[docs]</a>    <span class="k">def</span> <span class="nf">test_pop_item</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="c">#DONE</span>
+<div class="viewcode-block" id="hunts_test.test_pop_item"><a class="viewcode-back" href="../../hunts.html#hunts.tests.hunts_test.test_pop_item">[docs]</a>    <span class="k">def</span> <span class="nf">test_pop_item</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="c">#DONE</span>
         <span class="n">lst</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span>
         <span class="n">lst</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">pop_item</span><span class="p">(</span><span class="n">lst</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">lst</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">)</span>
 </div>
-<div class="viewcode-block" id="hunts_test.test_verify_ID"><a class="viewcode-back" href="../../Hunt.html#hunts.tests.hunts_test.test_verify_ID">[docs]</a>    <span class="k">def</span> <span class="nf">test_verify_ID</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="c">#DONE</span>
+<div class="viewcode-block" id="hunts_test.test_verify_ID"><a class="viewcode-back" href="../../hunts.html#hunts.tests.hunts_test.test_verify_ID">[docs]</a>    <span class="k">def</span> <span class="nf">test_verify_ID</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="c">#DONE</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            **test_verify_ID**  Function mocks the var &#39;item_id&#39;</span>
 <span class="sd">            **then runs verify_id to see if it returns correct boolean values for equal input and unequal input</span>
@@ -287,7 +287,7 @@
         <span class="k">assert</span> <span class="n">success</span> <span class="c">#verify_id did not return true when input and item_id were equal&quot;</span>
         <span class="k">assert</span> <span class="ow">not</span> <span class="n">failure</span> <span class="c">#verify_id did not return false when input and item_id were different&quot;</span>
 </div>
-<div class="viewcode-block" id="hunts_test.test_init_huntprog"><a class="viewcode-back" href="../../Hunt.html#hunts.tests.hunts_test.test_init_huntprog">[docs]</a>    <span class="k">def</span> <span class="nf">test_init_huntprog</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="hunts_test.test_init_huntprog"><a class="viewcode-back" href="../../hunts.html#hunts.tests.hunts_test.test_init_huntprog">[docs]</a>    <span class="k">def</span> <span class="nf">test_init_huntprog</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            **test_init_huntprog** tests if huntprog already exists if so check that nothing is done, else check that a create function is called</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -310,7 +310,7 @@
                     <span class="n">models</span><span class="o">.</span><span class="n">init_huntprog</span><span class="p">(</span><span class="n">h_id</span><span class="p">,</span> <span class="n">uname</span><span class="p">)</span>
                     <span class="k">assert</span> <span class="ow">not</span><span class="p">(</span><span class="n">cr</span><span class="o">.</span><span class="n">called</span><span class="p">)</span>
 </div>
-<div class="viewcode-block" id="hunts_test.test_update_cur_item"><a class="viewcode-back" href="../../Hunt.html#hunts.tests.hunts_test.test_update_cur_item">[docs]</a>    <span class="k">def</span> <span class="nf">test_update_cur_item</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="hunts_test.test_update_cur_item"><a class="viewcode-back" href="../../hunts.html#hunts.tests.hunts_test.test_update_cur_item">[docs]</a>    <span class="k">def</span> <span class="nf">test_update_cur_item</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            **test_update_cur_item** tests that an object is called and an attribute is modified</span>
 <span class="sd">        &quot;&quot;&quot;</span>

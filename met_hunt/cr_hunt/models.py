@@ -1,16 +1,16 @@
+"""
+        The models for create hunt feature are implemented in this file.
+        This feature allows the users to 
+"""
 from django.db import models
 from hunts.models import Items
-"""
-    * Create your models here.
-    * ----------Tables----------
-    ##Copy of models from hunts subapp
-"""
+
 global TEMP
 class cr_Hunts(models.Model):
     """
-        * database table that contains all the scavenger hunts
-        * each hunt has a unique id and title
-        * each belongs to a specific category and have a starting location
+        Database table that contains all the scavenger hunts.
+        Each hunt has a unique id and title,
+        where each belongs to a specific category and have a starting location
     """
     # Unique identification number for each hunt
     ID = models.CharField(max_length=25, unique=True, primary_key=True)
@@ -26,10 +26,9 @@ class cr_Hunts(models.Model):
 
 class cr_Has(models.Model):
     """
-        * intermediate model that links Hunts to Items
-        * each hunt has one or more items
-        * each item belongs to one or more hunts
-        * in every hunt there is a clue that leads to the item and every item has an order number
+        Intermediate model that links Hunts to Items
+        each hunt has one or more items and each item belongs to one or more hunts.
+        In every hunt there is a clue that leads to the item and every item has an order number
     """
     hunt = models.ForeignKey(cr_Hunts)
     item = models.ForeignKey(Items)
@@ -39,7 +38,9 @@ class cr_Has(models.Model):
 
 def add_hunt_its(id_hunt, title, start, uname):
     """
-        * Takes in 3 parameters and creates a new hunt tuple
+        :param: IntegerId, pythonString, pythonString, pythonString
+        :rtype: None      
+        Takes in 4 parameters and creates a new hunt tuple
     """
     hunt = cr_Hunts.objects.create(ID = id_hunt)
     hunt.Title = title
@@ -50,6 +51,8 @@ def add_hunt_its(id_hunt, title, start, uname):
 
 def add_hunt_has(id_hunt, nitem, nnum, nclue):
     """
+        :param: IntegerId, pythonString, pythonString, pythonString
+        :rtype: None   
         * Takes in 4 parameters and creates a new has tuple
     """
     has = cr_Has.objects.create(hunt=id_hunt, item=nitem)
@@ -58,6 +61,11 @@ def add_hunt_has(id_hunt, nitem, nnum, nclue):
     has.save()
 
 def gen_hunt_id(uname):
+    """
+        :param: pythonString
+        :rtype: IntegerId
+        This function generates a unique hunt id for the created hunt. 
+    """
     num_of_hunts = cr_Hunts.objects.filter(CreatedBy=uname).count()
     #num_2 = Hunts.objects.filter(CreatedBy = uname).count()
     #num_of_hunts = num_of_hunts + num_2
@@ -66,5 +74,10 @@ def gen_hunt_id(uname):
     return new_id
 
 def get_cur_count(id_hunt):
+    """
+        :param: pythonString
+        :rtype: IntegerId
+        This function returns the number of items that the user added to the hunt being created.
+    """ 
     cur_count = cr_Has.objects.filter(hunt=id_hunt).count()
     return cur_count
