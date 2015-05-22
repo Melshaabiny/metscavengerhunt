@@ -1,6 +1,6 @@
 """
-    * views functions that renders each html throughout a user's hunt progress
-    * starts from the selection of a hunt from the categories list to the Rate Hunt page
+    The functions in this views.py render every html page throughout a user's hunt progress.
+    It starts from the selection of a hunt from the categories list to the Rate Hunt page.
 """
 from django.shortcuts import render_to_response
 from django.shortcuts import redirect
@@ -12,11 +12,12 @@ global glob_hunt_id
 
 def render_hunt(request, given_id):
     """
-        * gets triggered with the appropriate hunt id once a user chooses
-        * a hunt from the categories' drop down menu
-        * sets the hunt's data (title and starting location)
-        * stores the items data in global var TEMP list
-        * finally, it renders the welcome page
+        :param: HttpRequest, interger id
+        :rtype: HttpResponse
+        This function gets triggered with the appropriate hunt id once a user chooses
+        hunt from the categories page. It sets the hunt's data (title and starting location),
+        and stores the items data in global var TEMP list.
+        Finally, it renders the hunt's welcome page.
     """
     global TEMP
     global glob_hunt_id
@@ -31,9 +32,10 @@ def render_hunt(request, given_id):
 
 def next_proc(request):
     """
-        * If the current item is the last one in the hunt, next_proc() redirect to render_congrats
-        * Otherwise, it calls pop_item() to update the global list of items
-            and redirects to render_clue()
+        :param: HttpRequest
+        :rtype: HttpResponse    
+        If the current item is the last one in the hunt, next_proc() redirect to render_congrats
+        Otherwise, it calls pop_item() to update the global list of items and redirects to render_clue()
     """
     global TEMP
     TEMP = pop_item(TEMP)
@@ -44,16 +46,19 @@ def next_proc(request):
 
 def render_clue(request):
     """
-        * render item's clue page using global var item_clue as TEMPlate var
+        :param: HttpRequest
+        :rtype: HttpResponse        
+        render item's clue page using global var item_clue as template variable
     """
     global TEMP
     return render_to_response("hunts/clue.html", {"clue_text":TEMP[0][1]})
 
-
 def render_result(request):
     """
-        * based on the user input it either redirects to render_correct(),
-        * render_incorrect(), or render_congrats
+        :param: HttpRequest
+        :rtype: HttpResponse
+        Based on the user input it either redirects to render_correct(),
+        render_incorrect(), or render_congrats
     """
     if request.method == "POST":
 
@@ -70,14 +75,18 @@ def render_result(request):
 
 def render_hint(request):
     """
-        * render item's hint page
+        :param: HttpRequest
+        :rtype: HttpResponse
+        Render item's hint page with the appropriate hint crop and hint text.
     """
     global TEMP
     return render_to_response("hunts/hint.html", {"hint_text":TEMP[0][3], "hint_crop":TEMP[0][6]})
 
 def render_verify(request):
     """
-        * render item's verify page
+        :param: HttpRequest
+        :rtype: HttpResponse
+        Renders item's verify page allowing the user to verify the item's ids.
     """
     c_srf = {}
     c_srf.update(csrf(request))
@@ -85,7 +94,9 @@ def render_verify(request):
 
 def render_correct(request):
     """
-        * render correct answer's page
+        :param: HttpRequest
+        :rtype: HttpResponse
+        Render the correct answer's page with some fun facts and the item's image.
     """
     global TEMP
     global glob_hunt_id
@@ -96,23 +107,29 @@ def render_correct(request):
 
 def render_incorrect(request):
     """
-        * render incorrect answer's page
+        :param: HttpRequest
+        :rtype: HttpResponse        
+        Render incorrect answer's page allwoing the user to retry.
     """
     return render_to_response("hunts/incorrect.html", {})
 
 def render_congrats(request):
     """
-        * render congratulations page after finishing hunt
+        :param: HttpRequest
+        :rtype: HttpResponse
+        Render congratulations page after finishing hunt.
     """
     return render_to_response("hunts/congrats.html", {})
 
 
 def hunt_detail(request, category):
     """
-    This view renders the page for each type of hunts available. It will
-    contain the list of hunts in each category. And each of this list will 
-    be linked to corresponding hunt page. Here, type will be a string that
-    represent the type of hunt.
+        :param: HttpRequest, String Category
+        :rtype: HttpResponse     
+        This view renders the page for each type of hunts available. It will
+        contain the list of hunts in each category. And each of this list will 
+        be linked to corresponding hunt page. Here, type will be a string that
+        represent the type of hunt.
     """
 
     # get all hunts with Category == type.

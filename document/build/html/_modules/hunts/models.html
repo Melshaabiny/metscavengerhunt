@@ -53,19 +53,17 @@
             
   <h1>Source code for hunts.models</h1><div class="highlight"><pre>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        * implement models for Hunts and Items and their relationship</span>
-<span class="sd">        * add functions that set each Hunt&#39;s data and the data of Items that belong to it</span>
-<span class="sd">        * pop_item and verify_id are funtions that are called in the views.py</span>
-<span class="sd">        * that processes each hunt&#39;s progress.</span>
+<span class="sd">        The models for Hunts and Items and their relationship,</span>
+<span class="sd">        add functions that set each Hunt&#39;s data and the data of Items that belong to it.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
 
 <span class="k">global</span> <span class="n">TEMP</span>
-<div class="viewcode-block" id="Hunts"><a class="viewcode-back" href="../../Hunt.html#hunts.models.Hunts">[docs]</a><span class="k">class</span> <span class="nc">Hunts</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        * database table that contains all the scavenger hunts</span>
-<span class="sd">        * each hunt has a unique id and title</span>
-<span class="sd">        * each belongs to a specific category and have a starting location</span>
+<div class="viewcode-block" id="Hunts"><a class="viewcode-back" href="../../hunts.html#hunts.models.Hunts">[docs]</a><span class="k">class</span> <span class="nc">Hunts</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;        </span>
+<span class="sd">        This database table contains all the scavenger hunts,</span>
+<span class="sd">        each hunt has a unique id and title, and each belongs to </span>
+<span class="sd">        a specific category and have a starting location</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c"># Unique identification number for each hunt</span>
     <span class="n">ID</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">unique</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
@@ -79,12 +77,11 @@
     <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">Title</span>
 </div>
-<div class="viewcode-block" id="Items"><a class="viewcode-back" href="../../Hunt.html#hunts.models.Items">[docs]</a><span class="k">class</span> <span class="nc">Items</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+<div class="viewcode-block" id="Items"><a class="viewcode-back" href="../../hunts.html#hunts.models.Items">[docs]</a><span class="k">class</span> <span class="nc">Items</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        * database table that contains all the items of the Met (to be completed)</span>
-<span class="sd">        * each item has a unique id, belongs to a specific category</span>
-<span class="sd">        * has a specific type (painting, sculpture, instrument, etc.)</span>
-<span class="sd">        * is a part of one or more hunts</span>
+<span class="sd">        The Items database table contains all the items of the Met (to be completed)</span>
+<span class="sd">        each item has a unique id, belongs to a specific category,</span>
+<span class="sd">        and is a part of one or more hunts</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c"># Official Met issued ID for each item</span>
     <span class="n">ID</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">unique</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
@@ -97,12 +94,11 @@
     <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">ID</span>
 </div>
-<div class="viewcode-block" id="Has"><a class="viewcode-back" href="../../Hunt.html#hunts.models.Has">[docs]</a><span class="k">class</span> <span class="nc">Has</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+<div class="viewcode-block" id="Has"><a class="viewcode-back" href="../../hunts.html#hunts.models.Has">[docs]</a><span class="k">class</span> <span class="nc">Has</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        * intermediate model that links Hunts to Items</span>
-<span class="sd">        * each hunt has one or more items</span>
-<span class="sd">        * each item belongs to one or more hunts</span>
-<span class="sd">        * in every hunt there is a clue that leads to the item and every item has an order number</span>
+<span class="sd">        I intermediate model that links Hunts to Items, each hunt has one or more items,</span>
+<span class="sd">        and each item belongs to one or more hunts.</span>
+<span class="sd">        In every hunt there is a clue that leads to the item and every item has an order number</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">hunt</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">Hunts</span><span class="p">)</span>
     <span class="n">item</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">Items</span><span class="p">)</span>
@@ -113,9 +109,9 @@
     <span class="n">image</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">250</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s">&quot;No image available&quot;</span><span class="p">)</span>
     <span class="n">fact</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">250</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s">&quot;No fact available&quot;</span><span class="p">)</span>
 </div>
-<div class="viewcode-block" id="HuntProg"><a class="viewcode-back" href="../../Hunt.html#hunts.models.HuntProg">[docs]</a><span class="k">class</span> <span class="nc">HuntProg</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+<div class="viewcode-block" id="HuntProg"><a class="viewcode-back" href="../../hunts.html#hunts.models.HuntProg">[docs]</a><span class="k">class</span> <span class="nc">HuntProg</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        * intermediate model that is linked to hunts and has to keep track of progress for the users</span>
+<span class="sd">        Intermediate model that is linked to hunts and has to keep track of progress for the users</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">hunt</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">Hunts</span><span class="p">)</span>
     <span class="n">user</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
@@ -125,10 +121,10 @@
     <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
         <span class="n">unique_together</span> <span class="o">=</span> <span class="p">((</span><span class="s">&quot;hunt&quot;</span><span class="p">,</span><span class="s">&quot;user&quot;</span><span class="p">),)</span>
 </div>
-<div class="viewcode-block" id="set_HuntsData"><a class="viewcode-back" href="../../Hunt.html#hunts.models.set_HuntsData">[docs]</a><span class="k">def</span> <span class="nf">set_HuntsData</span><span class="p">(</span><span class="n">id_hunt</span><span class="p">):</span>
+<div class="viewcode-block" id="set_HuntsData"><a class="viewcode-back" href="../../hunts.html#hunts.models.set_HuntsData">[docs]</a><span class="k">def</span> <span class="nf">set_HuntsData</span><span class="p">(</span><span class="n">id_hunt</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        * Based on the hunt id, set_HuntsData returns a python dictionary</span>
-<span class="sd">        * containing all the Hunt&#39;s title and starting location</span>
+<span class="sd">        Based on the hunt id, set_HuntsData returns a python dictionary</span>
+<span class="sd">        containing all the Hunt&#39;s title and starting location</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">hunt</span> <span class="o">=</span> <span class="n">Hunts</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">ID</span><span class="o">=</span><span class="n">id_hunt</span><span class="p">)</span>
     <span class="n">hunt_title</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">hunt</span><span class="o">.</span><span class="n">Title</span><span class="p">)</span>
@@ -136,11 +132,13 @@
     <span class="n">hunt_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;hunt title&#39;</span><span class="p">:</span> <span class="n">hunt_title</span><span class="p">,</span> <span class="s">&#39;hunt start&#39;</span><span class="p">:</span> <span class="n">hunt_start</span><span class="p">}</span>
     <span class="k">return</span> <span class="n">hunt_dict</span>
 </div>
-<div class="viewcode-block" id="set_ItemsData"><a class="viewcode-back" href="../../Hunt.html#hunts.models.set_ItemsData">[docs]</a><span class="k">def</span> <span class="nf">set_ItemsData</span><span class="p">(</span><span class="n">id_hunt</span><span class="p">):</span>
+<div class="viewcode-block" id="set_ItemsData"><a class="viewcode-back" href="../../hunts.html#hunts.models.set_ItemsData">[docs]</a><span class="k">def</span> <span class="nf">set_ItemsData</span><span class="p">(</span><span class="n">id_hunt</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        * Based on the hunt id, set_ItemsData creates a list of tuples</span>
-<span class="sd">        * containing all the items in that hunt and their respective database</span>
-<span class="sd">        * returns TEMP[(id, clue, number), ...]</span>
+<span class="sd">        :param: IntegerId</span>
+<span class="sd">        :rtype: pythonList        </span>
+<span class="sd">        Based on the hunt id, set_ItemsData creates a list of tuples</span>
+<span class="sd">        containing all the items in that hunt and their respective database</span>
+<span class="sd">        returns TEMP[(id, clue, number), ...]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">hunt_items</span> <span class="o">=</span> <span class="n">Has</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">hunt_id</span><span class="o">=</span><span class="n">id_hunt</span><span class="p">)</span>
     <span class="n">tuples</span> <span class="o">=</span> <span class="p">()</span>
@@ -157,17 +155,21 @@
     <span class="n">TEMP</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">tuples</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">element</span><span class="p">:</span> <span class="n">element</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
     <span class="k">return</span> <span class="n">TEMP</span>
 </div>
-<div class="viewcode-block" id="pop_item"><a class="viewcode-back" href="../../Hunt.html#hunts.models.pop_item">[docs]</a><span class="k">def</span> <span class="nf">pop_item</span><span class="p">(</span><span class="n">lst</span><span class="p">):</span>
+<div class="viewcode-block" id="pop_item"><a class="viewcode-back" href="../../hunts.html#hunts.models.pop_item">[docs]</a><span class="k">def</span> <span class="nf">pop_item</span><span class="p">(</span><span class="n">lst</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        * Pops an item from the global list of items,</span>
+<span class="sd">        :param: pyhtonList</span>
+<span class="sd">        :rtype: pythonList        </span>
+<span class="sd">        Pops an item from the global list of items,</span>
 <span class="sd">        once a user moves on the next item in the hunt.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">del</span> <span class="n">lst</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">lst</span>
 </div>
-<div class="viewcode-block" id="verify_id"><a class="viewcode-back" href="../../Hunt.html#hunts.models.verify_id">[docs]</a><span class="k">def</span> <span class="nf">verify_id</span><span class="p">(</span><span class="n">usr_input</span><span class="p">):</span>
+<div class="viewcode-block" id="verify_id"><a class="viewcode-back" href="../../hunts.html#hunts.models.verify_id">[docs]</a><span class="k">def</span> <span class="nf">verify_id</span><span class="p">(</span><span class="n">usr_input</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        * Checks the user input against the item id and returns a boolean result</span>
+<span class="sd">        :param: pythonString</span>
+<span class="sd">        :rtype: Boolean        </span>
+<span class="sd">        Checks the user input against the item id and returns a boolean result.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">global</span> <span class="n">TEMP</span>
     <span class="k">if</span> <span class="n">usr_input</span> <span class="o">==</span> <span class="n">TEMP</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]:</span>
@@ -175,7 +177,12 @@
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">False</span>
 </div>
-<div class="viewcode-block" id="init_huntprog"><a class="viewcode-back" href="../../Hunt.html#hunts.models.init_huntprog">[docs]</a><span class="k">def</span> <span class="nf">init_huntprog</span><span class="p">(</span><span class="n">h_id</span><span class="p">,</span> <span class="n">uname</span><span class="p">):</span>
+<div class="viewcode-block" id="init_huntprog"><a class="viewcode-back" href="../../hunts.html#hunts.models.init_huntprog">[docs]</a><span class="k">def</span> <span class="nf">init_huntprog</span><span class="p">(</span><span class="n">h_id</span><span class="p">,</span> <span class="n">uname</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param: IntegerId, pythonString</span>
+<span class="sd">        :rtype: None     </span>
+<span class="sd">        Records the user&#39;s hunt progress and saves it in the database.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">e_hunt</span> <span class="o">=</span> <span class="n">Hunts</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">ID</span> <span class="o">=</span> <span class="n">h_id</span><span class="p">)</span>
     <span class="n">hprog_check</span> <span class="o">=</span> <span class="n">HuntProg</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">hunt_id</span> <span class="o">=</span> <span class="n">h_id</span><span class="p">,</span> <span class="n">user</span> <span class="o">=</span> <span class="n">uname</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
     <span class="k">if</span> <span class="n">hprog_check</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
@@ -184,7 +191,11 @@
     <span class="k">else</span><span class="p">:</span>
         <span class="k">pass</span>
 </div>
-<div class="viewcode-block" id="update_cur_item"><a class="viewcode-back" href="../../Hunt.html#hunts.models.update_cur_item">[docs]</a><span class="k">def</span> <span class="nf">update_cur_item</span><span class="p">(</span><span class="n">h_id</span><span class="p">,</span> <span class="n">uname</span><span class="p">,</span> <span class="n">newnum</span><span class="p">):</span>
+<div class="viewcode-block" id="update_cur_item"><a class="viewcode-back" href="../../hunts.html#hunts.models.update_cur_item">[docs]</a><span class="k">def</span> <span class="nf">update_cur_item</span><span class="p">(</span><span class="n">h_id</span><span class="p">,</span> <span class="n">uname</span><span class="p">,</span> <span class="n">newnum</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param: IntegerId, pythonString, IntegerNum     </span>
+<span class="sd">        Updates the current item (where the user left of in a hunt).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">hprog</span> <span class="o">=</span> <span class="n">HuntProg</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">hunt_id</span> <span class="o">=</span> <span class="n">h_id</span><span class="p">,</span> <span class="n">user</span> <span class="o">=</span> <span class="n">uname</span><span class="p">)</span>
     <span class="n">hprog</span><span class="o">.</span><span class="n">cur_item_num</span> <span class="o">=</span> <span class="n">newnum</span>
     <span class="n">hprog</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>

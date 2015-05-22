@@ -53,21 +53,14 @@
 <h1>Hunts Documentation<a class="headerlink" href="#hunts-documentation" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="module-hunts.models">
 <span id="model"></span><h2>Model<a class="headerlink" href="#module-hunts.models" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li>implement models for Hunts and Items and their relationship</li>
-<li>add functions that set each Hunt&#8217;s data and the data of Items that belong to it</li>
-<li>pop_item and verify_id are funtions that are called in the views.py</li>
-<li>that processes each hunt&#8217;s progress.</li>
-</ul>
+<p>The models for Hunts and Items and their relationship,
+add functions that set each Hunt&#8217;s data and the data of Items that belong to it.</p>
 <dl class="class">
 <dt id="hunts.models.Has">
 <em class="property">class </em><code class="descclassname">hunts.models.</code><code class="descname">Has</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hunts/models.html#Has"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hunts.models.Has" title="Permalink to this definition">¶</a></dt>
-<dd><ul class="simple">
-<li>intermediate model that links Hunts to Items</li>
-<li>each hunt has one or more items</li>
-<li>each item belongs to one or more hunts</li>
-<li>in every hunt there is a clue that leads to the item and every item has an order number</li>
-</ul>
+<dd><p>I intermediate model that links Hunts to Items, each hunt has one or more items,
+and each item belongs to one or more hunts.
+In every hunt there is a clue that leads to the item and every item has an order number</p>
 <dl class="exception">
 <dt id="hunts.models.Has.DoesNotExist">
 <em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#hunts.models.Has.DoesNotExist" title="Permalink to this definition">¶</a></dt>
@@ -98,9 +91,7 @@
 <dl class="class">
 <dt id="hunts.models.HuntProg">
 <em class="property">class </em><code class="descclassname">hunts.models.</code><code class="descname">HuntProg</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hunts/models.html#HuntProg"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hunts.models.HuntProg" title="Permalink to this definition">¶</a></dt>
-<dd><ul class="simple">
-<li>intermediate model that is linked to hunts and has to keep track of progress for the users</li>
-</ul>
+<dd><p>Intermediate model that is linked to hunts and has to keep track of progress for the users</p>
 <dl class="exception">
 <dt id="hunts.models.HuntProg.DoesNotExist">
 <em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#hunts.models.HuntProg.DoesNotExist" title="Permalink to this definition">¶</a></dt>
@@ -126,11 +117,9 @@
 <dl class="class">
 <dt id="hunts.models.Hunts">
 <em class="property">class </em><code class="descclassname">hunts.models.</code><code class="descname">Hunts</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hunts/models.html#Hunts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hunts.models.Hunts" title="Permalink to this definition">¶</a></dt>
-<dd><ul class="simple">
-<li>database table that contains all the scavenger hunts</li>
-<li>each hunt has a unique id and title</li>
-<li>each belongs to a specific category and have a starting location</li>
-</ul>
+<dd><p>This database table contains all the scavenger hunts,
+each hunt has a unique id and title, and each belongs to 
+a specific category and have a starting location</p>
 <dl class="exception">
 <dt id="hunts.models.Hunts.DoesNotExist">
 <em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#hunts.models.Hunts.DoesNotExist" title="Permalink to this definition">¶</a></dt>
@@ -166,12 +155,9 @@
 <dl class="class">
 <dt id="hunts.models.Items">
 <em class="property">class </em><code class="descclassname">hunts.models.</code><code class="descname">Items</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hunts/models.html#Items"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hunts.models.Items" title="Permalink to this definition">¶</a></dt>
-<dd><ul class="simple">
-<li>database table that contains all the items of the Met (to be completed)</li>
-<li>each item has a unique id, belongs to a specific category</li>
-<li>has a specific type (painting, sculpture, instrument, etc.)</li>
-<li>is a part of one or more hunts</li>
-</ul>
+<dd><p>The Items database table contains all the items of the Met (to be completed)
+each item has a unique id, belongs to a specific category,
+and is a part of one or more hunts</p>
 <dl class="exception">
 <dt id="hunts.models.Items.DoesNotExist">
 <em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#hunts.models.Items.DoesNotExist" title="Permalink to this definition">¶</a></dt>
@@ -202,47 +188,89 @@
 <dl class="function">
 <dt id="hunts.models.init_huntprog">
 <code class="descclassname">hunts.models.</code><code class="descname">init_huntprog</code><span class="sig-paren">(</span><em>h_id</em>, <em>uname</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hunts/models.html#init_huntprog"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hunts.models.init_huntprog" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body">IntegerId, pythonString</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/library/constants.html#None" title="(in Python v2.7)">None</a></td>
+</tr>
+</tbody>
+</table>
+<p>Records the user&#8217;s hunt progress and saves it in the database.</p>
+</dd></dl>
 
 <dl class="function">
 <dt id="hunts.models.pop_item">
 <code class="descclassname">hunts.models.</code><code class="descname">pop_item</code><span class="sig-paren">(</span><em>lst</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hunts/models.html#pop_item"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hunts.models.pop_item" title="Permalink to this definition">¶</a></dt>
-<dd><ul class="simple">
-<li>Pops an item from the global list of items,</li>
-</ul>
-<p>once a user moves on the next item in the hunt.</p>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body">pyhtonList</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">pythonList</td>
+</tr>
+</tbody>
+</table>
+<p>Pops an item from the global list of items,
+once a user moves on the next item in the hunt.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="hunts.models.set_HuntsData">
 <code class="descclassname">hunts.models.</code><code class="descname">set_HuntsData</code><span class="sig-paren">(</span><em>id_hunt</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hunts/models.html#set_HuntsData"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hunts.models.set_HuntsData" title="Permalink to this definition">¶</a></dt>
-<dd><ul class="simple">
-<li>Based on the hunt id, set_HuntsData returns a python dictionary</li>
-<li>containing all the Hunt&#8217;s title and starting location</li>
-</ul>
+<dd><p>Based on the hunt id, set_HuntsData returns a python dictionary
+containing all the Hunt&#8217;s title and starting location</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="hunts.models.set_ItemsData">
 <code class="descclassname">hunts.models.</code><code class="descname">set_ItemsData</code><span class="sig-paren">(</span><em>id_hunt</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hunts/models.html#set_ItemsData"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hunts.models.set_ItemsData" title="Permalink to this definition">¶</a></dt>
-<dd><ul class="simple">
-<li>Based on the hunt id, set_ItemsData creates a list of tuples</li>
-<li>containing all the items in that hunt and their respective database</li>
-<li>returns TEMP[(id, clue, number), ...]</li>
-</ul>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body">IntegerId</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">pythonList</td>
+</tr>
+</tbody>
+</table>
+<p>Based on the hunt id, set_ItemsData creates a list of tuples
+containing all the items in that hunt and their respective database
+returns TEMP[(id, clue, number), ...]</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="hunts.models.update_cur_item">
 <code class="descclassname">hunts.models.</code><code class="descname">update_cur_item</code><span class="sig-paren">(</span><em>h_id</em>, <em>uname</em>, <em>newnum</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hunts/models.html#update_cur_item"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hunts.models.update_cur_item" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body">IntegerId, pythonString, IntegerNum</td>
+</tr>
+</tbody>
+</table>
+<p>Updates the current item (where the user left of in a hunt).</p>
+</dd></dl>
 
 <dl class="function">
 <dt id="hunts.models.verify_id">
 <code class="descclassname">hunts.models.</code><code class="descname">verify_id</code><span class="sig-paren">(</span><em>usr_input</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hunts/models.html#verify_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hunts.models.verify_id" title="Permalink to this definition">¶</a></dt>
-<dd><ul class="simple">
-<li>Checks the user input against the item id and returns a boolean result</li>
-</ul>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body">pythonString</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Boolean</td>
+</tr>
+</tbody>
+</table>
+<p>Checks the user input against the item id and returns a boolean result.</p>
 </dd></dl>
 
 </div>
