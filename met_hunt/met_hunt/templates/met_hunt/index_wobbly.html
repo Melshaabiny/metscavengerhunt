@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Museum Hunters</title>
+        {% load staticfiles%}
+        <!-- <link rel="shortcut icon" href="{% static 'favicon.ico' %}"> -->
+        <link href='http://fonts.googleapis.com/css?family=Flamenco' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" type="text/css" href="{% static 'wobbly/css/normalize.css' %}" />
+
+        <link rel="stylesheet" href="{% static 'css/app2.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'wobbly/css/demo.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'foundation/css/foundation.css' %}"/>
+        <link rel="stylesheet" type="text/css" href="{% static 'wobbly/css/slideshow.css' %}" />
+        <script src="{% static 'wobbly/js/snap.svg-min.js' %}"></script>
+        <script src="{% static 'wobbly/js/modernizr.custom.js' %}"></script>
+        <script src="{% static 'foundation/js/vendor/modernizr.js' %}"></script>
+        <!--[if IE]>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <div class="row MainBod">
+            <div class="columns small-12 medium-12 large-12 large-centered">
+                {% block body%}
+                {% endblock %}    
+            </div>
+        </div>
+        <!-- /container -->
+        <script src="{% static 'wobbly/js/classie.js' %}"></script>
+        <script src="{% static 'wobbly/js/sliderFx.js' %}"></script>
+        <script src="{% static 'foundation/js/vendor/jquery.js' %}"></script>
+        <script src="{% static 'foundation/js/foundation.js' %}"></script>
+        <script src="{% static 'foundation/js/vendor/fastclick.js' %}"></script>
+        <script src="{% static 'foundation/js/foundation.joyride.js' %}"></script>
+        <script src="{% static 'foundation/js/foundation.min.js"></script>
+        <script>
+            $(document).foundation('joyride', 'start');
+        </script>		
+        <script>
+            (function() {
+            	new SliderFx( document.getElementById('slideshow'), {
+            		easing : 'cubic-bezier(.8,0,.2,1)'
+            	} );
+            })();
+            
+        </script>
+    </body>
+</html>

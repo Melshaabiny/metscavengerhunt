@@ -1,0 +1,26 @@
+{% extends "met_hunt/index.html" %}
+{% block body %}
+	<div class="row">
+		<div class="large-6 medium-6 small-12 columns small-centered medium-centered large-centered small-centered">
+		{% if form %}
+		<form action={% url 'user_auth.views.login_user' %} method="POST">
+			<fieldset class="userfield">
+			<legend class="proflegend"><h2 class="profheadline">{{ title }}</h2></legend>
+				{% csrf_token %}
+				{{ form.as_table }}
+				<input type="submit" class="button expand" value="Log in">
+			</fieldset>	
+		</form>
+		{% else %}
+		<fieldset class="userfield">
+			<legend class="proflegend">
+				<h2 class="profheadline">{{ title }}</h2>
+			</legend>
+	        <form action={% url 'user_auth.views.login_user' %} >
+	        <input class = "submit" type="submit" value="Go back">
+	        </form>
+		</fieldset>
+		{% endif %}
+		</div>
+	</div>
+{% endblock %}

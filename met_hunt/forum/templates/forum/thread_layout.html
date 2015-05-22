@@ -1,0 +1,51 @@
+{% extends "met_hunt/index.html" %}
+{% block body %}
+	{% if not user.is_authenticated %}
+	<div class="row">
+		<div class="columns small-6 medium-6 small-centered medium-centered">
+			<h1>User are not Logged In</h1>
+			<a href={% url 'user_auth.views.login_user' %}>
+				<button class="button round">LogIn Page</button>
+			</a>
+		</div>
+	</div>
+	{% else %}
+	<div class="row" ng-app = "modern_thread">
+		<div class="columns large-12" ng-controller="modern_controller">
+			<div class="row">
+				<dl class="sub-nav" id="thread_menu">
+					<dt>Category : </dt>
+					<dd id="modern" class="active"><a href="#" ng-click="templateurl = 'modern/'">Modern Hunt</a></dd>
+					<dd id="ancient"><a href="#">Ancient Hunt</a></dd>
+					<dd id="create"><a href="#" ng-click="create()">Create Post</a></dd>
+				</dl>
+			</div>
+
+			<div class="row">
+				<div class="columns large-12">
+					<div class="large-centered columns large-3">
+						<div class="row">
+							<div class="columns large-12 small-12 medium-12">
+								<h1>{% verbatim %}{{ title }}{% endverbatim %}</h1>
+							</div>
+							<div class="columns large-12">
+								<span class="label">Total Post : 100</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div ng-include="templateurl" class="row">
+			</div>
+
+			<!-- Post modal -->
+			<div id="modal" class="reveal-modal" data-reveal aria-rabelledby="title" aria-hidden="true" role="dialog" class="row">
+				<div ng-include="posturl" class="columns small-12 large-12 medium-12">
+				</div>
+			</div>
+			
+		</div>
+	</div>
+	{% endif %}
+{% endblock %}

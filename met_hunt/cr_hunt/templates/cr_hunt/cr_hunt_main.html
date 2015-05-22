@@ -1,0 +1,16 @@
+{% extends "met_hunt/index_wobbly.html" %}
+{% block body %}
+<!-- main page-->
+<div class="three row">
+    <div class="slide">
+        <img src="{% static 'hunts/museumhunters.svg' %}" alt="Museum Hunters Logo"/>
+        <h1>Welcome to the create hunt module</h1>
+        <p>You will be asked to create a hunt<br>Each hunt can hold up to a max of 10 scavenge pieces</p>
+        <form action={% url "cr_hunt.views.render_ats" %}>
+        <input class = "submit" type="submit" value ="Proceed to create title">
+        <div class="small-2 medium-6 large 12 columns">
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}
