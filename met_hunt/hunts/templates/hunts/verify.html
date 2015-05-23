@@ -1,4 +1,5 @@
 {% extends "met_hunt/index_wobbly.html" %}
+{% load staticfiles%}
 {% block body %}
 {% load staticfiles %}
 
@@ -6,14 +7,14 @@
 	<div class="slide">
 		<img class="icon" src="{% static 'hunts/museumhunters.svg' %}" alt="Museum Hunters Logo"/>
 		<h1>Verify</h1>
-			<form action={% url "hunts.views.render_result" %} method="POST">
-	{% csrf_token %}
-	<!-- replace # witht a congratualtions or retry page (TODO) -->
-	<label> Enter ID
-		<input type = "text" id = "input" name = "input" placeholder = "ID"/>
-	</label>
-	<input type = "submit" class = "button round"/>
-	</form>
+		<form action={% url "hunts.views.render_result" %} method="POST">
+			{% csrf_token %}
+			<!-- replace # witht a congratualtions or retry page (TODO) -->
+			<label> Enter ID
+				<input type = "text" id = "input" name = "input" placeholder = "ID"/>
+			</label>
+				<input type = "submit" class = "button round"/>
+		</form>
 	</div>
 </div>
 

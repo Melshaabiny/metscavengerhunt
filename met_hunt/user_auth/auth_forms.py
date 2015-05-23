@@ -102,9 +102,12 @@ class EditForm(forms.Form):
             user.first_name = self.cleaned_data['first_name']
         if self.cleaned_data['last_name']:
             user.last_name = self.cleaned_data['last_name']
-        if self.cleaned_data['picture']:
+        if self.cleaned_data['description'] or self.cleaned_data['picture']:
             user_info = UserInfo.objects.get(user=user)
-            user_info.picture = self.cleaned_data['picture']
-            user_info.save()
+            if self.cleaned_data['picture']:
+                user_info.picture = self.cleaned_data['picture']
+            if self.cleaned_data['description']:
+                user_info.description = self.cleaned_data['description']
+        user_info.save()
         user.save()
         return user

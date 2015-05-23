@@ -1,6 +1,7 @@
 {% extends "met_hunt/index.html" %}
 {% block body %}
 <div class="MainBod medium-12 small-12 large-12">
+
     <div class="top row large-12">
         <header>
             {% load staticfiles %}
@@ -44,7 +45,8 @@
             <p><small>Collaborate with friends to have a blast while hunting.<br>Share the adventure on your favorite social media.</small></p>
         </div>
     </div>
-        <div class="center size 6">
+
+    <div class="columns large-12 small-12">
         <table id="box-table-b" style="width:100%">
             <!-- Table header -->
                 <thead>
@@ -67,22 +69,32 @@
                 {% endfor %}
                 </tbody>
         </table>
-        </div>    
+    </div>
+
     <div class=" create row small-12 medium-12 large-12">
         <a href= {% url "cr_hunt.views.render_main" %}>
-        <input type="button" value="Create your own hunt. Challenge your friends" class="button createHunt radius expand">
+            <input type="button" value="Create your own hunt. Challenge your friends" class="button createHunt radius expand">
         </a>
     </div>
-    <div class="row newPanel">
+    
+    <div class="row">
+        <div class="columns large-12 medium-12">
+            <h5>We have active scavenger hunt community that you can ask questions and help others by answering there questions.</h5>
+            <a id="forum_link" href={% url 'forum.views.thread_layout' %}>
+                <input  type="button" class="button expand radius " value="Check our Forum">
+            </a>
+        </div>
+    </div>
+
+<!--     <div class="row newPanel">
         <div class="columns large-12">
             <ul class="accordion" data-accordion>
                 <li class="accordion-navigation">
-                    <a href="#community">Community</a>
                     <div class="content" id="community">
                         <div class="row">
                             <p>We have active scavenger hunt community that you can ask questions and help others by answering there questions.</p>
-                            <a href={% url 'forum.views.thread_layout' %}>
-                            <input type="button" class="button expand" value="Check our Forum">
+                            <a id="forum_link" href={% url 'forum.views.thread_layout' %}>
+                                <input  type="button" class="button expand" value="Check our Forum">
                             </a>
                         </div>
                     </div>
@@ -90,7 +102,7 @@
             </ul>
         </div>
     </div>
-
+ -->
 </div>
 
 {% endblock %}

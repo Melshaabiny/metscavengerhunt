@@ -1,4 +1,5 @@
 {% extends "met_hunt/index.html" %}
+{% load staticfiles%}
 {% block body %}
 {% load staticfiles %}
 
@@ -16,7 +17,7 @@
 			{% for hunt in hunts %}
 				<div class="huntcateg columns large-3 medium-6 small-12">
 					<div class="huntbox">
-						<a class="huntcollect pic"href={% url 'hunts.views.render_hunt' hunt.ID %}>
+						<a class="huntcollect pic" href={% url 'hunts.views.render_hunt' hunt.ID %}>
 							<img src="{% static 'img/medieval1.jpg' %}" alt="">
 						</a>
 					</div>
