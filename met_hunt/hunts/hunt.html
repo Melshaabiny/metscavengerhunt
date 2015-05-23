@@ -1,0 +1,27 @@
+{% extends "met_hunt/index.html" %}
+
+{% block body %}
+
+<!-- First row: Welcome to {hunt_id.name} plus general guidlines-->
+<div class = "row">
+	<h1>Welcome to the Ancient Art Hunt</h1>
+	<div class = "small-12 medium-12 large-12 columns panel">
+	<p>You will be given a series of clues that lead to a piece of art in the museum. <br> Once you've found it there will be an id of numbers on the plaque near the artwork.<br> Use that as your verification cod. </p>
+	</div>
+</div>
+
+<!-- Second Row: Give the users their {hunt_id.starting point} -->
+<div class = "row">
+	<div class = "small-12 medium-12 large-12 columns panel">
+	<p>Start at the Robert and Reuee Belfer court.<br>When you're ready press "Show Clue".</p>
+	</div>
+</div>
+
+<!-- Third Row: Button link to first {hunt_id.item.clue} -->
+<div class = "row">
+	<div class = "small-12 medium-12 large-12 columns panel">
+	<a href = "#" class = "button">Show  Clue</a>
+	</div>
+</div>
+
+{% endblock %}

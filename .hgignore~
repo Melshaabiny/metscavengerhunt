@@ -1,0 +1,6 @@
+#use global syntax
+
+syntax: glob
+met_hunt/htmlcov/**
+*.pyc
+

@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>cr_hunt.models &mdash; MetDoc 0.0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="MetDoc 0.0.1 documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">MetDoc 0.0.1 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for cr_hunt.models</h1><div class="highlight"><pre>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The models for create hunt feature are implemented in this file.</span>
+<span class="sd">        This feature allows the users to </span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
+<span class="kn">from</span> <span class="nn">hunts.models</span> <span class="kn">import</span> <span class="n">Items</span>
+
+<span class="k">global</span> <span class="n">TEMP</span>
+<div class="viewcode-block" id="cr_Hunts"><a class="viewcode-back" href="../../CreateHunts.html#cr_hunt.models.cr_Hunts">[docs]</a><span class="k">class</span> <span class="nc">cr_Hunts</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Database table that contains all the scavenger hunts.</span>
+<span class="sd">        Each hunt has a unique id and title,</span>
+<span class="sd">        where each belongs to a specific category and have a starting location</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c"># Unique identification number for each hunt</span>
+    <span class="n">ID</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">unique</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="c"># Title of the Hunt. For now, same as category.</span>
+    <span class="n">Title</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+    <span class="c"># Category of the Hunt</span>
+    <span class="n">Category</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+    <span class="c"># Starting point of each Scavenger Hunt</span>
+    <span class="n">Start</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">400</span><span class="p">)</span>
+    <span class="n">CreatedBy</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s">&#39;MetHunt Dev Team&#39;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">Title</span>
+</div>
+<div class="viewcode-block" id="cr_Has"><a class="viewcode-back" href="../../CreateHunts.html#cr_hunt.models.cr_Has">[docs]</a><span class="k">class</span> <span class="nc">cr_Has</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Intermediate model that links Hunts to Items</span>
+<span class="sd">        each hunt has one or more items and each item belongs to one or more hunts.</span>
+<span class="sd">        In every hunt there is a clue that leads to the item and every item has an order number</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">hunt</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">cr_Hunts</span><span class="p">)</span>
+    <span class="n">item</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">Items</span><span class="p">)</span>
+    <span class="n">number</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">()</span>
+    <span class="n">clue</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">250</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="add_hunt_its"><a class="viewcode-back" href="../../CreateHunts.html#cr_hunt.models.add_hunt_its">[docs]</a><span class="k">def</span> <span class="nf">add_hunt_its</span><span class="p">(</span><span class="n">id_hunt</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">uname</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param: IntegerId, pythonString, pythonString, pythonString</span>
+<span class="sd">        :rtype: None      </span>
+<span class="sd">        Takes in 4 parameters and creates a new hunt tuple</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">hunt</span> <span class="o">=</span> <span class="n">cr_Hunts</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">ID</span> <span class="o">=</span> <span class="n">id_hunt</span><span class="p">)</span>
+    <span class="n">hunt</span><span class="o">.</span><span class="n">Title</span> <span class="o">=</span> <span class="n">title</span>
+    <span class="n">hunt</span><span class="o">.</span><span class="n">Start</span> <span class="o">=</span> <span class="n">start</span>
+    <span class="c">#hunt.Category = cat</span>
+    <span class="n">hunt</span><span class="o">.</span><span class="n">CreatedBy</span> <span class="o">=</span> <span class="n">uname</span>
+    <span class="n">hunt</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+</div>
+<div class="viewcode-block" id="add_hunt_has"><a class="viewcode-back" href="../../CreateHunts.html#cr_hunt.models.add_hunt_has">[docs]</a><span class="k">def</span> <span class="nf">add_hunt_has</span><span class="p">(</span><span class="n">id_hunt</span><span class="p">,</span> <span class="n">nitem</span><span class="p">,</span> <span class="n">nnum</span><span class="p">,</span> <span class="n">nclue</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param: IntegerId, pythonString, pythonString, pythonString</span>
+<span class="sd">        :rtype: None   </span>
+<span class="sd">        * Takes in 4 parameters and creates a new has tuple</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">has</span> <span class="o">=</span> <span class="n">cr_Has</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">hunt</span><span class="o">=</span><span class="n">id_hunt</span><span class="p">,</span> <span class="n">item</span><span class="o">=</span><span class="n">nitem</span><span class="p">)</span>
+    <span class="n">has</span><span class="o">.</span><span class="n">number</span> <span class="o">=</span> <span class="n">nnum</span>
+    <span class="n">has</span><span class="o">.</span><span class="n">clue</span> <span class="o">=</span> <span class="n">nclue</span>
+    <span class="n">has</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+</div>
+<div class="viewcode-block" id="gen_hunt_id"><a class="viewcode-back" href="../../CreateHunts.html#cr_hunt.models.gen_hunt_id">[docs]</a><span class="k">def</span> <span class="nf">gen_hunt_id</span><span class="p">(</span><span class="n">uname</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param: pythonString</span>
+<span class="sd">        :rtype: IntegerId</span>
+<span class="sd">        This function generates a unique hunt id for the created hunt. </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">num_of_hunts</span> <span class="o">=</span> <span class="n">cr_Hunts</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">CreatedBy</span><span class="o">=</span><span class="n">uname</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+    <span class="c">#num_2 = Hunts.objects.filter(CreatedBy = uname).count()</span>
+    <span class="c">#num_of_hunts = num_of_hunts + num_2</span>
+    <span class="n">new_id</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+    <span class="n">new_id</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">uname</span><span class="p">)</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">num_of_hunts</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">new_id</span>
+</div>
+<div class="viewcode-block" id="get_cur_count"><a class="viewcode-back" href="../../CreateHunts.html#cr_hunt.models.get_cur_count">[docs]</a><span class="k">def</span> <span class="nf">get_cur_count</span><span class="p">(</span><span class="n">id_hunt</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param: pythonString</span>
+<span class="sd">        :rtype: IntegerId</span>
+<span class="sd">        This function returns the number of items that the user added to the hunt being created.</span>
+<span class="sd">    &quot;&quot;&quot;</span> 
+    <span class="n">cur_count</span> <span class="o">=</span> <span class="n">cr_Has</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">hunt</span><span class="o">=</span><span class="n">id_hunt</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">cur_count</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, WebDev.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.3</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

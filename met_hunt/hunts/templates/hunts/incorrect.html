@@ -1,0 +1,15 @@
+{% extends "met_hunt/index_wobbly.html"%}
+{% block body %}
+{% load staticfiles %}
+
+<!-- First row: Display the incorrect answer's message -->
+<div class = "row">
+	<div class="slide">
+		<img class="icon" src="{% static 'hunts/museumhunters.svg' %}" alt="Museum Hunters Logo"/>
+		<h1>Oops! That was the wrong ID number</h1>
+		<form action={% url "hunts.views.render_verify" %}>
+			<input class="submit" type="submit" value="Try again">
+		</form>
+</div>
+
+{% endblock %}
