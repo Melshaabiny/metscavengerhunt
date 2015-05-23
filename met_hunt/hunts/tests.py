@@ -10,7 +10,7 @@ from mock import MagicMock, patch
 from hunts import views
 from hunts import models
 from django.core.urlresolvers import reverse
-
+from hunts.models import set_ItemsData
 global TEMP
 
 # Create your tests here.
@@ -208,13 +208,15 @@ class hunts_test(TestCase):
             **check that correct items were retrieved
         """
         with patch('hunts.models.Has.objects.filter') as items_hunt:
-            items_hunt = MagicMock()
-            items_hunt.return_value.item.ID = "123"
-            items_hunt[0].return_value.clue = "clue test"
-            items_hunt[0].return_value.number = "1"
-            items_hunt[0].return_value.hint = "Hint test"
-            items_hunt[0].return_value.image = "image url test"
-            items_hunt[0].return_value.fact = "fact test"
+            # items_hunt = MagicMock()
+            items_hunt.return_value.count = MagicMock(return_value=1)
+            items_hunt.return_value[0].item.ID = "123"
+            items_hunt.return_value[0].clue = "clue test"
+            items_hunt.return_value[0].number = "1"
+            items_hunt.return_value[0].hint = "Hint test"
+            items_hunt.return_value[0].image = "image url test"
+            items_hunt.return_value[0].fact = "fact test"
+            set_ItemsData("123")
 
     def test_pop_item(self): #DONE
         lst = [1]
@@ -266,3 +268,9 @@ class hunts_test(TestCase):
             geth.return_value.configure_mock(**attrs)
             models.update_cur_item('test','testu',2)
             assert geth.return_value.save.called
+
+    # def test_setitem(self):
+    #     with patch('hunts.models.Has.objects.filter') as hunt_items:
+    #         hunt_items.return_value.count = MagicMock(return_value=1)
+    #         hunt_items.return_value[0].item.ID = "123"
+    #         set_ItemsData("123")
