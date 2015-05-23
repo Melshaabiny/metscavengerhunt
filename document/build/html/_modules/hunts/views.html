@@ -1,0 +1,239 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>hunts.views &mdash; MetDoc 0.0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="MetDoc 0.0.1 documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">MetDoc 0.0.1 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for hunts.views</h1><div class="highlight"><pre>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The functions in this views.py render every html page throughout a user&#39;s hunt progress.</span>
+<span class="sd">    It starts from the selection of a hunt from the categories list to the Rate Hunt page.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">render_to_response</span>
+<span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">redirect</span>
+<span class="kn">from</span> <span class="nn">hunts.models</span> <span class="kn">import</span> <span class="n">set_ItemsData</span><span class="p">,</span> <span class="n">set_HuntsData</span><span class="p">,</span> <span class="n">pop_item</span><span class="p">,</span> <span class="n">verify_id</span><span class="p">,</span> <span class="n">init_huntprog</span><span class="p">,</span> <span class="n">update_cur_item</span>
+<span class="kn">from</span> <span class="nn">django.core.context_processors</span> <span class="kn">import</span> <span class="n">csrf</span>
+<span class="kn">from</span> <span class="nn">hunts.models</span> <span class="kn">import</span> <span class="n">Hunts</span>
+<span class="k">global</span> <span class="n">TEMP</span>
+<span class="k">global</span> <span class="n">glob_hunt_id</span>
+
+<div class="viewcode-block" id="render_hunt"><a class="viewcode-back" href="../../hunts/doc_hunts.html#hunts.views.render_hunt">[docs]</a><span class="k">def</span> <span class="nf">render_hunt</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">given_id</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param: HttpRequest, interger id</span>
+<span class="sd">        :rtype: HttpResponse</span>
+<span class="sd">        This function gets triggered with the appropriate hunt id once a user chooses</span>
+<span class="sd">        hunt from the categories page. It sets the hunt&#39;s data (title and starting location),</span>
+<span class="sd">        and stores the items data in global var TEMP list.</span>
+<span class="sd">        Finally, it renders the hunt&#39;s welcome page.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">global</span> <span class="n">TEMP</span>
+    <span class="k">global</span> <span class="n">glob_hunt_id</span>
+    <span class="n">glob_hunt_id</span> <span class="o">=</span> <span class="n">given_id</span>
+    <span class="n">hunt_dict</span> <span class="o">=</span> <span class="n">set_HuntsData</span><span class="p">(</span><span class="n">given_id</span><span class="p">)</span>
+    <span class="n">TEMP</span> <span class="o">=</span> <span class="n">set_ItemsData</span><span class="p">(</span><span class="n">given_id</span><span class="p">)</span>
+    <span class="n">hunt_title</span> <span class="o">=</span> <span class="n">hunt_dict</span><span class="p">[</span><span class="s">&#39;hunt title&#39;</span><span class="p">]</span>
+    <span class="n">hunt_start</span> <span class="o">=</span> <span class="n">hunt_dict</span><span class="p">[</span><span class="s">&#39;hunt start&#39;</span><span class="p">]</span>
+    <span class="n">uname</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">username</span>
+    <span class="n">init_huntprog</span><span class="p">(</span><span class="n">given_id</span><span class="p">,</span> <span class="n">uname</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">render_to_response</span><span class="p">(</span><span class="s">&quot;hunts/hunt.html&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s">&quot;title&quot;</span><span class="p">:</span> <span class="n">hunt_title</span><span class="p">,</span> <span class="s">&quot;start_pt&quot;</span><span class="p">:</span> <span class="n">hunt_start</span><span class="p">,</span> <span class="s">&quot;user&quot;</span><span class="p">:</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">})</span>
+</div>
+<div class="viewcode-block" id="next_proc"><a class="viewcode-back" href="../../hunts/doc_hunts.html#hunts.views.next_proc">[docs]</a><span class="k">def</span> <span class="nf">next_proc</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param: HttpRequest</span>
+<span class="sd">        :rtype: HttpResponse    </span>
+<span class="sd">        If the current item is the last one in the hunt, next_proc() redirect to render_congrats</span>
+<span class="sd">        Otherwise, it calls pop_item() to update the global list of items and redirects to render_clue()</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">global</span> <span class="n">TEMP</span>
+    <span class="n">TEMP</span> <span class="o">=</span> <span class="n">pop_item</span><span class="p">(</span><span class="n">TEMP</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">TEMP</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s">&#39;rend_clue&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s">&#39;rend_congrats&#39;</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="render_clue"><a class="viewcode-back" href="../../hunts/doc_hunts.html#hunts.views.render_clue">[docs]</a><span class="k">def</span> <span class="nf">render_clue</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param: HttpRequest</span>
+<span class="sd">        :rtype: HttpResponse        </span>
+<span class="sd">        render item&#39;s clue page using global var item_clue as template variable</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">global</span> <span class="n">TEMP</span>
+    <span class="k">return</span> <span class="n">render_to_response</span><span class="p">(</span><span class="s">&quot;hunts/clue.html&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s">&quot;clue_text&quot;</span><span class="p">:</span><span class="n">TEMP</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]})</span>
+</div>
+<div class="viewcode-block" id="render_result"><a class="viewcode-back" href="../../hunts/doc_hunts.html#hunts.views.render_result">[docs]</a><span class="k">def</span> <span class="nf">render_result</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param: HttpRequest</span>
+<span class="sd">        :rtype: HttpResponse</span>
+<span class="sd">        Based on the user input it either redirects to render_correct(),</span>
+<span class="sd">        render_incorrect(), or render_congrats</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s">&quot;POST&quot;</span><span class="p">:</span>
+
+        <span class="n">usr_input_value</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;input&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="n">verify_id</span><span class="p">(</span><span class="n">usr_input_value</span><span class="p">)</span> <span class="o">==</span> <span class="bp">True</span><span class="p">:</span>
+            <span class="k">global</span> <span class="n">TEMP</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">TEMP</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s">&#39;rend_congrats&#39;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s">&#39;rend_correct&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s">&#39;rend_incorrect&#39;</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="render_hint"><a class="viewcode-back" href="../../hunts/doc_hunts.html#hunts.views.render_hint">[docs]</a><span class="k">def</span> <span class="nf">render_hint</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param: HttpRequest</span>
+<span class="sd">        :rtype: HttpResponse</span>
+<span class="sd">        Render item&#39;s hint page with the appropriate hint crop and hint text.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">global</span> <span class="n">TEMP</span>
+    <span class="k">return</span> <span class="n">render_to_response</span><span class="p">(</span><span class="s">&quot;hunts/hint.html&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s">&quot;hint_text&quot;</span><span class="p">:</span><span class="n">TEMP</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">3</span><span class="p">],</span> <span class="s">&quot;hint_crop&quot;</span><span class="p">:</span><span class="n">TEMP</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">6</span><span class="p">]})</span>
+</div>
+<div class="viewcode-block" id="render_verify"><a class="viewcode-back" href="../../hunts/doc_hunts.html#hunts.views.render_verify">[docs]</a><span class="k">def</span> <span class="nf">render_verify</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param: HttpRequest</span>
+<span class="sd">        :rtype: HttpResponse</span>
+<span class="sd">        Renders item&#39;s verify page allowing the user to verify the item&#39;s ids.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">c_srf</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">c_srf</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">csrf</span><span class="p">(</span><span class="n">request</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">render_to_response</span><span class="p">(</span><span class="s">&quot;hunts/verify.html&quot;</span><span class="p">,</span> <span class="n">c_srf</span><span class="p">,</span> <span class="p">{})</span>
+</div>
+<div class="viewcode-block" id="render_correct"><a class="viewcode-back" href="../../hunts/doc_hunts.html#hunts.views.render_correct">[docs]</a><span class="k">def</span> <span class="nf">render_correct</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param: HttpRequest</span>
+<span class="sd">        :rtype: HttpResponse</span>
+<span class="sd">        Render the correct answer&#39;s page with some fun facts and the item&#39;s image.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">global</span> <span class="n">TEMP</span>
+    <span class="k">global</span> <span class="n">glob_hunt_id</span>
+    <span class="n">num</span> <span class="o">=</span> <span class="n">TEMP</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">uname</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">username</span>
+    <span class="n">update_cur_item</span><span class="p">(</span><span class="n">glob_hunt_id</span><span class="p">,</span> <span class="n">uname</span><span class="p">,</span> <span class="n">num</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">render_to_response</span><span class="p">(</span><span class="s">&quot;hunts/correct.html&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s">&quot;url&quot;</span><span class="p">:</span><span class="n">TEMP</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">4</span><span class="p">],</span> <span class="s">&quot;fact&quot;</span><span class="p">:</span><span class="n">TEMP</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">5</span><span class="p">]})</span>
+</div>
+<div class="viewcode-block" id="render_incorrect"><a class="viewcode-back" href="../../hunts/doc_hunts.html#hunts.views.render_incorrect">[docs]</a><span class="k">def</span> <span class="nf">render_incorrect</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param: HttpRequest</span>
+<span class="sd">        :rtype: HttpResponse        </span>
+<span class="sd">        Render incorrect answer&#39;s page allwoing the user to retry.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">render_to_response</span><span class="p">(</span><span class="s">&quot;hunts/incorrect.html&quot;</span><span class="p">,</span> <span class="p">{})</span>
+</div>
+<div class="viewcode-block" id="render_congrats"><a class="viewcode-back" href="../../hunts/doc_hunts.html#hunts.views.render_congrats">[docs]</a><span class="k">def</span> <span class="nf">render_congrats</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param: HttpRequest</span>
+<span class="sd">        :rtype: HttpResponse</span>
+<span class="sd">        Render congratulations page after finishing hunt.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">render_to_response</span><span class="p">(</span><span class="s">&quot;hunts/congrats.html&quot;</span><span class="p">,</span> <span class="p">{})</span>
+
+</div>
+<div class="viewcode-block" id="hunt_detail"><a class="viewcode-back" href="../../hunts/doc_hunts.html#hunts.views.hunt_detail">[docs]</a><span class="k">def</span> <span class="nf">hunt_detail</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">category</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param: HttpRequest, String Category</span>
+<span class="sd">        :rtype: HttpResponse     </span>
+<span class="sd">        This view renders the page for each type of hunts available. It will</span>
+<span class="sd">        contain the list of hunts in each category. And each of this list will </span>
+<span class="sd">        be linked to corresponding hunt page. Here, type will be a string that</span>
+<span class="sd">        represent the type of hunt.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c"># get all hunts with Category == type.</span>
+    <span class="c"># try:</span>
+    <span class="c"># hunts = Hunt.objects.all(Category=type)</span>
+    <span class="k">if</span> <span class="n">category</span> <span class="o">==</span> <span class="s">&quot;Ancient&quot;</span><span class="p">:</span>
+        <span class="n">category</span> <span class="o">=</span> <span class="n">category</span> <span class="o">+</span> <span class="s">&quot; Art&quot;</span>
+    <span class="k">elif</span> <span class="n">category</span> <span class="o">==</span> <span class="s">&quot;Medieval&quot;</span><span class="p">:</span>
+        <span class="n">category</span> <span class="o">=</span> <span class="n">category</span> <span class="o">+</span> <span class="s">&quot; Art&quot;</span>
+    <span class="n">hunts</span> <span class="o">=</span> <span class="n">Hunts</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">Category</span><span class="o">=</span><span class="n">category</span><span class="p">)</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;hunts&#39;</span> <span class="p">:</span> <span class="n">hunts</span><span class="p">,</span> <span class="s">&#39;title&#39;</span> <span class="p">:</span> <span class="n">category</span> <span class="o">+</span> <span class="s">&#39; Collection&#39;</span><span class="p">,</span> <span class="s">&#39;user&#39;</span><span class="p">:</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">}</span>
+    <span class="c"># except:</span>
+    <span class="c">#     args = {}</span>
+
+    <span class="k">return</span> <span class="n">render_to_response</span><span class="p">(</span><span class="s">&#39;hunts/hunt_detail.html&#39;</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, WebDev.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.3</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

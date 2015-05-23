@@ -1,0 +1,312 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Forum &mdash; MetDoc 0.0.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="MetDoc 0.0.1 documentation" href="index.html" />
+    <link rel="prev" title="Create Hunts" href="CreateHunts.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="CreateHunts.html" title="Create Hunts"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">MetDoc 0.0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="forum">
+<h1>Forum<a class="headerlink" href="#forum" title="Permalink to this headline">¶</a></h1>
+<p>The application that handles all of the forum and community related tasks is named <strong>forum</strong> app in our system. The tasks it handles are</p>
+<blockquote>
+<div><ol class="arabic">
+<li><p class="first">Rendering layout</p>
+<blockquote>
+<div><ul class="simple">
+<li>The view that handles this task is <strong>forum.views.thread_layout</strong>. It handles all types of threads with their description and total number of posts in each thread.</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">Submiting posts to thread page</p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>forum.views.submit</strong> handles this task. It takes the title and description of the post that a user creates, sent by angularjs with $http.post method. This function should handle data saving into thread model.</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">Rendering posts</p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>forum.views.post</strong> function handles rendering the page with the requested post information.</li>
+</ul>
+</div></blockquote>
+</li>
+</ol>
+</div></blockquote>
+<div class="section" id="module-forum.models">
+<span id="model"></span><h2>Model<a class="headerlink" href="#module-forum.models" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="forum.models.Answered">
+<em class="property">class </em><code class="descclassname">forum.models.</code><code class="descname">Answered</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/forum/models.html#Answered"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#forum.models.Answered" title="Permalink to this definition">¶</a></dt>
+<dd><p>Any question can be answered by some other users. <strong>Answered</strong> is model to relate a question
+is answered by whom and when. Many questions can be aswered by many users.</p>
+<dl class="exception">
+<dt id="forum.models.Answered.DoesNotExist">
+<em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#forum.models.Answered.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="forum.models.Answered.MultipleObjectsReturned">
+<em class="property">exception </em><code class="descclassname">Answered.</code><code class="descname">MultipleObjectsReturned</code><a class="headerlink" href="#forum.models.Answered.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="forum.models.Answered.answeredBy">
+<code class="descclassname">Answered.</code><code class="descname">answeredBy</code><a class="headerlink" href="#forum.models.Answered.answeredBy" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="forum.models.Answered.get_next_by_when">
+<code class="descclassname">Answered.</code><code class="descname">get_next_by_when</code><span class="sig-paren">(</span><em>*moreargs</em>, <em>**morekwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#forum.models.Answered.get_next_by_when" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="forum.models.Answered.get_previous_by_when">
+<code class="descclassname">Answered.</code><code class="descname">get_previous_by_when</code><span class="sig-paren">(</span><em>*moreargs</em>, <em>**morekwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#forum.models.Answered.get_previous_by_when" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="forum.models.Answered.objects">
+<code class="descclassname">Answered.</code><code class="descname">objects</code><em class="property"> = &lt;django.db.models.manager.Manager object&gt;</em><a class="headerlink" href="#forum.models.Answered.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="forum.models.Answered.questionBy">
+<code class="descclassname">Answered.</code><code class="descname">questionBy</code><a class="headerlink" href="#forum.models.Answered.questionBy" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="forum.models.QuestionAsked">
+<em class="property">class </em><code class="descclassname">forum.models.</code><code class="descname">QuestionAsked</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/forum/models.html#QuestionAsked"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#forum.models.QuestionAsked" title="Permalink to this definition">¶</a></dt>
+<dd><p>This model <strong>QuestionAsked</strong> is related to the questions that a user asked on the website. It
+has <em>title</em>, <em>description</em> and the <em>status</em> which indicate
+if the question is answered or not. This model should be
+one-to-many from user to QuestionAsked since each user can have many asked questions.</p>
+<dl class="exception">
+<dt id="forum.models.QuestionAsked.DoesNotExist">
+<em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#forum.models.QuestionAsked.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="forum.models.QuestionAsked.MultipleObjectsReturned">
+<em class="property">exception </em><code class="descclassname">QuestionAsked.</code><code class="descname">MultipleObjectsReturned</code><a class="headerlink" href="#forum.models.QuestionAsked.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="forum.models.QuestionAsked.answered_set">
+<code class="descclassname">QuestionAsked.</code><code class="descname">answered_set</code><a class="headerlink" href="#forum.models.QuestionAsked.answered_set" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="forum.models.QuestionAsked.get_next_by_when">
+<code class="descclassname">QuestionAsked.</code><code class="descname">get_next_by_when</code><span class="sig-paren">(</span><em>*moreargs</em>, <em>**morekwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#forum.models.QuestionAsked.get_next_by_when" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="forum.models.QuestionAsked.get_previous_by_when">
+<code class="descclassname">QuestionAsked.</code><code class="descname">get_previous_by_when</code><span class="sig-paren">(</span><em>*moreargs</em>, <em>**morekwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#forum.models.QuestionAsked.get_previous_by_when" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="forum.models.QuestionAsked.objects">
+<code class="descclassname">QuestionAsked.</code><code class="descname">objects</code><em class="property"> = &lt;django.db.models.manager.Manager object&gt;</em><a class="headerlink" href="#forum.models.QuestionAsked.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="forum.models.QuestionAsked.thread">
+<code class="descclassname">QuestionAsked.</code><code class="descname">thread</code><a class="headerlink" href="#forum.models.QuestionAsked.thread" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="forum.models.QuestionAsked.user">
+<code class="descclassname">QuestionAsked.</code><code class="descname">user</code><a class="headerlink" href="#forum.models.QuestionAsked.user" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="forum.models.Thread">
+<em class="property">class </em><code class="descclassname">forum.models.</code><code class="descname">Thread</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/forum/models.html#Thread"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#forum.models.Thread" title="Permalink to this definition">¶</a></dt>
+<dd><p>This model <strong>Thread</strong> is type of category that is related to the type of questions
+asked by the users. Each thread can have many questions that is related to the
+type of the thread.</p>
+<dl class="exception">
+<dt id="forum.models.Thread.DoesNotExist">
+<em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#forum.models.Thread.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="forum.models.Thread.MultipleObjectsReturned">
+<em class="property">exception </em><code class="descclassname">Thread.</code><code class="descname">MultipleObjectsReturned</code><a class="headerlink" href="#forum.models.Thread.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="forum.models.Thread.get_type_display">
+<code class="descclassname">Thread.</code><code class="descname">get_type_display</code><span class="sig-paren">(</span><em>*moreargs</em>, <em>**morekwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#forum.models.Thread.get_type_display" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="forum.models.Thread.objects">
+<code class="descclassname">Thread.</code><code class="descname">objects</code><em class="property"> = &lt;django.db.models.manager.Manager object&gt;</em><a class="headerlink" href="#forum.models.Thread.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="forum.models.Thread.questionasked_set">
+<code class="descclassname">Thread.</code><code class="descname">questionasked_set</code><a class="headerlink" href="#forum.models.Thread.questionasked_set" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="views">
+<h2>Views<a class="headerlink" href="#views" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="forum.views.thread_layout">
+<code class="descclassname">forum.views.</code><code class="descname">thread_layout</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/forum/views.html#thread_layout"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#forum.views.thread_layout" title="Permalink to this definition">¶</a></dt>
+<dd><p>This views.py is responsible for the view of main thread page. It should display
+all type of threads with their description and total number of posts in each thread.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="forum.views.modern">
+<code class="descclassname">forum.views.</code><code class="descname">modern</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/forum/views.html#modern"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#forum.views.modern" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="forum.views.create">
+<code class="descclassname">forum.views.</code><code class="descname">create</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/forum/views.html#create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#forum.views.create" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="forum.views.load_data">
+<code class="descclassname">forum.views.</code><code class="descname">load_data</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/forum/views.html#load_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#forum.views.load_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function gets posts in the database and return it as json data.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="forum.views.submit">
+<code class="descclassname">forum.views.</code><code class="descname">submit</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/forum/views.html#submit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#forum.views.submit" title="Permalink to this definition">¶</a></dt>
+<dd><p>This submit function takes the title and description of the post that
+a user creates, sent by angularjs with $http.post method. This function
+should handle data saving into thread model.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="forum.views.post">
+<code class="descclassname">forum.views.</code><code class="descname">post</code><span class="sig-paren">(</span><em>request</em>, <em>id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/forum/views.html#post"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#forum.views.post" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function returns the template with requested post info. such as
+the title of the post with its description.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Forum</a><ul>
+<li><a class="reference internal" href="#module-forum.models">Model</a></li>
+<li><a class="reference internal" href="#views">Views</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="CreateHunts.html"
+                        title="previous chapter">Create Hunts</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/forum.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, WebDev.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.3</a>
+      
+      |
+      <a href="_sources/forum.txt"
+          rel="nofollow">Page source</a></li>
+    </div>
+
+    
+
+    
+  </body>
+</html>

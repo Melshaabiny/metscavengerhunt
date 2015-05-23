@@ -25,8 +25,8 @@ TEST_FILES = 'user_auth.views,user_auth.models,user_auth.auth_forms,hunts.views,
 NOSE_ARGS = [
  		'--with-coverage',
  		'--cover-package='+TEST_FILES,
-        '--verbosity=0',
-        '--cover-erase',
+                '--verbosity=0',
+                '--cover-erase',
  		]
 
 
