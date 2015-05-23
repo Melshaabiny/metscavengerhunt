@@ -1,0 +1,207 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>cr_hunt.views &mdash; MetDoc 0.0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="MetDoc 0.0.1 documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">MetDoc 0.0.1 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for cr_hunt.views</h1><div class="highlight"><pre>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The functions in this views.py render every html page throughout a user&#39;s create hunt progress.</span>
+<span class="sd">    It starts from the adding a hunt title and starting location</span>
+<span class="sd">    to selecting items from our database of all items.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">render_to_response</span>
+<span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">redirect</span>
+<span class="kn">from</span> <span class="nn">cr_hunt.models</span> <span class="kn">import</span> <span class="n">add_hunt_its</span><span class="p">,</span> <span class="n">add_hunt_has</span><span class="p">,</span> <span class="n">gen_hunt_id</span><span class="p">,</span> <span class="n">get_cur_count</span>
+<span class="kn">from</span> <span class="nn">django.core.context_processors</span> <span class="kn">import</span> <span class="n">csrf</span>
+
+<span class="kn">from</span> <span class="nn">.forms</span> <span class="kn">import</span> <span class="n">ItemForm</span>
+<span class="k">global</span> <span class="n">hunt_id</span>
+<span class="k">global</span> <span class="n">i_counter</span>
+
+<div class="viewcode-block" id="render_main"><a class="viewcode-back" href="../../CreateHunts.html#cr_hunt.views.render_main">[docs]</a><span class="k">def</span> <span class="nf">render_main</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param: HttpRequest</span>
+<span class="sd">        :rtype: HttpRequest    </span>
+<span class="sd">        Renders the welcome page for the create hunt app.</span>
+<span class="sd">    &quot;&quot;&quot;</span>    
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">is_authenticated</span><span class="p">():</span>
+        <span class="k">global</span> <span class="n">hunt_id</span>
+        <span class="n">hunt_id</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">username</span>
+        <span class="n">hunt_id</span> <span class="o">=</span> <span class="n">gen_hunt_id</span><span class="p">(</span><span class="n">hunt_id</span><span class="p">)</span>
+        <span class="k">global</span> <span class="n">i_counter</span>
+        <span class="n">i_counter</span> <span class="o">=</span> <span class="n">get_cur_count</span><span class="p">(</span><span class="n">hunt_id</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">render_to_response</span><span class="p">(</span><span class="s">&quot;cr_hunt/cr_hunt_main.html&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s">&#39;cr_error&#39;</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="render_ats"><a class="viewcode-back" href="../../CreateHunts.html#cr_hunt.views.render_ats">[docs]</a><span class="k">def</span> <span class="nf">render_ats</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param: HttpRequest</span>
+<span class="sd">        :rtype: HttpRequest</span>
+<span class="sd">        Renders the page that allows the user to input his hunt title and starting location.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">is_authenticated</span><span class="p">():</span>
+        <span class="n">c_srf</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">c_srf</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">csrf</span><span class="p">(</span><span class="n">request</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">render_to_response</span><span class="p">(</span><span class="s">&quot;cr_hunt/cr_hunt_title_strt.html&quot;</span><span class="p">,</span> <span class="n">c_srf</span><span class="p">,</span> <span class="p">{})</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s">&#39;cr_error&#39;</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="render_aitem"><a class="viewcode-back" href="../../CreateHunts.html#cr_hunt.views.render_aitem">[docs]</a><span class="k">def</span> <span class="nf">render_aitem</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param: HttpRequest</span>
+<span class="sd">        :rtype: HttpRequest</span>
+<span class="sd">        Renders the add item page, where the user is prompt to select items from our database,</span>
+<span class="sd">        (the Met&#39;s database, ultimately) and add it to the hunt that they&#39;re creating.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">is_authenticated</span><span class="p">():</span>
+        <span class="n">form</span> <span class="o">=</span> <span class="n">ItemForm</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s">&quot;POST&quot;</span><span class="p">:</span>
+            <span class="n">form</span> <span class="o">=</span> <span class="n">ItemForm</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">form</span><span class="o">.</span><span class="n">is_valid</span><span class="p">:</span>
+                <span class="k">pass</span>
+        <span class="n">c_srf</span> <span class="o">=</span> <span class="p">{</span><span class="s">&quot;form&quot;</span><span class="p">:</span> <span class="n">form</span><span class="p">}</span>
+        <span class="n">c_srf</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">csrf</span><span class="p">(</span><span class="n">request</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">render_to_response</span><span class="p">(</span><span class="s">&quot;cr_hunt/cr_hunt_aitem.html&quot;</span><span class="p">,</span> <span class="n">c_srf</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s">&#39;cr_error&#39;</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="render_end"><a class="viewcode-back" href="../../CreateHunts.html#cr_hunt.views.render_end">[docs]</a><span class="k">def</span> <span class="nf">render_end</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param: HttpRequest</span>
+<span class="sd">        :rtype: HttpRequest    </span>
+<span class="sd">        Renders the end page for the create hunt app.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">render_to_response</span><span class="p">(</span><span class="s">&quot;cr_hunt/cr_hunt_end.html&quot;</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="render_proc_ts"><a class="viewcode-back" href="../../CreateHunts.html#cr_hunt.views.render_proc_ts">[docs]</a><span class="k">def</span> <span class="nf">render_proc_ts</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param: HttpRequest</span>
+<span class="sd">        :rtype: HttpRequest</span>
+<span class="sd">        Renders the &quot;Next&quot; page that allows the user to input his hunt title and starting location.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">is_authenticated</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s">&quot;POST&quot;</span><span class="p">:</span>
+            <span class="k">global</span> <span class="n">hunt_id</span>
+            <span class="n">uname</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">username</span>
+            <span class="n">title</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;title&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">))</span>
+            <span class="n">start</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;start&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">))</span>
+            <span class="n">add_hunt_its</span><span class="p">(</span><span class="n">hunt_id</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">uname</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s">&#39;cr_aitem&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s">&#39;cr_error&#39;</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="render_proc_it"><a class="viewcode-back" href="../../CreateHunts.html#cr_hunt.views.render_proc_it">[docs]</a><span class="k">def</span> <span class="nf">render_proc_it</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param: HttpRequest</span>
+<span class="sd">        :rtype: HttpRequest</span>
+<span class="sd">        Renders the &quot;Next&quot; add item page, where the user is prompt to select items from our database,</span>
+<span class="sd">        (the Met&#39;s database, ultimately) and add it to the hunt that they&#39;re creating.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">is_authenticated</span><span class="p">():</span>
+        <span class="k">global</span> <span class="n">i_counter</span>
+        <span class="k">if</span> <span class="n">i_counter</span> <span class="o">==</span> <span class="mi">10</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s">&#39;cr_end&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s">&quot;POST&quot;</span><span class="p">:</span>
+            <span class="k">global</span> <span class="n">hunt_id</span>
+            <span class="k">global</span> <span class="n">i_counter</span>
+            <span class="n">clue</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;clue&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">))</span>
+            <span class="n">item_id</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;item&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">))</span>
+            <span class="n">i_counter</span> <span class="o">=</span> <span class="n">i_counter</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s">&#39;cr_aitem&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s">&#39;cr_error&#39;</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="render_error"><a class="viewcode-back" href="../../CreateHunts.html#cr_hunt.views.render_error">[docs]</a><span class="k">def</span> <span class="nf">render_error</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param: HttpRequest</span>
+<span class="sd">        :rtype: HttpRequest</span>
+<span class="sd">        Renders the error page for the create hunt app.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">render_to_response</span><span class="p">(</span><span class="s">&quot;cr_hunt/cr_hunt_error.html&quot;</span><span class="p">)</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, WebDev.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.3</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

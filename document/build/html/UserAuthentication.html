@@ -25,6 +25,7 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="MetDoc 0.0.1 documentation" href="index.html" />
+    <link rel="next" title="Hunts" href="hunts.html" />
     <link rel="prev" title="Team Member" href="TeamInformation.html" />
    
   
@@ -41,6 +42,9 @@
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
+        <li class="right" >
+          <a href="hunts.html" title="Hunts"
+             accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="TeamInformation.html" title="Team Member"
              accesskey="P">previous</a> |</li>
@@ -133,7 +137,7 @@ taken care by <strong>user_auth/auth_forms.py</strong>.</p>
 
 <dl class="attribute">
 <dt id="user_auth.models.FriendList.objects">
-<code class="descclassname">FriendList.</code><code class="descname">objects</code><em class="property"> = &lt;django.db.models.manager.Manager object at 0x50115d0&gt;</em><a class="headerlink" href="#user_auth.models.FriendList.objects" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">FriendList.</code><code class="descname">objects</code><em class="property"> = &lt;django.db.models.manager.Manager object&gt;</em><a class="headerlink" href="#user_auth.models.FriendList.objects" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -153,7 +157,7 @@ their description.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">User:</th><td class="field-body">This is one-to-one relationship from the django User class to UserInfor.</td>
+<tr class="field-odd field"><th class="field-name">User:</th><td class="field-body">This is one-to-one relationship from the django User class to UserInfo.</td>
 </tr>
 </tbody>
 </table>
@@ -174,7 +178,7 @@ their description.</p>
 
 <dl class="attribute">
 <dt id="user_auth.models.UserInfo.objects">
-<code class="descclassname">UserInfo.</code><code class="descname">objects</code><em class="property"> = &lt;django.db.models.manager.Manager object at 0x5011310&gt;</em><a class="headerlink" href="#user_auth.models.UserInfo.objects" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">UserInfo.</code><code class="descname">objects</code><em class="property"> = &lt;django.db.models.manager.Manager object&gt;</em><a class="headerlink" href="#user_auth.models.UserInfo.objects" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -182,6 +186,26 @@ their description.</p>
 <code class="descclassname">UserInfo.</code><code class="descname">user</code><a class="headerlink" href="#user_auth.models.UserInfo.user" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+</dd></dl>
+
+<dl class="function">
+<dt id="user_auth.models.get_createdhunts">
+<code class="descclassname">user_auth.models.</code><code class="descname">get_createdhunts</code><span class="sig-paren">(</span><em>uname</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/user_auth/models.html#get_createdhunts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.models.get_createdhunts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Grab hunts that were created by a user</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="user_auth.models.get_expertise_lvl_rank">
+<code class="descclassname">user_auth.models.</code><code class="descname">get_expertise_lvl_rank</code><span class="sig-paren">(</span><em>uname</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/user_auth/models.html#get_expertise_lvl_rank"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.models.get_expertise_lvl_rank" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get expertise lvl and calculate score
+input: username
+output: total score</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="user_auth.models.get_huntprog">
+<code class="descclassname">user_auth.models.</code><code class="descname">get_huntprog</code><span class="sig-paren">(</span><em>uname</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/user_auth/models.html#get_huntprog"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.models.get_huntprog" title="Permalink to this definition">¶</a></dt>
+<dd><p>Grab progress of hunts for a user</p>
 </dd></dl>
 
 </div>
@@ -297,12 +321,12 @@ views function. The list of information that the user can edit is :</p>
 </div></blockquote>
 <dl class="attribute">
 <dt id="user_auth.auth_forms.EditForm.base_fields">
-<code class="descname">base_fields</code><em class="property"> = OrderedDict([('picture', &lt;django.forms.fields.ImageField object at 0x50a02d0&gt;), ('first_name', &lt;django.forms.fields.CharField object at 0x50a0310&gt;), ('last_name', &lt;django.forms.fields.CharField object at 0x50a06d0&gt;), ('password', &lt;django.forms.fields.CharField object at 0x50a0850&gt;), ('description', &lt;django.forms.fields.CharField object at 0x50a0090&gt;)])</em><a class="headerlink" href="#user_auth.auth_forms.EditForm.base_fields" title="Permalink to this definition">¶</a></dt>
+<code class="descname">base_fields</code><em class="property"> = OrderedDict([('picture', &lt;django.forms.fields.ImageField object at 0x1078b6590&gt;), ('first_name', &lt;django.forms.fields.CharField object at 0x1078b6610&gt;), ('last_name', &lt;django.forms.fields.CharField object at 0x1078b66d0&gt;), ('password', &lt;django.forms.fields.CharField object at 0x1078b67d0&gt;), ('description', &lt;django.forms.fields.CharField object at 0x1078b6850&gt;)])</em><a class="headerlink" href="#user_auth.auth_forms.EditForm.base_fields" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="user_auth.auth_forms.EditForm.declared_fields">
-<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('picture', &lt;django.forms.fields.ImageField object at 0x50a02d0&gt;), ('first_name', &lt;django.forms.fields.CharField object at 0x50a0310&gt;), ('last_name', &lt;django.forms.fields.CharField object at 0x50a06d0&gt;), ('password', &lt;django.forms.fields.CharField object at 0x50a0850&gt;), ('description', &lt;django.forms.fields.CharField object at 0x50a0090&gt;)])</em><a class="headerlink" href="#user_auth.auth_forms.EditForm.declared_fields" title="Permalink to this definition">¶</a></dt>
+<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('picture', &lt;django.forms.fields.ImageField object at 0x1078b6590&gt;), ('first_name', &lt;django.forms.fields.CharField object at 0x1078b6610&gt;), ('last_name', &lt;django.forms.fields.CharField object at 0x1078b66d0&gt;), ('password', &lt;django.forms.fields.CharField object at 0x1078b67d0&gt;), ('description', &lt;django.forms.fields.CharField object at 0x1078b6850&gt;)])</em><a class="headerlink" href="#user_auth.auth_forms.EditForm.declared_fields" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -327,12 +351,12 @@ used for displaying user login input fields as well as processing the
 login process once it receives the neccessary information from user.</p>
 <dl class="attribute">
 <dt id="user_auth.auth_forms.LogInForm.base_fields">
-<code class="descname">base_fields</code><em class="property"> = OrderedDict([('user_name', &lt;django.forms.fields.CharField object at 0x50a0450&gt;), ('password', &lt;django.forms.fields.CharField object at 0x50a0890&gt;)])</em><a class="headerlink" href="#user_auth.auth_forms.LogInForm.base_fields" title="Permalink to this definition">¶</a></dt>
+<code class="descname">base_fields</code><em class="property"> = OrderedDict([('user_name', &lt;django.forms.fields.CharField object at 0x1078b6310&gt;), ('password', &lt;django.forms.fields.CharField object at 0x1078b6410&gt;)])</em><a class="headerlink" href="#user_auth.auth_forms.LogInForm.base_fields" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="user_auth.auth_forms.LogInForm.declared_fields">
-<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('user_name', &lt;django.forms.fields.CharField object at 0x50a0450&gt;), ('password', &lt;django.forms.fields.CharField object at 0x50a0890&gt;)])</em><a class="headerlink" href="#user_auth.auth_forms.LogInForm.declared_fields" title="Permalink to this definition">¶</a></dt>
+<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('user_name', &lt;django.forms.fields.CharField object at 0x1078b6310&gt;), ('password', &lt;django.forms.fields.CharField object at 0x1078b6410&gt;)])</em><a class="headerlink" href="#user_auth.auth_forms.LogInForm.declared_fields" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -355,12 +379,12 @@ login process once it receives the neccessary information from user.</p>
 user register information.</p>
 <dl class="attribute">
 <dt id="user_auth.auth_forms.RegisterForm.base_fields">
-<code class="descname">base_fields</code><em class="property"> = OrderedDict([('user_name', &lt;django.forms.fields.CharField object at 0x50cb390&gt;), ('password', &lt;django.forms.fields.CharField object at 0x50a0a50&gt;), ('first_name', &lt;django.forms.fields.CharField object at 0x50a0a10&gt;), ('last_name', &lt;django.forms.fields.CharField object at 0x50a0bd0&gt;), ('email_address', &lt;django.forms.fields.EmailField object at 0x50a0b90&gt;)])</em><a class="headerlink" href="#user_auth.auth_forms.RegisterForm.base_fields" title="Permalink to this definition">¶</a></dt>
+<code class="descname">base_fields</code><em class="property"> = OrderedDict([('user_name', &lt;django.forms.fields.CharField object at 0x1078abcd0&gt;), ('password', &lt;django.forms.fields.CharField object at 0x1078abe10&gt;), ('first_name', &lt;django.forms.fields.CharField object at 0x1078abed0&gt;), ('last_name', &lt;django.forms.fields.CharField object at 0x1078abfd0&gt;), ('email_address', &lt;django.forms.fields.EmailField object at 0x1078b6110&gt;)])</em><a class="headerlink" href="#user_auth.auth_forms.RegisterForm.base_fields" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="user_auth.auth_forms.RegisterForm.declared_fields">
-<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('user_name', &lt;django.forms.fields.CharField object at 0x50cb390&gt;), ('password', &lt;django.forms.fields.CharField object at 0x50a0a50&gt;), ('first_name', &lt;django.forms.fields.CharField object at 0x50a0a10&gt;), ('last_name', &lt;django.forms.fields.CharField object at 0x50a0bd0&gt;), ('email_address', &lt;django.forms.fields.EmailField object at 0x50a0b90&gt;)])</em><a class="headerlink" href="#user_auth.auth_forms.RegisterForm.declared_fields" title="Permalink to this definition">¶</a></dt>
+<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('user_name', &lt;django.forms.fields.CharField object at 0x1078abcd0&gt;), ('password', &lt;django.forms.fields.CharField object at 0x1078abe10&gt;), ('first_name', &lt;django.forms.fields.CharField object at 0x1078abed0&gt;), ('last_name', &lt;django.forms.fields.CharField object at 0x1078abfd0&gt;), ('email_address', &lt;django.forms.fields.EmailField object at 0x1078b6110&gt;)])</em><a class="headerlink" href="#user_auth.auth_forms.RegisterForm.declared_fields" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -467,6 +491,24 @@ non-exist username.</p>
 </dd></dl>
 
 <dl class="method">
+<dt id="user_auth.tests.user_authTest.test_models_get_createdhunts">
+<code class="descname">test_models_get_createdhunts</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/user_auth/tests.html#user_authTest.test_models_get_createdhunts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_models_get_createdhunts" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>test_models_get_huntprog()</strong> tests that a list of titles is created from hunts table</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="user_auth.tests.user_authTest.test_models_get_expertise_lvl_rank">
+<code class="descname">test_models_get_expertise_lvl_rank</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/user_auth/tests.html#user_authTest.test_models_get_expertise_lvl_rank"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_models_get_expertise_lvl_rank" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>test_models_get_expertise_lvl_rank()</strong> tests that list of the correct form is returned</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="user_auth.tests.user_authTest.test_models_get_huntprog">
+<code class="descname">test_models_get_huntprog</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/user_auth/tests.html#user_authTest.test_models_get_huntprog"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_models_get_huntprog" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>test_models_get_huntprog()</strong> tests that a list of lists is created from HuntsProg table</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="user_auth.tests.user_authTest.test_profile_not_logged_in">
 <code class="descname">test_profile_not_logged_in</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/user_auth/tests.html#user_authTest.test_profile_not_logged_in"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_profile_not_logged_in" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>test_profile_not_logged_in()</strong> tests the status code of http response when the user
@@ -493,6 +535,22 @@ two users with same username.</p>
 <code class="descname">test_register_status_code</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/user_auth/tests.html#user_authTest.test_register_status_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_register_status_code" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>test_register_status_code()</strong> checks if a user access to the register page, the status_code
 is 200.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="user_auth.tests.user_authTest.test_unit_auth_form_with_invalid_user">
+<code class="descname">test_unit_auth_form_with_invalid_user</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/user_auth/tests.html#user_authTest.test_unit_auth_form_with_invalid_user"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_unit_auth_form_with_invalid_user" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is the unit test for user_auth.auth_forms. It tests if 
+it operates correctly with invalid request which will be 
+trying to register with username that is already in our 
+database.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="user_auth.tests.user_authTest.test_unit_editform">
+<code class="descname">test_unit_editform</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/user_auth/tests.html#user_authTest.test_unit_editform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_unit_editform" title="Permalink to this definition">¶</a></dt>
+<dd><p>This test case is for EditForm in auth_forms and test if
+it can correctly edit user information as the user intended.</p>
 </dd></dl>
 
 <dl class="method">
@@ -525,6 +583,20 @@ We need to mock</p>
 </li>
 </ol>
 </div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="user_auth.tests.user_authTest.test_unit_login_username_notExist">
+<code class="descname">test_unit_login_username_notExist</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/user_auth/tests.html#user_authTest.test_unit_login_username_notExist"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_unit_login_username_notExist" title="Permalink to this definition">¶</a></dt>
+<dd><p>This test case is for when a user tries to login with username
+that does not exists. Then, LogInForm.login_process should return
+None.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="user_auth.tests.user_authTest.test_unit_loginform">
+<code class="descname">test_unit_loginform</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/user_auth/tests.html#user_authTest.test_unit_loginform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_unit_loginform" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is unit test for LogInForm.</p>
 </dd></dl>
 
 <dl class="method">
@@ -633,6 +705,9 @@ we should mock</p>
   <h4>Previous topic</h4>
   <p class="topless"><a href="TeamInformation.html"
                         title="previous chapter">Team Member</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="hunts.html"
+                        title="next chapter">Hunts</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -661,8 +736,8 @@ we should mock</p>
       &copy;2015, WebDev.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.2</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.3</a>
       
       |
       <a href="_sources/UserAuthentication.txt"

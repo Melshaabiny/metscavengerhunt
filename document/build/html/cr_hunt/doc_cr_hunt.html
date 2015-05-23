@@ -1,0 +1,354 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Model &mdash; MetDoc 0.0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="MetDoc 0.0.1 documentation" href="../index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">MetDoc 0.0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-cr_hunt.models">
+<span id="model"></span><h1>Model<a class="headerlink" href="#module-cr_hunt.models" title="Permalink to this headline">¶</a></h1>
+<p>The models for create hunt feature are implemented in this file.
+This feature allows the users to</p>
+<dl class="function">
+<dt id="cr_hunt.models.add_hunt_has">
+<code class="descclassname">cr_hunt.models.</code><code class="descname">add_hunt_has</code><span class="sig-paren">(</span><em>id_hunt</em>, <em>nitem</em>, <em>nnum</em>, <em>nclue</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cr_hunt/models.html#add_hunt_has"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cr_hunt.models.add_hunt_has" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body">IntegerId, pythonString, pythonString, pythonString</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/library/constants.html#None" title="(in Python v2.7)">None</a></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li>Takes in 4 parameters and creates a new has tuple</li>
+</ul>
+</dd></dl>
+
+<dl class="function">
+<dt id="cr_hunt.models.add_hunt_its">
+<code class="descclassname">cr_hunt.models.</code><code class="descname">add_hunt_its</code><span class="sig-paren">(</span><em>id_hunt</em>, <em>title</em>, <em>start</em>, <em>uname</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cr_hunt/models.html#add_hunt_its"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cr_hunt.models.add_hunt_its" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body">IntegerId, pythonString, pythonString, pythonString</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/library/constants.html#None" title="(in Python v2.7)">None</a></td>
+</tr>
+</tbody>
+</table>
+<p>Takes in 4 parameters and creates a new hunt tuple</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="cr_hunt.models.cr_Has">
+<em class="property">class </em><code class="descclassname">cr_hunt.models.</code><code class="descname">cr_Has</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cr_hunt/models.html#cr_Has"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cr_hunt.models.cr_Has" title="Permalink to this definition">¶</a></dt>
+<dd><p>Intermediate model that links Hunts to Items
+each hunt has one or more items and each item belongs to one or more hunts.
+In every hunt there is a clue that leads to the item and every item has an order number</p>
+<dl class="exception">
+<dt id="cr_hunt.models.cr_Has.DoesNotExist">
+<em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#cr_hunt.models.cr_Has.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="cr_hunt.models.cr_Has.MultipleObjectsReturned">
+<em class="property">exception </em><code class="descclassname">cr_Has.</code><code class="descname">MultipleObjectsReturned</code><a class="headerlink" href="#cr_hunt.models.cr_Has.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cr_hunt.models.cr_Has.hunt">
+<code class="descclassname">cr_Has.</code><code class="descname">hunt</code><a class="headerlink" href="#cr_hunt.models.cr_Has.hunt" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cr_hunt.models.cr_Has.item">
+<code class="descclassname">cr_Has.</code><code class="descname">item</code><a class="headerlink" href="#cr_hunt.models.cr_Has.item" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cr_hunt.models.cr_Has.objects">
+<code class="descclassname">cr_Has.</code><code class="descname">objects</code><em class="property"> = &lt;django.db.models.manager.Manager object&gt;</em><a class="headerlink" href="#cr_hunt.models.cr_Has.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cr_hunt.models.cr_Hunts">
+<em class="property">class </em><code class="descclassname">cr_hunt.models.</code><code class="descname">cr_Hunts</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cr_hunt/models.html#cr_Hunts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cr_hunt.models.cr_Hunts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Database table that contains all the scavenger hunts.
+Each hunt has a unique id and title,
+where each belongs to a specific category and have a starting location</p>
+<dl class="exception">
+<dt id="cr_hunt.models.cr_Hunts.DoesNotExist">
+<em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#cr_hunt.models.cr_Hunts.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="cr_hunt.models.cr_Hunts.MultipleObjectsReturned">
+<em class="property">exception </em><code class="descclassname">cr_Hunts.</code><code class="descname">MultipleObjectsReturned</code><a class="headerlink" href="#cr_hunt.models.cr_Hunts.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cr_hunt.models.cr_Hunts.cr_has_set">
+<code class="descclassname">cr_Hunts.</code><code class="descname">cr_has_set</code><a class="headerlink" href="#cr_hunt.models.cr_Hunts.cr_has_set" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="cr_hunt.models.cr_Hunts.objects">
+<code class="descclassname">cr_Hunts.</code><code class="descname">objects</code><em class="property"> = &lt;django.db.models.manager.Manager object&gt;</em><a class="headerlink" href="#cr_hunt.models.cr_Hunts.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="cr_hunt.models.gen_hunt_id">
+<code class="descclassname">cr_hunt.models.</code><code class="descname">gen_hunt_id</code><span class="sig-paren">(</span><em>uname</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cr_hunt/models.html#gen_hunt_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cr_hunt.models.gen_hunt_id" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body">pythonString</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">IntegerId</td>
+</tr>
+</tbody>
+</table>
+<p>This function generates a unique hunt id for the created hunt.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cr_hunt.models.get_cur_count">
+<code class="descclassname">cr_hunt.models.</code><code class="descname">get_cur_count</code><span class="sig-paren">(</span><em>id_hunt</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cr_hunt/models.html#get_cur_count"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cr_hunt.models.get_cur_count" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body">pythonString</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">IntegerId</td>
+</tr>
+</tbody>
+</table>
+<p>This function returns the number of items that the user added to the hunt being created.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="views">
+<h1>Views<a class="headerlink" href="#views" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="cr_hunt.views.render_main">
+<code class="descclassname">cr_hunt.views.</code><code class="descname">render_main</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cr_hunt/views.html#render_main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cr_hunt.views.render_main" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body">HttpRequest</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">HttpRequest</td>
+</tr>
+</tbody>
+</table>
+<p>Renders the welcome page for the create hunt app.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cr_hunt.views.render_ats">
+<code class="descclassname">cr_hunt.views.</code><code class="descname">render_ats</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cr_hunt/views.html#render_ats"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cr_hunt.views.render_ats" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body">HttpRequest</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">HttpRequest</td>
+</tr>
+</tbody>
+</table>
+<p>Renders the page that allows the user to input his hunt title and starting location.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cr_hunt.views.render_aitem">
+<code class="descclassname">cr_hunt.views.</code><code class="descname">render_aitem</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cr_hunt/views.html#render_aitem"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cr_hunt.views.render_aitem" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body">HttpRequest</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">HttpRequest</td>
+</tr>
+</tbody>
+</table>
+<p>Renders the add item page, where the user is prompt to select items from our database,
+(the Met&#8217;s database, ultimately) and add it to the hunt that they&#8217;re creating.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cr_hunt.views.render_end">
+<code class="descclassname">cr_hunt.views.</code><code class="descname">render_end</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cr_hunt/views.html#render_end"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cr_hunt.views.render_end" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body">HttpRequest</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">HttpRequest</td>
+</tr>
+</tbody>
+</table>
+<p>Renders the end page for the create hunt app.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cr_hunt.views.render_proc_ts">
+<code class="descclassname">cr_hunt.views.</code><code class="descname">render_proc_ts</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cr_hunt/views.html#render_proc_ts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cr_hunt.views.render_proc_ts" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body">HttpRequest</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">HttpRequest</td>
+</tr>
+</tbody>
+</table>
+<p>Renders the &#8220;Next&#8221; page that allows the user to input his hunt title and starting location.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cr_hunt.views.render_proc_it">
+<code class="descclassname">cr_hunt.views.</code><code class="descname">render_proc_it</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cr_hunt/views.html#render_proc_it"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cr_hunt.views.render_proc_it" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body">HttpRequest</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">HttpRequest</td>
+</tr>
+</tbody>
+</table>
+<p>Renders the &#8220;Next&#8221; add item page, where the user is prompt to select items from our database,
+(the Met&#8217;s database, ultimately) and add it to the hunt that they&#8217;re creating.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cr_hunt.views.render_error">
+<code class="descclassname">cr_hunt.views.</code><code class="descname">render_error</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cr_hunt/views.html#render_error"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cr_hunt.views.render_error" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body">HttpRequest</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">HttpRequest</td>
+</tr>
+</tbody>
+</table>
+<p>Renders the error page for the create hunt app.</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Model</a></li>
+<li><a class="reference internal" href="#views">Views</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/cr_hunt/doc_cr_hunt.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, WebDev.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.3</a>
+      
+      |
+      <a href="../_sources/cr_hunt/doc_cr_hunt.txt"
+          rel="nofollow">Page source</a></li>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,6 +1,8 @@
 {% extends "met_hunt/index.html" %}
 {% load staticfiles%}
 {% block body %}
+{% load staticfiles %}
+
 	{% if not hunts %}
 		<h1>No Hunts Available</h1>
 	{% else %}
@@ -16,13 +18,13 @@
 				<div class="huntcateg columns large-3 medium-6 small-12">
 					<div class="huntbox">
 						<a class="huntcollect pic" href={% url 'hunts.views.render_hunt' hunt.ID %}>
-							<img src="http://placehold.it/350x150&text=Hunt" alt="">
+							<img src="{% static 'img/medieval1.jpg' %}" alt="">
 						</a>
 					</div>
 					<div class="panel">
 						<ul>
 							<li>Title : {{hunt.Title}}</li>
-							<li>Created By : </li>
+							<li>Created By : Development Team </li>
 						</ul>
 						
 					</div>

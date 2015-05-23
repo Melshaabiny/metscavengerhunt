@@ -1,17 +1,15 @@
 """
-        * implement models for Hunts and Items and their relationship
-        * add functions that set each Hunt's data and the data of Items that belong to it
-        * pop_item and verify_id are funtions that are called in the views.py
-        * that processes each hunt's progress.
+        The models for Hunts and Items and their relationship,
+        add functions that set each Hunt's data and the data of Items that belong to it.
 """
 from django.db import models
 
 global TEMP
 class Hunts(models.Model):
-    """
-        * database table that contains all the scavenger hunts
-        * each hunt has a unique id and title
-        * each belongs to a specific category and have a starting location
+    """        
+        This database table contains all the scavenger hunts,
+        each hunt has a unique id and title, and each belongs to 
+        a specific category and have a starting location
     """
     # Unique identification number for each hunt
     ID = models.CharField(unique=True, primary_key=True, max_length=50)
@@ -27,10 +25,9 @@ class Hunts(models.Model):
 
 class Items(models.Model):
     """
-        * database table that contains all the items of the Met (to be completed)
-        * each item has a unique id, belongs to a specific category
-        * has a specific type (painting, sculpture, instrument, etc.)
-        * is a part of one or more hunts
+        The Items database table contains all the items of the Met (to be completed)
+        each item has a unique id, belongs to a specific category,
+        and is a part of one or more hunts
     """
     # Official Met issued ID for each item
     ID = models.CharField(max_length=20, unique=True, primary_key=True)
@@ -45,10 +42,9 @@ class Items(models.Model):
 
 class Has(models.Model):
     """
-        * intermediate model that links Hunts to Items
-        * each hunt has one or more items
-        * each item belongs to one or more hunts
-        * in every hunt there is a clue that leads to the item and every item has an order number
+        I intermediate model that links Hunts to Items, each hunt has one or more items,
+        and each item belongs to one or more hunts.
+        In every hunt there is a clue that leads to the item and every item has an order number
     """
     hunt = models.ForeignKey(Hunts)
     item = models.ForeignKey(Items)
@@ -61,7 +57,7 @@ class Has(models.Model):
 
 class HuntProg(models.Model):
     """
-        * intermediate model that is linked to hunts and has to keep track of progress for the users
+        Intermediate model that is linked to hunts and has to keep track of progress for the users
     """
     hunt = models.ForeignKey(Hunts)
     user = models.CharField(max_length=30)
@@ -73,8 +69,8 @@ class HuntProg(models.Model):
 
 def set_HuntsData(id_hunt):
     """
-        * Based on the hunt id, set_HuntsData returns a python dictionary
-        * containing all the Hunt's title and starting location
+        Based on the hunt id, set_HuntsData returns a python dictionary
+        containing all the Hunt's title and starting location
     """
     hunt = Hunts.objects.get(ID=id_hunt)
     hunt_title = str(hunt.Title)
@@ -84,9 +80,11 @@ def set_HuntsData(id_hunt):
 
 def set_ItemsData(id_hunt):
     """
-        * Based on the hunt id, set_ItemsData creates a list of tuples
-        * containing all the items in that hunt and their respective database
-        * returns TEMP[(id, clue, number), ...]
+        :param: IntegerId
+        :rtype: pythonList        
+        Based on the hunt id, set_ItemsData creates a list of tuples
+        containing all the items in that hunt and their respective database
+        returns TEMP[(id, clue, number), ...]
     """
     hunt_items = Has.objects.filter(hunt_id=id_hunt)
     tuples = ()
@@ -105,7 +103,9 @@ def set_ItemsData(id_hunt):
 
 def pop_item(lst):
     """
-        * Pops an item from the global list of items,
+        :param: pyhtonList
+        :rtype: pythonList        
+        Pops an item from the global list of items,
         once a user moves on the next item in the hunt.
     """
     del lst[0]
@@ -113,7 +113,9 @@ def pop_item(lst):
 
 def verify_id(usr_input):
     """
-        * Checks the user input against the item id and returns a boolean result
+        :param: pythonString
+        :rtype: Boolean        
+        Checks the user input against the item id and returns a boolean result.
     """
     global TEMP
     if usr_input == TEMP[0][0]:
@@ -122,6 +124,11 @@ def verify_id(usr_input):
         return False
 
 def init_huntprog(h_id, uname):
+    """
+        :param: IntegerId, pythonString
+        :rtype: None     
+        Records the user's hunt progress and saves it in the database.
+    """
     e_hunt = Hunts.objects.filter(ID = h_id)
     hprog_check = HuntProg.objects.filter(hunt_id = h_id, user = uname).count()
     if hprog_check == 0:
@@ -131,6 +138,10 @@ def init_huntprog(h_id, uname):
         pass
 
 def update_cur_item(h_id, uname, newnum):
+    """
+        :param: IntegerId, pythonString, IntegerNum     
+        Updates the current item (where the user left of in a hunt).
+    """
     hprog = HuntProg.objects.get(hunt_id = h_id, user = uname)
     hprog.cur_item_num = newnum
     hprog.save()
