@@ -119,15 +119,15 @@ class hunts_test(TestCase):
                 views.TEMP = [('123', 'a clue', 1, 'hint', 'image url', 'fun fact'), ('234', 'a clue2', 2, 'hint 2', 'image url 2', 'fun fact 2')]
                 #run render_result
                 views.render_result(request)
-                #render_verify does not correctly redirect to 'correct' page when expected"
+                #fail=render_verify does not correctly redirect to 'correct' page when expected"
                 redirect.assert_called_with('rend_correct')
-                views.TEMP = [('123', 'a clue', 1, 'hint', 'image url', 'fun fact')]
+                views.TEMP = []
                 views.render_result(request)
-                #render_result dow not correctly redirect to 'congrats' page when expected
-                redirect.assert_called_with('rend_correct')
+                #fail=render_result does not correctly redirect to 'congrats' page when expected
+                redirect.assert_called_with('rend_congrats')
                 verify_id.return_value = False
                 views.render_result(request)
-                #render_verify does not correctly redirect to 'incorrect' page when expected
+                #fail=render_verify does not correctly redirect to 'incorrect' page when expected
                 redirect.assert_called_with('rend_incorrect')
 
     def test_hint(self):
@@ -186,6 +186,10 @@ class hunts_test(TestCase):
                 request = MagicMock()
                 request.user = MagicMock()
                 cat = "Ancient"
+                views.hunt_detail(request, cat)
+                assert rend.called
+                rend.reset_mock()
+                cat = "Medieval"
                 views.hunt_detail(request, cat)
                 assert rend.called
 
