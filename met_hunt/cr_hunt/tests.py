@@ -89,6 +89,9 @@ class hunts_test(TestCase):
                     views.render_aitem(request)
                     assert red.called
                     red.assert_called_with('cr_error')
+                    views.i_counter = 10
+                    views.render_aitem(request)
+                    red.assert_called_with('cr_end')
 
     def test_render_end(self):
         """
@@ -141,8 +144,14 @@ class hunts_test(TestCase):
                 request = MagicMock()
                 request.method = "POST"
                 #request.POST.get = MagicMock()
-                request.POST.get('clue', '').return_value = 'testclue'
-                request.POST.get('item', '').return_value = 'testitem'
+                def side_effect(*args):
+                    def second_call(*args):
+                        return 'testclue'
+                    request.POST.get.side_effect = second_call
+                    return 'testitem'
+                request.POST.get = MagicMock(side_effect=side_effect)
+                #request.POST.get('clue', '').return_value = 'testclue'
+                #request.POST.get('item', '').return_value = 'testitem'
                 request.user = MagicMock()
                 attrs = {'is_authenticated.return_value':True}
                 request.user.configure_mock(**attrs)
@@ -153,6 +162,18 @@ class hunts_test(TestCase):
                 assert addit.called
                 red.assert_called_with('cr_aitem') #check that correct redirect is made
                 self.assertEqual(views.i_counter, 1) #counter was incremented
+                #test that if item wasn't entered redirect to page
+                red.reset_mock()
+                def side_effect(*args):
+                    def second_call(*args):
+                        return ''
+                    request.POST.get.side_effect = second_call
+                    return 'testclue'
+                request.POST.get = MagicMock(side_effect=side_effect)
+                addit.reset_mock()
+                views.render_proc_it(request)
+                assert not(addit.called)
+                red.assert_called_with('cr_aitem')
                 views.i_counter = 10
                 red.reset_mock()
                 views.render_proc_it(request)
