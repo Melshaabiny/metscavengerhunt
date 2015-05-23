@@ -6,7 +6,7 @@ The list of tests are:
 """
 from django.test.client import RequestFactory
 from django.test import  Client, TestCase
-from mock import MagicMock, patch
+from mock import MagicMock, patch, PropertyMock
 from hunts import views
 from hunts import models
 from django.core.urlresolvers import reverse
@@ -131,12 +131,12 @@ class hunts_test(TestCase):
 
     def test_hint(self):
         """
-            **test_incorrect** tests if render_incorrect is ran at the correct url
+            **test_hint** tests if hint is ran and called correctly
         """
         with patch('hunts.views.render_to_response') as rend:
             request = MagicMock()
             views.render_hint(request)
-            rend.assert_called_with("hunts/hint.html", {"hint_text": 'hint'})
+            rend.assert_called_with("hunts/hint.html", {"hint_text": 'hint', 'hint_crop': 'hint crop'})
 
     def test_correct(self):
         """
@@ -208,13 +208,25 @@ class hunts_test(TestCase):
             **check that correct items were retrieved
         """
         with patch('hunts.models.Has.objects.filter') as items_hunt:
-            items_hunt = MagicMock()
-            items_hunt.return_value.item.ID = "123"
-            items_hunt[0].return_value.clue = "clue test"
-            items_hunt[0].return_value.number = "1"
-            items_hunt[0].return_value.hint = "Hint test"
-            items_hunt[0].return_value.image = "image url test"
-            items_hunt[0].return_value.fact = "fact test"
+            attrs = {'count.return_value':1}
+            items_hunt.configure_mock(**attrs)
+            items_hunt.return_value[0].item.ID = "123"
+            items_hunt.return_value[0].clue = "clue test"
+            items_hunt.return_value[0].number = "1"
+            items_hunt.return_value[0].hint = "Hint test"
+            items_hunt.return_value[0].hintcrop = "Hintcrop test"
+            items_hunt.return_value[0].image = "image url test"
+            items_hunt.return_value[0].fact = "fact test"
+            test_var = models.set_ItemsData('testid')
+            self.assertTrue(len(test_var) > 0)
+            self.assertEqual(len(test_var[0]), 7 )
+            self.assertEqual(test_var[0][0], "123")
+            self.assertEqual(test_var[0][1], "clue test")
+            self.assertEqual(test_var[0][2], "1")
+            self.assertEqual(test_var[0][3], "Hint test")
+            self.assertEqual(test_var[0][4], "image url test")
+            self.assertEqual(test_var[0][5], "fact test")
+            self.assertEqual(test_var[0][6], "Hintcrop test")
 
     def test_pop_item(self): #DONE
         lst = [1]

@@ -24,7 +24,7 @@ TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 NOSE_ARGS = [
 		'--with-coverage',
 		'--cover-package=user_auth, hunts, cr_hunt',
-		'--cover-inclusive',
+		'--verbosity=0',
 		]
 
 
