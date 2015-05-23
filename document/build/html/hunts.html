@@ -55,6 +55,32 @@
             
   <div class="section" id="hunts">
 <h1>Hunts<a class="headerlink" href="#hunts" title="Permalink to this headline">¶</a></h1>
+<p>The application that handles all of the hunts related tasks is named <strong>hunts</strong> app in our system. The tasks it handles are</p>
+<blockquote>
+<div><ol class="arabic">
+<li><p class="first">Rendering Hunt</p>
+<blockquote>
+<div><ul class="simple">
+<li>The view that handles this task is <strong>hunts.views.render_hunt</strong>. It handles the hunt process, rendering template with appropriate forms and content.</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">Rendering Clue</p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>hunts.views.render_clue</strong> handles this task. It renders the proper clue for the items.</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">Rendering Result</p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>hunts.views.render_result</strong> function handles rendering the result of the item verification process.</li>
+</ul>
+</div></blockquote>
+</li>
+</ol>
+</div></blockquote>
 <div class="section" id="module-hunts.models">
 <span id="model"></span><h2>Model<a class="headerlink" href="#module-hunts.models" title="Permalink to this headline">¶</a></h2>
 <p>The models for Hunts and Items and their relationship,
@@ -302,6 +328,155 @@ returns TEMP[(id, clue, number), ...]</p>
 hunt from the categories page. It sets the hunt&#8217;s data (title and starting location),
 and stores the items data in global var TEMP list.
 Finally, it renders the hunt&#8217;s welcome page.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="hunts.views.next_proc">
+<code class="descclassname">hunts.views.</code><code class="descname">next_proc</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hunts/views.html#next_proc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hunts.views.next_proc" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body">HttpRequest</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">HttpResponse</td>
+</tr>
+</tbody>
+</table>
+<p>If the current item is the last one in the hunt, next_proc() redirect to render_congrats
+Otherwise, it calls pop_item() to update the global list of items and redirects to render_clue()</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="hunts.views.render_clue">
+<code class="descclassname">hunts.views.</code><code class="descname">render_clue</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hunts/views.html#render_clue"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hunts.views.render_clue" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body">HttpRequest</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">HttpResponse</td>
+</tr>
+</tbody>
+</table>
+<p>render item&#8217;s clue page using global var item_clue as template variable</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="hunts.views.render_result">
+<code class="descclassname">hunts.views.</code><code class="descname">render_result</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hunts/views.html#render_result"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hunts.views.render_result" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body">HttpRequest</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">HttpResponse</td>
+</tr>
+</tbody>
+</table>
+<p>Based on the user input it either redirects to render_correct(),
+render_incorrect(), or render_congrats</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="hunts.views.render_hint">
+<code class="descclassname">hunts.views.</code><code class="descname">render_hint</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hunts/views.html#render_hint"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hunts.views.render_hint" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body">HttpRequest</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">HttpResponse</td>
+</tr>
+</tbody>
+</table>
+<p>Render item&#8217;s hint page with the appropriate hint crop and hint text.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="hunts.views.render_verify">
+<code class="descclassname">hunts.views.</code><code class="descname">render_verify</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hunts/views.html#render_verify"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hunts.views.render_verify" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body">HttpRequest</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">HttpResponse</td>
+</tr>
+</tbody>
+</table>
+<p>Renders item&#8217;s verify page allowing the user to verify the item&#8217;s ids.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="hunts.views.render_correct">
+<code class="descclassname">hunts.views.</code><code class="descname">render_correct</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hunts/views.html#render_correct"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hunts.views.render_correct" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body">HttpRequest</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">HttpResponse</td>
+</tr>
+</tbody>
+</table>
+<p>Render the correct answer&#8217;s page with some fun facts and the item&#8217;s image.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="hunts.views.render_incorrect">
+<code class="descclassname">hunts.views.</code><code class="descname">render_incorrect</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hunts/views.html#render_incorrect"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hunts.views.render_incorrect" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body">HttpRequest</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">HttpResponse</td>
+</tr>
+</tbody>
+</table>
+<p>Render incorrect answer&#8217;s page allwoing the user to retry.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="hunts.views.render_congrats">
+<code class="descclassname">hunts.views.</code><code class="descname">render_congrats</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hunts/views.html#render_congrats"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hunts.views.render_congrats" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body">HttpRequest</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">HttpResponse</td>
+</tr>
+</tbody>
+</table>
+<p>Render congratulations page after finishing hunt.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="hunts.views.hunt_detail">
+<code class="descclassname">hunts.views.</code><code class="descname">hunt_detail</code><span class="sig-paren">(</span><em>request</em>, <em>category</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hunts/views.html#hunt_detail"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hunts.views.hunt_detail" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body">HttpRequest, String Category</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">HttpResponse</td>
+</tr>
+</tbody>
+</table>
+<p>This view renders the page for each type of hunts available. It will
+contain the list of hunts in each category. And each of this list will 
+be linked to corresponding hunt page. Here, type will be a string that
+represent the type of hunt.</p>
 </dd></dl>
 
 </div>
