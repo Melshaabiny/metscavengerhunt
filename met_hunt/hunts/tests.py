@@ -49,7 +49,6 @@ class hunts_test(TestCase):
             with patch('hunts.views.set_HuntsData') as huntsdata:
                 with patch('hunts.views.render_to_response') as rend:
                     with patch('hunts.views.init_huntprog') as init_pr:
-                        global TEMP
                         itemsdata.return_value = views.TEMP
                         huntsdata.return_value = {'hunt title' : 'test1234', 'hunt start' : 'test7654321'}
                         request = MagicMock()
@@ -57,7 +56,9 @@ class hunts_test(TestCase):
                         request.user.username.return_value = 'user1'
                         views.render_hunt(request, 1)
                         #check that correct title and start point were passed through
-                        rend.assert_called_with("hunts/hunt.html", {"title" : 'test1234', "start_pt": 'test7654321'})
+                        assert huntsdata.called
+                        huntsdata.assert_called_with(1)
+                        rend.assert_called_with("hunts/hunt.html", {"title" : 'test1234', "start_pt": 'test7654321', "user": request.user})
 
     def test_render_clue(self): #DONE
         """
