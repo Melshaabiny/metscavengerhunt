@@ -102,6 +102,7 @@ def render_proc_it(request):
             clue = str(request.POST.get('clue', ''))
             item_id = str(request.POST.get('item', ''))
             i_counter = i_counter + 1
+            add_hunt_has(hunt_id, item_id, i_counter, clue)
             return redirect('cr_aitem')
     else:
         return redirect('cr_error')
