@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 from mock import MagicMock
 from mock import Mock
 from mock import patch
-from user_auth.views import login_user, logout_user, register
+from user_auth.views import login_user, logout_user, register, edit
 from user_auth.models import UserInfo
 from user_auth.auth_forms import RegisterForm, LogInForm, EditForm
 from django.http import QueryDict
@@ -432,53 +432,53 @@ class user_authTest(unittest.TestCase):
 
 ##################################
 ###########Profile Model Functions
-    def test_models_get_huntprog(self):
-        """
-        **test_models_get_huntprog()** tests that a list of lists is created from HuntsProg table
-        """
-        with patch('user_auth.models.HuntProg.objects.filter') as filt:
-            filt = MagicMock()
-            filt.return_value = ['a list']
-            filt.return_value.hunt.Title = 'test title'
-            filt[0].return_value.cur_item_num = 3
-            uname = MagicMock()
-            ret_lst = models.get_huntprog(uname)
-            # mock return value of filter call to get all hunt id sharing a username
-            # mock the attributes of the objects to return fixed values 'title' '0 - 10'
-            # check return value to see if list of lists was created with a list[0][0] and list[1][0] being title
-            # ^and list[0][1] list[1][1] being a str that matches '(calculated int) %'
-            pass
+    # def test_models_get_huntprog(self):
+    #     """
+    #     **test_models_get_huntprog()** tests that a list of lists is created from HuntsProg table
+    #     """
+    #     with patch('user_auth.models.HuntProg.objects.filter') as filt:
+    #         filt = MagicMock()
+    #         filt.return_value = ['a list']
+    #         filt.return_value.hunt.Title = 'test title'
+    #         filt[0].return_value.cur_item_num = 3
+    #         uname = MagicMock()
+    #         ret_lst = models.get_huntprog(uname)
+    #         # mock return value of filter call to get all hunt id sharing a username
+    #         # mock the attributes of the objects to return fixed values 'title' '0 - 10'
+    #         # check return value to see if list of lists was created with a list[0][0] and list[1][0] being title
+    #         # ^and list[0][1] list[1][1] being a str that matches '(calculated int) %'
+    #         pass
 
-    def test_models_get_createdhunts(self):
-        """
-        **test_models_get_huntprog()** tests that a list of titles is created from hunts table
-        """
-        with patch('user_auth.models.cr_Hunts.objects.filter') as filt:
-            filt = MagicMock()
-            filt[0].return_value.Title = 'test title'
-            uname = MagicMock()
-            ret_lst = models.get_createdhunts(uname)
-            # mock return value of filter to get hunt tuples 
-            # check return value to see if list contains titles
-            pass
+    # def test_models_get_createdhunts(self):
+    #     """
+    #     **test_models_get_huntprog()** tests that a list of titles is created from hunts table
+    #     """
+    #     with patch('user_auth.models.cr_Hunts.objects.filter') as filt:
+    #         filt = MagicMock()
+    #         filt[0].return_value.Title = 'test title'
+    #         uname = MagicMock()
+    #         ret_lst = models.get_createdhunts(uname)
+    #         # mock return value of filter to get hunt tuples 
+    #         # check return value to see if list contains titles
+    #         pass
 
 
-    def test_models_get_expertise_lvl_rank(self):
-        """
-        **test_models_get_expertise_lvl_rank()** tests that list of the correct form is returned
-        """
-        with patch('user_auth.models.HuntProg.objects.filter') as filt:
-            filt = MagicMock()
-            filt.return_value = ['a list']
-            filt[0].return_value.cur_item_num = 3
-            exp_val = 15.0
-            uname = MagicMock()
-            ret_val = models.get_expertise_lvl_rank(uname)
-            self.assertEqual(ret_val, exp_val)
-        # mock return value of filter
-        # mock cur_item_num for mocked object
-        # fix the cur_item_num and calculate how much the score should be check for that in return of function
-        pass
+    # def test_models_get_expertise_lvl_rank(self):
+    #     """
+    #     **test_models_get_expertise_lvl_rank()** tests that list of the correct form is returned
+    #     """
+    #     with patch('user_auth.models.HuntProg.objects.filter') as filt:
+    #         filt = MagicMock()
+    #         filt.return_value = ['a list']
+    #         filt[0].return_value.cur_item_num = 3
+    #         exp_val = 15.0
+    #         uname = MagicMock()
+    #         ret_val = models.get_expertise_lvl_rank(uname)
+    #         self.assertEqual(ret_val, exp_val)
+    #     # mock return value of filter
+    #     # mock cur_item_num for mocked object
+    #     # fix the cur_item_num and calculate how much the score should be check for that in return of function
+    #     pass
 
 ###################################################################################
 ###############Test login_user
@@ -505,29 +505,25 @@ class user_authTest(unittest.TestCase):
             User.objects.get(username='edit_EditForm').delete()
             form.assert_called_with()
 
-    # def test_edit_EditForm_post(self):
-    #     """
-    #     **test_edit_EditForm_post()** tests if the EditForm is properly instantiated with
-    #     appropriate post data when request.method is POST method.
-    #     """
-    #     # create TEMP user.
-    #     user = User.objects.create_user(username='edit_EditForm', password='password')
-    #     UserInfo.objects.create(user=user)
+    def test_edit_EditForm_post(self):
+        """
+        **test_edit_EditForm_post()** tests if the EditForm is properly instantiated with
+        appropriate post data when request.method is POST method.
+        """
+        with patch('user_auth.views.EditForm') as form:
+            request = MagicMock()
+            request.method = 'POST'
+            request.user = MagicMock()
+            request.user.is_authenticated = MagicMock(return_value=True)
+            form.return_value.is_valid = MagicMock(return_value=True)
+            form.return_value.process = MagicMock()
+            with patch('user_auth.views.render_to_response') as render:
+                with patch('user_auth.views.login_required') as req:
+                    edit(request)
+                    self.assertTrue(form.return_value.process.called)
+                    self.assertTrue(render.called)
+                    self.assertTrue(form.return_value.is_valid.called)
 
-
-    #     # log the user in.
-    #     self.client.login(username='edit_EditForm', password='password')
-
-    #     # make fake file
-    #     file = SimpleUploadedFile('filename.png', 'image_content')
-    #     dic = MultiValueDict({'picture':file})
-    #     # mock user.save() so that we not really saving the test user.
-    #     with patch('user_auth.views.EditForm') as form:
-    #         form.return_value = MagicMock()
-    #         form.return_value.is_valid = MagicMock(return_value=True)
-    #         self.client.post('/user_auth/edit/', {'first_name':'name', 'last_name':'last_name'})
-    #         form.assert_called_with()
-    #     User.objects.get(username='edit_EditForm').delete()
 
     # def test_edit_EditForm_file(self):
     #   """

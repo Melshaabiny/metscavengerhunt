@@ -10,7 +10,7 @@ from mock import MagicMock, patch, PropertyMock
 from hunts import views
 from hunts import models
 from django.core.urlresolvers import reverse
-
+from hunts.models import set_ItemsData
 global TEMP
 
 # Create your tests here.
@@ -283,3 +283,9 @@ class hunts_test(TestCase):
             geth.return_value.configure_mock(**attrs)
             models.update_cur_item('test','testu',2)
             assert geth.return_value.save.called
+
+    # def test_setitem(self):
+    #     with patch('hunts.models.Has.objects.filter') as hunt_items:
+    #         hunt_items.return_value.count = MagicMock(return_value=1)
+    #         hunt_items.return_value[0].item.ID = "123"
+    #         set_ItemsData("123")
