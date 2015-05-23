@@ -15,7 +15,11 @@ Documentation
 
    TeamInformation
    UserAuthentication
-   Hunts
+   hunts
+   CreateHunts
+   forum
+
+
 
 Indices and tables
 ==================

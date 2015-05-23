@@ -10,8 +10,8 @@
     <form action={% url "hunts.views.render_verify" %}>
     <input class="submit" type="submit" value="Found it">
     </form>
-    <form action="#">
-        <input class="submit" type="submit" value="Ask a friend">
+    <form action={% url "forum.views.thread_layout" %}>
+        <input class="submit" type="submit" value="Ask the forum">
     </form>
 </div>
 {% endblock %}

@@ -25,6 +25,7 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="MetDoc 0.0.1 documentation" href="index.html" />
+    <link rel="next" title="Hunts" href="hunts.html" />
     <link rel="prev" title="Team Member" href="TeamInformation.html" />
    
   
@@ -41,6 +42,9 @@
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
+        <li class="right" >
+          <a href="hunts.html" title="Hunts"
+             accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="TeamInformation.html" title="Team Member"
              accesskey="P">previous</a> |</li>
@@ -317,12 +321,12 @@ views function. The list of information that the user can edit is :</p>
 </div></blockquote>
 <dl class="attribute">
 <dt id="user_auth.auth_forms.EditForm.base_fields">
-<code class="descname">base_fields</code><em class="property"> = OrderedDict([('picture', &lt;django.forms.fields.ImageField object at 0x10c8f0110&gt;), ('first_name', &lt;django.forms.fields.CharField object at 0x10c8f0190&gt;), ('last_name', &lt;django.forms.fields.CharField object at 0x10c8f0250&gt;), ('password', &lt;django.forms.fields.CharField object at 0x10c8f0350&gt;), ('description', &lt;django.forms.fields.CharField object at 0x10c8f03d0&gt;)])</em><a class="headerlink" href="#user_auth.auth_forms.EditForm.base_fields" title="Permalink to this definition">¶</a></dt>
+<code class="descname">base_fields</code><em class="property"> = OrderedDict([('picture', &lt;django.forms.fields.ImageField object at 0x1078b6590&gt;), ('first_name', &lt;django.forms.fields.CharField object at 0x1078b6610&gt;), ('last_name', &lt;django.forms.fields.CharField object at 0x1078b66d0&gt;), ('password', &lt;django.forms.fields.CharField object at 0x1078b67d0&gt;), ('description', &lt;django.forms.fields.CharField object at 0x1078b6850&gt;)])</em><a class="headerlink" href="#user_auth.auth_forms.EditForm.base_fields" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="user_auth.auth_forms.EditForm.declared_fields">
-<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('picture', &lt;django.forms.fields.ImageField object at 0x10c8f0110&gt;), ('first_name', &lt;django.forms.fields.CharField object at 0x10c8f0190&gt;), ('last_name', &lt;django.forms.fields.CharField object at 0x10c8f0250&gt;), ('password', &lt;django.forms.fields.CharField object at 0x10c8f0350&gt;), ('description', &lt;django.forms.fields.CharField object at 0x10c8f03d0&gt;)])</em><a class="headerlink" href="#user_auth.auth_forms.EditForm.declared_fields" title="Permalink to this definition">¶</a></dt>
+<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('picture', &lt;django.forms.fields.ImageField object at 0x1078b6590&gt;), ('first_name', &lt;django.forms.fields.CharField object at 0x1078b6610&gt;), ('last_name', &lt;django.forms.fields.CharField object at 0x1078b66d0&gt;), ('password', &lt;django.forms.fields.CharField object at 0x1078b67d0&gt;), ('description', &lt;django.forms.fields.CharField object at 0x1078b6850&gt;)])</em><a class="headerlink" href="#user_auth.auth_forms.EditForm.declared_fields" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -347,12 +351,12 @@ used for displaying user login input fields as well as processing the
 login process once it receives the neccessary information from user.</p>
 <dl class="attribute">
 <dt id="user_auth.auth_forms.LogInForm.base_fields">
-<code class="descname">base_fields</code><em class="property"> = OrderedDict([('user_name', &lt;django.forms.fields.CharField object at 0x10c8ebe50&gt;), ('password', &lt;django.forms.fields.CharField object at 0x10c8ebf50&gt;)])</em><a class="headerlink" href="#user_auth.auth_forms.LogInForm.base_fields" title="Permalink to this definition">¶</a></dt>
+<code class="descname">base_fields</code><em class="property"> = OrderedDict([('user_name', &lt;django.forms.fields.CharField object at 0x1078b6310&gt;), ('password', &lt;django.forms.fields.CharField object at 0x1078b6410&gt;)])</em><a class="headerlink" href="#user_auth.auth_forms.LogInForm.base_fields" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="user_auth.auth_forms.LogInForm.declared_fields">
-<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('user_name', &lt;django.forms.fields.CharField object at 0x10c8ebe50&gt;), ('password', &lt;django.forms.fields.CharField object at 0x10c8ebf50&gt;)])</em><a class="headerlink" href="#user_auth.auth_forms.LogInForm.declared_fields" title="Permalink to this definition">¶</a></dt>
+<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('user_name', &lt;django.forms.fields.CharField object at 0x1078b6310&gt;), ('password', &lt;django.forms.fields.CharField object at 0x1078b6410&gt;)])</em><a class="headerlink" href="#user_auth.auth_forms.LogInForm.declared_fields" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -375,12 +379,12 @@ login process once it receives the neccessary information from user.</p>
 user register information.</p>
 <dl class="attribute">
 <dt id="user_auth.auth_forms.RegisterForm.base_fields">
-<code class="descname">base_fields</code><em class="property"> = OrderedDict([('user_name', &lt;django.forms.fields.CharField object at 0x10c823e50&gt;), ('password', &lt;django.forms.fields.CharField object at 0x10c8ebb50&gt;), ('first_name', &lt;django.forms.fields.CharField object at 0x10c8ebbd0&gt;), ('last_name', &lt;django.forms.fields.CharField object at 0x10c8ebc90&gt;), ('email_address', &lt;django.forms.fields.EmailField object at 0x10c8ebd50&gt;)])</em><a class="headerlink" href="#user_auth.auth_forms.RegisterForm.base_fields" title="Permalink to this definition">¶</a></dt>
+<code class="descname">base_fields</code><em class="property"> = OrderedDict([('user_name', &lt;django.forms.fields.CharField object at 0x1078abcd0&gt;), ('password', &lt;django.forms.fields.CharField object at 0x1078abe10&gt;), ('first_name', &lt;django.forms.fields.CharField object at 0x1078abed0&gt;), ('last_name', &lt;django.forms.fields.CharField object at 0x1078abfd0&gt;), ('email_address', &lt;django.forms.fields.EmailField object at 0x1078b6110&gt;)])</em><a class="headerlink" href="#user_auth.auth_forms.RegisterForm.base_fields" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="user_auth.auth_forms.RegisterForm.declared_fields">
-<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('user_name', &lt;django.forms.fields.CharField object at 0x10c823e50&gt;), ('password', &lt;django.forms.fields.CharField object at 0x10c8ebb50&gt;), ('first_name', &lt;django.forms.fields.CharField object at 0x10c8ebbd0&gt;), ('last_name', &lt;django.forms.fields.CharField object at 0x10c8ebc90&gt;), ('email_address', &lt;django.forms.fields.EmailField object at 0x10c8ebd50&gt;)])</em><a class="headerlink" href="#user_auth.auth_forms.RegisterForm.declared_fields" title="Permalink to this definition">¶</a></dt>
+<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('user_name', &lt;django.forms.fields.CharField object at 0x1078abcd0&gt;), ('password', &lt;django.forms.fields.CharField object at 0x1078abe10&gt;), ('first_name', &lt;django.forms.fields.CharField object at 0x1078abed0&gt;), ('last_name', &lt;django.forms.fields.CharField object at 0x1078abfd0&gt;), ('email_address', &lt;django.forms.fields.EmailField object at 0x1078b6110&gt;)])</em><a class="headerlink" href="#user_auth.auth_forms.RegisterForm.declared_fields" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -701,6 +705,9 @@ we should mock</p>
   <h4>Previous topic</h4>
   <p class="topless"><a href="TeamInformation.html"
                         title="previous chapter">Team Member</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="hunts.html"
+                        title="next chapter">Hunts</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
