@@ -173,8 +173,11 @@ class hunts_test(TestCase):
             views.render_error(request)
             assert rend.called #check that rend is called
             rend.assert_called_with("cr_hunt/cr_hunt_error.html")
+##############**** Model Instantiation
+    #def test_instantiate(self):
 
-##############**** Model tests
+
+##############**** Model function tests
 
     def test_add_hunt_its(self): #incomplete
         """
@@ -198,15 +201,17 @@ class hunts_test(TestCase):
             **test_add_hunt_has** * Test that correct items are added
         """
         with patch('cr_hunt.models.cr_Has.objects.create') as cr_obj:
-            id_hunt = '123'
-            nitem = '1122'
-            nnum = 3
-            nclue = 'clue'
-            cr_obj = MagicMock(number=3, clue='clue')
-            cr_obj.save = MagicMock(return_value=None)
-            models.add_hunt_has(id_hunt, nitem, nnum, nclue)
-            self.assertEqual(cr_obj.number, nnum)
-            self.assertEqual(cr_obj.clue, nclue)
+            with patch('cr_hunt.models.cr_Hunts.objects.get') as geth:
+                with patch('cr_hunt.models.Items.objects.get') as geti:
+                    id_hunt = '123'
+                    nitem = '1122'
+                    nnum = 3
+                    nclue = 'clue'
+                    cr_obj = MagicMock(number=3, clue='clue')
+                    cr_obj.save = MagicMock(return_value=None)
+                    models.add_hunt_has(id_hunt, nitem, nnum, nclue)
+                    self.assertEqual(cr_obj.number, nnum)
+                    self.assertEqual(cr_obj.clue, nclue)
 
     def test_gen_hunt_id(self):
         """
@@ -226,6 +231,12 @@ class hunts_test(TestCase):
             **test_get_cur_count** * Test that item number is returned
         """
         with patch('cr_hunt.models.cr_Has.objects.filter') as filt:
-            filt.return_value.count.return_value = 8
-            retval = models.get_cur_count('test')
-            self.assertEqual(retval, 8)
+            with patch('cr_hunt.models.cr_Hunts.objects.filter') as filth:
+                filth.return_value.first.return_value = True
+                filt.return_value.count.return_value = 8
+                retval = models.get_cur_count('test')
+                self.assertEqual(retval, 8)
+                filt.reset_mock()
+                filth.return_value.first.return_value = False
+                retval = models.get_cur_count('test')
+                self.assertEqual(retval,0)
