@@ -21,7 +21,7 @@ SECRET_KEY = 's-t-m^u%l!e+%=!u0tp^3koa$0!2n#vwpj-zapfx@6uhp80os5'
 
 # Nose Test settings
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
-TEST_FILES = 'user_auth.views,user_auth.models,user_auth.auth_forms,hunts.views,hunts.models'
+TEST_FILES = 'user_auth.views,user_auth.models,user_auth.auth_forms,hunts.views,hunts.models,cr_hunt.views,cr_hunt.models,cr_hunt.forms'
 NOSE_ARGS = [
  		'--with-coverage',
  		'--cover-package='+TEST_FILES,
