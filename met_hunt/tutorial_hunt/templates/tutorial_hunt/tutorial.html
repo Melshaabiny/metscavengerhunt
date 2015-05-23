@@ -1,0 +1,22 @@
+{% extends "met_hunt/index.html" %}
+{% block body %}
+
+
+<div class="row">
+		<div class="slide">
+			<img class ="icon" src="../../static/img/museumhunters.svg" alt="Museum Hunters Logo"/>
+			<h1>Tutorial Hunt</h1>
+			<h1>{{start_pt}}</h1>
+			<form action={% url "tutorial_hunt.views.rend_clue" %}>
+				<input id="welcome" class = "submit" type="submit" value="Show First Clue">
+			</form>
+		</div>
+</div>
+<!-- At the bottom of your page but inside of the body tag -->
+<ol class="joyride-list" data-joyride>
+  <li data-id="welcome" data-text="Next" data-options="tip_location: top; prev_button: false">
+    <p>Hello and welcome to your first tutorial hunt<br>On this line you'll always see the title of the hunt that you're about to take.</p>
+  </li>
+</ol>
+
+{% endblock %}

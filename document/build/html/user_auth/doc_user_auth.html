@@ -1,0 +1,684 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Model &mdash; MetDoc 0.0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="MetDoc 0.0.1 documentation" href="../index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">MetDoc 0.0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="model">
+<h1>Model<a class="headerlink" href="#model" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-user_auth.models"></span><p>This user_auth.models defined several user information.</p>
+<blockquote>
+<div><ol class="arabic">
+<li><dl class="first docutils">
+<dt><strong>UserInfo</strong> defines those neccessary user information such as</dt>
+<dd><p class="first last">the date when each user registered, picture, expert_level and area of expertises.</p>
+</dd>
+</dl>
+</li>
+<li><p class="first"><strong>FriendList</strong> defines the list of friend for each user. Each user can have many friends.</p>
+</li>
+</ol>
+</div></blockquote>
+<dl class="class">
+<dt id="user_auth.models.FriendList">
+<em class="property">class </em><code class="descclassname">user_auth.models.</code><code class="descname">FriendList</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/models.html#FriendList"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.models.FriendList" title="Permalink to this definition">¶</a></dt>
+<dd><p>Model for friendlist for each user.</p>
+<dl class="exception">
+<dt id="user_auth.models.FriendList.DoesNotExist">
+<em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#user_auth.models.FriendList.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="user_auth.models.FriendList.MultipleObjectsReturned">
+<em class="property">exception </em><code class="descclassname">FriendList.</code><code class="descname">MultipleObjectsReturned</code><a class="headerlink" href="#user_auth.models.FriendList.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="user_auth.models.FriendList.objects">
+<code class="descclassname">FriendList.</code><code class="descname">objects</code><em class="property"> = &lt;django.db.models.manager.Manager object&gt;</em><a class="headerlink" href="#user_auth.models.FriendList.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="user_auth.models.FriendList.user">
+<code class="descclassname">FriendList.</code><code class="descname">user</code><a class="headerlink" href="#user_auth.models.FriendList.user" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="user_auth.models.UserInfo">
+<em class="property">class </em><code class="descclassname">user_auth.models.</code><code class="descname">UserInfo</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/models.html#UserInfo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.models.UserInfo" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>UserInfo</strong> model defines extra user information such as picture, expert level and areas, and
+their description.</p>
+<p>Here are the attributes of the model.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">User:</th><td class="field-body">This is one-to-one relationship from the django User class to UserInfo.</td>
+</tr>
+</tbody>
+</table>
+<dl class="exception">
+<dt id="user_auth.models.UserInfo.DoesNotExist">
+<em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#user_auth.models.UserInfo.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="user_auth.models.UserInfo.MultipleObjectsReturned">
+<em class="property">exception </em><code class="descclassname">UserInfo.</code><code class="descname">MultipleObjectsReturned</code><a class="headerlink" href="#user_auth.models.UserInfo.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="user_auth.models.UserInfo.get_expert_level_display">
+<code class="descclassname">UserInfo.</code><code class="descname">get_expert_level_display</code><span class="sig-paren">(</span><em>*moreargs</em>, <em>**morekwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#user_auth.models.UserInfo.get_expert_level_display" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="user_auth.models.UserInfo.objects">
+<code class="descclassname">UserInfo.</code><code class="descname">objects</code><em class="property"> = &lt;django.db.models.manager.Manager object&gt;</em><a class="headerlink" href="#user_auth.models.UserInfo.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="user_auth.models.UserInfo.user">
+<code class="descclassname">UserInfo.</code><code class="descname">user</code><a class="headerlink" href="#user_auth.models.UserInfo.user" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="user_auth.models.get_createdhunts">
+<code class="descclassname">user_auth.models.</code><code class="descname">get_createdhunts</code><span class="sig-paren">(</span><em>uname</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/models.html#get_createdhunts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.models.get_createdhunts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Grab hunts that were created by a user</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="user_auth.models.get_expertise_lvl_rank">
+<code class="descclassname">user_auth.models.</code><code class="descname">get_expertise_lvl_rank</code><span class="sig-paren">(</span><em>uname</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/models.html#get_expertise_lvl_rank"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.models.get_expertise_lvl_rank" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get expertise lvl and calculate score
+input: username
+output: total score</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="user_auth.models.get_huntprog">
+<code class="descclassname">user_auth.models.</code><code class="descname">get_huntprog</code><span class="sig-paren">(</span><em>uname</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/models.html#get_huntprog"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.models.get_huntprog" title="Permalink to this definition">¶</a></dt>
+<dd><p>Grab progress of hunts for a user</p>
+</dd></dl>
+
+</div>
+<div class="section" id="views">
+<h1>Views<a class="headerlink" href="#views" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="user_auth.views.register">
+<code class="descclassname">user_auth.views.</code><code class="descname">register</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/views.html#register"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.views.register" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body">HttpRequest</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">HttpResponse</td>
+</tr>
+</tbody>
+</table>
+<p>This method handles registering new users. All neccessary information is
+taken from <strong>register.html</strong> page, and those information is passed into
+<strong>RegisterForm</strong> and the class method <strong>register_form()</strong> will process 
+the information.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="user_auth.views.login_user">
+<code class="descclassname">user_auth.views.</code><code class="descname">login_user</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/views.html#login_user"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.views.login_user" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body">HttpRequest</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">HttpResponse</td>
+</tr>
+</tbody>
+</table>
+<p>log a user into the website. This function takes the login information
+such as the username and password from the user and pass the information
+to <strong>LogInForm</strong>. The <strong>LogInForm</strong> has class method called <strong>login_process()</strong>
+and this class method handles processing the login information.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="user_auth.views.edit">
+<code class="descclassname">user_auth.views.</code><code class="descname">edit</code><span class="sig-paren">(</span><em>request</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/views.html#edit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.views.edit" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body">HttpRequest</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">HttpResponse</td>
+</tr>
+</tbody>
+</table>
+<p>The user can edit their information from the edit page. From the edit page, 
+the information that the user wants to modify will be taken and passed to
+the class <strong>EditForm</strong>. The class <strong>EditForm</strong> has class method called
+<strong>process()</strong> which is responsible for processing the edit information.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="user_auth.views.profile">
+<code class="descclassname">user_auth.views.</code><code class="descname">profile</code><span class="sig-paren">(</span><em>request</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/views.html#profile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.views.profile" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body">HttpRequest</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">HttpResponse</td>
+</tr>
+</tbody>
+</table>
+<p>This function is responsible for checking if a user is authenticated when
+the user is try to access profile page.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="user_auth.views.logout_user">
+<code class="descclassname">user_auth.views.</code><code class="descname">logout_user</code><span class="sig-paren">(</span><em>request</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/views.html#logout_user"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.views.logout_user" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body">HttpRequest</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">HttpResponse</td>
+</tr>
+</tbody>
+</table>
+<p>This function handles log the user out from the website.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-user_auth.auth_forms">
+<span id="forms"></span><h1>Forms<a class="headerlink" href="#module-user_auth.auth_forms" title="Permalink to this headline">¶</a></h1>
+<p>User authenticating related form.</p>
+<dl class="class">
+<dt id="user_auth.auth_forms.EditForm">
+<em class="property">class </em><code class="descclassname">user_auth.auth_forms.</code><code class="descname">EditForm</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id=u'id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/auth_forms.html#EditForm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.auth_forms.EditForm" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>EditForm</strong> is responsible for editing the user information. The assumption is that the user
+is already registered. We restrict non-registered user to access edit page from the profifle
+views function. The list of information that the user can edit is :</p>
+<blockquote>
+<div><ul class="simple">
+<li>Password</li>
+<li>Description</li>
+<li>Picture</li>
+<li>Name</li>
+</ul>
+</div></blockquote>
+<dl class="attribute">
+<dt id="user_auth.auth_forms.EditForm.base_fields">
+<code class="descname">base_fields</code><em class="property"> = OrderedDict([('picture', &lt;django.forms.fields.ImageField object at 0x10c8f0110&gt;), ('first_name', &lt;django.forms.fields.CharField object at 0x10c8f0190&gt;), ('last_name', &lt;django.forms.fields.CharField object at 0x10c8f0250&gt;), ('password', &lt;django.forms.fields.CharField object at 0x10c8f0350&gt;), ('description', &lt;django.forms.fields.CharField object at 0x10c8f03d0&gt;)])</em><a class="headerlink" href="#user_auth.auth_forms.EditForm.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="user_auth.auth_forms.EditForm.declared_fields">
+<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('picture', &lt;django.forms.fields.ImageField object at 0x10c8f0110&gt;), ('first_name', &lt;django.forms.fields.CharField object at 0x10c8f0190&gt;), ('last_name', &lt;django.forms.fields.CharField object at 0x10c8f0250&gt;), ('password', &lt;django.forms.fields.CharField object at 0x10c8f0350&gt;), ('description', &lt;django.forms.fields.CharField object at 0x10c8f03d0&gt;)])</em><a class="headerlink" href="#user_auth.auth_forms.EditForm.declared_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="user_auth.auth_forms.EditForm.media">
+<code class="descname">media</code><a class="headerlink" href="#user_auth.auth_forms.EditForm.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="user_auth.auth_forms.EditForm.process">
+<code class="descname">process</code><span class="sig-paren">(</span><em>user</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/auth_forms.html#EditForm.process"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.auth_forms.EditForm.process" title="Permalink to this definition">¶</a></dt>
+<dd><p>If an user tries to change their personal info, this function handles
+the work.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="user_auth.auth_forms.LogInForm">
+<em class="property">class </em><code class="descclassname">user_auth.auth_forms.</code><code class="descname">LogInForm</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id=u'id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/auth_forms.html#LogInForm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.auth_forms.LogInForm" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>LogInForm</strong> is a django form that handles user login process. It is
+used for displaying user login input fields as well as processing the
+login process once it receives the neccessary information from user.</p>
+<dl class="attribute">
+<dt id="user_auth.auth_forms.LogInForm.base_fields">
+<code class="descname">base_fields</code><em class="property"> = OrderedDict([('user_name', &lt;django.forms.fields.CharField object at 0x10c8ebe50&gt;), ('password', &lt;django.forms.fields.CharField object at 0x10c8ebf50&gt;)])</em><a class="headerlink" href="#user_auth.auth_forms.LogInForm.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="user_auth.auth_forms.LogInForm.declared_fields">
+<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('user_name', &lt;django.forms.fields.CharField object at 0x10c8ebe50&gt;), ('password', &lt;django.forms.fields.CharField object at 0x10c8ebf50&gt;)])</em><a class="headerlink" href="#user_auth.auth_forms.LogInForm.declared_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="user_auth.auth_forms.LogInForm.login_process">
+<code class="descname">login_process</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/auth_forms.html#LogInForm.login_process"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.auth_forms.LogInForm.login_process" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function is responsible for log the user in into the site.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="user_auth.auth_forms.LogInForm.media">
+<code class="descname">media</code><a class="headerlink" href="#user_auth.auth_forms.LogInForm.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="user_auth.auth_forms.RegisterForm">
+<em class="property">class </em><code class="descclassname">user_auth.auth_forms.</code><code class="descname">RegisterForm</code><span class="sig-paren">(</span><em>data=None</em>, <em>files=None</em>, <em>auto_id=u'id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/auth_forms.html#RegisterForm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.auth_forms.RegisterForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>RegisterForm is a django form that is responsible for processing the 
+user register information.</p>
+<dl class="attribute">
+<dt id="user_auth.auth_forms.RegisterForm.base_fields">
+<code class="descname">base_fields</code><em class="property"> = OrderedDict([('user_name', &lt;django.forms.fields.CharField object at 0x10c823e50&gt;), ('password', &lt;django.forms.fields.CharField object at 0x10c8ebb50&gt;), ('first_name', &lt;django.forms.fields.CharField object at 0x10c8ebbd0&gt;), ('last_name', &lt;django.forms.fields.CharField object at 0x10c8ebc90&gt;), ('email_address', &lt;django.forms.fields.EmailField object at 0x10c8ebd50&gt;)])</em><a class="headerlink" href="#user_auth.auth_forms.RegisterForm.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="user_auth.auth_forms.RegisterForm.declared_fields">
+<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('user_name', &lt;django.forms.fields.CharField object at 0x10c823e50&gt;), ('password', &lt;django.forms.fields.CharField object at 0x10c8ebb50&gt;), ('first_name', &lt;django.forms.fields.CharField object at 0x10c8ebbd0&gt;), ('last_name', &lt;django.forms.fields.CharField object at 0x10c8ebc90&gt;), ('email_address', &lt;django.forms.fields.EmailField object at 0x10c8ebd50&gt;)])</em><a class="headerlink" href="#user_auth.auth_forms.RegisterForm.declared_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="user_auth.auth_forms.RegisterForm.media">
+<code class="descname">media</code><a class="headerlink" href="#user_auth.auth_forms.RegisterForm.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="user_auth.auth_forms.RegisterForm.register_form">
+<code class="descname">register_form</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/auth_forms.html#RegisterForm.register_form"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.auth_forms.RegisterForm.register_form" title="Permalink to this definition">¶</a></dt>
+<dd><p>This memeber function <strong>register_form()</strong> registers the user info received
+from register page. It tries to reject if the username is already exists.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-user_auth.tests">
+<span id="tests"></span><h1>Tests<a class="headerlink" href="#module-user_auth.tests" title="Permalink to this headline">¶</a></h1>
+<p>Unit test for <strong>user_auth</strong> django application. This test module contains
+the unit tests, the integration tests, and acceptance tests.</p>
+<dl class="class">
+<dt id="user_auth.tests.user_authTest">
+<em class="property">class </em><code class="descclassname">user_auth.tests.</code><code class="descname">user_authTest</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/tests.html#user_authTest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="user_auth.tests.user_authTest.setUp">
+<code class="descname">setUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/tests.html#user_authTest.setUp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.setUp" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>setUp</strong> method sets up all neccessary modules. djanfo.TestCase
+inherits unittest so it follows same syntax
+that the unittest libary use.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="user_auth.tests.user_authTest.tearDown">
+<code class="descname">tearDown</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/tests.html#user_authTest.tearDown"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.tearDown" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>teatDown</strong> method removes all the changes that the test cases made for our system. This will be executed
+each time that the test case runs.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="user_auth.tests.user_authTest.test_LogInForm_get">
+<code class="descname">test_LogInForm_get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/tests.html#user_authTest.test_LogInForm_get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_LogInForm_get" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>test_loginForm()</strong> checks if the LogInForm is instantiated when an user access to login page.
+This test should be considered as different test with <strong>test_login_status_code()</strong> since this function just
+checks if the httpresponse returns the status_code 200.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="user_auth.tests.user_authTest.test_LogInForm_post">
+<code class="descname">test_LogInForm_post</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/tests.html#user_authTest.test_LogInForm_post"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_LogInForm_post" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>test_LogInForm_post()</strong> tests if the LogINForm is properly instantiated with POST data.
+If the post data looks like {&#8216;user_name&#8217;:&#8217;test_user&#8217;, &#8216;password&#8217;:&#8217;password&#8217;}, then the LogInForm
+must be called with the argument <strong>QueryDict(&#8216;user_name=test_user&amp;password=password&#8217;)</strong>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="user_auth.tests.user_authTest.test_RegisterForm_get">
+<code class="descname">test_RegisterForm_get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/tests.html#user_authTest.test_RegisterForm_get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_RegisterForm_get" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>test_RegisterForm()</strong> checks when request.method to <strong>user_auth.views.register()</strong> is
+GET, the RegisterForm is properly instantiated.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="user_auth.tests.user_authTest.test_RegisterForm_invalid">
+<code class="descname">test_RegisterForm_invalid</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/tests.html#user_authTest.test_RegisterForm_invalid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_RegisterForm_invalid" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>test_RegisterForm_validation()</strong> tests if it raise exception when the form is not valid.
+The attributes user_name and password are required. So if the registering user does not pass
+these two information, the form is not valid.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="user_auth.tests.user_authTest.test_RegisterForm_post">
+<code class="descname">test_RegisterForm_post</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/tests.html#user_authTest.test_RegisterForm_post"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_RegisterForm_post" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>test_RegisterForm()</strong> checks when request.method to <strong>user_auth.views.register()</strong> is
+POST, the RegisterForm is properly instantiated with appropriate data. This test only
+checks if the RegisterForm is called with the POST data passed into register().</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="user_auth.tests.user_authTest.test_edit_EditForm_get">
+<code class="descname">test_edit_EditForm_get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/tests.html#user_authTest.test_edit_EditForm_get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_edit_EditForm_get" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>test_edit_EditForm_get()</strong> tests if the EditForm is properly instantiated when
+request.method is GET method.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="user_auth.tests.user_authTest.test_edit_status_code">
+<code class="descname">test_edit_status_code</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/tests.html#user_authTest.test_edit_status_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_edit_status_code" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>test_edit_status_code()</strong> checks if a user access to the edit page, the status_code equals to 200.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="user_auth.tests.user_authTest.test_login_status_code">
+<code class="descname">test_login_status_code</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/tests.html#user_authTest.test_login_status_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_login_status_code" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>test_login_status_code()</strong> checks if a user access to the login page, the status_code
+is 200.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="user_auth.tests.user_authTest.test_login_user_invalid_username">
+<code class="descname">test_login_user_invalid_username</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/tests.html#user_authTest.test_login_user_invalid_username"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_login_user_invalid_username" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>test_login_user_invalid_username()</strong> tests if an user tries to login with invalid username such as
+non-exist username.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="user_auth.tests.user_authTest.test_models_get_createdhunts">
+<code class="descname">test_models_get_createdhunts</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/tests.html#user_authTest.test_models_get_createdhunts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_models_get_createdhunts" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>test_models_get_huntprog()</strong> tests that a list of titles is created from hunts table</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="user_auth.tests.user_authTest.test_models_get_expertise_lvl_rank">
+<code class="descname">test_models_get_expertise_lvl_rank</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/tests.html#user_authTest.test_models_get_expertise_lvl_rank"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_models_get_expertise_lvl_rank" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>test_models_get_expertise_lvl_rank()</strong> tests that list of the correct form is returned</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="user_auth.tests.user_authTest.test_models_get_huntprog">
+<code class="descname">test_models_get_huntprog</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/tests.html#user_authTest.test_models_get_huntprog"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_models_get_huntprog" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>test_models_get_huntprog()</strong> tests that a list of lists is created from HuntsProg table</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="user_auth.tests.user_authTest.test_profile_not_logged_in">
+<code class="descname">test_profile_not_logged_in</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/tests.html#user_authTest.test_profile_not_logged_in"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_profile_not_logged_in" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>test_profile_not_logged_in()</strong> tests the status code of http response when the user
+who tries to access the profile page is not logged in. The status code should not be 200.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="user_auth.tests.user_authTest.test_profile_status_code">
+<code class="descname">test_profile_status_code</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/tests.html#user_authTest.test_profile_status_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_profile_status_code" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>test_profile_status_code()</strong> checks if a user access to the profile page, the status_code
+is 200.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="user_auth.tests.user_authTest.test_register_notUnique_username">
+<code class="descname">test_register_notUnique_username</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/tests.html#user_authTest.test_register_notUnique_username"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_register_notUnique_username" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>test_register_notUnique_username()</strong> tests if a user trying to register with an username
+that is already exists in the database. This test should be failed since our website not allow
+two users with same username.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="user_auth.tests.user_authTest.test_register_status_code">
+<code class="descname">test_register_status_code</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/tests.html#user_authTest.test_register_status_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_register_status_code" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>test_register_status_code()</strong> checks if a user access to the register page, the status_code
+is 200.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="user_auth.tests.user_authTest.test_unit_auth_form_with_invalid_user">
+<code class="descname">test_unit_auth_form_with_invalid_user</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/tests.html#user_authTest.test_unit_auth_form_with_invalid_user"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_unit_auth_form_with_invalid_user" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is the unit test for user_auth.auth_forms. It tests if 
+it operates correctly with invalid request which will be 
+trying to register with username that is already in our 
+database.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="user_auth.tests.user_authTest.test_unit_editform">
+<code class="descname">test_unit_editform</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/tests.html#user_authTest.test_unit_editform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_unit_editform" title="Permalink to this definition">¶</a></dt>
+<dd><p>This test case is for EditForm in auth_forms and test if
+it can correctly edit user information as the user intended.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="user_auth.tests.user_authTest.test_unit_login_user_with_post">
+<code class="descname">test_unit_login_user_with_post</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/tests.html#user_authTest.test_unit_login_user_with_post"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_unit_login_user_with_post" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function tests <strong>login_user()</strong> with post data.
+We need to mock</p>
+<blockquote>
+<div><ol class="arabic">
+<li><p class="first">request</p>
+</li>
+<li><dl class="first docutils">
+<dt>LogInForm</dt>
+<dd><ul class="first last simple">
+<li>is_valid</li>
+<li>cleaned_data</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>authenticate</dt>
+<dd><ul class="first last simple">
+<li>is_active</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">render_to_response</p>
+</li>
+</ol>
+</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="user_auth.tests.user_authTest.test_unit_login_username_notExist">
+<code class="descname">test_unit_login_username_notExist</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/tests.html#user_authTest.test_unit_login_username_notExist"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_unit_login_username_notExist" title="Permalink to this definition">¶</a></dt>
+<dd><p>This test case is for when a user tries to login with username
+that does not exists. Then, LogInForm.login_process should return
+None.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="user_auth.tests.user_authTest.test_unit_loginform">
+<code class="descname">test_unit_loginform</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/tests.html#user_authTest.test_unit_loginform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_unit_loginform" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is unit test for LogInForm.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="user_auth.tests.user_authTest.test_unit_logout_user">
+<code class="descname">test_unit_logout_user</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/tests.html#user_authTest.test_unit_logout_user"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_unit_logout_user" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function tests <strong>logout_user()</strong> function.
+We need to mock</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>request</li>
+<li>render_to_response</li>
+<li>logout</li>
+</ol>
+</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="user_auth.tests.user_authTest.test_unit_register_with_POST">
+<code class="descname">test_unit_register_with_POST</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/tests.html#user_authTest.test_unit_register_with_POST"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_unit_register_with_POST" title="Permalink to this definition">¶</a></dt>
+<dd><p>We need to mock several things to make this unittest.</p>
+<blockquote>
+<div><ol class="arabic">
+<li><p class="first">request</p>
+</li>
+<li><dl class="first docutils">
+<dt>register_form() <span class="classifier-delimiter">:</span> <span class="classifier">For this, make seperate test.</span></dt>
+<dd><ul class="first last simple">
+<li>request has <strong>method</strong> attribute that specifies the method of the form.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Need to mock RegisterForm because we are not testing the register function.</dt>
+<dd><ul class="first last simple">
+<li>RegisterForm instance should have is_valid() method that returns boolean.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">We need to mock HttpResponseRedirect.</p>
+</li>
+</ol>
+</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="user_auth.tests.user_authTest.test_unit_register_with_get">
+<code class="descname">test_unit_register_with_get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/tests.html#user_authTest.test_unit_register_with_get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_unit_register_with_get" title="Permalink to this definition">¶</a></dt>
+<dd><p>This test function tests if <strong>register()</strong> is called with get method.
+We need to mock</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>request</li>
+<li>RegisterForm</li>
+<li>render_to_response</li>
+</ol>
+</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="user_auth.tests.user_authTest.test_unit_register_with_invalidPOST">
+<code class="descname">test_unit_register_with_invalidPOST</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/user_auth/tests.html#user_authTest.test_unit_register_with_invalidPOST"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#user_auth.tests.user_authTest.test_unit_register_with_invalidPOST" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function tests the <strong>register()</strong> function with invalid post data.
+we should mock</p>
+<blockquote>
+<div><ol class="arabic">
+<li><p class="first">request</p>
+</li>
+<li><dl class="first docutils">
+<dt>RegisterForm</dt>
+<dd><ul class="first last simple">
+<li>is_valid()</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">args</p>
+</li>
+</ol>
+</div></blockquote>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Model</a></li>
+<li><a class="reference internal" href="#views">Views</a></li>
+<li><a class="reference internal" href="#module-user_auth.auth_forms">Forms</a></li>
+<li><a class="reference internal" href="#module-user_auth.tests">Tests</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/user_auth/doc_user_auth.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, WebDev.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.3</a>
+      
+      |
+      <a href="../_sources/user_auth/doc_user_auth.txt"
+          rel="nofollow">Page source</a></li>
+    </div>
+
+    
+
+    
+  </body>
+</html>

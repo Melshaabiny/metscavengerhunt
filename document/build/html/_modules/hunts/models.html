@@ -1,0 +1,240 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>hunts.models &mdash; MetDoc 0.0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="MetDoc 0.0.1 documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">MetDoc 0.0.1 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for hunts.models</h1><div class="highlight"><pre>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The models for Hunts and Items and their relationship,</span>
+<span class="sd">        add functions that set each Hunt&#39;s data and the data of Items that belong to it.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
+
+<span class="k">global</span> <span class="n">TEMP</span>
+<div class="viewcode-block" id="Hunts"><a class="viewcode-back" href="../../hunts.html#hunts.models.Hunts">[docs]</a><span class="k">class</span> <span class="nc">Hunts</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;        </span>
+<span class="sd">        This database table contains all the scavenger hunts,</span>
+<span class="sd">        each hunt has a unique id and title, and each belongs to </span>
+<span class="sd">        a specific category and have a starting location</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c"># Unique identification number for each hunt</span>
+    <span class="n">ID</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">unique</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+    <span class="c"># Title of the Hunt. For now, same as category.</span>
+    <span class="n">Title</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+    <span class="c"># Category of the Hunt</span>
+    <span class="n">Category</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+    <span class="c"># Starting point of each Scavenger Hunt</span>
+    <span class="n">Start</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">400</span><span class="p">)</span>
+    <span class="c">#CreatedBy = models.CharField(max_length = 25, default = &#39;MetHunt Dev Team&#39;)</span>
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">Title</span>
+</div>
+<div class="viewcode-block" id="Items"><a class="viewcode-back" href="../../hunts.html#hunts.models.Items">[docs]</a><span class="k">class</span> <span class="nc">Items</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The Items database table contains all the items of the Met (to be completed)</span>
+<span class="sd">        each item has a unique id, belongs to a specific category,</span>
+<span class="sd">        and is a part of one or more hunts</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c"># Official Met issued ID for each item</span>
+    <span class="n">ID</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">unique</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="c"># Item category is a subset of the Hunt category according to our design</span>
+    <span class="c"># e.g. Hunt category &quot;Ancient Art&quot; contains items from &quot;Egyptian Art&quot;,</span>
+    <span class="c"># &quot;Greek and Roman Art&quot;, and &quot;Ancient Near Eastern Art&quot;</span>
+    <span class="n">Category</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+    <span class="c"># Type      = models.CharField(max_length = 200)</span>
+    <span class="n">partof</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ManyToManyField</span><span class="p">(</span><span class="n">Hunts</span><span class="p">,</span> <span class="n">through</span><span class="o">=</span><span class="s">&#39;Has&#39;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">ID</span>
+</div>
+<div class="viewcode-block" id="Has"><a class="viewcode-back" href="../../hunts.html#hunts.models.Has">[docs]</a><span class="k">class</span> <span class="nc">Has</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        I intermediate model that links Hunts to Items, each hunt has one or more items,</span>
+<span class="sd">        and each item belongs to one or more hunts.</span>
+<span class="sd">        In every hunt there is a clue that leads to the item and every item has an order number</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">hunt</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">Hunts</span><span class="p">)</span>
+    <span class="n">item</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">Items</span><span class="p">)</span>
+    <span class="n">number</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">()</span>
+    <span class="n">clue</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">250</span><span class="p">)</span>
+    <span class="n">hint</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s">&quot;No hint available&quot;</span><span class="p">)</span>
+    <span class="n">hintcrop</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s">&quot;No hintcrop available&quot;</span><span class="p">)</span>
+    <span class="n">image</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">250</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s">&quot;No image available&quot;</span><span class="p">)</span>
+    <span class="n">fact</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">250</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s">&quot;No fact available&quot;</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="HuntProg"><a class="viewcode-back" href="../../hunts.html#hunts.models.HuntProg">[docs]</a><span class="k">class</span> <span class="nc">HuntProg</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Intermediate model that is linked to hunts and has to keep track of progress for the users</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">hunt</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">Hunts</span><span class="p">)</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+    <span class="n">cur_item_num</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">(</span><span class="n">default</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">completed</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">(</span><span class="n">default</span> <span class="o">=</span> <span class="bp">False</span><span class="p">)</span>
+
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">unique_together</span> <span class="o">=</span> <span class="p">((</span><span class="s">&quot;hunt&quot;</span><span class="p">,</span><span class="s">&quot;user&quot;</span><span class="p">),)</span>
+</div>
+<div class="viewcode-block" id="set_HuntsData"><a class="viewcode-back" href="../../hunts.html#hunts.models.set_HuntsData">[docs]</a><span class="k">def</span> <span class="nf">set_HuntsData</span><span class="p">(</span><span class="n">id_hunt</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Based on the hunt id, set_HuntsData returns a python dictionary</span>
+<span class="sd">        containing all the Hunt&#39;s title and starting location</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">hunt</span> <span class="o">=</span> <span class="n">Hunts</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">ID</span><span class="o">=</span><span class="n">id_hunt</span><span class="p">)</span>
+    <span class="n">hunt_title</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">hunt</span><span class="o">.</span><span class="n">Title</span><span class="p">)</span>
+    <span class="n">hunt_start</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">hunt</span><span class="o">.</span><span class="n">Start</span><span class="p">)</span>
+    <span class="n">hunt_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;hunt title&#39;</span><span class="p">:</span> <span class="n">hunt_title</span><span class="p">,</span> <span class="s">&#39;hunt start&#39;</span><span class="p">:</span> <span class="n">hunt_start</span><span class="p">}</span>
+    <span class="k">return</span> <span class="n">hunt_dict</span>
+</div>
+<div class="viewcode-block" id="set_ItemsData"><a class="viewcode-back" href="../../hunts.html#hunts.models.set_ItemsData">[docs]</a><span class="k">def</span> <span class="nf">set_ItemsData</span><span class="p">(</span><span class="n">id_hunt</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param: IntegerId</span>
+<span class="sd">        :rtype: pythonList        </span>
+<span class="sd">        Based on the hunt id, set_ItemsData creates a list of tuples</span>
+<span class="sd">        containing all the items in that hunt and their respective database</span>
+<span class="sd">        returns TEMP[(id, clue, number), ...]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">hunt_items</span> <span class="o">=</span> <span class="n">Has</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">hunt_id</span><span class="o">=</span><span class="n">id_hunt</span><span class="p">)</span>
+    <span class="n">tuples</span> <span class="o">=</span> <span class="p">()</span>
+    <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">hunt_items</span><span class="o">.</span><span class="n">count</span><span class="p">()):</span>
+        <span class="n">item_id</span> <span class="o">=</span> <span class="n">hunt_items</span><span class="p">[</span><span class="n">obj</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="o">.</span><span class="n">ID</span>
+        <span class="n">item_clue</span> <span class="o">=</span> <span class="n">hunt_items</span><span class="p">[</span><span class="n">obj</span><span class="p">]</span><span class="o">.</span><span class="n">clue</span>
+        <span class="n">item_number</span> <span class="o">=</span> <span class="n">hunt_items</span><span class="p">[</span><span class="n">obj</span><span class="p">]</span><span class="o">.</span><span class="n">number</span>
+        <span class="n">item_hint</span> <span class="o">=</span> <span class="n">hunt_items</span><span class="p">[</span><span class="n">obj</span><span class="p">]</span><span class="o">.</span><span class="n">hint</span>
+        <span class="n">item_hint_crop</span> <span class="o">=</span> <span class="n">hunt_items</span><span class="p">[</span><span class="n">obj</span><span class="p">]</span><span class="o">.</span><span class="n">hintcrop</span>
+        <span class="n">item_image</span> <span class="o">=</span> <span class="n">hunt_items</span><span class="p">[</span><span class="n">obj</span><span class="p">]</span><span class="o">.</span><span class="n">image</span>
+        <span class="n">item_fact</span> <span class="o">=</span> <span class="n">hunt_items</span><span class="p">[</span><span class="n">obj</span><span class="p">]</span><span class="o">.</span><span class="n">fact</span>
+        <span class="n">tuples</span> <span class="o">=</span> <span class="n">tuples</span> <span class="o">+</span> <span class="p">((</span><span class="n">item_id</span><span class="p">,</span> <span class="n">item_clue</span><span class="p">,</span> <span class="n">item_number</span><span class="p">,</span> <span class="n">item_hint</span><span class="p">,</span> <span class="n">item_image</span><span class="p">,</span> <span class="n">item_fact</span><span class="p">,</span> <span class="n">item_hint_crop</span><span class="p">),</span> <span class="p">)</span>
+    <span class="k">global</span> <span class="n">TEMP</span>
+    <span class="n">TEMP</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">tuples</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">element</span><span class="p">:</span> <span class="n">element</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">TEMP</span>
+</div>
+<div class="viewcode-block" id="pop_item"><a class="viewcode-back" href="../../hunts.html#hunts.models.pop_item">[docs]</a><span class="k">def</span> <span class="nf">pop_item</span><span class="p">(</span><span class="n">lst</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param: pyhtonList</span>
+<span class="sd">        :rtype: pythonList        </span>
+<span class="sd">        Pops an item from the global list of items,</span>
+<span class="sd">        once a user moves on the next item in the hunt.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">del</span> <span class="n">lst</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">lst</span>
+</div>
+<div class="viewcode-block" id="verify_id"><a class="viewcode-back" href="../../hunts.html#hunts.models.verify_id">[docs]</a><span class="k">def</span> <span class="nf">verify_id</span><span class="p">(</span><span class="n">usr_input</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param: pythonString</span>
+<span class="sd">        :rtype: Boolean        </span>
+<span class="sd">        Checks the user input against the item id and returns a boolean result.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">global</span> <span class="n">TEMP</span>
+    <span class="k">if</span> <span class="n">usr_input</span> <span class="o">==</span> <span class="n">TEMP</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="bp">True</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">False</span>
+</div>
+<div class="viewcode-block" id="init_huntprog"><a class="viewcode-back" href="../../hunts.html#hunts.models.init_huntprog">[docs]</a><span class="k">def</span> <span class="nf">init_huntprog</span><span class="p">(</span><span class="n">h_id</span><span class="p">,</span> <span class="n">uname</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param: IntegerId, pythonString</span>
+<span class="sd">        :rtype: None     </span>
+<span class="sd">        Records the user&#39;s hunt progress and saves it in the database.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">e_hunt</span> <span class="o">=</span> <span class="n">Hunts</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">ID</span> <span class="o">=</span> <span class="n">h_id</span><span class="p">)</span>
+    <span class="n">hprog_check</span> <span class="o">=</span> <span class="n">HuntProg</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">hunt_id</span> <span class="o">=</span> <span class="n">h_id</span><span class="p">,</span> <span class="n">user</span> <span class="o">=</span> <span class="n">uname</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">hprog_check</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">hprog</span> <span class="o">=</span> <span class="n">HuntProg</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">hunt</span> <span class="o">=</span> <span class="n">e_hunt</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">user</span> <span class="o">=</span> <span class="n">uname</span><span class="p">)</span>
+        <span class="n">hprog</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="update_cur_item"><a class="viewcode-back" href="../../hunts.html#hunts.models.update_cur_item">[docs]</a><span class="k">def</span> <span class="nf">update_cur_item</span><span class="p">(</span><span class="n">h_id</span><span class="p">,</span> <span class="n">uname</span><span class="p">,</span> <span class="n">newnum</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param: IntegerId, pythonString, IntegerNum     </span>
+<span class="sd">        Updates the current item (where the user left of in a hunt).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">hprog</span> <span class="o">=</span> <span class="n">HuntProg</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">hunt_id</span> <span class="o">=</span> <span class="n">h_id</span><span class="p">,</span> <span class="n">user</span> <span class="o">=</span> <span class="n">uname</span><span class="p">)</span>
+    <span class="n">hprog</span><span class="o">.</span><span class="n">cur_item_num</span> <span class="o">=</span> <span class="n">newnum</span>
+    <span class="n">hprog</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+    </div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, WebDev.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.3</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>
