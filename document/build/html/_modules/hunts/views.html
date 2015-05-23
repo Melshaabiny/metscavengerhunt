@@ -64,7 +64,7 @@
 <span class="k">global</span> <span class="n">TEMP</span>
 <span class="k">global</span> <span class="n">glob_hunt_id</span>
 
-<div class="viewcode-block" id="render_hunt"><a class="viewcode-back" href="../../hunts.html#hunts.views.render_hunt">[docs]</a><span class="k">def</span> <span class="nf">render_hunt</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">given_id</span><span class="p">):</span>
+<div class="viewcode-block" id="render_hunt"><a class="viewcode-back" href="../../hunts/doc_hunts.html#hunts.views.render_hunt">[docs]</a><span class="k">def</span> <span class="nf">render_hunt</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">given_id</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        :param: HttpRequest, interger id</span>
 <span class="sd">        :rtype: HttpResponse</span>
@@ -84,7 +84,7 @@
     <span class="n">init_huntprog</span><span class="p">(</span><span class="n">given_id</span><span class="p">,</span> <span class="n">uname</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">render_to_response</span><span class="p">(</span><span class="s">&quot;hunts/hunt.html&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s">&quot;title&quot;</span><span class="p">:</span> <span class="n">hunt_title</span><span class="p">,</span> <span class="s">&quot;start_pt&quot;</span><span class="p">:</span> <span class="n">hunt_start</span><span class="p">,</span> <span class="s">&quot;user&quot;</span><span class="p">:</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">})</span>
 </div>
-<span class="k">def</span> <span class="nf">next_proc</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+<div class="viewcode-block" id="next_proc"><a class="viewcode-back" href="../../hunts/doc_hunts.html#hunts.views.next_proc">[docs]</a><span class="k">def</span> <span class="nf">next_proc</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        :param: HttpRequest</span>
 <span class="sd">        :rtype: HttpResponse    </span>
@@ -97,8 +97,8 @@
         <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s">&#39;rend_clue&#39;</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s">&#39;rend_congrats&#39;</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">render_clue</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="render_clue"><a class="viewcode-back" href="../../hunts/doc_hunts.html#hunts.views.render_clue">[docs]</a><span class="k">def</span> <span class="nf">render_clue</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        :param: HttpRequest</span>
 <span class="sd">        :rtype: HttpResponse        </span>
@@ -106,8 +106,8 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">global</span> <span class="n">TEMP</span>
     <span class="k">return</span> <span class="n">render_to_response</span><span class="p">(</span><span class="s">&quot;hunts/clue.html&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s">&quot;clue_text&quot;</span><span class="p">:</span><span class="n">TEMP</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]})</span>
-
-<span class="k">def</span> <span class="nf">render_result</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="render_result"><a class="viewcode-back" href="../../hunts/doc_hunts.html#hunts.views.render_result">[docs]</a><span class="k">def</span> <span class="nf">render_result</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        :param: HttpRequest</span>
 <span class="sd">        :rtype: HttpResponse</span>
@@ -126,8 +126,8 @@
                 <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s">&#39;rend_correct&#39;</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s">&#39;rend_incorrect&#39;</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">render_hint</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="render_hint"><a class="viewcode-back" href="../../hunts/doc_hunts.html#hunts.views.render_hint">[docs]</a><span class="k">def</span> <span class="nf">render_hint</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        :param: HttpRequest</span>
 <span class="sd">        :rtype: HttpResponse</span>
@@ -135,8 +135,8 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">global</span> <span class="n">TEMP</span>
     <span class="k">return</span> <span class="n">render_to_response</span><span class="p">(</span><span class="s">&quot;hunts/hint.html&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s">&quot;hint_text&quot;</span><span class="p">:</span><span class="n">TEMP</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">3</span><span class="p">],</span> <span class="s">&quot;hint_crop&quot;</span><span class="p">:</span><span class="n">TEMP</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">6</span><span class="p">]})</span>
-
-<span class="k">def</span> <span class="nf">render_verify</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="render_verify"><a class="viewcode-back" href="../../hunts/doc_hunts.html#hunts.views.render_verify">[docs]</a><span class="k">def</span> <span class="nf">render_verify</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        :param: HttpRequest</span>
 <span class="sd">        :rtype: HttpResponse</span>
@@ -145,8 +145,8 @@
     <span class="n">c_srf</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="n">c_srf</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">csrf</span><span class="p">(</span><span class="n">request</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">render_to_response</span><span class="p">(</span><span class="s">&quot;hunts/verify.html&quot;</span><span class="p">,</span> <span class="n">c_srf</span><span class="p">,</span> <span class="p">{})</span>
-
-<span class="k">def</span> <span class="nf">render_correct</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="render_correct"><a class="viewcode-back" href="../../hunts/doc_hunts.html#hunts.views.render_correct">[docs]</a><span class="k">def</span> <span class="nf">render_correct</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        :param: HttpRequest</span>
 <span class="sd">        :rtype: HttpResponse</span>
@@ -158,16 +158,16 @@
     <span class="n">uname</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">username</span>
     <span class="n">update_cur_item</span><span class="p">(</span><span class="n">glob_hunt_id</span><span class="p">,</span> <span class="n">uname</span><span class="p">,</span> <span class="n">num</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">render_to_response</span><span class="p">(</span><span class="s">&quot;hunts/correct.html&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s">&quot;url&quot;</span><span class="p">:</span><span class="n">TEMP</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">4</span><span class="p">],</span> <span class="s">&quot;fact&quot;</span><span class="p">:</span><span class="n">TEMP</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">5</span><span class="p">]})</span>
-
-<span class="k">def</span> <span class="nf">render_incorrect</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="render_incorrect"><a class="viewcode-back" href="../../hunts/doc_hunts.html#hunts.views.render_incorrect">[docs]</a><span class="k">def</span> <span class="nf">render_incorrect</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        :param: HttpRequest</span>
 <span class="sd">        :rtype: HttpResponse        </span>
 <span class="sd">        Render incorrect answer&#39;s page allwoing the user to retry.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">render_to_response</span><span class="p">(</span><span class="s">&quot;hunts/incorrect.html&quot;</span><span class="p">,</span> <span class="p">{})</span>
-
-<span class="k">def</span> <span class="nf">render_congrats</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="render_congrats"><a class="viewcode-back" href="../../hunts/doc_hunts.html#hunts.views.render_congrats">[docs]</a><span class="k">def</span> <span class="nf">render_congrats</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        :param: HttpRequest</span>
 <span class="sd">        :rtype: HttpResponse</span>
@@ -175,8 +175,8 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">render_to_response</span><span class="p">(</span><span class="s">&quot;hunts/congrats.html&quot;</span><span class="p">,</span> <span class="p">{})</span>
 
-
-<span class="k">def</span> <span class="nf">hunt_detail</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">category</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="hunt_detail"><a class="viewcode-back" href="../../hunts/doc_hunts.html#hunts.views.hunt_detail">[docs]</a><span class="k">def</span> <span class="nf">hunt_detail</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">category</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        :param: HttpRequest, String Category</span>
 <span class="sd">        :rtype: HttpResponse     </span>
@@ -198,7 +198,7 @@
     <span class="c"># except:</span>
     <span class="c">#     args = {}</span>
 
-    <span class="k">return</span> <span class="n">render_to_response</span><span class="p">(</span><span class="s">&#39;hunts/hunt_detail.html&#39;</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">render_to_response</span><span class="p">(</span><span class="s">&#39;hunts/hunt_detail.html&#39;</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span></div>
 </pre></div>
 
           </div>
