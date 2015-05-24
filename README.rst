@@ -32,17 +32,9 @@ Directory Structure
 
 This is our project directory structure. The directory **document -> build -> html -> index.html** is our project documentation, and **met_hunt** is our django project. The django application **cr_hunt** is our create hunt app that lets user creates his/her own hunt, **forum** app is our Scavenger Hunt forum that all users can ask their question. **hunts** app is is responsible for our hunt game, and **user_auth** is for our site authentication. **tutorial_hunt** is our tutorial app for the hunt.
 
-|-- document
-|   |-- build
-|   `-- source
-`-- met_hunt
-    |-- cr_hunt
-    |-- forum
-    |-- home
-    |-- hunts
-    |-- met_hunt
-    |-- tutorial_hunt
-    `-- user_auth
+.. image:: dir.jpg
+
+
 
 Test File
 ---------
