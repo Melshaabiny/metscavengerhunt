@@ -88,10 +88,8 @@ We hope that in the future after our app gains a little attention that the Met w
 
    - Initial home page layout
    - Tried out competitive app so that we can add feautures that the competitive app does not have.
-   - Wrote down Medieval Hunt
-   - Cropped images for the hunt
-   - Google map (not complete)
-   - Tutorial Hunt
+   - Wrote down Medieval Hunt, cropped images for the hunt
+   - Google map API(not complete)
 
 Some Improvements that have to be made
 --------------------------------------
@@ -100,7 +98,7 @@ Some Improvements that have to be made
 2. More hunts should be added to the site.
 3. The design of the hunt app will be modified.
 
-Screen Shots
+Screen Shots (Home page)
 ------------
 
 .. image:: img/home1.png
@@ -109,9 +107,15 @@ Screen Shots
 
 .. image:: img/home3.png
 
+Screen Shots (Profile page)
+---------------------------
+
 .. image:: img/profile1.png
 
 .. image:: img/profile2.png
+
+Screen Shots (Hunt)
+-------------------
 
 .. image:: img/hunt1.png
 
