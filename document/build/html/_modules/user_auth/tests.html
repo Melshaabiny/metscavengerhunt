@@ -1,0 +1,651 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>user_auth.tests &mdash; MetDoc 0.0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="MetDoc 0.0.1 documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">MetDoc 0.0.1 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for user_auth.tests</h1><div class="highlight"><pre>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Unit test for **user_auth** django application. This test module contains</span>
+<span class="sd">the unit tests, the integration tests, and acceptance tests. </span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">django.test</span> <span class="kn">import</span> <span class="n">Client</span>
+<span class="kn">from</span> <span class="nn">django.contrib.auth.models</span> <span class="kn">import</span> <span class="n">User</span>
+<span class="kn">from</span> <span class="nn">mock</span> <span class="kn">import</span> <span class="n">MagicMock</span>
+<span class="kn">from</span> <span class="nn">mock</span> <span class="kn">import</span> <span class="n">Mock</span>
+<span class="kn">from</span> <span class="nn">mock</span> <span class="kn">import</span> <span class="n">patch</span>
+<span class="kn">from</span> <span class="nn">user_auth.views</span> <span class="kn">import</span> <span class="n">login_user</span><span class="p">,</span> <span class="n">logout_user</span><span class="p">,</span> <span class="n">register</span>
+<span class="kn">from</span> <span class="nn">user_auth.models</span> <span class="kn">import</span> <span class="n">UserInfo</span>
+<span class="kn">from</span> <span class="nn">user_auth.auth_forms</span> <span class="kn">import</span> <span class="n">RegisterForm</span><span class="p">,</span> <span class="n">LogInForm</span><span class="p">,</span> <span class="n">EditForm</span>
+<span class="kn">from</span> <span class="nn">django.http</span> <span class="kn">import</span> <span class="n">QueryDict</span>
+<span class="kn">from</span> <span class="nn">django.utils.datastructures</span> <span class="kn">import</span> <span class="n">MultiValueDict</span>
+<span class="kn">import</span> <span class="nn">unittest</span>
+<span class="kn">from</span> <span class="nn">django.core.files.uploadedfile</span> <span class="kn">import</span> <span class="n">SimpleUploadedFile</span>
+
+
+<span class="c"># Create your tests here.</span>
+<div class="viewcode-block" id="user_authTest"><a class="viewcode-back" href="../../user_auth/doc_user_auth.html#user_auth.tests.user_authTest">[docs]</a><span class="k">class</span> <span class="nc">user_authTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+<div class="viewcode-block" id="user_authTest.setUp"><a class="viewcode-back" href="../../user_auth/doc_user_auth.html#user_auth.tests.user_authTest.setUp">[docs]</a>    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        **setUp** method sets up all neccessary modules. djanfo.TestCase</span>
+<span class="sd">        inherits unittest so it follows same syntax</span>
+<span class="sd">        that the unittest libary use.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">()</span>
+</div>
+<div class="viewcode-block" id="user_authTest.tearDown"><a class="viewcode-back" href="../../user_auth/doc_user_auth.html#user_auth.tests.user_authTest.tearDown">[docs]</a>    <span class="k">def</span> <span class="nf">tearDown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        **teatDown** method removes all the changes that the test cases made for our system. This will be executed</span>
+<span class="sd">        each time that the test case runs.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span> <span class="c"># clean up the user database.</span>
+
+
+
+<span class="c">###### Unit tests form user_auth.auth_forms</span>
+<span class="c">#####################################################</span>
+<span class="c">#####################################################</span></div>
+<div class="viewcode-block" id="user_authTest.test_unit_auth_form_with_invalid_user"><a class="viewcode-back" href="../../user_auth/doc_user_auth.html#user_auth.tests.user_authTest.test_unit_auth_form_with_invalid_user">[docs]</a>    <span class="k">def</span> <span class="nf">test_unit_auth_form_with_invalid_user</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This is the unit test for user_auth.auth_forms. It tests if </span>
+<span class="sd">        it operates correctly with invalid request which will be </span>
+<span class="sd">        trying to register with username that is already in our </span>
+<span class="sd">        database.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c"># mock forms.</span>
+        <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s">&#39;user_auth.auth_forms.forms&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">form</span><span class="p">:</span>
+            <span class="n">form</span><span class="o">.</span><span class="n">CharField</span> <span class="o">=</span> <span class="n">MagicMock</span><span class="p">(</span><span class="n">return_value</span><span class="o">=</span><span class="s">&quot;charfield&quot;</span><span class="p">)</span>
+            <span class="n">form</span><span class="o">.</span><span class="n">EmailField</span> <span class="o">=</span> <span class="n">MagicMock</span><span class="p">(</span><span class="n">return_value</span><span class="o">=</span><span class="s">&quot;emailfield&quot;</span><span class="p">)</span>
+            <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s">&#39;user_auth.auth_forms.User&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">user</span><span class="p">:</span>
+                <span class="n">user</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span> <span class="o">=</span> <span class="n">MagicMock</span><span class="p">(</span><span class="n">return_value</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+                <span class="n">user</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create_user</span> <span class="o">=</span> <span class="n">MagicMock</span><span class="p">()</span>
+                <span class="n">user</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create_user</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">MagicMock</span><span class="p">()</span>
+                <span class="n">user</span><span class="o">.</span><span class="n">save</span> <span class="o">=</span> <span class="n">MagicMock</span><span class="p">()</span>
+                <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s">&#39;user_auth.auth_forms.UserInfo&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">user_info</span><span class="p">:</span>
+                    <span class="n">user_info</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span> <span class="o">=</span> <span class="n">MagicMock</span><span class="p">()</span>
+                    <span class="n">user_info</span><span class="o">.</span><span class="n">save</span> <span class="o">=</span> <span class="n">MagicMock</span><span class="p">()</span>
+                    <span class="n">ins</span> <span class="o">=</span> <span class="n">RegisterForm</span><span class="p">()</span>
+                    <span class="n">ins</span><span class="o">.</span><span class="n">cleaned_data</span> <span class="o">=</span> <span class="n">MagicMock</span><span class="p">(</span><span class="n">return_value</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+                    <span class="n">ins</span><span class="o">.</span><span class="n">register_form</span><span class="p">()</span>
+
+                    <span class="c"># asserts</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">user_info</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="o">.</span><span class="n">called</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">user</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">called</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">user</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create_user</span><span class="o">.</span><span class="n">called</span><span class="p">)</span></div>
+<div class="viewcode-block" id="user_authTest.test_unit_loginform"><a class="viewcode-back" href="../../user_auth/doc_user_auth.html#user_auth.tests.user_authTest.test_unit_loginform">[docs]</a>    <span class="k">def</span> <span class="nf">test_unit_loginform</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This is unit test for LogInForm.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s">&#39;user_auth.auth_forms.forms&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">form</span><span class="p">:</span>
+            <span class="n">form</span><span class="o">.</span><span class="n">CharField</span> <span class="o">=</span> <span class="n">MagicMock</span><span class="p">(</span><span class="n">return_value</span><span class="o">=</span><span class="s">&quot;charfiled&quot;</span><span class="p">)</span>
+            <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s">&#39;user_auth.auth_forms.authenticate&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">authenticate</span><span class="p">:</span>
+                <span class="n">ins</span> <span class="o">=</span> <span class="n">LogInForm</span><span class="p">()</span>
+                <span class="n">ins</span><span class="o">.</span><span class="n">cleaned_data</span> <span class="o">=</span> <span class="n">MagicMock</span><span class="p">(</span><span class="n">return_value</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+                <span class="n">authenticate</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">MagicMock</span><span class="p">()</span>
+                <span class="n">authenticate</span><span class="o">.</span><span class="n">return_value</span><span class="o">.</span><span class="n">is_active</span> <span class="o">=</span> <span class="bp">True</span>
+                <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s">&#39;user_auth.auth_forms.login&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">login</span><span class="p">:</span>
+                    <span class="n">login</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="bp">None</span>
+                    <span class="n">request</span> <span class="o">=</span> <span class="n">MagicMock</span><span class="p">()</span>
+                    <span class="n">ins</span><span class="o">.</span><span class="n">login_process</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+
+                    <span class="c"># asserts.</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">login</span><span class="o">.</span><span class="n">called</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">authenticate</span><span class="o">.</span><span class="n">called</span><span class="p">)</span></div>
+<div class="viewcode-block" id="user_authTest.test_unit_login_username_notExist"><a class="viewcode-back" href="../../user_auth/doc_user_auth.html#user_auth.tests.user_authTest.test_unit_login_username_notExist">[docs]</a>    <span class="k">def</span> <span class="nf">test_unit_login_username_notExist</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This test case is for when a user tries to login with username</span>
+<span class="sd">        that does not exists. Then, LogInForm.login_process should return</span>
+<span class="sd">        None.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s">&#39;user_auth.auth_forms.forms&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">forms</span><span class="p">:</span>
+            <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span> <span class="o">=</span> <span class="n">MagicMock</span><span class="p">(</span><span class="n">return_value</span><span class="o">=</span><span class="s">&quot;username&quot;</span><span class="p">)</span>
+            <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span> <span class="o">=</span> <span class="n">MagicMock</span><span class="p">(</span><span class="n">return_value</span><span class="o">=</span><span class="s">&quot;password&quot;</span><span class="p">)</span>
+            <span class="n">ins</span> <span class="o">=</span> <span class="n">LogInForm</span><span class="p">()</span>
+            <span class="n">ins</span><span class="o">.</span><span class="n">cleaned_data</span> <span class="o">=</span> <span class="n">MagicMock</span><span class="p">(</span><span class="n">return_value</span><span class="o">=</span><span class="s">&quot;cleanddata&quot;</span><span class="p">)</span>
+            <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s">&#39;user_auth.auth_forms.authenticate&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">authenticate</span><span class="p">:</span>
+                <span class="n">authenticate</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="bp">None</span>
+                <span class="n">request</span> <span class="o">=</span> <span class="n">MagicMock</span><span class="p">()</span>
+                <span class="n">ret</span> <span class="o">=</span> <span class="n">ins</span><span class="o">.</span><span class="n">login_process</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">authenticate</span><span class="o">.</span><span class="n">called</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="ow">not</span> <span class="n">ret</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="user_authTest.test_unit_editform"><a class="viewcode-back" href="../../user_auth/doc_user_auth.html#user_auth.tests.user_authTest.test_unit_editform">[docs]</a>    <span class="k">def</span> <span class="nf">test_unit_editform</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This test case is for EditForm in auth_forms and test if</span>
+<span class="sd">        it can correctly edit user information as the user intended.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s">&#39;user_auth.auth_forms.forms&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">form</span><span class="p">:</span>
+            <span class="n">form</span><span class="o">.</span><span class="n">CharField</span> <span class="o">=</span> <span class="n">MagicMock</span><span class="p">(</span><span class="n">return_value</span><span class="o">=</span><span class="s">&quot;CharField&quot;</span><span class="p">)</span>
+            <span class="n">form</span><span class="o">.</span><span class="n">ImageField</span> <span class="o">=</span> <span class="n">MagicMock</span><span class="p">(</span><span class="n">return_value</span><span class="o">=</span><span class="s">&quot;ImageField&quot;</span><span class="p">)</span>
+            <span class="n">ins</span> <span class="o">=</span> <span class="n">EditForm</span><span class="p">()</span>
+            <span class="n">ins</span><span class="o">.</span><span class="n">cleaned_data</span> <span class="o">=</span> <span class="n">MagicMock</span><span class="p">(</span><span class="n">return_value</span><span class="o">=</span><span class="s">&quot;cleaned_data&quot;</span><span class="p">)</span>
+            <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s">&#39;user_auth.auth_forms.UserInfo&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">userinfo</span><span class="p">:</span>
+                <span class="n">userinfo</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span> <span class="o">=</span> <span class="n">MagicMock</span><span class="p">()</span>
+                <span class="c"># need to mock user</span>
+                <span class="n">user</span> <span class="o">=</span> <span class="n">MagicMock</span><span class="p">()</span>
+                <span class="c"># call the function.</span>
+                <span class="n">ins</span><span class="o">.</span><span class="n">process</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+                <span class="c"># check</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">userinfo</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">called</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">user</span><span class="o">.</span><span class="n">save</span><span class="o">.</span><span class="n">called</span><span class="p">)</span>
+                <span class="c"># self.assertTrue(userinfo.save.called)</span>
+
+<span class="c">###### Unit tests</span>
+<span class="c">#####################################################</span>
+<span class="c">####################register unit tests##############</span></div>
+<div class="viewcode-block" id="user_authTest.test_unit_register_with_POST"><a class="viewcode-back" href="../../user_auth/doc_user_auth.html#user_auth.tests.user_authTest.test_unit_register_with_POST">[docs]</a>    <span class="k">def</span> <span class="nf">test_unit_register_with_POST</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        We need to mock several things to make this unittest.</span>
+
+<span class="sd">            1. request</span>
+<span class="sd">            2. register_form() : For this, make seperate test.</span>
+<span class="sd">                - request has **method** attribute that specifies the method of the form.</span>
+<span class="sd">            3. Need to mock RegisterForm because we are not testing the register function.</span>
+<span class="sd">                - RegisterForm instance should have is_valid() method that returns boolean.</span>
+<span class="sd">            4. We need to mock HttpResponseRedirect.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s">&#39;user_auth.views.RegisterForm&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">form</span><span class="p">:</span>
+            <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s">&#39;user_auth.views.HttpResponseRedirect&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">redir</span><span class="p">:</span>
+                <span class="n">request</span> <span class="o">=</span> <span class="n">MagicMock</span><span class="p">()</span>
+                <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">=</span> <span class="s">&quot;POST&quot;</span> <span class="c">## this will pass if request.POST == &quot;POST&quot; part.</span>
+                <span class="n">request</span><span class="o">.</span><span class="n">POST</span> <span class="o">=</span> <span class="s">&quot;some_input&quot;</span>
+                <span class="n">form</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">Mock</span><span class="p">()</span>
+                <span class="n">form</span><span class="o">.</span><span class="n">return_value</span><span class="o">.</span><span class="n">is_valid</span> <span class="o">=</span> <span class="n">Mock</span><span class="p">(</span><span class="n">return_value</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+                <span class="c"># mock register_form</span>
+                <span class="n">form</span><span class="o">.</span><span class="n">return_value</span><span class="o">.</span><span class="n">register_form</span> <span class="o">=</span> <span class="n">Mock</span><span class="p">(</span><span class="n">return_value</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+                <span class="n">register</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+                <span class="c"># make function call</span>
+                <span class="n">form</span><span class="o">.</span><span class="n">assert_called_with</span><span class="p">(</span><span class="s">&quot;some_input&quot;</span><span class="p">)</span>
+                <span class="c"># redir.assert_called_with(&#39;/&#39;)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">form</span><span class="o">.</span><span class="n">return_value</span><span class="o">.</span><span class="n">register_form</span><span class="o">.</span><span class="n">called</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="user_authTest.test_unit_register_with_invalidPOST"><a class="viewcode-back" href="../../user_auth/doc_user_auth.html#user_auth.tests.user_authTest.test_unit_register_with_invalidPOST">[docs]</a>    <span class="k">def</span> <span class="nf">test_unit_register_with_invalidPOST</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This function tests the **register()** function with invalid post data.</span>
+<span class="sd">        we should mock</span>
+
+<span class="sd">            1. request</span>
+<span class="sd">            2. RegisterForm</span>
+<span class="sd">                - is_valid()</span>
+<span class="sd">            3. args</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s">&#39;user_auth.views.RegisterForm&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">reg</span><span class="p">:</span>
+            <span class="n">request</span> <span class="o">=</span> <span class="n">MagicMock</span><span class="p">()</span>
+            <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">=</span> <span class="s">&quot;POST&quot;</span>
+            <span class="n">request</span><span class="o">.</span><span class="n">POST</span> <span class="o">=</span> <span class="s">&quot;some input&quot;</span> <span class="c"># make input to RegisterForm</span>
+            <span class="n">reg</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">Mock</span><span class="p">()</span>
+            <span class="n">reg</span><span class="o">.</span><span class="n">return_value</span><span class="o">.</span><span class="n">is_valid</span> <span class="o">=</span> <span class="n">Mock</span><span class="p">(</span><span class="n">return_value</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span> <span class="c"># make it pass the if part.</span>
+            <span class="n">reg</span><span class="o">.</span><span class="n">return_value</span><span class="o">.</span><span class="n">register_form</span> <span class="o">=</span> <span class="n">Mock</span><span class="p">(</span><span class="n">return_value</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+            <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s">&#39;user_auth.views.render_to_response&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">render</span><span class="p">:</span>
+                <span class="n">render</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="s">&quot;some value&quot;</span>
+                <span class="n">register</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+                <span class="c"># asserts</span>
+                <span class="n">reg</span><span class="o">.</span><span class="n">assert_called_with</span><span class="p">(</span><span class="s">&quot;some input&quot;</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="ow">not</span> <span class="n">reg</span><span class="o">.</span><span class="n">return_value</span><span class="o">.</span><span class="n">register_form</span><span class="o">.</span><span class="n">called</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">render</span><span class="o">.</span><span class="n">called</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="user_authTest.test_unit_register_with_get"><a class="viewcode-back" href="../../user_auth/doc_user_auth.html#user_auth.tests.user_authTest.test_unit_register_with_get">[docs]</a>    <span class="k">def</span> <span class="nf">test_unit_register_with_get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This test function tests if **register()** is called with get method.</span>
+<span class="sd">        We need to mock</span>
+
+<span class="sd">            1. request</span>
+<span class="sd">            2. RegisterForm</span>
+<span class="sd">            3. render_to_response</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s">&#39;user_auth.views.RegisterForm&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">reg</span><span class="p">:</span>
+            <span class="n">request</span> <span class="o">=</span> <span class="n">MagicMock</span><span class="p">()</span>
+            <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">=</span> <span class="s">&quot;GET&quot;</span>
+            <span class="n">reg</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">Mock</span><span class="p">()</span>
+            <span class="c"># For testing if we execute correct else statement.</span>
+            <span class="n">reg</span><span class="o">.</span><span class="n">return_value</span><span class="o">.</span><span class="n">is_valid</span> <span class="o">=</span> <span class="n">Mock</span><span class="p">(</span><span class="n">return_value</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+            <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s">&#39;user_auth.views.render_to_response&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">render</span><span class="p">:</span>
+                <span class="n">render</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="bp">True</span>
+                <span class="n">register</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+                <span class="c"># asserts</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="ow">not</span> <span class="n">reg</span><span class="o">.</span><span class="n">return_value</span><span class="o">.</span><span class="n">is_valid</span><span class="o">.</span><span class="n">called</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">render</span><span class="o">.</span><span class="n">called</span><span class="p">)</span>
+
+
+<span class="c">########################################################</span>
+<span class="c">####################logout_user unit tests##############</span></div>
+<div class="viewcode-block" id="user_authTest.test_unit_logout_user"><a class="viewcode-back" href="../../user_auth/doc_user_auth.html#user_auth.tests.user_authTest.test_unit_logout_user">[docs]</a>    <span class="k">def</span> <span class="nf">test_unit_logout_user</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This function tests **logout_user()** function.</span>
+<span class="sd">        We need to mock</span>
+
+<span class="sd">            1. request</span>
+<span class="sd">            2. render_to_response</span>
+<span class="sd">            3. logout</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s">&#39;user_auth.views.logout&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">logout</span><span class="p">:</span>
+            <span class="n">request</span> <span class="o">=</span> <span class="n">MagicMock</span><span class="p">()</span>
+            <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s">&#39;user_auth.views.render_to_response&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">render</span><span class="p">:</span>
+                <span class="n">logout_user</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+                <span class="n">logout</span><span class="o">.</span><span class="n">assert_called_with</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">render</span><span class="o">.</span><span class="n">called</span><span class="p">)</span>
+
+
+<span class="c">########################################################</span>
+<span class="c">####################logout_user unit tests##############</span></div>
+<div class="viewcode-block" id="user_authTest.test_unit_login_user_with_post"><a class="viewcode-back" href="../../user_auth/doc_user_auth.html#user_auth.tests.user_authTest.test_unit_login_user_with_post">[docs]</a>    <span class="k">def</span> <span class="nf">test_unit_login_user_with_post</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This function tests **login_user()** with post data.</span>
+<span class="sd">        We need to mock</span>
+
+<span class="sd">            1. request</span>
+<span class="sd">            2. LogInForm</span>
+<span class="sd">                - is_valid</span>
+<span class="sd">                - cleaned_data</span>
+<span class="sd">            3. authenticate</span>
+<span class="sd">                - is_active</span>
+<span class="sd">            4. render_to_response</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s">&#39;user_auth.views.LogInForm&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">form</span><span class="p">:</span>
+            <span class="n">request</span> <span class="o">=</span> <span class="n">MagicMock</span><span class="p">()</span>
+            <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">=</span> <span class="s">&quot;POST&quot;</span>
+            <span class="n">request</span><span class="o">.</span><span class="n">POST</span> <span class="o">=</span> <span class="s">&quot;some data&quot;</span>
+
+            <span class="n">form</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">Mock</span><span class="p">()</span>
+            <span class="n">form</span><span class="o">.</span><span class="n">return_value</span><span class="o">.</span><span class="n">is_valid</span> <span class="o">=</span> <span class="n">Mock</span><span class="p">(</span><span class="n">return_value</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+            <span class="n">form</span><span class="o">.</span><span class="n">return_value</span><span class="o">.</span><span class="n">login_process</span> <span class="o">=</span> <span class="n">Mock</span><span class="p">()</span>
+            <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s">&#39;user_auth.views.render_to_response&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">render</span><span class="p">:</span>
+                <span class="n">login_user</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+                <span class="n">form</span><span class="o">.</span><span class="n">return_value</span><span class="o">.</span><span class="n">login_process</span><span class="o">.</span><span class="n">assert_called_with</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+                <span class="n">form</span><span class="o">.</span><span class="n">assert_called_with</span><span class="p">(</span><span class="s">&quot;some data&quot;</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">render</span><span class="o">.</span><span class="n">called</span><span class="p">)</span>
+
+
+<span class="c">#### Integration Tests</span>
+<span class="c">###################################################################################</span>
+<span class="c">###############Test Register</span>
+</div>
+<div class="viewcode-block" id="user_authTest.test_register_status_code"><a class="viewcode-back" href="../../user_auth/doc_user_auth.html#user_auth.tests.user_authTest.test_register_status_code">[docs]</a>    <span class="k">def</span> <span class="nf">test_register_status_code</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        **test_register_status_code()** checks if a user access to the register page, the status_code</span>
+<span class="sd">        is 200.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c"># create client.</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;/user_auth/register/&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+
+
+</div>
+<div class="viewcode-block" id="user_authTest.test_RegisterForm_get"><a class="viewcode-back" href="../../user_auth/doc_user_auth.html#user_auth.tests.user_authTest.test_RegisterForm_get">[docs]</a>    <span class="k">def</span> <span class="nf">test_RegisterForm_get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        **test_RegisterForm()** checks when request.method to **user_auth.views.register()** is</span>
+<span class="sd">        GET, the RegisterForm is properly instantiated.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c"># get method.</span>
+        <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s">&#39;user_auth.views.RegisterForm&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">reg</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;/user_auth/register/&#39;</span><span class="p">)</span>
+            <span class="c"># check if RegisterForm is called with post method.</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">reg</span><span class="o">.</span><span class="n">called</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="user_authTest.test_RegisterForm_post"><a class="viewcode-back" href="../../user_auth/doc_user_auth.html#user_auth.tests.user_authTest.test_RegisterForm_post">[docs]</a>    <span class="k">def</span> <span class="nf">test_RegisterForm_post</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        **test_RegisterForm()** checks when request.method to **user_auth.views.register()** is</span>
+<span class="sd">        POST, the RegisterForm is properly instantiated with appropriate data. This test only</span>
+<span class="sd">        checks if the RegisterForm is called with the POST data passed into register().</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c"># post method.</span>
+        <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s">&#39;user_auth.views.RegisterForm&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">reg</span><span class="p">:</span>
+            <span class="n">reg</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">MagicMock</span><span class="p">()</span> <span class="c"># only checking if the RegisterForm is called with</span>
+                                      <span class="c"># proper data.</span>
+            <span class="n">reg</span><span class="o">.</span><span class="n">return_value</span><span class="o">.</span><span class="n">is_valid</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="bp">False</span> <span class="c"># this makes form.is_valid() returns False in views.py.</span>
+            <span class="n">args</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;user_name&#39;</span><span class="p">:</span><span class="s">&#39;user1&#39;</span><span class="p">,</span> <span class="s">&#39;password&#39;</span><span class="p">:</span><span class="s">&#39;password&#39;</span><span class="p">}</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">&#39;/user_auth/register/&#39;</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+            <span class="c"># check if RegisterForm is called with post method.</span>
+            <span class="n">reg</span><span class="o">.</span><span class="n">assert_called_with</span><span class="p">(</span><span class="n">QueryDict</span><span class="p">(</span><span class="s">&#39;user_name=user1&amp;password=password&#39;</span><span class="p">))</span>
+</div>
+    <span class="nd">@unittest.expectedFailure</span>
+<div class="viewcode-block" id="user_authTest.test_RegisterForm_invalid"><a class="viewcode-back" href="../../user_auth/doc_user_auth.html#user_auth.tests.user_authTest.test_RegisterForm_invalid">[docs]</a>    <span class="k">def</span> <span class="nf">test_RegisterForm_invalid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        **test_RegisterForm_validation()** tests if it raise exception when the form is not valid.</span>
+<span class="sd">        The attributes user_name and password are required. So if the registering user does not pass</span>
+<span class="sd">        these two information, the form is not valid.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c"># if the form is not valid, then User.objects.create_user would not be called.</span>
+        <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s">&#39;user_auth.views.User.objects.create_user&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">c_user</span><span class="p">:</span>
+            <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s">&#39;user_auth.views.UserInfo.objects.create&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">c_userinfo</span><span class="p">:</span>
+                <span class="n">user</span> <span class="o">=</span> <span class="n">c_user</span><span class="o">.</span><span class="n">return_value</span><span class="o">.</span><span class="n">save</span> <span class="o">=</span> <span class="n">MagicMock</span><span class="p">()</span>
+                <span class="n">userinfo</span> <span class="o">=</span> <span class="n">c_userinfo</span><span class="o">.</span><span class="n">return_value</span><span class="o">.</span><span class="n">save</span> <span class="o">=</span> <span class="n">MagicMock</span><span class="p">()</span>
+                <span class="n">args</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;password&#39;</span><span class="p">:</span><span class="s">&#39;password&#39;</span><span class="p">}</span> <span class="c"># not passing username.</span>
+                <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">&#39;/user_auth/register/&#39;</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+
+                <span class="c"># user.save() and userinfo.save() must not be called since the form is not valid.</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">user</span><span class="o">.</span><span class="n">save</span><span class="o">.</span><span class="n">called</span> <span class="ow">or</span> <span class="n">userinfo</span><span class="o">.</span><span class="n">save</span><span class="o">.</span><span class="n">called</span><span class="p">)</span>
+</div>
+    <span class="nd">@unittest.expectedFailure</span>
+<div class="viewcode-block" id="user_authTest.test_register_notUnique_username"><a class="viewcode-back" href="../../user_auth/doc_user_auth.html#user_auth.tests.user_authTest.test_register_notUnique_username">[docs]</a>    <span class="k">def</span> <span class="nf">test_register_notUnique_username</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        **test_register_notUnique_username()** tests if a user trying to register with an username</span>
+<span class="sd">        that is already exists in the database. This test should be failed since our website not allow</span>
+<span class="sd">        two users with same username.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">username</span> <span class="o">=</span> <span class="s">&#39;duplicate_username&#39;</span>
+        <span class="n">password</span> <span class="o">=</span> <span class="s">&#39;password&#39;</span>
+
+        <span class="c"># create user.</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create_user</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">password</span><span class="p">)</span>
+        <span class="n">args</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;user_name&#39;</span><span class="p">:</span><span class="n">username</span><span class="p">,</span> <span class="s">&#39;password&#39;</span><span class="p">:</span><span class="n">password</span><span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">&#39;/user_auth/register/&#39;</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span> <span class="c"># this will raise exception.</span>
+        <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">username</span><span class="p">)</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
+
+<span class="c">###################################################################################</span>
+<span class="c">###############Test login_user</span>
+</div>
+<div class="viewcode-block" id="user_authTest.test_login_status_code"><a class="viewcode-back" href="../../user_auth/doc_user_auth.html#user_auth.tests.user_authTest.test_login_status_code">[docs]</a>    <span class="k">def</span> <span class="nf">test_login_status_code</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        **test_login_status_code()** checks if a user access to the login page, the status_code</span>
+<span class="sd">        is 200.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;/user_auth/login/&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="user_authTest.test_LogInForm_get"><a class="viewcode-back" href="../../user_auth/doc_user_auth.html#user_auth.tests.user_authTest.test_LogInForm_get">[docs]</a>    <span class="k">def</span> <span class="nf">test_LogInForm_get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        **test_loginForm()** checks if the LogInForm is instantiated when an user access to login page.</span>
+<span class="sd">        This test should be considered as different test with **test_login_status_code()** since this function just</span>
+<span class="sd">        checks if the httpresponse returns the status_code 200.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s">&#39;user_auth.views.LogInForm&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">form</span><span class="p">:</span>
+            <span class="c"># access the url.</span>
+            <span class="c"># LogInForm is mocked.</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;/user_auth/login/&#39;</span><span class="p">)</span>
+            <span class="n">form</span><span class="o">.</span><span class="n">assert_called_with</span><span class="p">()</span>
+</div>
+<div class="viewcode-block" id="user_authTest.test_LogInForm_post"><a class="viewcode-back" href="../../user_auth/doc_user_auth.html#user_auth.tests.user_authTest.test_LogInForm_post">[docs]</a>    <span class="k">def</span> <span class="nf">test_LogInForm_post</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        **test_LogInForm_post()** tests if the LogINForm is properly instantiated with POST data.</span>
+<span class="sd">        If the post data looks like {&#39;user_name&#39;:&#39;test_user&#39;, &#39;password&#39;:&#39;password&#39;}, then the LogInForm</span>
+<span class="sd">        must be called with the argument **QueryDict(&#39;user_name=test_user&amp;password=password&#39;)**.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">args</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;user_name&#39;</span><span class="p">:</span><span class="s">&#39;test_user&#39;</span><span class="p">,</span> <span class="s">&#39;password&#39;</span><span class="p">:</span><span class="s">&#39;password&#39;</span><span class="p">}</span>
+        <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s">&#39;user_auth.views.LogInForm&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">form</span><span class="p">:</span>
+            <span class="c"># make the function not to log the user in.</span>
+            <span class="n">form</span><span class="o">.</span><span class="n">return_value</span><span class="o">.</span><span class="n">is_valid</span> <span class="o">=</span> <span class="n">MagicMock</span><span class="p">(</span><span class="n">return_value</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">&#39;/user_auth/login/&#39;</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+            <span class="n">form</span><span class="o">.</span><span class="n">assert_called_with</span><span class="p">(</span><span class="n">QueryDict</span><span class="p">(</span><span class="s">&#39;user_name=test_user&amp;password=password&#39;</span><span class="p">))</span>
+</div>
+    <span class="nd">@unittest.expectedFailure</span>
+<div class="viewcode-block" id="user_authTest.test_login_user_invalid_username"><a class="viewcode-back" href="../../user_auth/doc_user_auth.html#user_auth.tests.user_authTest.test_login_user_invalid_username">[docs]</a>    <span class="k">def</span> <span class="nf">test_login_user_invalid_username</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        **test_login_user_invalid_username()** tests if an user tries to login with invalid username such as</span>
+<span class="sd">        non-exist username.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">args</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;user_name&#39;</span><span class="p">:</span><span class="s">&#39;user&#39;</span><span class="p">,</span> <span class="s">&#39;password&#39;</span><span class="p">:</span><span class="s">&#39;password&#39;</span><span class="p">}</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">args</span><span class="p">[</span><span class="s">&#39;user_name&#39;</span><span class="p">])):</span>
+            <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">args</span><span class="p">[</span><span class="s">&#39;user_name&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">&#39;/user_auth/login/&#39;</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span> <span class="c"># This will throw exception.</span>
+
+
+    <span class="c"># def test_register_username_exist(self):</span>
+    <span class="c">#     &quot;&quot;&quot;</span>
+    <span class="c">#     This tests if a visitor tries to register with the username</span>
+    <span class="c">#     that is already exists in the site database.</span>
+    <span class="c">#     &quot;&quot;&quot;</span>
+
+    <span class="c">#     with patch(&#39;user_auth.views.RegisterForm&#39;) as reg:</span>
+    <span class="c">#         reg.return_value = MagicMock()</span>
+    <span class="c">#         reg.register_form = MagicMock(return_value=True)</span>
+    <span class="c">#         request = MagicMock()</span>
+    <span class="c">#         request.POST = &quot;POST method&quot;</span>
+    <span class="c">#         with patch(&#39;user_auth.views.HttpResponseRedirect&#39;) as redir:</span>
+    <span class="c">#             register(request)</span>
+    <span class="c">#             self.assertTrue(redir.called)</span>
+
+
+<span class="c">###################################################################################</span>
+<span class="c">###############Test login_user</span>
+</div>
+<div class="viewcode-block" id="user_authTest.test_profile_status_code"><a class="viewcode-back" href="../../user_auth/doc_user_auth.html#user_auth.tests.user_authTest.test_profile_status_code">[docs]</a>    <span class="k">def</span> <span class="nf">test_profile_status_code</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        **test_profile_status_code()** checks if a user access to the profile page, the status_code</span>
+<span class="sd">        is 200.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c"># user must be logged in.</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create_user</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s">&#39;test_profile_user&#39;</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s">&#39;password&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s">&#39;test_profile_user&#39;</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s">&#39;password&#39;</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;/user_auth/profile/&#39;</span><span class="p">)</span>
+        <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s">&#39;test_profile_user&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="user_authTest.test_profile_not_logged_in"><a class="viewcode-back" href="../../user_auth/doc_user_auth.html#user_auth.tests.user_authTest.test_profile_not_logged_in">[docs]</a>    <span class="k">def</span> <span class="nf">test_profile_not_logged_in</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        **test_profile_not_logged_in()** tests the status code of http response when the user</span>
+<span class="sd">        who tries to access the profile page is not logged in. The status code should not be 200.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;/user_auth/profile/&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">)</span>
+
+<span class="c">##################################</span>
+<span class="c">###########Profile Model Functions</span></div>
+<div class="viewcode-block" id="user_authTest.test_models_get_huntprog"><a class="viewcode-back" href="../../user_auth/doc_user_auth.html#user_auth.tests.user_authTest.test_models_get_huntprog">[docs]</a>    <span class="k">def</span> <span class="nf">test_models_get_huntprog</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        **test_models_get_huntprog()** tests that a list of lists is created from HuntsProg table</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s">&#39;user_auth.models.HuntProg.objects.filter&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">filt</span><span class="p">:</span>
+            <span class="n">filt</span> <span class="o">=</span> <span class="n">MagicMock</span><span class="p">()</span>
+            <span class="n">filt</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;a list&#39;</span><span class="p">]</span>
+            <span class="n">filt</span><span class="o">.</span><span class="n">return_value</span><span class="o">.</span><span class="n">hunt</span><span class="o">.</span><span class="n">Title</span> <span class="o">=</span> <span class="s">&#39;test title&#39;</span>
+            <span class="n">filt</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">return_value</span><span class="o">.</span><span class="n">cur_item_num</span> <span class="o">=</span> <span class="mi">3</span>
+            <span class="n">uname</span> <span class="o">=</span> <span class="n">MagicMock</span><span class="p">()</span>
+            <span class="n">ret_lst</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">get_huntprog</span><span class="p">(</span><span class="n">uname</span><span class="p">)</span>
+            <span class="c"># mock return value of filter call to get all hunt id sharing a username</span>
+            <span class="c"># mock the attributes of the objects to return fixed values &#39;title&#39; &#39;0 - 10&#39;</span>
+            <span class="c"># check return value to see if list of lists was created with a list[0][0] and list[1][0] being title</span>
+            <span class="c"># ^and list[0][1] list[1][1] being a str that matches &#39;(calculated int) %&#39;</span>
+            <span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="user_authTest.test_models_get_createdhunts"><a class="viewcode-back" href="../../user_auth/doc_user_auth.html#user_auth.tests.user_authTest.test_models_get_createdhunts">[docs]</a>    <span class="k">def</span> <span class="nf">test_models_get_createdhunts</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        **test_models_get_huntprog()** tests that a list of titles is created from hunts table</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s">&#39;user_auth.models.cr_Hunts.objects.filter&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">filt</span><span class="p">:</span>
+            <span class="n">filt</span> <span class="o">=</span> <span class="n">MagicMock</span><span class="p">()</span>
+            <span class="n">filt</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">return_value</span><span class="o">.</span><span class="n">Title</span> <span class="o">=</span> <span class="s">&#39;test title&#39;</span>
+            <span class="n">uname</span> <span class="o">=</span> <span class="n">MagicMock</span><span class="p">()</span>
+            <span class="n">ret_lst</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">get_createdhunts</span><span class="p">(</span><span class="n">uname</span><span class="p">)</span>
+            <span class="c"># mock return value of filter to get hunt tuples </span>
+            <span class="c"># check return value to see if list contains titles</span>
+            <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="user_authTest.test_models_get_expertise_lvl_rank"><a class="viewcode-back" href="../../user_auth/doc_user_auth.html#user_auth.tests.user_authTest.test_models_get_expertise_lvl_rank">[docs]</a>    <span class="k">def</span> <span class="nf">test_models_get_expertise_lvl_rank</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        **test_models_get_expertise_lvl_rank()** tests that list of the correct form is returned</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s">&#39;user_auth.models.HuntProg.objects.filter&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">filt</span><span class="p">:</span>
+            <span class="n">filt</span> <span class="o">=</span> <span class="n">MagicMock</span><span class="p">()</span>
+            <span class="n">filt</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;a list&#39;</span><span class="p">]</span>
+            <span class="n">filt</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">return_value</span><span class="o">.</span><span class="n">cur_item_num</span> <span class="o">=</span> <span class="mi">3</span>
+            <span class="n">exp_val</span> <span class="o">=</span> <span class="mf">15.0</span>
+            <span class="n">uname</span> <span class="o">=</span> <span class="n">MagicMock</span><span class="p">()</span>
+            <span class="n">ret_val</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">get_expertise_lvl_rank</span><span class="p">(</span><span class="n">uname</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">ret_val</span><span class="p">,</span> <span class="n">exp_val</span><span class="p">)</span>
+        <span class="c"># mock return value of filter</span>
+        <span class="c"># mock cur_item_num for mocked object</span>
+        <span class="c"># fix the cur_item_num and calculate how much the score should be check for that in return of function</span>
+        <span class="k">pass</span>
+
+<span class="c">###################################################################################</span>
+<span class="c">###############Test login_user</span>
+</div>
+<div class="viewcode-block" id="user_authTest.test_edit_status_code"><a class="viewcode-back" href="../../user_auth/doc_user_auth.html#user_auth.tests.user_authTest.test_edit_status_code">[docs]</a>    <span class="k">def</span> <span class="nf">test_edit_status_code</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        **test_edit_status_code()** checks if a user access to the edit page, the status_code equals to 200.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create_user</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s">&#39;edit_status_code&#39;</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s">&#39;password&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s">&#39;edit_status_code&#39;</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s">&#39;password&#39;</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;/user_auth/edit/&#39;</span><span class="p">)</span>
+        <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s">&#39;edit_status_code&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="user_authTest.test_edit_EditForm_get"><a class="viewcode-back" href="../../user_auth/doc_user_auth.html#user_auth.tests.user_authTest.test_edit_EditForm_get">[docs]</a>    <span class="k">def</span> <span class="nf">test_edit_EditForm_get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        **test_edit_EditForm_get()** tests if the EditForm is properly instantiated when</span>
+<span class="sd">        request.method is GET method.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create_user</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s">&#39;edit_EditForm&#39;</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s">&#39;password&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s">&#39;edit_EditForm&#39;</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s">&#39;password&#39;</span><span class="p">)</span>
+        <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s">&#39;user_auth.views.EditForm&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">form</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;/user_auth/edit/&#39;</span><span class="p">)</span>
+            <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s">&#39;edit_EditForm&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
+            <span class="n">form</span><span class="o">.</span><span class="n">assert_called_with</span><span class="p">()</span>
+
+    <span class="c"># def test_edit_EditForm_post(self):</span>
+    <span class="c">#     &quot;&quot;&quot;</span>
+    <span class="c">#     **test_edit_EditForm_post()** tests if the EditForm is properly instantiated with</span>
+    <span class="c">#     appropriate post data when request.method is POST method.</span>
+    <span class="c">#     &quot;&quot;&quot;</span>
+    <span class="c">#     # create TEMP user.</span>
+    <span class="c">#     user = User.objects.create_user(username=&#39;edit_EditForm&#39;, password=&#39;password&#39;)</span>
+    <span class="c">#     UserInfo.objects.create(user=user)</span>
+
+
+    <span class="c">#     # log the user in.</span>
+    <span class="c">#     self.client.login(username=&#39;edit_EditForm&#39;, password=&#39;password&#39;)</span>
+
+    <span class="c">#     # make fake file</span>
+    <span class="c">#     file = SimpleUploadedFile(&#39;filename.png&#39;, &#39;image_content&#39;)</span>
+    <span class="c">#     dic = MultiValueDict({&#39;picture&#39;:file})</span>
+    <span class="c">#     # mock user.save() so that we not really saving the test user.</span>
+    <span class="c">#     with patch(&#39;user_auth.views.EditForm&#39;) as form:</span>
+    <span class="c">#         form.return_value = MagicMock()</span>
+    <span class="c">#         form.return_value.is_valid = MagicMock(return_value=True)</span>
+    <span class="c">#         self.client.post(&#39;/user_auth/edit/&#39;, {&#39;first_name&#39;:&#39;name&#39;, &#39;last_name&#39;:&#39;last_name&#39;})</span>
+    <span class="c">#         form.assert_called_with()</span>
+    <span class="c">#     User.objects.get(username=&#39;edit_EditForm&#39;).delete()</span>
+
+    <span class="c"># def test_edit_EditForm_file(self):</span>
+    <span class="c">#   &quot;&quot;&quot;</span>
+    <span class="c">#   This test the request.FILE in the edit function.</span>
+    <span class="c">#   &quot;&quot;&quot;</span>
+    <span class="c">#   # create TEMP user.</span>
+    <span class="c">#   User.objects.create_user(username=&#39;edit_EditForm&#39;, password=&#39;password&#39;)</span>
+    <span class="c">#   # log the user in.</span>
+    <span class="c">#   self.client.login(username=&#39;edit_EditForm&#39;, password=&#39;password&#39;)</span>
+
+    <span class="c">#   # make fake file</span>
+    <span class="c">#   file = SimpleUploadedFile(&#39;filename.png&#39;, &#39;image_content&#39;)</span>
+    <span class="c">#   # mock user.save() so that we not really saving the test user.</span>
+    <span class="c">#   with patch(&#39;user_auth.views.UserInfo.save&#39;) as info_save:</span>
+    <span class="c">#       with patch(&#39;user_auth.views.EditForm.is_valid&#39;) as valid:</span>
+    <span class="c">#           valid.return_value = True</span>
+    <span class="c">#           info_save.return_value = None</span>
+    <span class="c">#           self.client.post(&#39;/user_auth/edit/&#39;, {&#39;picture&#39;:file})</span>
+    <span class="c">#           info_save.assert_called_with()</span>
+    <span class="c">#   User.objects.get(username=&#39;edit_EditForm&#39;).delete()</span>
+
+
+    <span class="c"># def test_auth_forms_register_user(self):</span>
+    <span class="c">#   &quot;&quot;&quot;</span>
+    <span class="c">#   This function checks if the function *register_user* in **auth_forms.py** was called with</span>
+    <span class="c">#   appropriate data.</span>
+    <span class="c">#   &quot;&quot;&quot;</span>
+
+    <span class="c">#   with patch(&#39;Register&#39;)</span>
+</pre></div></div></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, WebDev.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.3</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

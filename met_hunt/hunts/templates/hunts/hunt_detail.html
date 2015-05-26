@@ -1,0 +1,35 @@
+{% extends "met_hunt/index.html" %}
+{% block body %}
+{% load staticfiles %}
+
+	{% if not hunts %}
+		<h1>No Hunts Available</h1>
+	{% else %}
+		<div class="row">
+			<div class="columns small-12 medium-6 small-centered medium-centered">
+				<div class="huntcollect">
+						<h1 class="huntcollect title">{{ title }}</h1>
+				</div>
+			</div>
+		</div>
+		<div class="huntcateg row">
+			{% for hunt in hunts %}
+				<div class="huntcateg columns large-3 medium-6 small-12">
+					<div class="huntbox">
+						<a class="huntcollect pic"href={% url 'hunts.views.render_hunt' hunt.ID %}>
+							<img src="{% static 'img/medieval1.jpg' %}" alt="">
+						</a>
+					</div>
+					<div class="panel">
+						<ul>
+							<li>Title : {{hunt.Title}}</li>
+							<li>Created By : Development Team </li>
+						</ul>
+						
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+			
+	{% endif %}
+{% endblock %}

@@ -1,0 +1,543 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Hunts &mdash; MetDoc 0.0.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="MetDoc 0.0.1 documentation" href="index.html" />
+    <link rel="prev" title="User Authentication" href="UserAuthentication.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="UserAuthentication.html" title="User Authentication"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">MetDoc 0.0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="hunts">
+<h1>Hunts<a class="headerlink" href="#hunts" title="Permalink to this headline">¶</a></h1>
+<p>The application that handles all of the hunts related tasks is named <strong>hunts</strong> app in our system. The tasks it handles are</p>
+<blockquote>
+<div><ol class="arabic">
+<li><p class="first">Rendering Hunt</p>
+<blockquote>
+<div><ul class="simple">
+<li>The view that handles this task is <strong>hunts.views.render_hunt</strong>. It handles the hunt process, rendering template with appropriate forms and content.</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">Rendering Clue</p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>hunts.views.render_clue</strong> handles this task. It renders the proper clue for the items.</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">Rendering Result</p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>hunts.views.render_result</strong> function handles rendering the result of the item verification process.</li>
+</ul>
+</div></blockquote>
+</li>
+</ol>
+</div></blockquote>
+<div class="section" id="module-hunts.models">
+<span id="model"></span><h2>Model<a class="headerlink" href="#module-hunts.models" title="Permalink to this headline">¶</a></h2>
+<p>The models for Hunts and Items and their relationship,
+add functions that set each Hunt&#8217;s data and the data of Items that belong to it.</p>
+<dl class="class">
+<dt id="hunts.models.Has">
+<em class="property">class </em><code class="descclassname">hunts.models.</code><code class="descname">Has</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hunts/models.html#Has"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hunts.models.Has" title="Permalink to this definition">¶</a></dt>
+<dd><p>I intermediate model that links Hunts to Items, each hunt has one or more items,
+and each item belongs to one or more hunts.
+In every hunt there is a clue that leads to the item and every item has an order number</p>
+<dl class="exception">
+<dt id="hunts.models.Has.DoesNotExist">
+<em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#hunts.models.Has.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="hunts.models.Has.MultipleObjectsReturned">
+<em class="property">exception </em><code class="descclassname">Has.</code><code class="descname">MultipleObjectsReturned</code><a class="headerlink" href="#hunts.models.Has.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="hunts.models.Has.hunt">
+<code class="descclassname">Has.</code><code class="descname">hunt</code><a class="headerlink" href="#hunts.models.Has.hunt" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="hunts.models.Has.item">
+<code class="descclassname">Has.</code><code class="descname">item</code><a class="headerlink" href="#hunts.models.Has.item" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="hunts.models.Has.objects">
+<code class="descclassname">Has.</code><code class="descname">objects</code><em class="property"> = &lt;django.db.models.manager.Manager object&gt;</em><a class="headerlink" href="#hunts.models.Has.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="hunts.models.HuntProg">
+<em class="property">class </em><code class="descclassname">hunts.models.</code><code class="descname">HuntProg</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hunts/models.html#HuntProg"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hunts.models.HuntProg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Intermediate model that is linked to hunts and has to keep track of progress for the users</p>
+<dl class="exception">
+<dt id="hunts.models.HuntProg.DoesNotExist">
+<em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#hunts.models.HuntProg.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="hunts.models.HuntProg.MultipleObjectsReturned">
+<em class="property">exception </em><code class="descclassname">HuntProg.</code><code class="descname">MultipleObjectsReturned</code><a class="headerlink" href="#hunts.models.HuntProg.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="hunts.models.HuntProg.hunt">
+<code class="descclassname">HuntProg.</code><code class="descname">hunt</code><a class="headerlink" href="#hunts.models.HuntProg.hunt" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="hunts.models.HuntProg.objects">
+<code class="descclassname">HuntProg.</code><code class="descname">objects</code><em class="property"> = &lt;django.db.models.manager.Manager object&gt;</em><a class="headerlink" href="#hunts.models.HuntProg.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="hunts.models.Hunts">
+<em class="property">class </em><code class="descclassname">hunts.models.</code><code class="descname">Hunts</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hunts/models.html#Hunts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hunts.models.Hunts" title="Permalink to this definition">¶</a></dt>
+<dd><p>This database table contains all the scavenger hunts,
+each hunt has a unique id and title, and each belongs to 
+a specific category and have a starting location</p>
+<dl class="exception">
+<dt id="hunts.models.Hunts.DoesNotExist">
+<em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#hunts.models.Hunts.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="hunts.models.Hunts.MultipleObjectsReturned">
+<em class="property">exception </em><code class="descclassname">Hunts.</code><code class="descname">MultipleObjectsReturned</code><a class="headerlink" href="#hunts.models.Hunts.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="hunts.models.Hunts.has_set">
+<code class="descclassname">Hunts.</code><code class="descname">has_set</code><a class="headerlink" href="#hunts.models.Hunts.has_set" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="hunts.models.Hunts.huntprog_set">
+<code class="descclassname">Hunts.</code><code class="descname">huntprog_set</code><a class="headerlink" href="#hunts.models.Hunts.huntprog_set" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="hunts.models.Hunts.items_set">
+<code class="descclassname">Hunts.</code><code class="descname">items_set</code><a class="headerlink" href="#hunts.models.Hunts.items_set" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="hunts.models.Hunts.objects">
+<code class="descclassname">Hunts.</code><code class="descname">objects</code><em class="property"> = &lt;django.db.models.manager.Manager object&gt;</em><a class="headerlink" href="#hunts.models.Hunts.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="hunts.models.Items">
+<em class="property">class </em><code class="descclassname">hunts.models.</code><code class="descname">Items</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hunts/models.html#Items"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hunts.models.Items" title="Permalink to this definition">¶</a></dt>
+<dd><p>The Items database table contains all the items of the Met (to be completed)
+each item has a unique id, belongs to a specific category,
+and is a part of one or more hunts</p>
+<dl class="exception">
+<dt id="hunts.models.Items.DoesNotExist">
+<em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#hunts.models.Items.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="hunts.models.Items.MultipleObjectsReturned">
+<em class="property">exception </em><code class="descclassname">Items.</code><code class="descname">MultipleObjectsReturned</code><a class="headerlink" href="#hunts.models.Items.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="hunts.models.Items.cr_has_set">
+<code class="descclassname">Items.</code><code class="descname">cr_has_set</code><a class="headerlink" href="#hunts.models.Items.cr_has_set" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="hunts.models.Items.has_set">
+<code class="descclassname">Items.</code><code class="descname">has_set</code><a class="headerlink" href="#hunts.models.Items.has_set" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="hunts.models.Items.objects">
+<code class="descclassname">Items.</code><code class="descname">objects</code><em class="property"> = &lt;django.db.models.manager.Manager object&gt;</em><a class="headerlink" href="#hunts.models.Items.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="hunts.models.Items.partof">
+<code class="descclassname">Items.</code><code class="descname">partof</code><a class="headerlink" href="#hunts.models.Items.partof" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="hunts.models.init_huntprog">
+<code class="descclassname">hunts.models.</code><code class="descname">init_huntprog</code><span class="sig-paren">(</span><em>h_id</em>, <em>uname</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hunts/models.html#init_huntprog"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hunts.models.init_huntprog" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body">IntegerId, pythonString</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/library/constants.html#None" title="(in Python v2.7)">None</a></td>
+</tr>
+</tbody>
+</table>
+<p>Records the user&#8217;s hunt progress and saves it in the database.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="hunts.models.pop_item">
+<code class="descclassname">hunts.models.</code><code class="descname">pop_item</code><span class="sig-paren">(</span><em>lst</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hunts/models.html#pop_item"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hunts.models.pop_item" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body">pyhtonList</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">pythonList</td>
+</tr>
+</tbody>
+</table>
+<p>Pops an item from the global list of items,
+once a user moves on the next item in the hunt.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="hunts.models.set_HuntsData">
+<code class="descclassname">hunts.models.</code><code class="descname">set_HuntsData</code><span class="sig-paren">(</span><em>id_hunt</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hunts/models.html#set_HuntsData"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hunts.models.set_HuntsData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Based on the hunt id, set_HuntsData returns a python dictionary
+containing all the Hunt&#8217;s title and starting location</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="hunts.models.set_ItemsData">
+<code class="descclassname">hunts.models.</code><code class="descname">set_ItemsData</code><span class="sig-paren">(</span><em>id_hunt</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hunts/models.html#set_ItemsData"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hunts.models.set_ItemsData" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body">IntegerId</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">pythonList</td>
+</tr>
+</tbody>
+</table>
+<p>Based on the hunt id, set_ItemsData creates a list of tuples
+containing all the items in that hunt and their respective database
+returns TEMP[(id, clue, number), ...]</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="hunts.models.update_cur_item">
+<code class="descclassname">hunts.models.</code><code class="descname">update_cur_item</code><span class="sig-paren">(</span><em>h_id</em>, <em>uname</em>, <em>newnum</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hunts/models.html#update_cur_item"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hunts.models.update_cur_item" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body">IntegerId, pythonString, IntegerNum</td>
+</tr>
+</tbody>
+</table>
+<p>Updates the current item (where the user left of in a hunt).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="hunts.models.verify_id">
+<code class="descclassname">hunts.models.</code><code class="descname">verify_id</code><span class="sig-paren">(</span><em>usr_input</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hunts/models.html#verify_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hunts.models.verify_id" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body">pythonString</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Boolean</td>
+</tr>
+</tbody>
+</table>
+<p>Checks the user input against the item id and returns a boolean result.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="views">
+<h2>Views<a class="headerlink" href="#views" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="hunts.views.render_hunt">
+<code class="descclassname">hunts.views.</code><code class="descname">render_hunt</code><span class="sig-paren">(</span><em>request</em>, <em>given_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hunts/views.html#render_hunt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hunts.views.render_hunt" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body">HttpRequest, interger id</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">HttpResponse</td>
+</tr>
+</tbody>
+</table>
+<p>This function gets triggered with the appropriate hunt id once a user chooses
+hunt from the categories page. It sets the hunt&#8217;s data (title and starting location),
+and stores the items data in global var TEMP list.
+Finally, it renders the hunt&#8217;s welcome page.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="hunts.views.next_proc">
+<code class="descclassname">hunts.views.</code><code class="descname">next_proc</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hunts/views.html#next_proc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hunts.views.next_proc" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body">HttpRequest</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">HttpResponse</td>
+</tr>
+</tbody>
+</table>
+<p>If the current item is the last one in the hunt, next_proc() redirect to render_congrats
+Otherwise, it calls pop_item() to update the global list of items and redirects to render_clue()</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="hunts.views.render_clue">
+<code class="descclassname">hunts.views.</code><code class="descname">render_clue</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hunts/views.html#render_clue"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hunts.views.render_clue" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body">HttpRequest</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">HttpResponse</td>
+</tr>
+</tbody>
+</table>
+<p>render item&#8217;s clue page using global var item_clue as template variable</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="hunts.views.render_result">
+<code class="descclassname">hunts.views.</code><code class="descname">render_result</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hunts/views.html#render_result"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hunts.views.render_result" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body">HttpRequest</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">HttpResponse</td>
+</tr>
+</tbody>
+</table>
+<p>Based on the user input it either redirects to render_correct(),
+render_incorrect(), or render_congrats</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="hunts.views.render_hint">
+<code class="descclassname">hunts.views.</code><code class="descname">render_hint</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hunts/views.html#render_hint"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hunts.views.render_hint" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body">HttpRequest</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">HttpResponse</td>
+</tr>
+</tbody>
+</table>
+<p>Render item&#8217;s hint page with the appropriate hint crop and hint text.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="hunts.views.render_verify">
+<code class="descclassname">hunts.views.</code><code class="descname">render_verify</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hunts/views.html#render_verify"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hunts.views.render_verify" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body">HttpRequest</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">HttpResponse</td>
+</tr>
+</tbody>
+</table>
+<p>Renders item&#8217;s verify page allowing the user to verify the item&#8217;s ids.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="hunts.views.render_correct">
+<code class="descclassname">hunts.views.</code><code class="descname">render_correct</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hunts/views.html#render_correct"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hunts.views.render_correct" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body">HttpRequest</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">HttpResponse</td>
+</tr>
+</tbody>
+</table>
+<p>Render the correct answer&#8217;s page with some fun facts and the item&#8217;s image.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="hunts.views.render_incorrect">
+<code class="descclassname">hunts.views.</code><code class="descname">render_incorrect</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hunts/views.html#render_incorrect"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hunts.views.render_incorrect" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body">HttpRequest</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">HttpResponse</td>
+</tr>
+</tbody>
+</table>
+<p>Render incorrect answer&#8217;s page allwoing the user to retry.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="hunts.views.render_congrats">
+<code class="descclassname">hunts.views.</code><code class="descname">render_congrats</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hunts/views.html#render_congrats"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hunts.views.render_congrats" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body">HttpRequest</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">HttpResponse</td>
+</tr>
+</tbody>
+</table>
+<p>Render congratulations page after finishing hunt.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="hunts.views.hunt_detail">
+<code class="descclassname">hunts.views.</code><code class="descname">hunt_detail</code><span class="sig-paren">(</span><em>request</em>, <em>category</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hunts/views.html#hunt_detail"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#hunts.views.hunt_detail" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body">HttpRequest, String Category</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">HttpResponse</td>
+</tr>
+</tbody>
+</table>
+<p>This view renders the page for each type of hunts available. It will
+contain the list of hunts in each category. And each of this list will 
+be linked to corresponding hunt page. Here, type will be a string that
+represent the type of hunt.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Hunts</a><ul>
+<li><a class="reference internal" href="#module-hunts.models">Model</a></li>
+<li><a class="reference internal" href="#views">Views</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="UserAuthentication.html"
+                        title="previous chapter">User Authentication</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/hunts.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, WebDev.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.3</a>
+      
+      |
+      <a href="_sources/hunts.txt"
+          rel="nofollow">Page source</a></li>
+    </div>
+
+    
+
+    
+  </body>
+</html>
