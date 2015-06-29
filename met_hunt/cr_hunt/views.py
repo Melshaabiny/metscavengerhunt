@@ -48,6 +48,9 @@ def render_aitem(request):
         Renders the add item page, where the user is prompt to select items from our database,
         (the Met's database, ultimately) and add it to the hunt that they're creating.
     """
+    global i_counter
+    if i_counter > 9:
+        return redirect('cr_end')
     if request.user.is_authenticated():
         form = ItemForm()
         if request.method == "POST":
@@ -101,7 +104,10 @@ def render_proc_it(request):
             global i_counter
             clue = str(request.POST.get('clue', ''))
             item_id = str(request.POST.get('item', ''))
+            if item_id == '':
+                return redirect ('cr_aitem')
             i_counter = i_counter + 1
+            add_hunt_has(hunt_id, item_id, i_counter, clue)
             return redirect('cr_aitem')
     else:
         return redirect('cr_error')

@@ -32,7 +32,7 @@ class cr_Has(models.Model):
     """
     hunt = models.ForeignKey(cr_Hunts)
     item = models.ForeignKey(Items)
-    number = models.IntegerField()
+    number = models.IntegerField(default=1)
     clue = models.CharField(max_length=250)
 
 
@@ -55,7 +55,9 @@ def add_hunt_has(id_hunt, nitem, nnum, nclue):
         :rtype: None   
         * Takes in 4 parameters and creates a new has tuple
     """
-    has = cr_Has.objects.create(hunt=id_hunt, item=nitem)
+    huntobj = cr_Hunts.objects.get(ID = id_hunt)
+    itemobj = Items.objects.get(ID = nitem)
+    has = cr_Has.objects.create(hunt=huntobj, item=itemobj)
     has.number = nnum
     has.clue = nclue
     has.save()
@@ -79,5 +81,9 @@ def get_cur_count(id_hunt):
         :rtype: IntegerId
         This function returns the number of items that the user added to the hunt being created.
     """ 
-    cur_count = cr_Has.objects.filter(hunt=id_hunt).count()
-    return cur_count
+    huntobj = cr_Hunts.objects.filter(ID = id_hunt)
+    if huntobj.first():
+        cur_count = cr_Has.objects.filter(hunt=huntobj.first()).count()
+        return cur_count
+    else:
+        return 0

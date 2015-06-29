@@ -1,5 +1,7 @@
 /*______-- "Custom Css" -- _______*/
-
+.forum-text{
+  color: white;
+}
 .MainBod{
     text-align:center;
     width: 100%;
@@ -7,9 +9,10 @@
     background-color: #385365; /*Blue*/
     font-family: 'Raleway',sans-serif;
 }
+
 .row.MainBod{
     text-align:center;
-    width: 1000px;
+    width: 100%;
     background-size:cover;
     background-color: #385365; /*Blue*/
     font-family: 'Raleway',sans-serif;
@@ -361,8 +364,6 @@ select {
     margin-right: 0; }
   .row .row {
     width: auto;
-    margin-left: -0.9375rem;
-    margin-right: -0.9375rem;
     margin-top: 0;
     margin-bottom: 0;
     max-width: none; }
