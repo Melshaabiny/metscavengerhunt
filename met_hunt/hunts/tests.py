@@ -6,11 +6,11 @@ The list of tests are:
 """
 from django.test.client import RequestFactory
 from django.test import  Client, TestCase
-from mock import MagicMock, patch
+from mock import MagicMock, patch, PropertyMock
 from hunts import views
 from hunts import models
 from django.core.urlresolvers import reverse
-
+from hunts.models import set_ItemsData
 global TEMP
 
 # Create your tests here.
@@ -49,7 +49,6 @@ class hunts_test(TestCase):
             with patch('hunts.views.set_HuntsData') as huntsdata:
                 with patch('hunts.views.render_to_response') as rend:
                     with patch('hunts.views.init_huntprog') as init_pr:
-                        global TEMP
                         itemsdata.return_value = views.TEMP
                         huntsdata.return_value = {'hunt title' : 'test1234', 'hunt start' : 'test7654321'}
                         request = MagicMock()
@@ -57,7 +56,9 @@ class hunts_test(TestCase):
                         request.user.username.return_value = 'user1'
                         views.render_hunt(request, 1)
                         #check that correct title and start point were passed through
-                        rend.assert_called_with("hunts/hunt.html", {"title" : 'test1234', "start_pt": 'test7654321'})
+                        assert huntsdata.called
+                        huntsdata.assert_called_with(1)
+                        rend.assert_called_with("hunts/hunt.html", {"title" : 'test1234', "start_pt": 'test7654321', "user": request.user})
 
     def test_render_clue(self): #DONE
         """
@@ -118,25 +119,25 @@ class hunts_test(TestCase):
                 views.TEMP = [('123', 'a clue', 1, 'hint', 'image url', 'fun fact'), ('234', 'a clue2', 2, 'hint 2', 'image url 2', 'fun fact 2')]
                 #run render_result
                 views.render_result(request)
-                #render_verify does not correctly redirect to 'correct' page when expected"
+                #fail=render_verify does not correctly redirect to 'correct' page when expected"
                 redirect.assert_called_with('rend_correct')
-                views.TEMP = [('123', 'a clue', 1, 'hint', 'image url', 'fun fact')]
+                views.TEMP = []
                 views.render_result(request)
-                #render_result dow not correctly redirect to 'congrats' page when expected
-                redirect.assert_called_with('rend_correct')
+                #fail=render_result does not correctly redirect to 'congrats' page when expected
+                redirect.assert_called_with('rend_congrats')
                 verify_id.return_value = False
                 views.render_result(request)
-                #render_verify does not correctly redirect to 'incorrect' page when expected
+                #fail=render_verify does not correctly redirect to 'incorrect' page when expected
                 redirect.assert_called_with('rend_incorrect')
 
     def test_hint(self):
         """
-            **test_incorrect** tests if render_incorrect is ran at the correct url
+            **test_hint** tests if hint is ran and called correctly
         """
         with patch('hunts.views.render_to_response') as rend:
             request = MagicMock()
             views.render_hint(request)
-            rend.assert_called_with("hunts/hint.html", {"hint_text": 'hint'})
+            rend.assert_called_with("hunts/hint.html", {"hint_text": 'hint', 'hint_crop': 'hint crop'})
 
     def test_correct(self):
         """
@@ -187,6 +188,10 @@ class hunts_test(TestCase):
                 cat = "Ancient"
                 views.hunt_detail(request, cat)
                 assert rend.called
+                rend.reset_mock()
+                cat = "Medieval"
+                views.hunt_detail(request, cat)
+                assert rend.called
 
             #***Model tests***
     def test_set_HuntsData(self): #DONE
@@ -208,13 +213,25 @@ class hunts_test(TestCase):
             **check that correct items were retrieved
         """
         with patch('hunts.models.Has.objects.filter') as items_hunt:
-            items_hunt = MagicMock()
-            items_hunt.return_value.item.ID = "123"
-            items_hunt[0].return_value.clue = "clue test"
-            items_hunt[0].return_value.number = "1"
-            items_hunt[0].return_value.hint = "Hint test"
-            items_hunt[0].return_value.image = "image url test"
-            items_hunt[0].return_value.fact = "fact test"
+            attrs = {'count.return_value':1}
+            items_hunt.configure_mock(**attrs)
+            items_hunt.return_value[0].item.ID = "123"
+            items_hunt.return_value[0].clue = "clue test"
+            items_hunt.return_value[0].number = "1"
+            items_hunt.return_value[0].hint = "Hint test"
+            items_hunt.return_value[0].hintcrop = "Hintcrop test"
+            items_hunt.return_value[0].image = "image url test"
+            items_hunt.return_value[0].fact = "fact test"
+            test_var = models.set_ItemsData('testid')
+            self.assertTrue(len(test_var) > 0)
+            self.assertEqual(len(test_var[0]), 7 )
+            self.assertEqual(test_var[0][0], "123")
+            self.assertEqual(test_var[0][1], "clue test")
+            self.assertEqual(test_var[0][2], "1")
+            self.assertEqual(test_var[0][3], "Hint test")
+            self.assertEqual(test_var[0][4], "image url test")
+            self.assertEqual(test_var[0][5], "fact test")
+            self.assertEqual(test_var[0][6], "Hintcrop test")
 
     def test_pop_item(self): #DONE
         lst = [1]
@@ -266,3 +283,9 @@ class hunts_test(TestCase):
             geth.return_value.configure_mock(**attrs)
             models.update_cur_item('test','testu',2)
             assert geth.return_value.save.called
+
+    # def test_setitem(self):
+    #     with patch('hunts.models.Has.objects.filter') as hunt_items:
+    #         hunt_items.return_value.count = MagicMock(return_value=1)
+    #         hunt_items.return_value[0].item.ID = "123"
+    #         set_ItemsData("123")

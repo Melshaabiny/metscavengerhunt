@@ -1,8 +1,12 @@
 {% extends "met_hunt/index_wobbly.html" %}
+{% load staticfiles%}
 {% block body %}
 {% load staticfiles %}
+<div class="MainBod medium-12 small-12 large-12">
+    <div class="row factdivision small-12 medium-12 large-12 centered">
     <div class="slide">
-        <img class ="icon" src="{% static 'hunts/museumhunters.svg' %}" alt="Museum Hunters Logo"/>
+        
+        <a href={% url 'home.views.main' %}><img class ="icon" src="{% static 'hunts/museumhunters.svg' %}" alt="Museum Hunters Logo"/></a>
         {% if user.is_authenticated %}
         <h1>Welcome to the {{title}}</h1>
         <h1>{{start_pt}}</h1>
@@ -21,5 +25,7 @@
         <input class = "submit" type="submit" value="Register">
         </form>
         {% endif %}
-    </div>	
+    </div>
+</div>
+</div>
 {% endblock %}
